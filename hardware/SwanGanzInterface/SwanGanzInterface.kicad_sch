@@ -2,9 +2,228 @@
 	(version 20250114)
 	(generator "eeschema")
 	(generator_version "9.0")
-	(uuid 4e9a6e30-f660-472b-9696-bea1f34b4545)
-	(paper "A4")
+	(uuid "4e9a6e30-f660-472b-9696-bea1f34b4545")
+	(paper "A3")
+	(title_block
+		(title "Swan Ganz Interface")
+		(date "2025-12-20")
+		(rev "Rev 1.0")
+		(company "Univerisity of Texas at Austin")
+		(comment 1 "Senior Design Project Fall 2025 - Spring 2026")
+		(comment 2 "Ashton Knecht, Jack Son, Nathan DeLaRosa, Jerry Xia")
+		(comment 3 "Faculty Mentor - Dr. Valvano")
+	)
 	(lib_symbols)
+	(sheet
+		(at 35.052 33.528)
+		(size 44.196 31.496)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 236 112 30 1.0000)
+		)
+		(uuid "090a1e64-9482-4912-b352-6eea35714559")
+		(property "Sheetname" "Power"
+			(at 35.052 32.8164 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SGI_Power.kicad_sch"
+			(at 35.052 65.6086 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 96.774 33.02)
+		(size 44.196 31.496)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 235 31 1.0000)
+		)
+		(uuid "2d5e901e-83ed-4d76-b163-6429564a2d4c")
+		(property "Sheetname" "Thermistor"
+			(at 96.774 32.3084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SGI_Thermistor.kicad_sch"
+			(at 96.774 65.1006 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 158.496 32.766)
+		(size 44.196 31.496)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 100 255 0 1.0000)
+		)
+		(uuid "3d8fa9e7-4833-4941-a955-d778effe3e32")
+		(property "Sheetname" "PressureChannel1"
+			(at 158.496 32.0544 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SGI_PressureChannel1.kicad_sch"
+			(at 158.496 64.8466 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 215.392 32.766)
+		(size 44.196 31.496)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 68 249 255 1.0000)
+		)
+		(uuid "5b443651-3bea-4d19-bd25-a234ca65ad96")
+		(property "Sheetname" "PressureChannel2"
+			(at 215.392 32.0544 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SGI_PressureChannel2.kicad_sch"
+			(at 215.392 64.8466 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 36.576 73.914)
+		(size 44.196 31.496)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 51 40 255 1.0000)
+		)
+		(uuid "b7986f9d-7bcd-462e-9f66-fb6deb5be406")
+		(property "Sheetname" "Processor"
+			(at 36.576 73.2024 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SGI_Processor.kicad_sch"
+			(at 36.576 105.9946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545"
+					(page "3")
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")
