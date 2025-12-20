@@ -1,0 +1,17 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "8a19aaf0-c4cb-4d05-bf4b-013aecf7f519")
+	(paper "A3")
+	(title_block
+		(title "Swan Ganz Interface")
+		(date "2025-12-20")
+		(rev "Rev 1.0")
+		(company "Univerisity of Texas at Austin")
+		(comment 1 "Senior Design Project Fall 2025 - Spring 2026")
+		(comment 2 "Ashton Knecht, Jack Son, Nathan DeLaRosa, Jerry Xia")
+		(comment 3 "Faculty Mentor - Dr. Valvano")
+	)
+	(lib_symbols)
+)
