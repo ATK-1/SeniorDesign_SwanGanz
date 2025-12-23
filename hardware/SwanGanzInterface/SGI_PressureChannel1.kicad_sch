@@ -519,7 +519,6 @@
 				)
 			)
 			(embedded_fonts no)
-			(embedded_files)
 		)
 		(symbol "SGI_SymbolLib:OPA2350PA"
 			(pin_names
@@ -774,7 +773,6 @@
 				)
 			)
 			(embedded_fonts no)
-			(embedded_files)
 		)
 		(symbol "power:+3V3"
 			(power)
