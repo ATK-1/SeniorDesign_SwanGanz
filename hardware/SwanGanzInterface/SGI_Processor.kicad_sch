@@ -14,4 +14,14 @@
 		(comment 3 "Faculty Mentor - Dr. Valvano")
 	)
 	(lib_symbols)
+	(text "Processor : CC2340R5"
+		(exclude_from_sim no)
+		(at 49.53 18.415 0)
+		(effects
+			(font
+				(size 3.81 3.81)
+			)
+		)
+		(uuid "f790cfcb-7109-4a1a-a756-f0a139fbb2b9")
+	)
 )
