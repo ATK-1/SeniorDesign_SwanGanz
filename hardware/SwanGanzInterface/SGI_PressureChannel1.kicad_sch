@@ -3,10 +3,10 @@
 	(generator "eeschema")
 	(generator_version "9.0")
 	(uuid "f9e17a6e-c5b1-4fe2-8523-8ff920f2f662")
-	(paper "A3")
+	(paper "A4")
 	(title_block
 		(title "Swan Ganz Interface")
-		(date "2025-12-20")
+		(date "2026-01-12")
 		(rev "Rev 1.0")
 		(company "Univerisity of Texas at Austin")
 		(comment 1 "Senior Design Project Fall 2025 - Spring 2026")
@@ -1001,6 +1001,16 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "49.736 Hz Cutoff"
+		(exclude_from_sim no)
+		(at 83.185 97.79 0)
+		(effects
+			(font
+				(size 2.54 2.54)
+			)
+		)
+		(uuid "99831dee-8142-4c0e-a2b7-30cfbe044f8f")
+	)
 	(junction
 		(at 104.775 62.23)
 		(diameter 0)
@@ -1550,7 +1560,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "0.1u"
 			(at 105.41 71.755 0)
 			(effects
 				(font
@@ -1683,7 +1693,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "32k"
 			(at 111.76 62.23 90)
 			(effects
 				(font
@@ -2671,7 +2681,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "32k"
 			(at 97.79 62.23 90)
 			(effects
 				(font
@@ -2738,8 +2748,8 @@
 				)
 			)
 		)
-		(property "Value" "C"
-			(at 131.445 57.15 90)
+		(property "Value" "0.1u"
+			(at 132.715 57.15 90)
 			(effects
 				(font
 					(size 1.27 1.27)
