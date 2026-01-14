@@ -30955,6 +30955,26 @@
 			)
 		)
 	)
+	(text "add debug pins"
+		(exclude_from_sim no)
+		(at 33.274 158.242 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "848e0356-9f80-44eb-8be6-eabd12e1f738")
+	)
+	(text "Add led"
+		(exclude_from_sim no)
+		(at 37.338 151.892 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "9ab6c276-7012-4e3a-9c93-8f25049056c2")
+	)
 	(symbol
 		(lib_id "SGI_SymbolLib:LP-MSPM0G3507")
 		(at 63.5 72.898 0)

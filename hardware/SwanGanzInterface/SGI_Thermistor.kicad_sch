@@ -50491,7 +50491,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "Gain : 2"
+	(text "Gain : 4"
 		(exclude_from_sim no)
 		(at 167.132 71.374 0)
 		(effects
@@ -50521,7 +50521,7 @@
 		)
 		(uuid "4165bc4e-9964-4b95-bfcd-bc34c0321e97")
 	)
-	(text "Gain : 1"
+	(text "Gain : 2\n"
 		(exclude_from_sim no)
 		(at 167.64 52.324 0)
 		(effects
@@ -51163,7 +51163,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "AGND"
+		(property "Value" "GND"
 			(at 144.272 76.2 0)
 			(effects
 				(font
@@ -51313,7 +51313,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "AGND"
+		(property "Value" "GND"
 			(at 99.822 29.21 0)
 			(effects
 				(font
@@ -51378,7 +51378,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3A"
+		(property "Value" "+3V3"
 			(at 83.82 20.574 0)
 			(effects
 				(font
@@ -51443,7 +51443,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "AGND"
+		(property "Value" "GND"
 			(at 174.752 96.52 0)
 			(effects
 				(font
@@ -51507,7 +51507,7 @@
 				)
 			)
 		)
-		(property "Value" "0R"
+		(property "Value" "10k"
 			(at 140.97 69.85 90)
 			(effects
 				(font
@@ -51574,7 +51574,7 @@
 				)
 			)
 		)
-		(property "Value" "0R"
+		(property "Value" "10k"
 			(at 151.13 62.23 90)
 			(effects
 				(font
@@ -51710,12 +51710,13 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "AGND"
-			(at 265.43 58.42 0)
+		(property "Value" "GND"
+			(at 267.97 54.6099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -52287,7 +52288,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3A"
+		(property "Value" "+3V3"
 			(at 265.43 21.844 0)
 			(effects
 				(font
@@ -52418,7 +52419,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "65k5"
 			(at 95.25 35.56 90)
 			(effects
 				(font
@@ -52574,7 +52575,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "AGND"
+		(property "Value" "GND"
 			(at 87.122 71.12 0)
 			(effects
 				(font
@@ -52706,7 +52707,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "AGND"
+		(property "Value" "GND"
 			(at 130.302 64.77 0)
 			(effects
 				(font
