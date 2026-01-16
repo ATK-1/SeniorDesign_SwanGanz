@@ -1291,15 +1291,25 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "50 Hz Cutoff"
+	(text "Cutoff Frequency :\nfc = 1 / (2 * pi * R * C)\n1 / ( 2 * pi * 32k Ohms * 0.1uF) = 49.7359 Hz"
 		(exclude_from_sim no)
-		(at 117.475 24.13 0)
+		(at 161.798 38.354 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 		)
 		(uuid "685eea3e-26d8-4683-a39d-60b2eacade6f")
+	)
+	(text "Total Gain :\n1005 * 6 * 2 = 12060"
+		(exclude_from_sim no)
+		(at 207.264 84.582 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "76b55ea9-ff7d-4751-b573-9aa88693498c")
 	)
 	(text "Gain :\nG = 5 + (200k / Rg)\nG = 5 + (200k / 200) = 1005"
 		(exclude_from_sim no)
@@ -1311,9 +1321,19 @@
 		)
 		(uuid "7b71d521-20b9-4429-81cd-9306b4aab9d4")
 	)
+	(text "Pressure Channel 2"
+		(exclude_from_sim no)
+		(at 42.418 18.034 0)
+		(effects
+			(font
+				(size 3.81 3.81)
+			)
+		)
+		(uuid "87a55f34-bfd7-497a-a75c-a8e2993d51ce")
+	)
 	(text "Gain :\nG = 1 + (Rf / Rg)\nG = 1 + (50k / 10k) = 6"
 		(exclude_from_sim no)
-		(at 156.464 78.994 0)
+		(at 161.036 46.99 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1323,7 +1343,7 @@
 	)
 	(text "Total Gain :\n1005 * 6 = 6030"
 		(exclude_from_sim no)
-		(at 189.484 64.77 0)
+		(at 186.69 60.706 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1338,6 +1358,12 @@
 		(uuid "09a0e0c3-2212-4030-aeb5-435e1568435a")
 	)
 	(junction
+		(at 190.754 88.646)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1238241d-24b8-4059-82d3-8e707725a165")
+	)
+	(junction
 		(at 139.7 61.722)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1350,16 +1376,40 @@
 		(uuid "4522e3ae-f342-404a-a25c-464f690bdd75")
 	)
 	(junction
+		(at 259.334 25.654)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "559b2b73-e4c5-41f9-b6bf-fe19af01312c")
+	)
+	(junction
+		(at 259.334 48.514)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8c7ac611-2335-4cb0-a598-7ab1b6954239")
+	)
+	(junction
 		(at 161.29 64.262)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b9fd75c0-151b-4637-b161-c9b80a78c2dc")
 	)
 	(junction
+		(at 167.64 99.568)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ebd2eb82-d72e-435a-aee3-cfe7cae4d124")
+	)
+	(junction
 		(at 139.7 73.152)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f1c949d8-bd9d-4bb8-bf42-297aceafa007")
+	)
+	(junction
+		(at 167.64 64.262)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f36d8aec-76cd-4144-b3d0-9bb60e2f581c")
 	)
 	(wire
 		(pts
@@ -1373,6 +1423,16 @@
 	)
 	(wire
 		(pts
+			(xy 186.944 88.646) (xy 190.754 88.646)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "044244be-106f-44dd-bf3d-61bbf63e6eee")
+	)
+	(wire
+		(pts
 			(xy 90.932 46.482) (xy 88.392 46.482)
 		)
 		(stroke
@@ -1380,6 +1440,26 @@
 			(type default)
 		)
 		(uuid "055e8880-e8fb-482c-875b-35674bfe3326")
+	)
+	(wire
+		(pts
+			(xy 190.754 88.646) (xy 198.628 88.646)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "05c238d7-ccbb-4c6e-bd6b-ad5965f5ca3c")
+	)
+	(wire
+		(pts
+			(xy 167.64 99.568) (xy 167.64 102.362)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "09fa19e4-4e2a-4fbe-9721-0fca7618faa9")
 	)
 	(wire
 		(pts
@@ -1400,6 +1480,26 @@
 			(type default)
 		)
 		(uuid "0de13409-bd91-41a3-811f-8ab1203bb0a9")
+	)
+	(wire
+		(pts
+			(xy 271.526 41.402) (xy 271.526 48.514)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f9b9423-228f-4c3c-ac51-5520787692da")
+	)
+	(wire
+		(pts
+			(xy 171.704 86.106) (xy 167.64 86.106)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "10e50ce8-c5cb-4a53-b5b6-af3c022c2942")
 	)
 	(wire
 		(pts
@@ -1473,7 +1573,7 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 64.262) (xy 164.592 64.262)
+			(xy 161.29 64.262) (xy 167.64 64.262)
 		)
 		(stroke
 			(width 0)
@@ -1553,6 +1653,16 @@
 	)
 	(wire
 		(pts
+			(xy 171.704 91.186) (xy 167.64 91.186)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "44109988-f654-4a69-8090-aedd9ca229c1")
+	)
+	(wire
+		(pts
 			(xy 96.012 40.132) (xy 96.012 37.592)
 		)
 		(stroke
@@ -1583,6 +1693,36 @@
 	)
 	(wire
 		(pts
+			(xy 167.64 64.262) (xy 179.324 64.262)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c42cc7b-4b9a-4e34-b98c-02b8a2fd487d")
+	)
+	(wire
+		(pts
+			(xy 259.334 25.654) (xy 259.334 23.622)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "604ac87e-a0b6-4d3b-b2b4-90d8e732f39e")
+	)
+	(wire
+		(pts
+			(xy 271.526 48.514) (xy 259.334 48.514)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "629d69b3-aeb8-42c2-b0ed-c64e346ec61a")
+	)
+	(wire
+		(pts
 			(xy 49.276 69.342) (xy 42.926 69.342)
 		)
 		(stroke
@@ -1590,6 +1730,16 @@
 			(type default)
 		)
 		(uuid "6eaf872e-1c9f-4959-8684-97bc0871a2dc")
+	)
+	(wire
+		(pts
+			(xy 177.038 99.568) (xy 167.64 99.568)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "714c0763-d7d4-4111-baa2-5b9ff66e866d")
 	)
 	(wire
 		(pts
@@ -1623,6 +1773,26 @@
 	)
 	(wire
 		(pts
+			(xy 259.334 48.514) (xy 259.334 45.212)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7b819af3-9933-4546-8714-3af56e79dbeb")
+	)
+	(wire
+		(pts
+			(xy 190.754 88.646) (xy 190.754 99.568)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ca1e93b-c5b6-4a7f-b6a6-831c786dcdb8")
+	)
+	(wire
+		(pts
 			(xy 161.29 73.152) (xy 161.29 64.262)
 		)
 		(stroke
@@ -1643,6 +1813,26 @@
 	)
 	(wire
 		(pts
+			(xy 167.64 91.186) (xy 167.64 99.568)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9e1fdd78-5a49-45f2-831b-99129a5d674e")
+	)
+	(wire
+		(pts
+			(xy 167.64 86.106) (xy 167.64 64.262)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a71bd44d-23e1-49f8-a799-79a2b76c6a3e")
+	)
+	(wire
+		(pts
 			(xy 60.198 54.102) (xy 60.198 59.182)
 		)
 		(stroke
@@ -1650,6 +1840,16 @@
 			(type default)
 		)
 		(uuid "b355d922-37c8-4db5-a42e-a349daa46baf")
+	)
+	(wire
+		(pts
+			(xy 259.334 25.654) (xy 259.334 29.972)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b899fae5-b82f-4110-a06c-1de522579dcb")
 	)
 	(wire
 		(pts
@@ -1670,6 +1870,16 @@
 			(type default)
 		)
 		(uuid "bd3cb9a0-f271-408b-8394-78405b52fafd")
+	)
+	(wire
+		(pts
+			(xy 167.64 112.268) (xy 167.64 109.982)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd43713a-8bc8-47f0-a9b0-c9f5f51fc377")
 	)
 	(wire
 		(pts
@@ -1703,6 +1913,26 @@
 	)
 	(wire
 		(pts
+			(xy 190.754 99.568) (xy 184.658 99.568)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce2620c7-97c3-47ba-9315-301f02820f53")
+	)
+	(wire
+		(pts
+			(xy 259.334 48.514) (xy 259.334 51.562)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cf3b8e8c-575d-4fb9-a25b-7d5ed31883ed")
+	)
+	(wire
+		(pts
 			(xy 139.7 66.802) (xy 143.002 66.802)
 		)
 		(stroke
@@ -1730,6 +1960,26 @@
 			(type default)
 		)
 		(uuid "e1567a40-8874-4a30-8d61-cb662641a47e")
+	)
+	(wire
+		(pts
+			(xy 271.526 33.782) (xy 271.526 25.654)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e514faf2-fdec-4db5-b182-4ff051ce1719")
+	)
+	(wire
+		(pts
+			(xy 271.526 25.654) (xy 259.334 25.654)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e74b9cbf-3cb7-4ff3-97ac-0bbd357766e4")
 	)
 	(wire
 		(pts
@@ -1781,6 +2031,28 @@
 		)
 		(uuid "faa02ade-1981-47f4-8673-fd174d5db783")
 	)
+	(global_label "Pres2AmpOut_HighGain"
+		(shape output)
+		(at 198.628 88.646 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "053321ca-dec0-4563-af08-f62bc5d29e5e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 223.5054 88.646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "P1_VCC"
 		(shape output)
 		(at 49.276 47.244 90)
@@ -1803,9 +2075,9 @@
 			)
 		)
 	)
-	(global_label "Pres2AmpOut"
+	(global_label "Pres2AmpOut_LowGain"
 		(shape output)
-		(at 164.592 64.262 0)
+		(at 179.324 64.262 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1815,13 +2087,166 @@
 		)
 		(uuid "f2582b1e-82fc-4332-8017-8248e8e44dc2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 180.0957 64.262 0)
+			(at 203.4757 64.262 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 259.334 23.622 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "01df6f26-7231-4a5d-8359-2cc5a7c4d214")
+		(property "Reference" "#PWR03"
+			(at 259.334 27.432 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 259.334 20.066 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 259.334 23.622 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 259.334 23.622 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 259.334 23.622 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c3120baa-7759-46a6-99c6-0ae6d61ab73d")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
+					(reference "#PWR03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:OPA2350PA")
+		(at 261.874 37.592 0)
+		(unit 3)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "026fcc88-b39b-4698-8720-82850f9d4f65")
+		(property "Reference" "U10"
+			(at 260.604 36.3219 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "OPA2350"
+			(at 260.604 38.8619 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm"
+			(at 261.874 29.337 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "kicad-embed://OPAx350.pdf"
+			(at 262.509 31.242 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Precision, 38-MHz, Low-Noise, Low-Power, RRIO, CMOS Operational Amplifier, DIP-8"
+			(at 261.874 37.592 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "5"
+			(uuid "f2b45d98-e383-47d9-88eb-11799c872eeb")
+		)
+		(pin "6"
+			(uuid "b2db586c-cc90-43af-b646-ffee14032ab2")
+		)
+		(pin "3"
+			(uuid "886a729a-a682-4200-8e5b-86c411ead78b")
+		)
+		(pin "2"
+			(uuid "d5baf2c0-11ae-4f69-944e-9ebd9f4837fa")
+		)
+		(pin "8"
+			(uuid "7648ad86-f2b1-4f1a-b7e2-2eceb4d50a65")
+		)
+		(pin "7"
+			(uuid "835d77d2-f37b-4600-b777-2be2da3003d4")
+		)
+		(pin "4"
+			(uuid "426065c3-9246-4827-b788-86843eefeffd")
+		)
+		(pin "1"
+			(uuid "2bdb5ef0-b386-4067-ae2c-797b418ea879")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
+					(reference "U10")
+					(unit 3)
+				)
 			)
 		)
 	)
@@ -1900,8 +2325,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1f717382-d45b-4a90-9500-5da18569ed91")
-		(property "Reference" "U9"
-			(at 36.576 46.736 0)
+		(property "Reference" "J3"
+			(at 36.576 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1909,7 +2334,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 36.576 49.276 0)
+			(at 36.576 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1982,39 +2407,23 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "U9")
+					(reference "J3")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "SGI_SymbolLib:OPA2350PA")
-		(at 150.622 64.262 0)
-		(unit 2)
+		(lib_id "power:GNDA")
+		(at 167.64 112.268 0)
+		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "258e22d2-185b-485f-afd8-991dc93dae75")
-		(property "Reference" "U5"
-			(at 149.352 64.262 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "OPA2350"
-			(at 155.702 68.072 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_DIP:DIP-8_W7.62mm"
-			(at 150.622 56.007 0)
+		(uuid "2664c1a9-6304-4829-80e6-f0658ea7d74f")
+		(property "Reference" "#PWR08"
+			(at 167.64 118.618 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2022,8 +2431,16 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "kicad-embed://OPAx350.pdf"
-			(at 151.257 57.912 0)
+		(property "Value" "GND"
+			(at 170.942 112.268 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 167.64 112.268 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2031,8 +2448,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Precision, 38-MHz, Low-Noise, Low-Power, RRIO, CMOS Operational Amplifier, DIP-8"
-			(at 150.622 64.262 0)
+		(property "Datasheet" ""
+			(at 167.64 112.268 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2040,35 +2457,23 @@
 				(hide yes)
 			)
 		)
-		(pin "5"
-			(uuid "444fdf76-eddc-4334-8b8a-f00230c2554e")
-		)
-		(pin "6"
-			(uuid "0bf48abe-5f8e-4da4-a73f-0d9ab3812d92")
-		)
-		(pin "3"
-			(uuid "886a729a-a682-4200-8e5b-86c411ead78a")
-		)
-		(pin "2"
-			(uuid "d5baf2c0-11ae-4f69-944e-9ebd9f4837f9")
-		)
-		(pin "8"
-			(uuid "2e5b498d-c775-458b-92f9-28385fd64ce3")
-		)
-		(pin "7"
-			(uuid "0e0c74f3-8f9d-4395-a011-109062f9d2da")
-		)
-		(pin "4"
-			(uuid "2dc2fd4d-ad32-430f-9fdd-a8a17c9aecf5")
+		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
+			(at 167.64 112.268 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
 		)
 		(pin "1"
-			(uuid "2bdb5ef0-b386-4067-ae2c-797b418ea878")
+			(uuid "75e80aa7-2b85-4bfc-8935-a6977beb5283")
 		)
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "U5")
-					(unit 2)
+					(reference "#PWR08")
+					(unit 1)
 				)
 			)
 		)
@@ -2472,6 +2877,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 271.526 37.592 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7a2e1f99-5213-44a7-b8c9-eb834b14f1c9")
+		(property "Reference" "C1"
+			(at 272.161 33.782 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0.1u"
+			(at 272.161 35.687 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 272.4912 41.402 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 271.526 37.592 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 271.526 37.592 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "cab7eb8b-dbc6-4903-91fa-c688365ed008")
+		)
+		(pin "1"
+			(uuid "a5d44042-ee9f-46d7-921f-4235dc09c96d")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
+					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "SGI_SymbolLib:Pressure_Connector")
 		(at 36.83 98.044 0)
 		(unit 2)
@@ -2481,8 +2955,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7bed4201-0c2e-4bbe-bf43-1c84e8689088")
-		(property "Reference" "U9"
-			(at 36.83 82.804 0)
+		(property "Reference" "J3"
+			(at 36.83 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2490,7 +2964,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 36.83 85.344 0)
+			(at 36.83 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2563,8 +3037,93 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "U9")
+					(reference "J3")
 					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:OPA2350PA")
+		(at 150.622 64.262 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8cbbee1d-b032-445f-975a-d2083c5d7f21")
+		(property "Reference" "U10"
+			(at 148.082 64.262 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "OPA2350"
+			(at 155.067 68.072 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm"
+			(at 150.622 56.007 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "kicad-embed://OPAx350.pdf"
+			(at 151.257 57.912 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Precision, 38-MHz, Low-Noise, Low-Power, RRIO, CMOS Operational Amplifier, DIP-8"
+			(at 150.622 64.262 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "5"
+			(uuid "f2b45d98-e383-47d9-88eb-11799c872ee9")
+		)
+		(pin "6"
+			(uuid "b2db586c-cc90-43af-b646-ffee14032ab0")
+		)
+		(pin "3"
+			(uuid "46af81b4-4c30-410b-b939-4270013e0702")
+		)
+		(pin "2"
+			(uuid "d03f15be-e4b8-4ec4-a18a-f48de907b5fa")
+		)
+		(pin "8"
+			(uuid "2e5b498d-c775-458b-92f9-28385fd64ce2")
+		)
+		(pin "7"
+			(uuid "835d77d2-f37b-4600-b777-2be2da3003d2")
+		)
+		(pin "4"
+			(uuid "2dc2fd4d-ad32-430f-9fdd-a8a17c9aecf4")
+		)
+		(pin "1"
+			(uuid "9b518be0-c74b-488b-872c-e02bda602998")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
+					(reference "U10")
+					(unit 1)
 				)
 			)
 		)
@@ -2789,6 +3348,140 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 180.848 99.568 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "de208334-fe09-4510-8edd-2b0094115b11")
+		(property "Reference" "R26"
+			(at 180.848 97.282 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 180.848 99.568 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 180.848 101.346 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 180.848 99.568 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 180.848 99.568 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "f0f438c5-7494-4954-b6bf-820fbb15406f")
+		)
+		(pin "1"
+			(uuid "f3733577-1420-4b47-ac22-e56d9c0f1ebb")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
+					(reference "R26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDA")
+		(at 259.334 51.562 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e5cc1ef4-8b1d-4c0a-a556-1c7e23b3a152")
+		(property "Reference" "#PWR07"
+			(at 259.334 57.912 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 261.366 52.8319 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 259.334 51.562 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 259.334 51.562 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
+			(at 259.334 51.562 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "aa4f6d18-ce0e-4737-885c-1b6a2206cb87")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 83.312 35.052 0)
 		(unit 1)
@@ -2984,6 +3677,91 @@
 		)
 	)
 	(symbol
+		(lib_id "SGI_SymbolLib:OPA2350PA")
+		(at 179.324 88.646 0)
+		(unit 2)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f4e63f9b-7977-411e-bb31-49d0b7a86f5f")
+		(property "Reference" "U10"
+			(at 178.054 88.646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "OPA2350"
+			(at 184.404 92.456 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm"
+			(at 179.324 80.391 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "kicad-embed://OPAx350.pdf"
+			(at 179.959 82.296 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Precision, 38-MHz, Low-Noise, Low-Power, RRIO, CMOS Operational Amplifier, DIP-8"
+			(at 179.324 88.646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "5"
+			(uuid "f0e44415-e0c7-4770-ae62-9ad0fc6971be")
+		)
+		(pin "6"
+			(uuid "937e7b6f-b3f4-43a1-b26f-da71f1661355")
+		)
+		(pin "3"
+			(uuid "886a729a-a682-4200-8e5b-86c411ead78a")
+		)
+		(pin "2"
+			(uuid "d5baf2c0-11ae-4f69-944e-9ebd9f4837f9")
+		)
+		(pin "8"
+			(uuid "2e5b498d-c775-458b-92f9-28385fd64ce3")
+		)
+		(pin "7"
+			(uuid "cba6a156-9e6a-4817-86a9-487e8bb4c732")
+		)
+		(pin "4"
+			(uuid "2dc2fd4d-ad32-430f-9fdd-a8a17c9aecf5")
+		)
+		(pin "1"
+			(uuid "2bdb5ef0-b386-4067-ae2c-797b418ea878")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
+					(reference "U10")
+					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 150.622 55.372 90)
 		(unit 1)
@@ -2993,7 +3771,7 @@
 		(dnp no)
 		(uuid "f54b25a4-4c74-4485-ac85-6080321cb1d3")
 		(property "Reference" "C16"
-			(at 153.162 53.467 90)
+			(at 154.178 53.34 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3181,6 +3959,73 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
 					(reference "C14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 167.64 106.172 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fbc3e12f-2cfe-47ff-81af-dd7ab007a0c1")
+		(property "Reference" "R25"
+			(at 165.354 106.172 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 167.64 106.172 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 169.418 106.172 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 167.64 106.172 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 167.64 106.172 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "a63f56d2-c317-4f46-b321-c1445b266c6c")
+		)
+		(pin "1"
+			(uuid "ad8f463d-7eaf-44e0-b9a2-f5cafe6a4db8")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
+					(reference "R25")
 					(unit 1)
 				)
 			)
