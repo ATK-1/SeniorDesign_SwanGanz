@@ -1064,6 +1064,140 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "SGI_SymbolLib:Testpoint"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TP"
+				(at 0 2.794 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TP"
+				(at 0 -2.286 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
+				(at 0 5.715 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Testpoint"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "Testpoint"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Jumper* TestPoint*2Pads* TestPoint*Bridge*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Testpoint_0_1"
+				(arc
+					(start 0.0001 4.4451)
+					(mid 1.3471 3.8871)
+					(end 1.9051 2.5401)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -1.905 2.54)
+					(mid -1.347 3.887)
+					(end 0 4.445)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Testpoint_1_1"
+				(pin passive line
+					(at -1.905 0 90)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 1.905 0 90)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+3V3"
 			(power)
 			(pin_numbers
@@ -1361,6 +1495,32 @@
 		)
 		(uuid "d9c5696c-f8e4-467c-bc50-0bb60f93f21f")
 	)
+	(text "C0G\n1%"
+		(exclude_from_sim no)
+		(at 137.0916 58.928 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "f4558eb9-755d-479a-82d2-e1f29a3602b9")
+	)
+	(text "C0G\n1%"
+		(exclude_from_sim no)
+		(at 112.522 69.596 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "fbf2ea5d-f61d-4b5f-bd92-4f1eecb8f2be")
+	)
+	(junction
+		(at 90.805 62.23)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1291cdad-3fab-4d76-81a8-f5c1e5026269")
+	)
 	(junction
 		(at 146.558 64.77)
 		(diameter 0)
@@ -1374,6 +1534,18 @@
 		(uuid "3f797150-af60-425b-b41f-381921a53278")
 	)
 	(junction
+		(at 45.085 134.62)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "433df573-da09-4ab3-8945-10397321f0ba")
+	)
+	(junction
+		(at 45.085 127)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4ff5ebc4-f525-4b14-ad7c-3df087108771")
+	)
+	(junction
 		(at 62.23 38.1)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1384,6 +1556,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "64e97e3b-0c26-43bd-b34c-cc8c9bd41aa8")
+	)
+	(junction
+		(at 45.085 142.24)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8172abda-aa20-4cd0-a78f-1ac13d920ea7")
 	)
 	(junction
 		(at 118.872 73.66)
@@ -1510,6 +1688,16 @@
 			(type default)
 		)
 		(uuid "2c7a2990-ff7b-4fb1-9168-25e7cde87425")
+	)
+	(wire
+		(pts
+			(xy 45.085 134.62) (xy 48.895 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3459634a-9325-4e27-99d1-05d40252b551")
 	)
 	(wire
 		(pts
@@ -1653,6 +1841,16 @@
 	)
 	(wire
 		(pts
+			(xy 39.37 142.24) (xy 45.085 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ecd4aef-5758-458a-9190-1df42faae9cb")
+	)
+	(wire
+		(pts
 			(xy 146.558 86.614) (xy 146.558 64.77)
 		)
 		(stroke
@@ -1783,6 +1981,16 @@
 	)
 	(wire
 		(pts
+			(xy 45.085 127) (xy 48.895 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac656140-8e8f-4537-b93e-a5bca6e6cbba")
+	)
+	(wire
+		(pts
 			(xy 47.244 54.61) (xy 52.07 54.61)
 		)
 		(stroke
@@ -1893,6 +2101,16 @@
 	)
 	(wire
 		(pts
+			(xy 90.805 62.23) (xy 93.98 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc6200eb-0b23-4c84-a89b-c21729c30e44")
+	)
+	(wire
+		(pts
 			(xy 118.872 62.23) (xy 121.92 62.23)
 		)
 		(stroke
@@ -1900,6 +2118,16 @@
 			(type default)
 		)
 		(uuid "ccb544c5-206b-417c-9ea3-eaa9cc62577c")
+	)
+	(wire
+		(pts
+			(xy 40.005 127) (xy 45.085 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cd7e378d-0656-4d13-91b3-321490ef1561")
 	)
 	(wire
 		(pts
@@ -1943,6 +2171,16 @@
 	)
 	(wire
 		(pts
+			(xy 40.005 134.62) (xy 45.085 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "de95f2a9-e9b1-4a87-a2a8-e7b4d11fe823")
+	)
+	(wire
+		(pts
 			(xy 275.59 34.29) (xy 275.59 26.162)
 		)
 		(stroke
@@ -1960,6 +2198,16 @@
 			(type default)
 		)
 		(uuid "df3009d6-ac7d-44d3-9720-4327407179a9")
+	)
+	(wire
+		(pts
+			(xy 45.085 142.24) (xy 48.895 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e1520ddc-ea1a-4f98-aa3b-9d524d0660e7")
 	)
 	(wire
 		(pts
@@ -2013,7 +2261,7 @@
 	)
 	(wire
 		(pts
-			(xy 87.63 62.23) (xy 93.98 62.23)
+			(xy 87.63 62.23) (xy 90.805 62.23)
 		)
 		(stroke
 			(width 0)
@@ -2030,6 +2278,16 @@
 			(type default)
 		)
 		(uuid "eb807273-83bb-4b14-9a4c-ec2ae34a84e2")
+	)
+	(wire
+		(pts
+			(xy 90.805 62.23) (xy 90.805 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fe6447ef-c712-42f8-bcc7-7a232ef87150")
 	)
 	(wire
 		(pts
@@ -2059,6 +2317,72 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Pres1AmpOut_LowGain"
+		(shape input)
+		(at 40.005 134.62 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "15f04f31-adbc-43df-aa2d-d4a7d9494509")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 15.8533 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "P1__InstrOut"
+		(shape input)
+		(at 40.005 127 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "412761ed-4fe3-417b-8132-f346074db969")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 25.1061 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "P1__InstrOut"
+		(shape input)
+		(at 90.805 66.04 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "80fe3661-d11d-400f-8779-7f35cbfe1910")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 90.805 80.9389 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -2104,6 +2428,98 @@
 				)
 				(justify left)
 				(hide yes)
+			)
+		)
+	)
+	(global_label "Pres1AmpOut_HighGain"
+		(shape input)
+		(at 39.37 142.24 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f4fd7b87-e52f-45db-9a3c-325c6ccd6be4")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 14.4926 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:Testpoint")
+		(at 46.99 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "000cd54c-bc7c-46c2-bb54-6ec8d9b22952")
+		(property "Reference" "TP14"
+			(at 50.546 128.5873 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TP"
+			(at 50.546 131.1273 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
+			(at 50.546 133.6673 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 46.99 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Testpoint"
+			(at 46.99 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "5563ec6c-2756-49d5-8b86-684d78c5528c")
+		)
+		(pin "1"
+			(uuid "079b01ac-8820-43c8-a9e1-0baa9e05bdce")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
+					(reference "TP14")
+					(unit 1)
+				)
 			)
 		)
 	)
@@ -2805,6 +3221,76 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
 					(reference "#PWR028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:Testpoint")
+		(at 46.99 127 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "78a5e441-e006-443d-b27e-0084e98cbbfb")
+		(property "Reference" "TP13"
+			(at 50.546 120.9673 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TP"
+			(at 50.546 123.5073 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
+			(at 50.546 126.0473 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 46.99 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Testpoint"
+			(at 46.99 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "1f4af62c-87ee-4baa-bf6e-3d2848e5af18")
+		)
+		(pin "1"
+			(uuid "4447d4dd-8ea5-44c3-9f99-5d3fd3eaf9a5")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
+					(reference "TP13")
 					(unit 1)
 				)
 			)
@@ -3739,6 +4225,76 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
 					(reference "C10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:Testpoint")
+		(at 46.99 142.24 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d33694a4-1027-47d6-86a0-efc54890a24e")
+		(property "Reference" "TP15"
+			(at 50.546 136.2073 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TP"
+			(at 50.546 138.7473 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
+			(at 50.546 141.2873 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 46.99 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Testpoint"
+			(at 46.99 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "653a10eb-a4f5-4230-a6ec-a9864e98cefd")
+		)
+		(pin "1"
+			(uuid "16228c9e-612d-4a8a-bfe8-3facbc3e3798")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
+					(reference "TP15")
 					(unit 1)
 				)
 			)
