@@ -1,4 +1,4 @@
-26762028855637798
+26781484947997955
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -97278,6 +97278,83 @@ rotary encoder illuminated switch vertical
 0
 9
 8
+SGI_FootprintsLib
+24797741
+2479774-1-2
+Connector
+0
+10
+10
+SGI_FootprintsLib
+FT232R-Breakout
+
+
+0
+22
+22
+SGI_FootprintsLib
+LED_D5.0mm
+LED, diameter 5.0mm, 2 pins, http://cdn-reichelt.de/documents/datenblatt/A500/LL-504BC2E-009.pdf
+LED diameter 5.0mm 2 pins
+0
+2
+2
+SGI_FootprintsLib
+PinHeader_1x02_P2.54mm_Vertical
+Through hole straight pin header, 1x02, 2.54mm pitch, single row
+Through hole pin header THT 1x02 2.54mm single row
+0
+2
+2
+SGI_FootprintsLib
+SW-T3-1A-A-A3-S1
+
+
+0
+2
+2
+SGI_FootprintsLib
+SW_PUSH_6mm
+https://www.omron.com/ecb/products/pdf/en-b3f.pdf
+tact sw push 6mm
+0
+4
+2
+SGI_FootprintsLib
+TO254P470X1028X1955-3P
+TO-220-3-
+Integrated Circuit
+0
+3
+3
+SGI_FootprintsLib
+Testpoint_1x02_P2.54mm
+Through hole straight pin header, 1x02, 2.54mm pitch, single row
+Through hole pin header THT 1x02 2.54mm single row
+0
+2
+2
+SGI_FootprintsLib
+adafruit_st7735r
+
+
+0
+10
+10
+SGI_FootprintsLib
+ti_LM4041CILPR
+<b>LP (O-PBCY-W3)</b> TO-92/TO-226<p>0.8mm holes, Source: http://focus.ti.com/lit/ds/slcs146e/slcs146e.pdf
+
+0
+3
+3
+SGI_FootprintsLib
+ti_LP_MSPM0G3507
+
+
+0
+40
+40
 Sensor
 ASAIR_AM2302_P2.54mm_Lead2.75mm_TabDown
 Temperature and humidity module, http://akizukidenshi.com/download/ds/aosong/AM2302.pdf
