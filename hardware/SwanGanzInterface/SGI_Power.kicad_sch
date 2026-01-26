@@ -597,7 +597,7 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "IC"
+			(property "Reference" "U"
 				(at 12.065 1.905 0)
 				(effects
 					(font
@@ -770,7 +770,7 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "IC"
+			(property "Reference" "U"
 				(at 2.7965 1.9067 0)
 				(effects
 					(font
@@ -47953,7 +47953,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "72eaa90b-866a-4869-b41b-a8598e76efc4")
-		(property "Reference" "U1"
+		(property "Reference" "U3"
 			(at 224.79 40.767 0)
 			(effects
 				(font
@@ -48023,7 +48023,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "U1")
+					(reference "U3")
 					(unit 2)
 				)
 			)
@@ -48105,7 +48105,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "77b82d50-d339-4e2b-849e-428a5df6995d")
-		(property "Reference" "IC2"
+		(property "Reference" "U2"
 			(at 158.75 43.3704 0)
 			(effects
 				(font
@@ -48123,7 +48123,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "SGI_FootprintsLib:ti_LM4041CILPR"
 			(at 156.21 45.212 0)
 			(effects
 				(font
@@ -48208,7 +48208,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "IC2")
+					(reference "U2")
 					(unit 1)
 				)
 			)
@@ -48371,7 +48371,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 66.548 79.502 90)
 			(effects
 				(font
@@ -48618,7 +48618,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9a75d887-a3fc-47df-ae9e-74e93077bf92")
-		(property "Reference" "U1"
+		(property "Reference" "U3"
 			(at 268.097 42.6719 0)
 			(effects
 				(font
@@ -48690,7 +48690,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "U1")
+					(reference "U3")
 					(unit 3)
 				)
 			)
@@ -48724,7 +48724,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 145.034 38.862 90)
 			(effects
 				(font
@@ -48999,7 +48999,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 145.034 51.562 90)
 			(effects
 				(font
@@ -49121,7 +49121,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ca97cacb-4fd9-42b0-8421-18874775d72a")
-		(property "Reference" "IC1"
+		(property "Reference" "U1"
 			(at 105.41 20.32 0)
 			(effects
 				(font
@@ -49228,7 +49228,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "IC1")
+					(reference "U1")
 					(unit 1)
 				)
 			)
@@ -49394,7 +49394,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 154.432 27.94 90)
 			(effects
 				(font
@@ -49528,7 +49528,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 66.548 76.962 90)
 			(effects
 				(font
@@ -49850,7 +49850,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f930666f-20a3-40bd-9ddc-bf3829800aaa")
-		(property "Reference" "U1"
+		(property "Reference" "U3"
 			(at 224.79 19.05 0)
 			(effects
 				(font
@@ -49920,7 +49920,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "U1")
+					(reference "U3")
 					(unit 1)
 				)
 			)
