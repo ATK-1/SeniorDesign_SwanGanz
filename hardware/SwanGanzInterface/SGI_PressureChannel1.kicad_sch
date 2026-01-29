@@ -1670,7 +1670,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "Gain :\nG = 1 + (Rf / Rg)\nG = 1 + (10k / 10k) = 6"
+	(text "Gain :\nG = 1 + (Rf / Rg)\nG = 1 + (17k5 / 10k) = 1.75"
 		(exclude_from_sim no)
 		(at 166.37 106.68 0)
 		(effects
@@ -1680,7 +1680,7 @@
 		)
 		(uuid "287158e3-2400-4dd1-8a6c-fb03a589ca20")
 	)
-	(text "Total Gain :\n1005 * 6 = 6030"
+	(text "Total Gain :\n1005 * 2 = 2010"
 		(exclude_from_sim no)
 		(at 176.53 59.69 0)
 		(effects
@@ -1690,7 +1690,7 @@
 		)
 		(uuid "3c711545-893a-4554-b3fe-6161cce6f4bc")
 	)
-	(text "Gain :\nG = 1 + (Rf / Rg)\nG = 1 + (50k / 10k) = 6"
+	(text "Gain :\nG = 1 + (Rf / Rg)\nG = 1 + (10k / 10k) = 2"
 		(exclude_from_sim no)
 		(at 148.59 50.8 0)
 		(effects
@@ -1730,9 +1730,9 @@
 		)
 		(uuid "cda8a94f-01c5-4fc0-b107-55026ab54e4f")
 	)
-	(text "Total Gain :\n1005 * 6 * 2 = 12060"
+	(text "Total Gain :\n1005 * 2 * 1.75 = 35107.5"
 		(exclude_from_sim no)
-		(at 189.23 85.09 0)
+		(at 193.675 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3223,7 +3223,7 @@
 				)
 			)
 		)
-		(property "Value" "50k"
+		(property "Value" "10k"
 			(at 129.54 73.66 90)
 			(effects
 				(font
@@ -4711,7 +4711,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "17k5"
 			(at 160.02 100.33 90)
 			(effects
 				(font
