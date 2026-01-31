@@ -4923,7 +4923,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connectors:Pressure_Connector"
 			(at 24.13 62.23 0)
 			(effects
 				(font
@@ -5357,7 +5357,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connectors:Pressure_Connector"
 			(at 24.13 99.06 0)
 			(effects
 				(font
