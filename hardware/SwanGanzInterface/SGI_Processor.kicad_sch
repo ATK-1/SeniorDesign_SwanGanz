@@ -7327,7 +7327,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "350f3dab-f57b-45e5-bc3d-072d6716edf0")
 		(property "Reference" "D2"
 			(at 44.45 165.4174 0)
@@ -7338,7 +7337,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "LED"
+		(property "Value" "WORKING"
 			(at 44.45 167.9574 0)
 			(effects
 				(font
@@ -9402,7 +9401,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "LED"
+		(property "Value" "ERROR"
 			(at 55.88 167.9574 0)
 			(effects
 				(font
@@ -9472,7 +9471,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "LED"
+		(property "Value" "+3V3"
 			(at 31.75 167.9574 0)
 			(effects
 				(font
