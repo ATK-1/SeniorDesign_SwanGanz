@@ -45575,12 +45575,6 @@
 		(uuid "80cb46f9-0109-4cd2-b7a4-332ff6040195")
 	)
 	(junction
-		(at 231.14 136.652)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "90c561ca-1f81-4e6d-9fd3-1bc33472eedc")
-	)
-	(junction
 		(at 74.422 81.534)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -45591,12 +45585,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9c346300-884b-400d-af06-8fa5d8e62c31")
-	)
-	(junction
-		(at 231.14 95.25)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "baa7e5d2-ae34-444a-9afb-917ac3f88316")
 	)
 	(junction
 		(at 267.462 33.782)
@@ -45627,12 +45615,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e460a225-50b1-456d-b755-bb2b6f9897e7")
-	)
-	(junction
-		(at 231.14 145.542)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e543d807-f8e7-4d8c-a811-22d1aac29b71")
 	)
 	(junction
 		(at 231.14 128.27)
@@ -45784,16 +45766,6 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 145.542) (xy 234.95 145.542)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2a36a9c5-c2f5-4191-b96e-cd672a81fd58")
-	)
-	(wire
-		(pts
 			(xy 267.462 29.972) (xy 267.462 33.782)
 		)
 		(stroke
@@ -45904,16 +45876,6 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 136.652) (xy 234.95 136.652)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "599aa34a-9f3e-4e21-91b9-f00dac9464df")
-	)
-	(wire
-		(pts
 			(xy 224.79 86.868) (xy 231.14 86.868)
 		)
 		(stroke
@@ -45921,16 +45883,6 @@
 			(type default)
 		)
 		(uuid "5d712980-a9e0-4431-b743-0aa3a78a7a0b")
-	)
-	(wire
-		(pts
-			(xy 224.79 93.218) (xy 224.79 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5dabebe4-d202-49c0-91d1-eb3b651eee9d")
 	)
 	(wire
 		(pts
@@ -46014,16 +45966,6 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 148.59) (xy 223.52 145.542)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6fdffcff-fd9b-44ca-b693-d47541cbc48a")
-	)
-	(wire
-		(pts
 			(xy 74.422 77.724) (xy 74.422 81.534)
 		)
 		(stroke
@@ -46031,16 +45973,6 @@
 			(type default)
 		)
 		(uuid "7076e01e-e9ae-48d5-a691-b54d8e8c0522")
-	)
-	(wire
-		(pts
-			(xy 223.52 139.7) (xy 223.52 136.652)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "70c966ef-eeae-4f6c-9116-2769bdfbe977")
 	)
 	(wire
 		(pts
@@ -46114,16 +46046,6 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 136.652) (xy 231.14 136.652)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "83502ec8-d3af-4920-a9e3-aa7b52dc675e")
-	)
-	(wire
-		(pts
 			(xy 121.92 29.21) (xy 118.11 29.21)
 		)
 		(stroke
@@ -46174,16 +46096,6 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 145.542) (xy 231.14 145.542)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9032c57a-8c31-4cca-8c9f-08d438f4f367")
-	)
-	(wire
-		(pts
 			(xy 231.14 128.27) (xy 234.95 128.27)
 		)
 		(stroke
@@ -46211,16 +46123,6 @@
 			(type default)
 		)
 		(uuid "9dc61d8d-18b2-4aab-924f-1b5f2bb5228a")
-	)
-	(wire
-		(pts
-			(xy 231.14 95.25) (xy 234.95 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a0bdfa3b-d8f9-4412-8d41-a80cff8b1207")
 	)
 	(wire
 		(pts
@@ -46371,16 +46273,6 @@
 			(type default)
 		)
 		(uuid "cbdd41a2-0551-406d-8183-04467da4baee")
-	)
-	(wire
-		(pts
-			(xy 224.79 95.25) (xy 231.14 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ceba9524-83e2-4242-b9c5-4db996e2bb16")
 	)
 	(wire
 		(pts
@@ -46866,7 +46758,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0e629324-e536-4844-9f33-ce7158b87f05")
-		(property "Reference" "#PWR015"
+		(property "Reference" "#PWR013"
 			(at 224.79 88.9 0)
 			(effects
 				(font
@@ -46875,7 +46767,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3D"
+		(property "Value" "+3V3"
 			(at 224.79 81.534 0)
 			(effects
 				(font
@@ -46916,7 +46808,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR015")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -46941,7 +46833,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "+3V3D"
+		(property "Value" "+3V3"
 			(at 236.22 83.3753 0)
 			(effects
 				(font
@@ -47067,7 +46959,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "16687e59-8cec-4e5e-8d71-209e1a8dcf3a")
-		(property "Reference" "TP5"
+		(property "Reference" "TP4"
 			(at 236.22 105.2193 0)
 			(effects
 				(font
@@ -47121,7 +47013,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP5")
+					(reference "TP4")
 					(unit 1)
 				)
 			)
@@ -47190,73 +47082,6 @@
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
 					(reference "SW1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GNDA")
-		(at 223.52 139.7 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1fbf382d-3f6f-4717-90f5-48dd1a641b1d")
-		(property "Reference" "#PWR012"
-			(at 223.52 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 226.06 140.9699 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 223.52 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 223.52 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
-			(at 223.52 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "31397141-1f75-438b-8994-43edee248727")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -47476,7 +47301,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "455a765d-260c-4e0d-bca3-902ad17365dc")
-		(property "Reference" "TP7"
+		(property "Reference" "TP6"
 			(at 236.22 122.2373 0)
 			(effects
 				(font
@@ -47485,7 +47310,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "AGND"
+		(property "Value" "GND"
 			(at 236.22 124.7773 0)
 			(effects
 				(font
@@ -47530,74 +47355,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GNDA")
-		(at 223.52 148.59 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5399de77-50be-41a2-9608-89202a912d9c")
-		(property "Reference" "#PWR013"
-			(at 223.52 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 226.06 149.8599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 223.52 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 223.52 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
-			(at 223.52 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "cdbb2d68-6c26-4ab0-b215-dabf7a1be6fe")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR013")
+					(reference "TP6")
 					(unit 1)
 				)
 			)
@@ -47612,7 +47370,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5bacf793-64a4-40d5-b8df-4e8b3ac056c9")
-		(property "Reference" "#PWR017"
+		(property "Reference" "#PWR014"
 			(at 224.79 113.284 0)
 			(effects
 				(font
@@ -47662,7 +47420,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR017")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -47677,7 +47435,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "60891b49-ed7f-46a4-9e73-32cc81ffaf4f")
-		(property "Reference" "#PWR014"
+		(property "Reference" "#PWR012"
 			(at 224.79 80.01 0)
 			(effects
 				(font
@@ -47727,7 +47485,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR014")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -48503,71 +48261,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 224.79 93.218 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "97ca28d2-a776-43ae-bd09-3f27026c26f3")
-		(property "Reference" "#PWR016"
-			(at 224.79 97.028 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3A"
-			(at 224.79 89.662 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 224.79 93.218 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 224.79 93.218 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 224.79 93.218 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "4fffe926-46f5-4ffe-b61f-f0a52f386465")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR016")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "SGI_SymbolLib:OPA2350PA")
 		(at 270.002 43.942 0)
 		(unit 3)
@@ -48799,7 +48492,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a475df9a-dbff-4269-8a50-9053abf09d5a")
-		(property "Reference" "TP4"
+		(property "Reference" "TP3"
 			(at 236.22 96.8373 0)
 			(effects
 				(font
@@ -48853,77 +48546,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SGI_SymbolLib:Testpoint")
-		(at 233.045 145.542 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "aad936ad-f20c-4417-a3c9-b88c7968d2f0")
-		(property "Reference" "TP9"
-			(at 236.22 139.5093 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "AGND"
-			(at 236.22 142.0493 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
-			(at 236.22 144.5893 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 233.045 145.542 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Testpoint"
-			(at 233.045 145.542 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "2d5987ec-fc6c-47a7-b9d7-5b3b97cb590c")
-		)
-		(pin "1"
-			(uuid "6908e4b9-ad4e-406d-8a7f-6cb279fa7923")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP9")
+					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -48994,76 +48617,6 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
 					(reference "R4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SGI_SymbolLib:Testpoint")
-		(at 233.045 95.25 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ca41a432-03d2-427d-abac-0da4f174a421")
-		(property "Reference" "TP3"
-			(at 236.22 89.2173 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "+3V3A"
-			(at 236.22 91.7573 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
-			(at 236.22 94.2973 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 233.045 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Testpoint"
-			(at 233.045 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "22248f0e-14b1-4647-a6de-1a7efe2268e2")
-		)
-		(pin "1"
-			(uuid "58271164-118f-4d45-8235-3bdda123ae0d")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -49201,7 +48754,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cb11331b-3daa-45e1-b4d2-cc03a6631b1c")
-		(property "Reference" "#PWR018"
+		(property "Reference" "#PWR015"
 			(at 267.462 33.782 0)
 			(effects
 				(font
@@ -49251,7 +48804,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR018")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -49529,76 +49082,6 @@
 		)
 	)
 	(symbol
-		(lib_id "SGI_SymbolLib:Testpoint")
-		(at 233.045 136.652 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "eb07c447-1bd6-43d8-aff9-8ac966e0ab91")
-		(property "Reference" "TP8"
-			(at 236.22 130.6193 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "DGND"
-			(at 236.22 133.1593 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
-			(at 236.22 135.6993 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 233.045 136.652 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Testpoint"
-			(at 233.045 136.652 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "b7976a10-e879-4b1f-b3da-b7aa861e7feb")
-		)
-		(pin "1"
-			(uuid "8ebee76a-5186-4616-8153-affb98595384")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GNDA")
 		(at 267.462 57.912 0)
 		(unit 1)
@@ -49608,7 +49091,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f2557a08-f591-491b-8a09-3742fa80da5b")
-		(property "Reference" "#PWR019"
+		(property "Reference" "#PWR016"
 			(at 267.462 64.262 0)
 			(effects
 				(font
@@ -49659,7 +49142,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR019")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -49828,7 +49311,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fa0539f4-83ea-47bd-813b-a218983f0e00")
-		(property "Reference" "TP6"
+		(property "Reference" "TP5"
 			(at 236.22 113.3473 0)
 			(effects
 				(font
@@ -49837,7 +49320,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "DGND"
+		(property "Value" "GND"
 			(at 236.22 115.8873 0)
 			(effects
 				(font
@@ -49882,7 +49365,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP6")
+					(reference "TP5")
 					(unit 1)
 				)
 			)
