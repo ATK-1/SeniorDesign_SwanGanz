@@ -46758,7 +46758,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0e629324-e536-4844-9f33-ce7158b87f05")
-		(property "Reference" "#PWR015"
+		(property "Reference" "#PWR013"
 			(at 224.79 88.9 0)
 			(effects
 				(font
@@ -46808,7 +46808,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR015")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -46959,7 +46959,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "16687e59-8cec-4e5e-8d71-209e1a8dcf3a")
-		(property "Reference" "TP5"
+		(property "Reference" "TP4"
 			(at 236.22 105.2193 0)
 			(effects
 				(font
@@ -47013,7 +47013,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP5")
+					(reference "TP4")
 					(unit 1)
 				)
 			)
@@ -47301,7 +47301,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "455a765d-260c-4e0d-bca3-902ad17365dc")
-		(property "Reference" "TP7"
+		(property "Reference" "TP6"
 			(at 236.22 122.2373 0)
 			(effects
 				(font
@@ -47355,7 +47355,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP7")
+					(reference "TP6")
 					(unit 1)
 				)
 			)
@@ -47370,7 +47370,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5bacf793-64a4-40d5-b8df-4e8b3ac056c9")
-		(property "Reference" "#PWR017"
+		(property "Reference" "#PWR014"
 			(at 224.79 113.284 0)
 			(effects
 				(font
@@ -47420,7 +47420,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR017")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -47435,7 +47435,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "60891b49-ed7f-46a4-9e73-32cc81ffaf4f")
-		(property "Reference" "#PWR014"
+		(property "Reference" "#PWR012"
 			(at 224.79 80.01 0)
 			(effects
 				(font
@@ -47485,7 +47485,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR014")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -48492,7 +48492,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a475df9a-dbff-4269-8a50-9053abf09d5a")
-		(property "Reference" "TP4"
+		(property "Reference" "TP3"
 			(at 236.22 96.8373 0)
 			(effects
 				(font
@@ -48546,7 +48546,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP4")
+					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -48754,7 +48754,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cb11331b-3daa-45e1-b4d2-cc03a6631b1c")
-		(property "Reference" "#PWR018"
+		(property "Reference" "#PWR015"
 			(at 267.462 33.782 0)
 			(effects
 				(font
@@ -48804,7 +48804,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR018")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -49091,7 +49091,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f2557a08-f591-491b-8a09-3742fa80da5b")
-		(property "Reference" "#PWR019"
+		(property "Reference" "#PWR016"
 			(at 267.462 64.262 0)
 			(effects
 				(font
@@ -49142,7 +49142,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR019")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -49311,7 +49311,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fa0539f4-83ea-47bd-813b-a218983f0e00")
-		(property "Reference" "TP6"
+		(property "Reference" "TP5"
 			(at 236.22 113.3473 0)
 			(effects
 				(font
@@ -49365,7 +49365,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "TP6")
+					(reference "TP5")
 					(unit 1)
 				)
 			)
