@@ -3746,6 +3746,14 @@
 		(uuid "0c317d36-4273-45d4-ac3c-02d88bcb0d03")
 	)
 	(no_connect
+		(at 77.47 43.18)
+		(uuid "0d518fa4-3348-447d-9ecc-74e0eec88700")
+	)
+	(no_connect
+		(at 77.47 63.5)
+		(uuid "0fbe9654-b58b-4137-93ed-d879bd6b220c")
+	)
+	(no_connect
 		(at 158.75 146.05)
 		(uuid "1d27befa-6ad7-45d7-8255-0d46a2c4f21e")
 	)
@@ -3762,6 +3770,10 @@
 		(uuid "2f738903-0d9d-4f66-8687-99ccd213c052")
 	)
 	(no_connect
+		(at 77.47 45.72)
+		(uuid "4297cc7f-340a-4958-aa30-c055d71dc11b")
+	)
+	(no_connect
 		(at 262.89 78.74)
 		(uuid "4a671c2d-72a5-44a1-88dd-1b452dc06eb4")
 	)
@@ -3776,6 +3788,10 @@
 	(no_connect
 		(at 240.03 78.74)
 		(uuid "5c4dd6b4-ab6e-4138-836e-83c10c096925")
+	)
+	(no_connect
+		(at 77.47 40.64)
+		(uuid "60e60f29-1ff7-433f-b7a7-156606f31d19")
 	)
 	(no_connect
 		(at 240.03 63.5)
@@ -3798,6 +3814,10 @@
 		(uuid "934e1db3-5aeb-4ecd-abdb-007d5933c667")
 	)
 	(no_connect
+		(at 77.47 31.75)
+		(uuid "973fd082-a2a2-4d5c-a692-7312f95f6885")
+	)
+	(no_connect
 		(at 240.03 67.31)
 		(uuid "a1056507-c3e4-4fc1-86bf-951eb0647ec9")
 	)
@@ -3810,6 +3830,10 @@
 		(uuid "bb6f1d7c-6e68-4967-88ff-8b9b0ab95dfd")
 	)
 	(no_connect
+		(at 77.47 35.56)
+		(uuid "bd92bf42-862f-4493-8e3c-85080ffbaa67")
+	)
+	(no_connect
 		(at 240.03 74.93)
 		(uuid "cd75a875-8886-453b-b3f0-c680034cf859")
 	)
@@ -3820,6 +3844,10 @@
 	(no_connect
 		(at 158.75 191.77)
 		(uuid "e0f4c3f1-1814-4009-9b7e-4808f6a7f332")
+	)
+	(no_connect
+		(at 77.47 66.04)
+		(uuid "e8c524dd-0019-46a8-ab02-fd8d31e7109b")
 	)
 	(no_connect
 		(at 262.89 59.69)
@@ -4937,7 +4965,7 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 176.784) (xy 40.64 179.07)
+			(xy 40.64 176.53) (xy 40.64 179.07)
 		)
 		(stroke
 			(width 0)
@@ -7069,10 +7097,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "2a76379f-3dfa-4fd3-bc7e-6a6b1c6054ab")
 		(property "Reference" "U5"
-			(at 170.18 163.8299 0)
+			(at 169.545 160.655 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7080,8 +7107,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "~"
-			(at 170.18 166.3699 0)
+		(property "Value" "AdaFruit_1590"
+			(at 169.545 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7089,7 +7116,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "SGI_FootprintsLib:AdaFruit_1590"
 			(at 168.91 165.1 0)
 			(effects
 				(font
