@@ -45457,118 +45457,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:GNDD"
-			(power)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "GNDD"
-				(at 0 -3.175 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "GNDD_0_1"
-				(rectangle
-					(start -1.27 -1.524)
-					(end 1.27 -2.032)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 -1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "GNDD_1_1"
-				(pin power_in line
-					(at 0 0 270)
-					(length 0)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 	)
 	(text "Buffering Voltage Reference For Pressure Transducers"
 		(exclude_from_sim no)
@@ -45976,7 +45864,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.282 128.27) (xy 231.14 128.27)
+			(xy 223.52 128.27) (xy 231.14 128.27)
 		)
 		(stroke
 			(width 0)
@@ -46056,7 +45944,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.282 129.54) (xy 224.282 128.27)
+			(xy 223.52 130.81) (xy 223.52 128.27)
 		)
 		(stroke
 			(width 0)
@@ -46126,7 +46014,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.282 146.812) (xy 224.282 145.542)
+			(xy 223.52 148.59) (xy 223.52 145.542)
 		)
 		(stroke
 			(width 0)
@@ -46146,7 +46034,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.282 137.922) (xy 224.282 136.652)
+			(xy 223.52 139.7) (xy 223.52 136.652)
 		)
 		(stroke
 			(width 0)
@@ -46226,7 +46114,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.282 136.652) (xy 231.14 136.652)
+			(xy 223.52 136.652) (xy 231.14 136.652)
 		)
 		(stroke
 			(width 0)
@@ -46286,7 +46174,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.282 145.542) (xy 231.14 145.542)
+			(xy 223.52 145.542) (xy 231.14 145.542)
 		)
 		(stroke
 			(width 0)
@@ -46416,7 +46304,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.282 119.38) (xy 231.14 119.38)
+			(xy 223.52 119.38) (xy 231.14 119.38)
 		)
 		(stroke
 			(width 0)
@@ -46656,7 +46544,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.282 120.65) (xy 224.282 119.38)
+			(xy 223.52 121.92) (xy 223.52 119.38)
 		)
 		(stroke
 			(width 0)
@@ -47240,72 +47128,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GNDD")
-		(at 224.282 120.65 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "199a7d77-65ed-4e97-afae-cb78e7267ae6")
-		(property "Reference" "#PWR010"
-			(at 224.282 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "DGND"
-			(at 224.282 124.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 224.282 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 224.282 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
-			(at 224.282 120.65 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ffe76f31-15a3-4298-8c03-78668b4a1ab4")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR010")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "SGI_SymbolLib:Power_Switch")
 		(at 78.232 68.834 0)
 		(unit 1)
@@ -47368,6 +47190,140 @@
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
 					(reference "SW1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDA")
+		(at 223.52 139.7 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1fbf382d-3f6f-4717-90f5-48dd1a641b1d")
+		(property "Reference" "#PWR012"
+			(at 223.52 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 226.06 140.9699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 223.52 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 223.52 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
+			(at 223.52 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "31397141-1f75-438b-8994-43edee248727")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
+					(reference "#PWR012")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDA")
+		(at 223.52 130.81 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "26a2b337-f526-4fee-9263-c06411f66e8b")
+		(property "Reference" "#PWR011"
+			(at 223.52 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 226.06 132.0799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 223.52 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 223.52 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
+			(at 223.52 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7fc5fcc9-df6a-412f-aa45-60d931b4155e")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -47445,16 +47401,16 @@
 	)
 	(symbol
 		(lib_id "power:GNDA")
-		(at 224.282 146.812 0)
+		(at 223.52 121.92 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "33792b8c-7871-4dbe-a8d6-7d863efd267c")
-		(property "Reference" "#PWR013"
-			(at 224.282 153.162 0)
+		(uuid "447e1f38-954d-47cc-bf81-862cf4d0e9ad")
+		(property "Reference" "#PWR010"
+			(at 223.52 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -47462,16 +47418,17 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "AGND"
-			(at 224.282 151.892 0)
+		(property "Value" "GND"
+			(at 226.06 123.1899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
-			(at 224.282 146.812 0)
+			(at 223.52 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -47480,7 +47437,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 224.282 146.812 0)
+			(at 223.52 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -47489,7 +47446,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
-			(at 224.282 146.812 0)
+			(at 223.52 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -47498,12 +47455,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "f1c6e5fb-fa58-44d3-8b3f-ba04abbaa95e")
+			(uuid "bb9faff5-8a1f-436f-8e08-0601f9283b6f")
 		)
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR013")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -47574,6 +47531,73 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
 					(reference "TP7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GNDA")
+		(at 223.52 148.59 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5399de77-50be-41a2-9608-89202a912d9c")
+		(property "Reference" "#PWR013"
+			(at 223.52 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 226.06 149.8599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 223.52 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 223.52 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
+			(at 223.52 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "cdbb2d68-6c26-4ab0-b215-dabf7a1be6fe")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -48473,72 +48497,6 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
 					(reference "#PWR06")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GNDA")
-		(at 224.282 129.54 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "91f4ee42-8a68-49c5-95e5-7d4aa0a9681f")
-		(property "Reference" "#PWR011"
-			(at 224.282 135.89 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "AGND"
-			(at 224.282 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 224.282 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 224.282 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
-			(at 224.282 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "57456132-093b-4d91-9d05-5e8db1e8c5b3")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -49769,72 +49727,6 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
 					(reference "#PWR02")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GNDD")
-		(at 224.282 137.922 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "f851a3e2-558b-40cc-8f18-98e890a09b4b")
-		(property "Reference" "#PWR012"
-			(at 224.282 144.272 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "DGND"
-			(at 224.282 141.732 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 224.282 137.922 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 224.282 137.922 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
-			(at 224.282 137.922 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "9652190b-77b4-4963-8363-cebf49f2adbc")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "#PWR012")
 					(unit 1)
 				)
 			)

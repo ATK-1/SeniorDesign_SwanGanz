@@ -1670,7 +1670,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "Gain :\nG = 1 + (Rf / Rg)\nG = 1 + (10k / 10k) = 6"
+	(text "Gain :\nG = 1 + (Rf / Rg)\nG = 1 + (17k5 / 10k) = 1.75"
 		(exclude_from_sim no)
 		(at 166.37 106.68 0)
 		(effects
@@ -1680,7 +1680,7 @@
 		)
 		(uuid "287158e3-2400-4dd1-8a6c-fb03a589ca20")
 	)
-	(text "Total Gain :\n1005 * 6 = 6030"
+	(text "Total Gain :\n1005 * 2 = 2010"
 		(exclude_from_sim no)
 		(at 176.53 59.69 0)
 		(effects
@@ -1690,7 +1690,7 @@
 		)
 		(uuid "3c711545-893a-4554-b3fe-6161cce6f4bc")
 	)
-	(text "Gain :\nG = 1 + (Rf / Rg)\nG = 1 + (50k / 10k) = 6"
+	(text "Gain :\nG = 1 + (Rf / Rg)\nG = 1 + (10k / 10k) = 2"
 		(exclude_from_sim no)
 		(at 148.59 50.8 0)
 		(effects
@@ -1730,9 +1730,9 @@
 		)
 		(uuid "cda8a94f-01c5-4fc0-b107-55026ab54e4f")
 	)
-	(text "Total Gain :\n1005 * 6 * 2 = 12060"
+	(text "Total Gain :\n1005 * 2 * 1.75 = 35107.5"
 		(exclude_from_sim no)
-		(at 189.23 85.09 0)
+		(at 193.675 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3140,6 +3140,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GNDA")
+		(at 74.93 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0717a0df-fda8-4c8a-9a08-92c65c6dc0d4")
+		(property "Reference" "#PWR055"
+			(at 74.93 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 77.47 41.9099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 74.93 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 74.93 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
+			(at 74.93 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "06068da2-7f8b-43c4-b69d-bded14d35ea1")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
+					(reference "#PWR055")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 129.54 73.66 90)
 		(unit 1)
@@ -3156,7 +3223,7 @@
 				)
 			)
 		)
-		(property "Value" "50k"
+		(property "Value" "10k"
 			(at 129.54 73.66 90)
 			(effects
 				(font
@@ -4644,7 +4711,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "17k5"
 			(at 160.02 100.33 90)
 			(effects
 				(font
@@ -4758,71 +4825,6 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
 					(reference "C17")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GNDA")
-		(at 74.93 40.64 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "bcf241b1-5b59-49ad-bea9-50acc53ce10b")
-		(property "Reference" "#PWR055"
-			(at 74.93 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "AGND"
-			(at 78.232 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 74.93 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 74.93 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
-			(at 74.93 40.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "648716f1-1ee4-4a46-9649-7e8beea9c963")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
-					(reference "#PWR055")
 					(unit 1)
 				)
 			)
