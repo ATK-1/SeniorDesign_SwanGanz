@@ -1777,12 +1777,6 @@
 		(uuid "2977f094-5506-4fa4-8bb3-e650aec9ee5c")
 	)
 	(junction
-		(at 62.23 138.43)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "43ff62c8-29be-450c-9748-09a86c0d49be")
-	)
-	(junction
 		(at 83.82 38.1)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1853,12 +1847,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f36d8aec-76cd-4144-b3d0-9bb60e2f581c")
-	)
-	(junction
-		(at 62.23 146.05)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ff705579-a4a5-4980-aea7-0b76a374ed9d")
 	)
 	(wire
 		(pts
@@ -2102,16 +2090,6 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 146.05) (xy 62.23 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2ab8c512-e5d1-4533-989c-58cd76ee0d70")
-	)
-	(wire
-		(pts
 			(xy 111.76 62.23) (xy 115.57 62.23)
 		)
 		(stroke
@@ -2342,16 +2320,6 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 146.05) (xy 66.04 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "89329747-1f2c-4edf-a378-d194ca4470c5")
-	)
-	(wire
-		(pts
 			(xy 190.5 88.9) (xy 190.5 99.06)
 		)
 		(stroke
@@ -2439,16 +2407,6 @@
 			(type default)
 		)
 		(uuid "b355d922-37c8-4db5-a42e-a349daa46baf")
-	)
-	(wire
-		(pts
-			(xy 62.23 138.43) (xy 66.04 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b88e9999-4ded-44e2-b139-cca815c313e6")
 	)
 	(wire
 		(pts
@@ -2549,16 +2507,6 @@
 			(type default)
 		)
 		(uuid "cf3b8e8c-575d-4fb9-a25b-7d5ed31883ed")
-	)
-	(wire
-		(pts
-			(xy 57.15 138.43) (xy 62.23 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d13b957c-e221-4831-b43e-06fe9cae952f")
 	)
 	(wire
 		(pts
@@ -2720,28 +2668,6 @@
 		)
 		(uuid "faa02ade-1981-47f4-8673-fd174d5db783")
 	)
-	(global_label "Pres2AmpOut_LowGain"
-		(shape input)
-		(at 57.15 138.43 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "016f8f47-caff-4478-a58f-46a4e0adcff5")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 32.9983 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "P2_SIG+"
 		(shape input)
 		(at 29.21 186.69 0)
@@ -2804,28 +2730,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "Pres2AmpOut_HighGain"
-		(shape output)
-		(at 55.88 146.05 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "7081246d-5222-4e44-b4d9-c220265991c9")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 31.0026 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -2918,7 +2822,7 @@
 			)
 		)
 	)
-	(global_label "P1_VCC"
+	(global_label "P2_VCC"
 		(shape output)
 		(at 49.53 46.99 90)
 		(fields_autoplaced yes)
@@ -3302,7 +3206,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector"
 			(at 36.83 62.23 0)
 			(effects
 				(font
@@ -3918,7 +3822,7 @@
 		(fields_autoplaced yes)
 		(uuid "7262ad23-7a65-4296-84a1-1cc3bd8cceae")
 		(property "Reference" "TP20"
-			(at 67.691 124.7773 0)
+			(at 67.31 124.7773 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3926,8 +3830,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TP"
-			(at 67.691 127.3173 0)
+		(property "Value" "P2_InstOut"
+			(at 67.31 127.3173 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3936,7 +3840,7 @@
 			)
 		)
 		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
-			(at 67.691 129.8573 0)
+			(at 67.31 129.8573 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4072,7 +3976,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector"
 			(at 36.83 97.79 0)
 			(effects
 				(font
@@ -4224,146 +4128,6 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
 					(reference "U13")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SGI_SymbolLib:Testpoint")
-		(at 64.135 138.43 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8ecd2330-cb4e-43e0-90bf-9fc17e8e9134")
-		(property "Reference" "TP21"
-			(at 67.691 132.3973 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TP"
-			(at 67.691 134.9373 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
-			(at 67.691 137.4773 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 64.135 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Testpoint"
-			(at 64.135 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "6d9a5129-71f2-4e82-8183-0dfb82c11f18")
-		)
-		(pin "1"
-			(uuid "0eff7dde-1fd2-4fa1-81da-5e11838730b8")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "TP21")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SGI_SymbolLib:Testpoint")
-		(at 64.135 146.05 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9101031d-158c-4acd-8d7e-10ce0611616f")
-		(property "Reference" "TP22"
-			(at 67.691 140.0173 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TP"
-			(at 67.691 142.5573 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
-			(at 67.691 145.0973 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 64.135 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Testpoint"
-			(at 64.135 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "72c045b8-faf6-4415-8615-cd9b26e391a2")
-		)
-		(pin "1"
-			(uuid "7d9f2f57-b9ea-45be-b596-fc3eecbcebd8")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "TP22")
 					(unit 1)
 				)
 			)

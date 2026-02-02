@@ -218,51 +218,7 @@
       "mpn": ""
     },
     "layer_pairs": [],
-    "layer_presets": [
-      {
-        "activeLayer": -2,
-        "flipBoard": false,
-        "layers": [
-          0,
-          1,
-          2,
-          3,
-          5,
-          7,
-          9,
-          11,
-          13,
-          15,
-          25,
-          29,
-          31,
-          39
-        ],
-        "name": "UsefulLayers",
-        "renderLayers": [
-          "vias",
-          "footprint_text",
-          "footprint_anchors",
-          "ratsnest",
-          "grid",
-          "footprints_front",
-          "footprints_back",
-          "footprint_values",
-          "footprint_references",
-          "tracks",
-          "drc_errors",
-          "drawing_sheet",
-          "bitmaps",
-          "pads",
-          "zones",
-          "drc_warnings",
-          "drc_exclusions",
-          "locked_item_shadows",
-          "conflict_shadows",
-          "shapes"
-        ]
-      }
-    ],
+    "layer_presets": [],
     "viewports": []
   },
   "boards": [],

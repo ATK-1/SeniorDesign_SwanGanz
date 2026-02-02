@@ -1773,12 +1773,6 @@
 		(uuid "3f797150-af60-425b-b41f-381921a53278")
 	)
 	(junction
-		(at 45.72 134.62)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "433df573-da09-4ab3-8945-10397321f0ba")
-	)
-	(junction
 		(at 40.64 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1813,12 +1807,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7f5babfc-9441-4860-a2dc-b44fd11e19a2")
-	)
-	(junction
-		(at 45.72 142.24)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8172abda-aa20-4cd0-a78f-1ac13d920ea7")
 	)
 	(junction
 		(at 164.465 64.77)
@@ -2012,16 +2000,6 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 134.62) (xy 49.53 134.62)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3459634a-9325-4e27-99d1-05d40252b551")
-	)
-	(wire
-		(pts
 			(xy 275.59 49.53) (xy 262.89 49.53)
 		)
 		(stroke
@@ -2199,16 +2177,6 @@
 			(type default)
 		)
 		(uuid "7bca4164-7d28-4996-9770-948fa71de7a3")
-	)
-	(wire
-		(pts
-			(xy 39.37 142.24) (xy 45.72 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7ecd4aef-5758-458a-9190-1df42faae9cb")
 	)
 	(wire
 		(pts
@@ -2562,16 +2530,6 @@
 	)
 	(wire
 		(pts
-			(xy 40.64 134.62) (xy 45.72 134.62)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "de95f2a9-e9b1-4a87-a2a8-e7b4d11fe823")
-	)
-	(wire
-		(pts
 			(xy 275.59 34.29) (xy 275.59 26.67)
 		)
 		(stroke
@@ -2589,16 +2547,6 @@
 			(type default)
 		)
 		(uuid "df3009d6-ac7d-44d3-9720-4327407179a9")
-	)
-	(wire
-		(pts
-			(xy 45.72 142.24) (xy 49.53 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e1520ddc-ea1a-4f98-aa3b-9d524d0660e7")
 	)
 	(wire
 		(pts
@@ -2758,28 +2706,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "Pres1AmpOut_LowGain"
-		(shape input)
-		(at 40.64 134.62 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "15f04f31-adbc-43df-aa2d-d4a7d9494509")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 16.4883 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -2979,98 +2905,6 @@
 				)
 				(justify left)
 				(hide yes)
-			)
-		)
-	)
-	(global_label "Pres1AmpOut_HighGain"
-		(shape input)
-		(at 39.37 142.24 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "f4fd7b87-e52f-45db-9a3c-325c6ccd6be4")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 14.4926 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SGI_SymbolLib:Testpoint")
-		(at 47.625 134.62 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "000cd54c-bc7c-46c2-bb54-6ec8d9b22952")
-		(property "Reference" "TP16"
-			(at 51.181 128.5873 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TP"
-			(at 51.181 131.1273 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
-			(at 51.181 133.6673 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 47.625 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Testpoint"
-			(at 47.625 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "5563ec6c-2756-49d5-8b86-684d78c5528c")
-		)
-		(pin "1"
-			(uuid "079b01ac-8820-43c8-a9e1-0baa9e05bdce")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
-					(reference "TP16")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -3994,7 +3828,7 @@
 		(fields_autoplaced yes)
 		(uuid "78a5e441-e006-443d-b27e-0084e98cbbfb")
 		(property "Reference" "TP15"
-			(at 51.181 120.9673 0)
+			(at 50.8 120.9673 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4002,8 +3836,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TP"
-			(at 51.181 123.5073 0)
+		(property "Value" "P1_InstOut"
+			(at 50.8 123.5073 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4012,7 +3846,7 @@
 			)
 		)
 		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
-			(at 51.181 126.0473 0)
+			(at 50.8 126.0473 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4923,7 +4757,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector"
 			(at 24.13 62.23 0)
 			(effects
 				(font
@@ -5057,76 +4891,6 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
 					(reference "C14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SGI_SymbolLib:Testpoint")
-		(at 47.625 142.24 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d33694a4-1027-47d6-86a0-efc54890a24e")
-		(property "Reference" "TP17"
-			(at 51.181 136.2073 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TP"
-			(at 51.181 138.7473 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SGI_FootprintsLib:Testpoint_1x02_P2.54mm"
-			(at 51.181 141.2873 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 47.625 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Testpoint"
-			(at 47.625 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "653a10eb-a4f5-4230-a6ec-a9864e98cefd")
-		)
-		(pin "1"
-			(uuid "16228c9e-612d-4a8a-bfe8-3facbc3e3798")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
-					(reference "TP17")
 					(unit 1)
 				)
 			)
@@ -5357,7 +5121,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector"
 			(at 24.13 99.06 0)
 			(effects
 				(font
