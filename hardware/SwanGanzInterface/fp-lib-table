@@ -1,4 +1,0 @@
-(fp_lib_table
-  (version 7)
-  (lib (name "SGI_FootprintsLib")(type "KiCad")(uri "${KIPRJMOD}/lib/SGI_FootprintsLib.pretty")(options "")(descr ""))
-)
