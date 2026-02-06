@@ -20610,6 +20610,75 @@
 				)
 			)
 		)
+		(symbol "SGI_SymbolLib:MountingHole"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "H"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "SGI_FootprintsLib:MountingHole_4_40"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Drill hole for 4-40 screw"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "MountingHole_1_1"
+				(pin power_in non_logic
+					(at 0 0 180)
+					(length 3.81)
+					(name "Hole"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "SGI_SymbolLib:OPA2350PA"
 			(pin_names
 				(offset 0.127)
@@ -45637,12 +45706,32 @@
 		(uuid "7cda0aeb-9397-412d-8828-6d0f0b84bb05")
 	)
 	(no_connect
+		(at 27.305 102.235)
+		(uuid "82c4358c-8e42-455f-b791-0dbb9446385b")
+	)
+	(no_connect
+		(at 27.305 129.54)
+		(uuid "82db5dbd-6438-4ef8-a464-73d8674c7175")
+	)
+	(no_connect
+		(at 27.305 109.22)
+		(uuid "8a46bc34-b7ac-41c4-bf12-d8bb6a5ef5cc")
+	)
+	(no_connect
 		(at 30.734 76.454)
 		(uuid "99b9e98d-bd89-4b58-bf5a-ff19964675b0")
 	)
 	(no_connect
+		(at 27.305 116.205)
+		(uuid "c130cd9d-e422-4fd4-8bb9-6e491fdb5221")
+	)
+	(no_connect
 		(at 30.734 68.834)
 		(uuid "e11d4a9b-682b-4646-8c19-b5dcf548ef56")
+	)
+	(no_connect
+		(at 27.305 123.19)
+		(uuid "f9a7d270-15d7-4d7e-b20c-86071a59c99a")
 	)
 	(wire
 		(pts
@@ -47225,6 +47314,71 @@
 		)
 	)
 	(symbol
+		(lib_id "SGI_SymbolLib:MountingHole")
+		(at 27.305 102.235 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4425a933-77a5-4ee4-9e1a-e28269adaa74")
+		(property "Reference" "H1"
+			(at 23.495 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 23.495 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:MountingHole_4_40"
+			(at 27.305 102.235 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.305 102.235 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Drill hole for 4-40 screw"
+			(at 27.305 102.235 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "87014ead-cd9d-46c5-bb65-c59734f8ad3a")
+		)
+		(instances
+			(project ""
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
+					(reference "H1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GNDA")
 		(at 223.52 121.92 0)
 		(unit 1)
@@ -48064,6 +48218,71 @@
 		)
 	)
 	(symbol
+		(lib_id "SGI_SymbolLib:MountingHole")
+		(at 27.305 116.205 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8314e537-3eb3-47b1-9534-e38a43453f2d")
+		(property "Reference" "H3"
+			(at 23.495 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 23.495 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:MountingHole_4_40"
+			(at 27.305 116.205 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.305 116.205 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Drill hole for 4-40 screw"
+			(at 27.305 116.205 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "16daf96d-28cc-4b71-b825-da3816ec72e9")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
+					(reference "H3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 86.36 25.4 0)
 		(unit 1)
@@ -48255,6 +48474,71 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
 					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:MountingHole")
+		(at 27.305 109.22 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9838464b-41b5-4639-ba5e-9e3ddfb596f4")
+		(property "Reference" "H2"
+			(at 23.495 104.775 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 23.495 107.315 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:MountingHole_4_40"
+			(at 27.305 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.305 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Drill hole for 4-40 screw"
+			(at 27.305 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d61b9def-46b7-4af2-bed4-22ca35c8d282")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
+					(reference "H2")
 					(unit 1)
 				)
 			)
@@ -48617,6 +48901,71 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
 					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:MountingHole")
+		(at 27.305 123.19 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b5d75d52-a4ae-483b-870d-0d38bbf5183f")
+		(property "Reference" "H4"
+			(at 23.495 118.745 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 23.495 121.285 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:MountingHole_4_40"
+			(at 27.305 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.305 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Drill hole for 4-40 screw"
+			(at 27.305 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0cae6f0d-74ba-4a27-a016-14a91a23d90c")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
+					(reference "H4")
 					(unit 1)
 				)
 			)
@@ -49296,6 +49645,71 @@
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
 					(reference "U3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:MountingHole")
+		(at 27.305 129.54 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f9e65b98-a0d6-4bce-9b66-04e706ea714d")
+		(property "Reference" "H5"
+			(at 23.495 125.095 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 23.495 127.635 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:MountingHole_4_40"
+			(at 27.305 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 27.305 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Drill hole for 4-40 screw"
+			(at 27.305 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7ddd25a9-5790-41b8-a8f9-2c1343a2ebe7")
+		)
+		(instances
+			(project "SwanGanzInterface"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
+					(reference "H5")
 					(unit 1)
 				)
 			)
