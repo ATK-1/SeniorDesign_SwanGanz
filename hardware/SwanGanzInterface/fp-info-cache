@@ -1,4 +1,4 @@
-26820152005933721
+26821916845493274
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -97355,6 +97355,13 @@ LED diameter 5.0mm 2 pins
 0
 2
 2
+SGI_FootprintsLib
+MountingHole_4_40
+Mounting Hole 0.125in
+mounting hole 0.125in 4_40
+0
+1
+1
 SGI_FootprintsLib
 PinHeader_1x02_P2.54mm_Vertical
 Through hole straight pin header, 1x02, 2.54mm pitch, single row
