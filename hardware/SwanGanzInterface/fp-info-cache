@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 26655843991423197
+=======
+26821916845493274
+>>>>>>> development
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -67105,6 +67109,23 @@ Inductor_SMD
 L_Wuerth_WE-XHMI-8080
 Inductor, Wuerth, WE-XHMI 8080, 8.3mmx8.8mm, https://katalog.we-online.de/pbs/datasheet/74439358068.pdf, generated with kicad-footprint-generator StandardBox_generator.py
 Inductor Wuerth WE-XHMI 8080
+<<<<<<< HEAD
+=======
+0
+2
+2
+Inductor_SMD
+L_Wuerth_XHMI-6060
+Inductor, Wuerth, XHMI-6060, 6.65x6.45x5.8mm, (https://www.we-online.com/components/products/datasheet/74439346068.pdf), generated with kicad-footprint-generator gen_inductor.py
+Würth -SMT
+0
+2
+2
+Inductor_SMD
+L_Wuerth_XHMI-8080
+Inductor, Wuerth, XHMI-8080, 8.8x8.3x7.8mm, (https://www.we-online.com/components/products/datasheet/74439358068.pdf), generated with kicad-footprint-generator gen_inductor.py
+Würth -SMT
+>>>>>>> development
 0
 2
 2
@@ -86584,6 +86605,23 @@ HVSSOP SO
 9
 Package_SO
 HVSSOP-10-1EP_3x3mm_P0.5mm_EP1.57x1.88mm
+<<<<<<< HEAD
+=======
+HVSSOP, 10 Pin (https://www.ti.com/lit/ds/symlink/bq24090.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
+HVSSOP SO
+0
+15
+11
+Package_SO
+HVSSOP-10-1EP_3x3mm_P0.5mm_EP1.57x1.88mm_ThermalVias
+HVSSOP, 10 Pin (https://www.ti.com/lit/ds/symlink/bq24090.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
+HVSSOP SO
+0
+20
+11
+Package_SO
+HVSSOP-10-1EP_3x3mm_P0.5mm_EP1.83x1.89mm
+>>>>>>> development
 HVSSOP, 10 Pin (https://www.ti.com/lit/ds/symlink/bq24090.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
 HVSSOP SO
 0
@@ -97118,6 +97156,13 @@ Connector
 10
 10
 SGI_FootprintsLib
+AdaFruit_1590
+
+
+0
+15
+15
+SGI_FootprintsLib
 FT232R-Breakout
 
 
@@ -97132,12 +97177,26 @@ LED diameter 5.0mm 2 pins
 2
 2
 SGI_FootprintsLib
+MountingHole_4_40
+Mounting Hole 0.125in
+mounting hole 0.125in 4_40
+0
+1
+1
+SGI_FootprintsLib
 PinHeader_1x02_P2.54mm_Vertical
 Through hole straight pin header, 1x02, 2.54mm pitch, single row
 Through hole pin header THT 1x02 2.54mm single row
 0
 2
 2
+SGI_FootprintsLib
+Pressure_Connector
+
+
+0
+12
+12
 SGI_FootprintsLib
 SW-T3-1A-A-A3-S1
 
@@ -97166,6 +97225,13 @@ Through hole pin header THT 1x02 2.54mm single row
 0
 2
 2
+SGI_FootprintsLib
+Untitled
+
+
+0
+0
+0
 SGI_FootprintsLib
 adafruit_st7735r
 
@@ -99287,6 +99353,41 @@ Logo WEEE
 0
 0
 0
+Temp
+FT232R-Breakout
+
+
+0
+22
+22
+TerminalBlock
+TerminalBlock_Altech_AK300-2_P5.00mm
+Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf
+Altech AK300 terminal block pitch 5.0mm
+0
+2
+2
+TerminalBlock
+TerminalBlock_Altech_AK300-3_P5.00mm
+Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf
+Altech AK300 terminal block pitch 5.0mm
+0
+3
+3
+TerminalBlock
+TerminalBlock_Altech_AK300-4_P5.00mm
+Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf
+Altech AK300 terminal block pitch 5.0mm
+0
+4
+4
+TerminalBlock
+TerminalBlock_Degson_DG246-3.81-03P
+DEGSON ELECTRONICS DG246 terminal block, https://www.degson.com/index.php?a=downloadFile&id=1090277
+connector terminal block
+0
+6
+3
 TerminalBlock
 TerminalBlock_Altech_AK300-2_P5.00mm
 Altech AK300 terminal block, pitch 5.0mm, 45 degree angled, see http://www.mouser.com/ds/2/16/PCBMETRC-24178.pdf
