@@ -3206,7 +3206,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector"
+		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector_1.1"
 			(at 36.83 62.23 0)
 			(effects
 				(font
@@ -3976,7 +3976,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector"
+		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector_1.1"
 			(at 36.83 97.79 0)
 			(effects
 				(font
