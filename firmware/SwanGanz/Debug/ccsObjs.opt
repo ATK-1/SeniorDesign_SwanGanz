@@ -1,0 +1,6 @@
+"./Clock.o"
+"./Comm.o"
+"./LaunchPad.o"
+"./main.o"
+-ldevice.cmd.genlibs
+-llibc.a
