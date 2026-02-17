@@ -1747,10 +1747,10 @@
 		(uuid "04ba2d10-ee4f-4459-b54c-8f4e3c98c3c9")
 	)
 	(junction
-		(at 125.73 62.23)
+		(at 110.49 62.23)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "09a0e0c3-2212-4030-aeb5-435e1568435a")
+		(uuid "0f4fc15e-4d4f-4c69-99ef-3bcdf5213b1b")
 	)
 	(junction
 		(at 186.69 56.515)
@@ -1765,16 +1765,16 @@
 		(uuid "1238241d-24b8-4059-82d3-8e707725a165")
 	)
 	(junction
+		(at 121.285 62.23)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "22f67404-fd45-4fe4-8ff6-dc98634fd1e9")
+	)
+	(junction
 		(at 178.435 64.77)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "25283a12-defc-4c87-8859-f24469a4ed4f")
-	)
-	(junction
-		(at 139.7 62.23)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2977f094-5506-4fa4-8bb3-e650aec9ee5c")
 	)
 	(junction
 		(at 83.82 38.1)
@@ -1787,12 +1787,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "559b2b73-e4c5-41f9-b6bf-fe19af01312c")
-	)
-	(junction
-		(at 111.76 62.23)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5877620f-df79-48a1-8e56-6e15b55d1e8e")
 	)
 	(junction
 		(at 194.31 88.9)
@@ -1817,6 +1811,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b9fd75c0-151b-4637-b161-c9b80a78c2dc")
+	)
+	(junction
+		(at 132.715 62.23)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c03ed787-91cd-45af-9a10-7efa42fd5268")
 	)
 	(junction
 		(at 62.23 130.81)
@@ -1960,16 +1960,6 @@
 	)
 	(wire
 		(pts
-			(xy 125.73 64.77) (xy 125.73 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1549da78-285a-4cc7-84ae-9d82e86bdc75")
-	)
-	(wire
-		(pts
 			(xy 59.69 54.61) (xy 73.66 54.61)
 		)
 		(stroke
@@ -1977,6 +1967,16 @@
 			(type default)
 		)
 		(uuid "15882910-cb57-476a-b488-acf205110f4c")
+	)
+	(wire
+		(pts
+			(xy 121.285 54.61) (xy 138.43 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1af0a3ab-6acd-4815-b426-7e9d3a605f0a")
 	)
 	(wire
 		(pts
@@ -2010,7 +2010,7 @@
 	)
 	(wire
 		(pts
-			(xy 125.73 62.23) (xy 129.54 62.23)
+			(xy 119.38 62.23) (xy 121.285 62.23)
 		)
 		(stroke
 			(width 0)
@@ -2030,16 +2030,6 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 55.88) (xy 139.7 55.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "23b75cc3-cbde-4486-bd9a-e37f4cdbe305")
-	)
-	(wire
-		(pts
 			(xy 161.29 64.77) (xy 167.64 64.77)
 		)
 		(stroke
@@ -2047,16 +2037,6 @@
 			(type default)
 		)
 		(uuid "2434663d-fa52-43dc-a3d4-7ba78ca99330")
-	)
-	(wire
-		(pts
-			(xy 139.7 55.88) (xy 139.7 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "26a4cc14-2728-475f-9ebc-9380937ac966")
 	)
 	(wire
 		(pts
@@ -2077,46 +2057,6 @@
 			(type default)
 		)
 		(uuid "27a551dc-38c3-496d-8ce6-8d9407f7782e")
-	)
-	(wire
-		(pts
-			(xy 137.16 62.23) (xy 139.7 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "280985d8-62b8-44d6-b9d0-4695aa6b36e1")
-	)
-	(wire
-		(pts
-			(xy 111.76 62.23) (xy 115.57 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2d23536c-b631-43e1-9d59-cb3b444200eb")
-	)
-	(wire
-		(pts
-			(xy 125.73 76.2) (xy 125.73 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2eca8370-fd5c-4617-b722-0b16fccee6a1")
-	)
-	(wire
-		(pts
-			(xy 123.19 62.23) (xy 125.73 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "34c5ad65-6835-4745-afb3-f5353fd2a52e")
 	)
 	(wire
 		(pts
@@ -2160,6 +2100,16 @@
 	)
 	(wire
 		(pts
+			(xy 132.715 62.23) (xy 143.51 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "46669fd5-6cb1-485c-9247-871280e6ad59")
+	)
+	(wire
+		(pts
 			(xy 96.52 40.64) (xy 96.52 38.1)
 		)
 		(stroke
@@ -2170,7 +2120,7 @@
 	)
 	(wire
 		(pts
-			(xy 139.7 62.23) (xy 143.51 62.23)
+			(xy 130.81 62.23) (xy 132.715 62.23)
 		)
 		(stroke
 			(width 0)
@@ -2187,6 +2137,16 @@
 			(type default)
 		)
 		(uuid "588fdc6d-3e04-4481-bfed-68aac808655e")
+	)
+	(wire
+		(pts
+			(xy 121.285 54.61) (xy 121.285 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "591e7190-85c5-41aa-b59f-866d75c4d526")
 	)
 	(wire
 		(pts
@@ -2220,7 +2180,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 62.23) (xy 111.76 67.31)
+			(xy 110.49 62.23) (xy 110.49 66.675)
 		)
 		(stroke
 			(width 0)
@@ -2340,6 +2300,16 @@
 	)
 	(wire
 		(pts
+			(xy 121.285 62.23) (xy 123.19 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8d3a8304-263f-4a5f-b43f-7b16f660aa7c")
+	)
+	(wire
+		(pts
 			(xy 161.29 73.66) (xy 161.29 64.77)
 		)
 		(stroke
@@ -2347,6 +2317,16 @@
 			(type default)
 		)
 		(uuid "8d53b49d-4fdb-4e89-8e50-15c9b9f5e5cd")
+	)
+	(wire
+		(pts
+			(xy 132.715 74.93) (xy 132.715 73.025)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8fe360fd-fad8-4d88-9c72-1c07211bc577")
 	)
 	(wire
 		(pts
@@ -2360,7 +2340,7 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 55.88) (xy 161.29 55.88)
+			(xy 146.05 54.61) (xy 161.29 54.61)
 		)
 		(stroke
 			(width 0)
@@ -2430,7 +2410,7 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 55.88) (xy 161.29 64.77)
+			(xy 161.29 54.61) (xy 161.29 64.77)
 		)
 		(stroke
 			(width 0)
@@ -2480,7 +2460,7 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 62.23) (xy 111.76 62.23)
+			(xy 109.22 62.23) (xy 110.49 62.23)
 		)
 		(stroke
 			(width 0)
@@ -2517,6 +2497,26 @@
 			(type default)
 		)
 		(uuid "d21b82f1-f559-4c2f-8cd3-2d1f0474c82e")
+	)
+	(wire
+		(pts
+			(xy 110.49 62.23) (xy 111.76 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d23523c3-58fd-41c5-b24f-a529ae5789c7")
+	)
+	(wire
+		(pts
+			(xy 132.715 62.23) (xy 132.715 65.405)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d29d5b89-f01a-4ab4-a254-cc0e8f6f0e19")
 	)
 	(wire
 		(pts
@@ -2736,7 +2736,7 @@
 	)
 	(global_label "P2__InstrOut"
 		(shape input)
-		(at 111.76 67.31 270)
+		(at 110.49 66.675 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2746,7 +2746,7 @@
 		)
 		(uuid "888ea4b1-4686-45e6-b1e5-03c9564b936e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 111.76 82.2089 90)
+			(at 110.49 81.5739 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2897,7 +2897,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "01df6f26-7231-4a5d-8359-2cc5a7c4d214")
-		(property "Reference" "#PWR069"
+		(property "Reference" "#PWR068"
 			(at 259.08 27.94 0)
 			(effects
 				(font
@@ -2947,7 +2947,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR069")
+					(reference "#PWR068")
 					(unit 1)
 				)
 			)
@@ -3050,7 +3050,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0c9428b4-40c8-443e-b798-425e662b9bc0")
-		(property "Reference" "#PWR060"
+		(property "Reference" "#PWR059"
 			(at 29.21 200.66 0)
 			(effects
 				(font
@@ -3100,7 +3100,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR060")
+					(reference "#PWR059")
 					(unit 1)
 				)
 			)
@@ -3206,7 +3206,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector"
+		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector_1.1"
 			(at 36.83 62.23 0)
 			(effects
 				(font
@@ -3287,7 +3287,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2664c1a9-6304-4829-80e6-f0658ea7d74f")
-		(property "Reference" "#PWR068"
+		(property "Reference" "#PWR067"
 			(at 167.64 118.11 0)
 			(effects
 				(font
@@ -3337,7 +3337,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR068")
+					(reference "#PWR067")
 					(unit 1)
 				)
 			)
@@ -3352,7 +3352,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "30aabd85-1c6b-482b-8d1b-313e489de762")
-		(property "Reference" "R36"
+		(property "Reference" "R35"
 			(at 151.13 71.755 90)
 			(effects
 				(font
@@ -3404,7 +3404,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "R36")
+					(reference "R35")
 					(unit 1)
 				)
 			)
@@ -3412,15 +3412,15 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 119.38 62.23 90)
+		(at 115.57 62.23 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "33c760b3-22da-43ea-9409-9f30faab78a7")
-		(property "Reference" "R33"
-			(at 119.38 60.325 90)
+		(property "Reference" "R32"
+			(at 115.57 60.325 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3428,7 +3428,7 @@
 			)
 		)
 		(property "Value" "32k"
-			(at 119.38 62.23 90)
+			(at 115.57 62.23 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3436,7 +3436,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 119.38 64.008 90)
+			(at 115.57 64.008 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3445,7 +3445,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 119.38 62.23 0)
+			(at 115.57 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3454,7 +3454,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 119.38 62.23 0)
+			(at 115.57 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3471,7 +3471,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "R33")
+					(reference "R32")
 					(unit 1)
 				)
 			)
@@ -3479,15 +3479,15 @@
 	)
 	(symbol
 		(lib_id "power:GNDA")
-		(at 125.73 76.2 0)
+		(at 132.715 74.93 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "47157ced-032b-4c2f-a8e2-bceaac34dc60")
-		(property "Reference" "#PWR066"
-			(at 125.73 82.55 0)
+		(property "Reference" "#PWR065"
+			(at 132.715 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3496,7 +3496,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 129.032 76.2 0)
+			(at 136.017 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3504,7 +3504,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 125.73 76.2 0)
+			(at 132.715 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3513,7 +3513,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 125.73 76.2 0)
+			(at 132.715 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3522,7 +3522,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
-			(at 125.73 76.2 0)
+			(at 132.715 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3536,7 +3536,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR066")
+					(reference "#PWR065")
 					(unit 1)
 				)
 			)
@@ -3551,7 +3551,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "56ca87a6-7e2a-45a6-a587-9294a96e8da0")
-		(property "Reference" "#PWR067"
+		(property "Reference" "#PWR066"
 			(at 139.7 93.98 0)
 			(effects
 				(font
@@ -3601,7 +3601,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR067")
+					(reference "#PWR066")
 					(unit 1)
 				)
 			)
@@ -3686,7 +3686,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "613b5cf8-e1fc-418f-9774-57c0a2a58920")
-		(property "Reference" "R35"
+		(property "Reference" "R34"
 			(at 137.795 80.01 90)
 			(effects
 				(font
@@ -3738,7 +3738,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "R35")
+					(reference "R34")
 					(unit 1)
 				)
 			)
@@ -3753,7 +3753,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "69a3e832-e617-49a8-a967-37094350aa63")
-		(property "Reference" "R32"
+		(property "Reference" "R31"
 			(at 95.25 44.704 90)
 			(effects
 				(font
@@ -3805,7 +3805,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "R32")
+					(reference "R31")
 					(unit 1)
 				)
 			)
@@ -3976,7 +3976,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector"
+		(property "Footprint" "SGI_FootprintsLib:Pressure_Connector_1.1"
 			(at 36.83 97.79 0)
 			(effects
 				(font
@@ -4142,7 +4142,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "99f922f0-3af7-4800-944f-1ac1cdf3a79c")
-		(property "Reference" "#PWR063"
+		(property "Reference" "#PWR062"
 			(at 83.82 88.9 0)
 			(effects
 				(font
@@ -4192,7 +4192,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR063")
+					(reference "#PWR062")
 					(unit 1)
 				)
 			)
@@ -4287,15 +4287,15 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 133.35 62.23 90)
+		(at 127 62.23 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "b0ad3c11-b317-46ee-9364-93bb1b4e96a9")
-		(property "Reference" "R34"
-			(at 133.35 60.325 90)
+		(property "Reference" "R33"
+			(at 127 60.325 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4303,7 +4303,7 @@
 			)
 		)
 		(property "Value" "32k"
-			(at 133.35 62.23 90)
+			(at 127 62.23 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4311,7 +4311,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 133.35 64.008 90)
+			(at 127 64.008 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4320,7 +4320,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 133.35 62.23 0)
+			(at 127 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4329,7 +4329,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 133.35 62.23 0)
+			(at 127 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4346,7 +4346,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "R34")
+					(reference "R33")
 					(unit 1)
 				)
 			)
@@ -4431,7 +4431,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "de208334-fe09-4510-8edd-2b0094115b11")
-		(property "Reference" "R38"
+		(property "Reference" "R37"
 			(at 180.34 96.774 90)
 			(effects
 				(font
@@ -4483,7 +4483,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "R38")
+					(reference "R37")
 					(unit 1)
 				)
 			)
@@ -4499,7 +4499,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e5cc1ef4-8b1d-4c0a-a556-1c7e23b3a152")
-		(property "Reference" "#PWR070"
+		(property "Reference" "#PWR069"
 			(at 259.08 58.42 0)
 			(effects
 				(font
@@ -4550,7 +4550,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR070")
+					(reference "#PWR069")
 					(unit 1)
 				)
 			)
@@ -4565,7 +4565,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e67daeae-ae16-4c1d-9d93-6f35c82bd336")
-		(property "Reference" "#PWR062"
+		(property "Reference" "#PWR061"
 			(at 83.82 39.37 0)
 			(effects
 				(font
@@ -4615,7 +4615,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR062")
+					(reference "#PWR061")
 					(unit 1)
 				)
 			)
@@ -4631,7 +4631,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ef69399e-c6d9-47c5-a44a-6eff38e0e212")
-		(property "Reference" "#PWR064"
+		(property "Reference" "#PWR063"
 			(at 96.52 46.99 0)
 			(effects
 				(font
@@ -4682,7 +4682,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR064")
+					(reference "#PWR063")
 					(unit 1)
 				)
 			)
@@ -4697,7 +4697,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f08381a8-c07b-4239-9216-544eeb6c9c86")
-		(property "Reference" "#PWR061"
+		(property "Reference" "#PWR060"
 			(at 49.53 78.74 0)
 			(effects
 				(font
@@ -4747,7 +4747,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR061")
+					(reference "#PWR060")
 					(unit 1)
 				)
 			)
@@ -4762,7 +4762,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f217643c-e75b-46e7-bf14-ed8a1e605422")
-		(property "Reference" "#PWR065"
+		(property "Reference" "#PWR064"
 			(at 96.52 83.82 0)
 			(effects
 				(font
@@ -4812,7 +4812,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "#PWR065")
+					(reference "#PWR064")
 					(unit 1)
 				)
 			)
@@ -4905,7 +4905,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 151.13 55.88 90)
+		(at 142.24 54.61 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4913,7 +4913,7 @@
 		(dnp no)
 		(uuid "f54b25a4-4c74-4485-ac85-6080321cb1d3")
 		(property "Reference" "C20"
-			(at 154.686 53.848 90)
+			(at 145.796 52.578 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4921,7 +4921,7 @@
 			)
 		)
 		(property "Value" "0.1u"
-			(at 154.305 57.15 90)
+			(at 145.415 55.88 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4929,7 +4929,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
-			(at 154.94 54.9148 0)
+			(at 146.05 53.6448 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4938,7 +4938,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 151.13 55.88 0)
+			(at 142.24 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4947,7 +4947,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 151.13 55.88 0)
+			(at 142.24 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4972,7 +4972,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 125.73 68.58 0)
+		(at 132.715 69.215 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4980,7 +4980,7 @@
 		(dnp no)
 		(uuid "f6c2885b-0d82-4bd9-887e-ed0ee29952bd")
 		(property "Reference" "C19"
-			(at 126.365 66.675 0)
+			(at 133.35 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4989,7 +4989,7 @@
 			)
 		)
 		(property "Value" "0.1u"
-			(at 126.365 71.12 0)
+			(at 133.35 71.755 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4998,7 +4998,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
-			(at 126.6952 72.39 0)
+			(at 133.6802 73.025 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5007,7 +5007,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 125.73 68.58 0)
+			(at 132.715 69.215 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5016,7 +5016,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 125.73 68.58 0)
+			(at 132.715 69.215 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5115,7 +5115,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fbc3e12f-2cfe-47ff-81af-dd7ab007a0c1")
-		(property "Reference" "R37"
+		(property "Reference" "R36"
 			(at 165.354 106.68 90)
 			(effects
 				(font
@@ -5167,7 +5167,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/5b443651-3bea-4d19-bd25-a234ca65ad96"
-					(reference "R37")
+					(reference "R36")
 					(unit 1)
 				)
 			)
