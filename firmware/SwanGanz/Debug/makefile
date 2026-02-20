@@ -4,14 +4,43 @@
 
 CG_TOOL_ROOT := /Applications/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS
 
-GEN_OPTS__FLAG := 
-GEN_CMDS__FLAG := 
+GEN_OPTS__FLAG := @"./device.opt" 
+GEN_CMDS__FLAG := -Wl,-l"./device_linker.cmd" 
 
 ORDERED_OBJS += \
-"./Clock.o" \
-"./Comm.o" \
-"./LaunchPad.o" \
+"./DAS.o" \
+"./ti_msp_dl_config.o" \
+"./startup_mspm0g350x_ticlang.o" \
 "./main.o" \
+"./inc/ADC.o" \
+"./inc/ADCTimer.o" \
+"./inc/Arabic.o" \
+"./inc/Bump.o" \
+"./inc/Clock.o" \
+"./inc/DAC.o" \
+"./inc/DAC5.o" \
+"./inc/Dump.o" \
+"./inc/EdgeTriggered.o" \
+"./inc/FFT.o" \
+"./inc/FIFO.o" \
+"./inc/FIFO1.o" \
+"./inc/I2C.o" \
+"./inc/IRDistance.o" \
+"./inc/InputCapture.o" \
+"./inc/JoyStick.o" \
+"./inc/Key.o" \
+"./inc/LaunchPad.o" \
+"./inc/Motor.o" \
+"./inc/PWM.o" \
+"./inc/PWM1.o" \
+"./inc/SPI.o" \
+"./inc/SSD1306.o" \
+"./inc/ST7735.o" \
+"./inc/SysTick.o" \
+"./inc/Timer.o" \
+"./inc/UART.o" \
+"./inc/UARTints.o" \
+"./inc/msp.o" \
 $(GEN_CMDS__FLAG) \
 -Wl,-ldevice.cmd.genlibs \
 -Wl,-llibc.a \
@@ -24,7 +53,11 @@ RMDIR := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include inc/subdir_vars.mk
+-include inc/Arabic/subdir_vars.mk
 -include subdir_rules.mk
+-include inc/subdir_rules.mk
+-include inc/Arabic/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -135,9 +168,10 @@ SwanGanz.out: $(OBJS) $(GEN_CMDS)
 
 # Other Targets
 clean:
-	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Clock.o" "Comm.o" "LaunchPad.o" "main.o" 
-	-$(RM) "Clock.d" "Comm.d" "LaunchPad.d" "main.d" 
+	-$(RM) $(GEN_MISC_FILES__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
+	-$(RM) "DAS.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "main.o" "inc/ADC.o" "inc/ADCTimer.o" "inc/Arabic.o" "inc/Bump.o" "inc/Clock.o" "inc/DAC.o" "inc/DAC5.o" "inc/Dump.o" "inc/EdgeTriggered.o" "inc/FFT.o" "inc/FIFO.o" "inc/FIFO1.o" "inc/I2C.o" "inc/IRDistance.o" "inc/InputCapture.o" "inc/JoyStick.o" "inc/Key.o" "inc/LaunchPad.o" "inc/Motor.o" "inc/PWM.o" "inc/PWM1.o" "inc/SPI.o" "inc/SSD1306.o" "inc/ST7735.o" "inc/SysTick.o" "inc/Timer.o" "inc/UART.o" "inc/UARTints.o" "inc/msp.o" 
+	-$(RM) "DAS.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "main.d" "inc/ADC.d" "inc/ADCTimer.d" "inc/Arabic.d" "inc/Bump.d" "inc/Clock.d" "inc/DAC.d" "inc/DAC5.d" "inc/Dump.d" "inc/EdgeTriggered.d" "inc/FFT.d" "inc/FIFO.d" "inc/FIFO1.d" "inc/I2C.d" "inc/IRDistance.d" "inc/InputCapture.d" "inc/JoyStick.d" "inc/Key.d" "inc/LaunchPad.d" "inc/Motor.d" "inc/PWM.d" "inc/PWM1.d" "inc/SPI.d" "inc/SSD1306.d" "inc/ST7735.d" "inc/Timer.d" "inc/UART.d" "inc/UARTints.d" 
+	-$(RM) "inc/SysTick.d" "inc/msp.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

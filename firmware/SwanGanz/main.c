@@ -30,26 +30,41 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <ti/devices/msp/m0p/mspm0g350x.h>
-#include "Clock.h"
-#include "LaunchPad.h"
-#include "Comm.h"
+#include <ti/devices/msp/msp.h>
+#include "../inc/LaunchPad.h"
+#include "../inc/Clock.h"
+#include "../inc/ADC.h"
+#include "DAS.h"
 
 //6 adc's
-// ADC0.2 = PA25 - pressure 1stuff idk
-// ADC0.3 = PA24 - pressure 1 stuff idk
-// ADC0.5 = PB24 - thermistor stuff idk
-// ADC0.7 = PA22 - thermistor stuff idk
-// ADC1.3 = PA17 - pressure 2 stuff idk
-// ADC1.5 = PA18 - pressure 2 stuff idk
+// ADC0.2 = PA25 - pressure 1 
+// ADC0.3 = PA24 - pressure 1 
+// ADC0.5 = PB24 - thermistor 
+// ADC0.7 = PA22 - thermistor 
+// ADC1.3 = PA17 - pressure 2 
+// ADC1.5 = PA18 - pressure 2 
 // UART_Tx = PA8
 // UART_Rx = PA9
+void Logic_Init(void){
+    IOMUX->SECCFG.PINCM[PA8INDEX]  = (uint32_t) 0x00000081;
+    IOMUX->SECCFG.PINCM[PA9INDEX]  = (uint32_t) 0x00000081;
+    IOMUX->SECCFG.PINCM[PA17INDEX] = (uint32_t) 0x00000081;
+    IOMUX->SECCFG.PINCM[PA18INDEX] = (uint32_t) 0x00000081;
+    IOMUX->SECCFG.PINCM[PA22INDEX] = (uint32_t) 0x00000081;
+    IOMUX->SECCFG.PINCM[PA24INDEX] = (uint32_t) 0x00000081;
+    IOMUX->SECCFG.PINCM[PA25INDEX] = (uint32_t) 0x00000081;
+    IOMUX->SECCFG.PINCM[PB24INDEX] = (uint32_t) 0x00000081;
+    GPIOA->DOE31_0 |= (1<<25) | (1<<24) | (1<<22) | (1<<18) | (1<<17) | (1<<9) | (1<<8);
+    GPIOB->DOE31_0 |= (1<<24);
+}
 
 int main(void) {
-    DisableInterrupts();
+    __disable_irq();
     Clock_Init80MHz(0);
     LaunchPad_Init();
-    UART_Init();
+    Logic_Init();
+    DAS_Init();
+    __enable_irq();
     while (1) {
     }
 }

@@ -1,7 +1,7 @@
 ## Example Summary
 
-Empty C++ project using DriverLib.
-This example shows a basic empty project using DriverLib with just main C++ file
+Empty project using DriverLib.
+This example shows a basic empty project using DriverLib with just main file
 and SysConfig initialization.
 
 ## Peripherals & Pin Assignments
