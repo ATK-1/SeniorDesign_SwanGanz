@@ -113,3 +113,6 @@ uint32_t ADC1_In(void);
  * @brief  Initialize 12-bit ADC0
  */
 void ADC_Init();
+
+uint32_t ADC0_In(void);
+void ADC0_Init(uint32_t channel, uint32_t reference);

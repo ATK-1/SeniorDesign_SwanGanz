@@ -17,7 +17,6 @@
 "./inc/I2C.o"
 "./inc/IRDistance.o"
 "./inc/InputCapture.o"
-"./inc/JoyStick.o"
 "./inc/Key.o"
 "./inc/LaunchPad.o"
 "./inc/Motor.o"

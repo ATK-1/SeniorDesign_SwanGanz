@@ -23,6 +23,7 @@
 // ADC0.7 = PA22 - thermistor 
 // ADC1.3 = PA17 - pressure 2 
 // ADC1.5 = PA18 - pressure 2 
+//DOESN"T WORK
 void ADC_Init() {
   // Reset ADC and VREF
   // RSTCLR
@@ -53,8 +54,8 @@ void ADC_Init() {
   // bits 26-24 Sample clock divider: 3 = divide clock source by 8
   // bit 16 Power down: 1 = manual, 0 = power down on completion, if no pending trigger
   // bit 0 Enable conversion: 0 = disable (1 to 0 will end conversion)
-  ADC0->ULLMEM.CTL0 = (3 << 24) | (1 << 16) | 1;
-  ADC1->ULLMEM.CTL0 = (3 << 24) | (1 << 16) | 1;
+  ADC0->ULLMEM.CTL0 = (3 << 24) | (1 << 16);
+  ADC1->ULLMEM.CTL0 = (3 << 24) | (1 << 16);
   
   // bits 30-28 =0  no shift
   // bits 26-24 =0  no averaging
@@ -62,8 +63,8 @@ void ADC_Init() {
   // bits 17-16 CONSEQ=0 ADC at start will be sampled once, 10 for repeated sampling
   // bit 8 SC=0 for stop, =1 to software start
   // bit 0 TRIGSRC=0 software trigger
-  ADC0->ULLMEM.CTL1 = (1 << 20);
-  ADC1->ULLMEM.CTL1 = (1 << 20);
+  ADC0->ULLMEM.CTL1 = (1<<16);
+  ADC1->ULLMEM.CTL1 = (1<<16);
   
   // bits 28-24 ENDADD (which  MEMCTL to end)
   // bits 20-16 STARTADD (which  MEMCTL to start)
@@ -82,38 +83,25 @@ void ADC_Init() {
   // bit 12 = STIME=0 for SCOMP0
   // bits 9-8 VRSEL = 10 for internal VREF,(00 for VDDA)
   // bits 4-0 channel = 0 to 7 available
-  ADC0->ULLMEM.MEMCTL[0] = 5; // PB24
-  ADC0->ULLMEM.MEMCTL[1] = 3; // PA24
-  ADC0->ULLMEM.MEMCTL[2] = 7; // PA22
-  ADC0->ULLMEM.MEMCTL[3] = (1<<24) | 2; // PA25
-  ADC1->ULLMEM.MEMCTL[0] = 3; // PA17
-  ADC1->ULLMEM.MEMCTL[1] = (1<<24) | 5; // PA18
+  ADC0->ULLMEM.MEMCTL[0] = (2<<8) | 7;
+  ADC0->ULLMEM.MEMCTL[1] = (2<<8) | 3;
+  ADC0->ULLMEM.MEMCTL[2] = (2<<8) | 5; 
+  ADC0->ULLMEM.MEMCTL[3] = (1<<24) | (2<<8) | 2;
+  
+  ADC1->ULLMEM.MEMCTL[0] = (2<<8) | 3; 
+  ADC1->ULLMEM.MEMCTL[1] = (1<<24) | (2<<8) | 5; 
+
+  ADC0->ULLMEM.CTL0 |= 1;
+  ADC1->ULLMEM.CTL0 |= 1;
 
   ADC0->ULLMEM.SCOMP0 = 0; // 8 sample clocks
   ADC1->ULLMEM.SCOMP0 = 0;
 }
 
-// // sample 12-bit ADC
-// uint32_t ADC0_In(void){
-//   ADC0->ULLMEM.CTL1 |= 0x00000100; // start ADC
-  
-//   uint32_t volatile delay=ADC0->ULLMEM.STATUS; // time to let ADC start
-//   while((ADC0->ULLMEM.STATUS&0x01)==0x01){} // wait for completion
-//   return ADC0->ULLMEM.MEMRES[0];
-// }
 
-// // sample 12-bit ADC
-// uint32_t ADC1_In(void){
-//   ADC1->ULLMEM.CTL1 |= 0x00000100; // start ADC
-//   uint32_t volatile delay=ADC1->ULLMEM.STATUS; // time to let ADC start
-//   while((ADC1->ULLMEM.STATUS&0x01)==0x01){}; // wait for completion
-//   return ADC1->ULLMEM.MEMRES[0];
+//THE BELOW FUNCTIONS WORK
 
-// }
-
-
-
-void ADC0_Init(uint32_t channel, uint32_t reference){
+void ADC0_Init(uint32_t channel, uint32_t reference) {
     // Reset ADC and VREF
     // RSTCLR
     //   bits 31-24 unlock key 0xB1
@@ -184,7 +172,7 @@ void ADC0_Init(uint32_t channel, uint32_t reference){
 
 
 // sample 12-bit ADC
-uint32_t ADC0_In(void){
+uint32_t ADC0_In(void) {
   ADC0->ULLMEM.CTL0 |= 0x00000001; // enable conversions
   ADC0->ULLMEM.CTL1 |= 0x00000100; // start ADC
   uint32_t volatile delay=ADC0->ULLMEM.STATUS; // time to let ADC start
