@@ -21,7 +21,7 @@ uint32_t watchB1;
 
 
 void DAS_Init() {
-    ADC_Init(); //doesnt work
+    ADC_Init(); 
     //ADC0_Init(7, ADCVREF_VDDA);
     TimerG0_IntArm(40000, 5, 1);
 }
@@ -32,26 +32,24 @@ void TIMG0_IRQHandler(void) {
     TIMG0->CPU_INT.ICLR = 1;
     // Therm1Watch = ADC0_In(); // does work
 
-    //the below doesnt work
-    ADC0->ULLMEM.CTL0 |= 1;
-    ADC1->ULLMEM.CTL0 |= 1;
-
-    ADC0->ULLMEM.CTL1 |= (1<<8); 
-    ADC1->ULLMEM.CTL1 |= (1<<8);
-
-    volatile uint32_t d0 = ADC0->ULLMEM.STATUS;
-    volatile uint32_t d1 = ADC1->ULLMEM.STATUS;
+    // ADC0->ULLMEM.CTL0 |= 1;
+    // ADC0->ULLMEM.CTL1 |= (1<<8); 
     
-    while (ADC0->ULLMEM.STATUS & 0x01);   // wait until done
+    // volatile uint32_t d0 = ADC0->ULLMEM.STATUS;
+    // while (ADC0->ULLMEM.STATUS & 0x01);   // wait until done
+
+    // watchA3 = ADC0->ULLMEM.MEMRES[0];
+    // watchA1 = ADC0->ULLMEM.MEMRES[1];
+    // watchA2 = ADC0->ULLMEM.MEMRES[2];
+    // Therm1Watch = ADC0->ULLMEM.MEMRES[3]; 
+    // temp = (((Therm1Watch * Therm1Watch * 0x1D) + ((61154 << 14) - (Therm1Watch * 0x50802))) >> 14);
+
+    ADC1->ULLMEM.CTL0 |= 1;
+    ADC1->ULLMEM.CTL1 |= (1<<8);
+    
+    volatile uint32_t d1 = ADC1->ULLMEM.STATUS;
     while (ADC1->ULLMEM.STATUS & 0x01);
-
-    Therm1Watch = ADC0->ULLMEM.MEMRES[0];
-    temp = (((Therm1Watch * Therm1Watch * 0x1D) + ((61154 << 14) - (Therm1Watch * 0x50802))) >> 14);
-
-    watchA1 = ADC0->ULLMEM.MEMRES[1];
-    watchA2 = ADC0->ULLMEM.MEMRES[2];
-    watchA3 = ADC0->ULLMEM.MEMRES[3]; 
-
+    
     watchB0 = ADC1->ULLMEM.MEMRES[0];
     watchB1 = ADC1->ULLMEM.MEMRES[1];
    

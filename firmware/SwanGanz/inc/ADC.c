@@ -63,7 +63,7 @@ void ADC_Init() {
   // bits 17-16 CONSEQ=0 ADC at start will be sampled once, 10 for repeated sampling
   // bit 8 SC=0 for stop, =1 to software start
   // bit 0 TRIGSRC=0 software trigger
-  ADC0->ULLMEM.CTL1 = (1<<16);
+  ADC0->ULLMEM.CTL1 = (1<<16);  //MAYBE NEED BIT 20?
   ADC1->ULLMEM.CTL1 = (1<<16);
   
   // bits 28-24 ENDADD (which  MEMCTL to end)
@@ -83,16 +83,13 @@ void ADC_Init() {
   // bit 12 = STIME=0 for SCOMP0
   // bits 9-8 VRSEL = 10 for internal VREF,(00 for VDDA)
   // bits 4-0 channel = 0 to 7 available
-  ADC0->ULLMEM.MEMCTL[0] = (2<<8) | 7;
-  ADC0->ULLMEM.MEMCTL[1] = (2<<8) | 3;
-  ADC0->ULLMEM.MEMCTL[2] = (2<<8) | 5; 
-  ADC0->ULLMEM.MEMCTL[3] = (1<<24) | (2<<8) | 2;
+  ADC0->ULLMEM.MEMCTL[0] = 2;
+  ADC0->ULLMEM.MEMCTL[1] = 3;
+  ADC0->ULLMEM.MEMCTL[2] = 5; 
+  ADC0->ULLMEM.MEMCTL[3] = (1<<24) | 7;
   
-  ADC1->ULLMEM.MEMCTL[0] = (2<<8) | 3; 
-  ADC1->ULLMEM.MEMCTL[1] = (1<<24) | (2<<8) | 5; 
-
-  ADC0->ULLMEM.CTL0 |= 1;
-  ADC1->ULLMEM.CTL0 |= 1;
+  ADC1->ULLMEM.MEMCTL[0] = 2; 
+  ADC1->ULLMEM.MEMCTL[1] = (1<<24) | 3; 
 
   ADC0->ULLMEM.SCOMP0 = 0; // 8 sample clocks
   ADC1->ULLMEM.SCOMP0 = 0;
