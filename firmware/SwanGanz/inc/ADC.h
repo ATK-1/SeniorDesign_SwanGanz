@@ -1,29 +1,3 @@
-/*!
- * @defgroup ADC
- * @brief Analog to digital conversion
-  <table>
-<caption id="ADCpins">ADC pins on the MSPM0G3507</caption>
-<tr><th>Pin  <th>ADC channel<th>Sensor
-<tr><td>PA27 <td>ADC0 channel 0 <td>J1.8 also MKII light interrupt
-<tr><td>PA26 <td>ADC0 channel 1 <td>J1.6 MKII microphone in
-<tr><td>PA25 <td>ADC0 channel 2 <td>J1.2 MKII Joystick X
-<tr><td>PA24 <td>ADC0 channel 3 <td>J3.27 ***free***
-<tr><td>PB25 <td>ADC0 channel 4 <td>J19.7 (insert 0ohm R74, no U3 OPA2365)
-<tr><td>PB24 <td>ADC0 channel 5 <td>J1.5 thermistor, also MKII joystick select button
-<tr><td>PB20 <td>ADC0 channel 6 <td>J4.36 ***free***
-<tr><td>PA22 <td>ADC0 channel 7 <td>J24 MKII Accelerometer Y
-
-<tr><td>PA15 <td>ADC1 channel 0 <td>J3.30 (also DACout)
-<tr><td>PA16 <td>ADC1 channel 1 <td>J3.29 ***free***
-<tr><td>PA17 <td>ADC1 channel 2 <td>J3.28 ***free***
-<tr><td>PA18 <td>ADC1 channel 3 <td>J3.26 MKII Joystick Y
-<tr><td>PB17 <td>ADC1 channel 4 <td>J2.18 ***free***
-<tr><td>PB18 <td>ADC1 channel 5 <td>J3.25 MKII Accelerometer Z
-<tr><td>PB19 <td>ADC1 channel 6 <td>J3.23 MKII Accelerometer X
-<tr><td>PA21 <td>ADC1 channel 7 <td>J17.8 (insert R20, remove R3)
-
-</table>
- * @{*/
 /**
  * @file      ADC.h
  * @brief     Initialize 12-bit ADC0 and/or ADC1
@@ -41,66 +15,12 @@
  * @warning   AS-IS
  * @note      For more information see  http://users.ece.utexas.edu/~valvano/
  * @date      August 13, 2023
- <table>
-<caption id="ADCpins2">ADC pins on the MSPM0G3507</caption>
-<tr><th>Pin  <th>ADC channel<th>Sensor
-<tr><td>PA27 <td>ADC0 channel 0 <td>J1.8 also MKII light interrupt
-<tr><td>PA26 <td>ADC0 channel 1 <td>J1.6 MKII microphone in
-<tr><td>PA25 <td>ADC0 channel 2 <td>J1.2 MKII Joystick X
-<tr><td>PA24 <td>ADC0 channel 3 <td>J3.27 ***free***
-<tr><td>PB25 <td>ADC0 channel 4 <td>J19.7 (insert 0ohm R74, no U3 OPA2365)
-<tr><td>PB24 <td>ADC0 channel 5 <td>J1.5 also MKII joystick select button
-<tr><td>PB20 <td>ADC0 channel 6 <td>J4.36 ***free***
-<tr><td>PA22 <td>ADC0 channel 7 <td>J24 MKII Accelerometer Y
-
-<tr><td>PA15 <td>ADC1 channel 0 <td>J3.30 (also DACout)
-<tr><td>PA16 <td>ADC1 channel 1 <td>J3.29 ***free***
-<tr><td>PA17 <td>ADC1 channel 2 <td>J3.28 ***free***
-<tr><td>PA18 <td>ADC1 channel 3 <td>J3.26 MKII Joystick Y
-<tr><td>PB17 <td>ADC1 channel 4 <td>J2.18 ***free***
-<tr><td>PB18 <td>ADC1 channel 5 <td>J3.25 MKII Accelerometer Z
-<tr><td>PB19 <td>ADC1 channel 6 <td>J3.23 MKII Accelerometer X
-<tr><td>PA21 <td>ADC1 channel 7 <td>J17.8 (insert R20, remove R3)
-
-</table>
-  ****note to students****<br>
-  the data sheet says the ADC does not work when clock is 80 MHz
-  however, the ADC seems to work on my boards at 80 MHz
-  I suggest you try 80MHz, but if it doesn't work, switch to 40MHz
-  ******************************************************************************/
-
-
-
+ */
 //#ifndef __ADC_H__
 //#define __ADC_H__
 #include <ti/devices/msp/msp.h>
 #include <stdint.h>
-/**
- * \brief using ADCVREF_INT means choose internal 2.5V reference for accuracy
- */
-#define ADCVREF_INT  0x200
-/**
- * \brief using ADCVREF_EXT means choose external reference not tested
- */ 
-#define ADCVREF_EXT  0x100
-/**
- * \brief using ADCVREF_VDDA means choose power line 3.3V reference for 0 to 3.3V range
- */
-#define ADCVREF_VDDA 0x000
 
-
-/**
- * Trigger a single ADC1 measurement,
- * wait for it to complete, and return the 12-bit result
- * as 0 to 4095.
- * The ADC input voltage range is 0 to 3.3V.
- * Busy-wait synchronization used.
- * @param none
- * @return 12-bit result
- * @note  Assumes ADC1_Init has been called.
- * @brief  Trigger ADC measurement and wait for result.
- */
-uint32_t ADC1_In(void);
 
 /**
  * Initialize 12-bit ADC0 and ADC1 in software-triggered mode to take
@@ -114,5 +34,3 @@ uint32_t ADC1_In(void);
  */
 void ADC_Init();
 
-uint32_t ADC0_In(void);
-void ADC0_Init(uint32_t channel, uint32_t reference);
