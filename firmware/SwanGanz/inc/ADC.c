@@ -21,8 +21,8 @@
 // ADC0.3 = PA24 - pressure 1 
 // ADC0.5 = PB24 - thermistor 
 // ADC0.7 = PA22 - thermistor 
-// ADC1.3 = PA17 - pressure 2 
-// ADC1.5 = PA18 - pressure 2 
+// ADC1.2 = PA17 - pressure 2 
+// ADC1.3 = PA18 - pressure 2 
 //DOESN"T WORK
 void ADC_Init() {
   // Reset ADC and VREF

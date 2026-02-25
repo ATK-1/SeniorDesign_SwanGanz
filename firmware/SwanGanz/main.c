@@ -41,8 +41,8 @@
 // ADC0.3 = PA24 - pressure 1 
 // ADC0.5 = PB24 - thermistor 
 // ADC0.7 = PA22 - thermistor TEST1
-// ADC1.3 = PA17 - pressure 2 
-// ADC1.5 = PA18 - pressure 2 
+// ADC1.2 = PA17 - pressure 2 
+// ADC1.3 = PA18 - pressure 2 
 // UART_Tx = PA8
 // UART_Rx = PA9
 void Logic_Init(void) {
