@@ -22,8 +22,10 @@ void TIMG0_IRQHandler(void) {
 
     ADC0->ULLMEM.CTL0 |= 1;
     ADC0->ULLMEM.CTL1 |= (1<<8); 
+    ADC1->ULLMEM.CTL0 |= 1;
+    ADC1->ULLMEM.CTL1 |= (1<<8);
     
-    volatile uint32_t d0 = ADC0->ULLMEM.STATUS;
+    volatile uint32_t delay = ADC0->ULLMEM.STATUS;
     while (ADC0->ULLMEM.STATUS & 0x01);
 
     watchPA25 = ADC0->ULLMEM.MEMRES[0];
@@ -32,10 +34,8 @@ void TIMG0_IRQHandler(void) {
     Therm1Watch = ADC0->ULLMEM.MEMRES[3]; 
     temp = (((Therm1Watch * Therm1Watch * 0x1D) + ((61154 << 14) - (Therm1Watch * 0x50802))) >> 14); // Not correct yet
 
-    ADC1->ULLMEM.CTL0 |= 1;
-    ADC1->ULLMEM.CTL1 |= (1<<8);
-    
-    volatile uint32_t d1 = ADC1->ULLMEM.STATUS;
+    // Test to see if we need these two lines 
+    delay= ADC1->ULLMEM.STATUS;
     while (ADC1->ULLMEM.STATUS & 0x01);
     
     Therm2Watch = ADC1->ULLMEM.MEMRES[0];
