@@ -11,7 +11,6 @@ uint32_t watchPB24;
 uint32_t Therm2Watch;
 uint32_t watchPA18;
 
-
 void DAS_Init() {
     ADC_Init(); 
     TimerG0_IntArm(40000, 5, 1); // 200 Hz
