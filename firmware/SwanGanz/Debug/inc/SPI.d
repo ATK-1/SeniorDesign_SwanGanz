@@ -31,7 +31,7 @@ inc/SPI.o: ../inc/SPI.c \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/hw_debugss.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/hw_sysctl.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0g1x0x_g3x0x.h \
- ../inc/SPI.h ../inc/Clock.h
+ ../inc/SPI.h ../inc/Clock.h ../inc/LaunchPad.h
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/msp.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/DeviceFamily.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/mspm0g350x.h:
@@ -64,3 +64,4 @@ inc/SPI.o: ../inc/SPI.c \
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0g1x0x_g3x0x.h:
 ../inc/SPI.h:
 ../inc/Clock.h:
+../inc/LaunchPad.h:

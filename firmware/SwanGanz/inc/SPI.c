@@ -7,18 +7,14 @@ J1.7  SPI1 SCLK  PB9_SPI1-SCK
 J2.13 SPI1 CS0   PB6_SPI1-CS0
 J2.15 SPI1 PICO  PB8_SPI1-PICO
 J2.17 LCD !RST   PB15
-J4.31 LCD RS     PA13
+J4.31 LCD RS     PB16
  */
 
 
 #include <ti/devices/msp/msp.h>
 #include "../inc/SPI.h"
 #include "../inc/Clock.h"
-#define PB9INDEX 25
-#define PB6INDEX 22
-#define PB8INDEX 24
-#define PB15INDEX 31
-#define PA13INDEX 34
+#include "../inc/LaunchPad.h"
 // calls Clock_Freq to get bus clock
 // initialize SPI for 8 MHz baud clock
 // busy-wait synchronization
@@ -40,12 +36,10 @@ void SPI_Init(void){uint32_t busfreq =  Clock_Freq();
   IOMUX->SECCFG.PINCM[PB6INDEX]  = 0x00000083;  // SPI1 CS0
   IOMUX->SECCFG.PINCM[PB8INDEX]  = 0x00000083;  // SPI1 PICO
   IOMUX->SECCFG.PINCM[PB15INDEX] = 0x00000081;  // GPIO output, LCD !RST
-  IOMUX->SECCFG.PINCM[PA13INDEX] = 0x00000081;  // GPIO output, LCD RS
+  IOMUX->SECCFG.PINCM[PB16INDEX] = 0x00000081;  // GPIO output, LCD RS
   Clock_Delay(24); // time for gpio to power up
-  GPIOA->DOE31_0 |= 1<<13;    // PA13 is LCD RS
-  GPIOB->DOE31_0 |= 1<<15;    // PB15 is LCD !RST
-  GPIOA->DOUTSET31_0 = 1<<13; // RS=1
-  GPIOB->DOUTSET31_0 = 1<<15; // !RST = 1
+  GPIOB->DOE31_0 |= (1<<15) | (1<<16);    // PB15 is LCD !RST, PB16 is LCD RS
+  GPIOB->DOUTSET31_0 = (1<<15) | (1<<16); // !RST = 1, RS=1
   SPI1->CLKSEL = 8; // SYSCLK
 // bit 3 SYSCLK
 // bit 2 MFCLK
@@ -102,7 +96,7 @@ void SPI_Init(void){uint32_t busfreq =  Clock_Freq();
 // Output: none
 void SPI_OutData(char data){
   while((SPI1->STAT&0x02) == 0x00){}; // spin if TxFifo full
-  GPIOA->DOUTSET31_0 = 1<<13;         // RS=PA13=1 for data
+  GPIOB->DOUTSET31_0 = 1<<16;         // RS=PB16=1 for data
   SPI1->TXDATA = data;
 }
  //---------SPI_OutCommand------------
@@ -111,7 +105,7 @@ void SPI_OutData(char data){
  // Output: none
  void SPI_OutCommand(char command){
    while((SPI1->STAT&0x10) == 0x10){}; // spin if SPI busy
-   GPIOA->DOUTCLR31_0 = 1<<13;         // RS=PA13=0 for command
+   GPIOB->DOUTCLR31_0 = 1<<16;         // RS=PA13=0 for command
    SPI1->TXDATA = command;
    while((SPI1->STAT&0x10) == 0x10){}; // spin if SPI busy
  }

@@ -162,7 +162,7 @@ all: $(OBJS) $(GEN_CMDS)
 SwanGanz.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"/Applications/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/bin/tiarmclang" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 -gdwarf-3 -Wl,-m"SwanGanz.map" -Wl,-i"/Applications/ti/mspm0_sdk_2_09_00_01/source" -Wl,-i"/Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz" -Wl,-i"/Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/Debug/syscfg" -Wl,-i"/Applications/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="SwanGanz_linkInfo.xml" -Wl,--rom_model -o "SwanGanz.out" $(ORDERED_OBJS)
+	"/Applications/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/bin/tiarmclang" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O0 -gdwarf-3 -Wl,-m"SwanGanz.map" -Wl,-i"/Applications/ti/mspm0_sdk_2_09_00_01/source" -Wl,-i"/Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz" -Wl,-i"/Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/Debug/syscfg" -Wl,-i"/Applications/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="SwanGanz_linkInfo.xml" -Wl,--rom_model -o "SwanGanz.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
