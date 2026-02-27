@@ -34,6 +34,8 @@
 #include "../inc/LaunchPad.h"
 #include "../inc/Clock.h"
 #include "../inc/ADC.h"
+#include "../inc/SPI.h"
+#include "LCD.h"
 #include "DAS.h"
 
 //6 adc's
@@ -71,11 +73,13 @@ void Logic_Init(void) {
 
 int main(void) {
     __disable_irq();
-    Clock_Init80MHz(0);
+    Clock_Init80MHz(1);
     LaunchPad_Init();
     Logic_Init();
+    LCD_Init();
     DAS_Init();
     __enable_irq();
     while (1) {
+        
     }
 }

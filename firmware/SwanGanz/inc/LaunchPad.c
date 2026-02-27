@@ -15,18 +15,17 @@ void Delay(uint32_t cycles){
     /* Subtract 2 net cycles for constant offset: +2 cycles for entry jump,
      * +2 cycles for exit, -1 cycle for a shorter loop cycle on the last loop,
      * -1 for this instruction */
-// #ifdef __GNUand C__
-//     __asm(".syntax unified");
-// #endif
-//     __asm volatile(
-// "            SUBS  R0, R0, #2; \n"
-// "0: SUBS  R0, R0, #4; \n" // C=1 if no overflow
-// "            NOP;              \n" // C=0 when R0 passes through 0
-// "            BHS   0b; \n"
-//         /* Return: 2 cycles */
-//     );
+#ifdef __GNUC__
+    __asm(".syntax unified");
+#endif
+    __asm volatile(
+"            SUBS  R0, R0, #2; \n"
+"Delay_Loop: SUBS  R0, R0, #4; \n" // C=1 if no overflow
+"            NOP;              \n" // C=0 when R0 passes through 0
+"            BHS   Delay_Loop; \n"
+        /* Return: 2 cycles */
+    );
 }
-
 //  PA0 is red LED1,   index 0 in IOMUX PINCM table, negative logic
 // PB22 is BLUE LED2,  index 49 in IOMUX PINCM table
 // PB26 is RED LED2,   index 56 in IOMUX PINCM table

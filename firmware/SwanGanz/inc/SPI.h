@@ -2,73 +2,57 @@
  * @defgroup SPI
  * @brief Synchronous serial communication
  <table>
-<caption id="SPIpins5">SPI-LCD pins </caption>
+<caption id="SPIpins">SPI-LCD pins </caption>
 <tr><th>Pin <th>Function  <th>Description
-<tr><td>PB9 <td>SPI1 SCLK <tdLCD SPI clock (SPI)   
-<tr><td>PB6 <td>GPIO CS   <td>LCD SPI CS     
-<tr><td>PB0 <td>GPIO CS   <td>SDC SPI CS     
-<tr><td>PB8 <td>SPI1 PICO <td>LCD SPI data (SPI)    
-<tr><td>PB7 <td>SPI1 POCI <td>SCD SPI data (SPI)    
-<tr><td>PB15<td>GPIO      <td>J2.17 LCD !RST =1 for run, =0 for reset  
-<tr><td>PB16<td>GPIO      <td>J4.31 LCD D/C RS =1 for data, =0 for command  
+<tr><td>PB9 <td>SPI1 SCLK <td>J1.7 LCD SPI clock (SPI)   
+<tr><td>PB6 <td>SPI1 CS0  <td>J2.13 LCD SPI CS (SPI)     
+<tr><td>PB8 <td>SPI1 PICO <td>J2.15 LCD SPI data (SPI)    
+<tr><td>PB15<td>GPIO      <td>J2.17 LCD !RST =1 for run, =0 for reset   
+<tr><td>PA13<td>GPIO      <td>J4.31 LCD RS =1 for data, =0 for command   
 </table>
  * @{*/
 /**
- * @file      SPI1.h
+ * @file      SPI.h
  * @brief     Synchronous serial communication
- * @details   SPI uses a chip select, clock, data out and data in. This interface is used for TFT and SDC
+ * @details   SPI uses a chip select, clock, data out and data in. This interface does not use data in.
  * This interface can be used for MKII LCD and the ST7735R LCD
  * \image html SPIinterface.png  width=500px
- * @version   RTOS v7.0
+ * @version   ECE319K v1.2
  * @author    Daniel Valvano and Jonathan Valvano
  * @copyright Copyright 2025 by Jonathan W. Valvano, valvano@mail.utexas.edu,
  * @warning   AS-IS
  * @note      For more information see  http://users.ece.utexas.edu/~valvano/
- * @date      Dec 26, 2025
+ * @date      July 19, 2025
  <table>
-<caption id="SPIpins6">SPI-LCD pins </caption>
+<caption id="SPIpins2">SPI-LCD pins </caption>
 <tr><th>Pin <th>Function  <th>Description
-<tr><td>PB9 <td>SPI1 SCLK <tdLCD SPI clock (SPI)   
-<tr><td>PB6 <td>GPIO CS   <td>LCD SPI CS     
-<tr><td>PB0 <td>GPIO CS   <td>SDC SPI CS     
-<tr><td>PB8 <td>SPI1 PICO <td>LCD SPI data (SPI)    
-<tr><td>PB7 <td>SPI1 POCI <td>SCD SPI data (SPI)    
+<tr><td>PB9 <td>SPI1 SCLK <td>J1.7 LCD SPI clock (SPI)   
+<tr><td>PB6 <td>SPI1 CS0  <td>J2.13 LCD SPI CS (SPI)     
+<tr><td>PB8 <td>SPI1 PICO <td>J2.15 LCD SPI data (SPI)    
 <tr><td>PB15<td>GPIO      <td>J2.17 LCD !RST =1 for run, =0 for reset  
-<tr><td>PB16<td>GPIO      <td>J4.31 LCD D/C RS =1 for data, =0 for command  
+<tr><td>PA13<td>GPIO      <td>J4.31 LCD RS =1 for data, =0 for command   
 </table>
   ******************************************************************************/
 #ifndef __SPI_H__
 #define __SPI_H__
 
 
-// PB0 output used for SDC CS
-#define SDC_CS           GPIOB
-#define SDC_CS_PIN       (1<<0)         // CS controlled by software
-#define SDC_CS_INDEX     (PB0INDEX)     // PB0 GPIO
-#define SDC_CS_LOW()     (SDC_CS->DOUTCLR31_0 = SDC_CS_PIN)   // PB0 low
-#define SDC_CS_HIGH()    (SDC_CS->DOUTSET31_0 = SDC_CS_PIN)   // PB0 high
-
-// PB6 output used for SDC CS
-//#define TFT_CS_LOW()     (GPIOB->DOUTCLR31_0 = (1<<6))   // PB6 low
-//#define TFT_CS_HIGH()    (GPIOB->DOUTSET31_0 = (1<<6))   // PB6 high
-#define TFT_CS           GPIOB
-#define TFT_CS_PIN       (1<<6)         // TFT CS controlled by software
-#define TFT_CS_INDEX     (PB6INDEX)     // PB6 GPIO
-#define TFT_CS_LOW()     (TFT_CS->DOUTCLR31_0 = TFT_CS_PIN)   // PB6 low
-#define TFT_CS_HIGH()    (TFT_CS->DOUTSET31_0 = TFT_CS_PIN)   // PB6 high
-
-#define TFT_DC           GPIOB
-#define TFT_DC_PIN       (1<<16)         // D/C controlled by software
-#define TFT_DC_INDEX     (PB16INDEX)     // PB16 GPIO
-#define TFT_DC_LOW()     (TFT_DC->DOUTCLR31_0 = TFT_DC_PIN)   // PB16 low
-#define TFT_DC_HIGH()    (TFT_DC->DOUTSET31_0 = TFT_DC_PIN)   // PB16 high
-
-#define TFT_RST          GPIOB
-#define TFT_RST_PIN      (1<<15)         // !RST controlled by software
-#define TFT_RST_INDEX    (PB15INDEX)     // PB15 GPIO
-#define TFT_RST_LOW()    (TFT_RST->DOUTCLR31_0 = TFT_RST_PIN)   // PB15 low
-#define TFT_RST_HIGH()   (TFT_RST->DOUTSET31_0 = TFT_RST_PIN)   // PB15 high
-
+/**
+ * Initialize SPI for 8 MHz baud clock
+ * using busy-wait synchronization.
+ * Calls Clock_Freq to get bus clock
+ * - PB9 SPI1 SCLK   
+ * - PB6 SPI1 CS0       
+ * - PB8 SPI1 PICO  
+ * - PB15 GPIO !RST =1 for run, =0 for reset    
+ * - PA13 GPIO RS =1 for data, =0 for command
+ *
+ * @note SPI0,SPI1 in power domain PD1 SysClk equals bus CPU clock
+ * @param none
+ * @return none 
+ * @brief initialize SPI
+ */
+void SPI_Init(void);
 
 /**
  * Output 8-bit data to SPI port.
@@ -98,26 +82,6 @@ void SPI_OutCommand(char command);
  * @return none 
  * @brief Reset LCD
  */
-void SPI1_Reset(void);
-
-
-/**
- * Initialize SPI1 for 8 MHz baud clock
- * for both SDC and TFT
- * using busy-wait synchronization.
- * Calls Clock_Freq to get bus clock
- * - PB9 SPI1 SCLK   
- * - PB6 SPI1 CS0       
- * - PB8 SPI1 PICO  
- * - PB15 GPIO !RST =1 for run, =0 for reset    
- * - PA13 GPIO RS =1 for data, =0 for command
- *
- * @note SPI0,SPI1 in power domain PD1 SysClk equals bus CPU clock
- * @param none
- * @return none 
- * @brief initialize SPI1
- */
-void SPI_Init(void);
-
+void SPI_Reset(void);
 #endif // __SPI_H__
 /** @}*/

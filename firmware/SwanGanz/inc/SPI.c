@@ -1,21 +1,24 @@
 /* SPI.c
  * Jonathan Valvano
- * November 21, 2022
+ * July 19, 2025
  * Derived from uart_rw_multibyte_fifo_poll_LP_MSPM0G3507_nortos_ticlang
 SPI MKII LCD
 J1.7  SPI1 SCLK  PB9_SPI1-SCK
 J2.13 SPI1 CS0   PB6_SPI1-CS0
 J2.15 SPI1 PICO  PB8_SPI1-PICO
 J2.17 LCD !RST   PB15
-J4.31 LCD RS     PB16
+J4.31 LCD RS     PA13
  */
 
 
 #include <ti/devices/msp/msp.h>
+#include "../inc/SPI.h"
 #include "../inc/Clock.h"
-#include "../inc/Timer.h"
-#include "../inc/LaunchPad.h"
-
+#define PB9INDEX 25
+#define PB6INDEX 22
+#define PB8INDEX 24
+#define PB15INDEX 31
+#define PA13INDEX 34
 // calls Clock_Freq to get bus clock
 // initialize SPI for 8 MHz baud clock
 // busy-wait synchronization
@@ -37,14 +40,11 @@ void SPI_Init(void){uint32_t busfreq =  Clock_Freq();
   IOMUX->SECCFG.PINCM[PB6INDEX]  = 0x00000083;  // SPI1 CS0
   IOMUX->SECCFG.PINCM[PB8INDEX]  = 0x00000083;  // SPI1 PICO
   IOMUX->SECCFG.PINCM[PB15INDEX] = 0x00000081;  // GPIO output, LCD !RST
-  IOMUX->SECCFG.PINCM[PB16INDEX] = 0x00000081;  // GPIO output, LCD RS
-// **  IOMUX->SECCFG.PINCM[PA13INDEX] = 0x00000081;  // GPIO output, LCD RS
+  IOMUX->SECCFG.PINCM[PA13INDEX] = 0x00000081;  // GPIO output, LCD RS
   Clock_Delay(24); // time for gpio to power up
-// **  GPIOA->DOE31_0 |= 1<<13;    // PA13 is LCD RS
-  GPIOB->DOE31_0 |= 1<<16;    // PA13 is LCD RS
+  GPIOA->DOE31_0 |= 1<<13;    // PA13 is LCD RS
   GPIOB->DOE31_0 |= 1<<15;    // PB15 is LCD !RST
-  GPIOB->DOUTSET31_0 = 1<<16; // RS=1
-// **  GPIOA->DOUTSET31_0 = 1<<13; // RS=1
+  GPIOA->DOUTSET31_0 = 1<<13; // RS=1
   GPIOB->DOUTSET31_0 = 1<<15; // !RST = 1
   SPI1->CLKSEL = 8; // SYSCLK
 // bit 3 SYSCLK
@@ -89,7 +89,12 @@ void SPI_Init(void){uint32_t busfreq =  Clock_Freq();
 // bit 0=1 enable SPI
   SPI_Reset();
 }
-
+/* STAT register
+ * 4 BUSY 0h = SPI is in idle mode. 1h = SPI is currently transmitting and/or receiving data, or transmit FIFO is not empty.
+   3 RNF Receive FIFO not full 0h = Receive FIFO is full. 1h = Receive FIFO is not full.
+   2 RFE Receive FIFO empty. 0h = Receive FIFO is not empty. 1h = Receive FIFO is empty.
+   1 TNF Transmit FIFO not full 0h = Transmit FIFO is full. 1h = Transmit FIFO is not full.
+   0 TFE Transmit FIFO empty. 0h = Transmit FIFO is not empty. 1h = Transmit FIFO is empty.*/
 
 //---------SPI_OutData------------
 // Output 8-bit data to SPI port
@@ -109,4 +114,18 @@ void SPI_OutData(char data){
    GPIOA->DOUTCLR31_0 = 1<<13;         // RS=PA13=0 for command
    SPI1->TXDATA = command;
    while((SPI1->STAT&0x10) == 0x10){}; // spin if SPI busy
+ }
+
+ //---------SPI_Reset------------
+ // Reset LCD
+ // Input: none
+ // Output: none
+ // at 48 MHz
+ void SPI_Reset(void){
+   GPIOB->DOUTSET31_0 = 1<<15; // PB15=!RST=1
+   Clock_Delay1ms(500);        // 500ms (calibrated with logic analyzer)
+   GPIOB->DOUTCLR31_0 = 1<<15; // PB15=!RST=0
+   Clock_Delay1ms(500);        // 500ms
+   GPIOB->DOUTSET31_0 = 1<<15; // PB15=!RST=1
+   Clock_Delay1ms(500);        // 500ms
  }
