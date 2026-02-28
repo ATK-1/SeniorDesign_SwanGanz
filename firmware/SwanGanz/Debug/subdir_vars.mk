@@ -6,12 +6,19 @@
 SYSCFG_SRCS += \
 ../empty.syscfg 
 
+S_SRCS += \
+../osasm.s 
+
 C_SRCS += \
 ../DAS.c \
 ../LCD.c \
+../OS.c \
 ./ti_msp_dl_config.c \
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c \
 ../main.c 
+
+S_DEPS += \
+./osasm.d 
 
 GEN_CMDS += \
 ./device_linker.cmd 
@@ -24,6 +31,7 @@ GEN_FILES += \
 C_DEPS += \
 ./DAS.d \
 ./LCD.d \
+./OS.d \
 ./ti_msp_dl_config.d \
 ./startup_mspm0g350x_ticlang.d \
 ./main.d 
@@ -34,9 +42,11 @@ GEN_OPTS += \
 OBJS += \
 ./DAS.o \
 ./LCD.o \
+./OS.o \
 ./ti_msp_dl_config.o \
 ./startup_mspm0g350x_ticlang.o \
-./main.o 
+./main.o \
+./osasm.o 
 
 GEN_MISC_FILES += \
 ./device.cmd.genlibs \
@@ -45,9 +55,11 @@ GEN_MISC_FILES += \
 OBJS__QUOTED += \
 "DAS.o" \
 "LCD.o" \
+"OS.o" \
 "ti_msp_dl_config.o" \
 "startup_mspm0g350x_ticlang.o" \
-"main.o" 
+"main.o" \
+"osasm.o" 
 
 GEN_MISC_FILES__QUOTED += \
 "device.cmd.genlibs" \
@@ -56,6 +68,7 @@ GEN_MISC_FILES__QUOTED += \
 C_DEPS__QUOTED += \
 "DAS.d" \
 "LCD.d" \
+"OS.d" \
 "ti_msp_dl_config.d" \
 "startup_mspm0g350x_ticlang.d" \
 "main.d" 
@@ -65,14 +78,21 @@ GEN_FILES__QUOTED += \
 "device.opt" \
 "ti_msp_dl_config.c" 
 
+S_DEPS__QUOTED += \
+"osasm.d" 
+
 C_SRCS__QUOTED += \
 "../DAS.c" \
 "../LCD.c" \
+"../OS.c" \
 "./ti_msp_dl_config.c" \
 "/Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c" \
 "../main.c" 
 
 SYSCFG_SRCS__QUOTED += \
 "../empty.syscfg" 
+
+S_SRCS__QUOTED += \
+"../osasm.s" 
 
 
