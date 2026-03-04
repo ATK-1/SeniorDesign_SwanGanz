@@ -1,3 +1,0 @@
-
-
-void LCD_Init();

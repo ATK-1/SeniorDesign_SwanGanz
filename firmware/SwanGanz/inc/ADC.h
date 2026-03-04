@@ -34,3 +34,4 @@
  */
 void ADC_Init();
 
+void ADC_In(uint32_t* sampleBuffer);

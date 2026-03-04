@@ -1,6 +1,6 @@
 # FIXED
 
-LCD.o: ../LCD.c \
+inc/RTOS_UART.o: ../inc/RTOS_UART.c \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/msp.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/DeviceFamily.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/mspm0g350x.h \
@@ -31,7 +31,7 @@ LCD.o: ../LCD.c \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/hw_debugss.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/hw_sysctl.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0g1x0x_g3x0x.h \
- /Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/ST7735.h
+ ../inc/RTOS_UART.h
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/msp.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/DeviceFamily.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/mspm0g350x.h:
@@ -62,4 +62,4 @@ LCD.o: ../LCD.c \
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/hw_debugss.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/hw_sysctl.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0g1x0x_g3x0x.h:
-/Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/ST7735.h:
+../inc/RTOS_UART.h:

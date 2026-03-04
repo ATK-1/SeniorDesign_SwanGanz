@@ -3,18 +3,18 @@
  * @brief First in first out queue
  * @{*/
 /**
- * @file      FIFO.h
+ * @file      RTOS_FIFO.h
  * @brief     Provide functions for a first in first out queue
  * @details   Runs on any Microcontroller.
  * Provide functions that initialize a FIFO, put data in, get data out,
  * and return the current size.  The file includes two FIFOs
  * using index implementation.  
- * @version   ECE319K v1.0
+ * @version   ECE445M v1.0
  * @author    Daniel Valvano and Jonathan Valvano
  * @copyright Copyright 2023 by Jonathan W. Valvano, valvano@mail.utexas.edu,
  * @warning   AS-IS
  * @note      For more information see  http://users.ece.utexas.edu/~valvano/
- * @date      August 13, 2023
+ * @date      June 20, 2025
 
  */
 
@@ -120,6 +120,40 @@ char RxFifo_Get(void);
  * @note Does not change the FIFO
  */
 uint32_t RxFifo_Size(void);
+
+
+
+// macro to create an index FIFO
+#define AddIndexFifo(NAME,SIZE,TYPE,SUCCESS,FAIL) \
+uint32_t volatile NAME ## PutI;         \
+uint32_t volatile NAME ## GetI;         \
+TYPE static NAME ## Fifo [SIZE];        \
+void NAME ## Fifo_Init(void){           \
+  NAME ## PutI = NAME ## GetI = 0;      \
+}                                       \
+int NAME ## Fifo_Put (TYPE data){       \
+  if(( NAME ## PutI - NAME ## GetI ) & ~(SIZE-1)){  \
+    return(FAIL);                       \
+  }                                     \
+  NAME ## Fifo[ NAME ## PutI &(SIZE-1)] = data; \
+  NAME ## PutI++;                       \
+  return(SUCCESS);                      \
+}                                       \
+int NAME ## Fifo_Get (TYPE *datapt){    \
+  if( NAME ## PutI == NAME ## GetI ){   \
+    return(FAIL);                       \
+  }                                     \
+  *datapt = NAME ## Fifo[ NAME ## GetI &(SIZE-1)];  \
+  NAME ## GetI++;                       \
+  return(SUCCESS);                      \
+}                                       \
+unsigned short NAME ## Fifo_Size (void){\
+ return ((unsigned short)( NAME ## PutI - NAME ## GetI ));  \
+}
+// e.g.,
+// AddIndexFifo(Tx,32,unsigned char, 1,0)
+// SIZE must be a power of two
+// creates TxFifo_Init() TxFifo_Get() and TxFifo_Put()
 
 #endif //  __FIFO_H__
 /** @}*/

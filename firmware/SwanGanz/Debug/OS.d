@@ -35,7 +35,8 @@ OS.o: ../OS.c \
  /Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/LaunchPad.h \
  /Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/Timer.h \
  /Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/ST7735.h \
- ../OS.h
+ /Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/RTOS_UART.h \
+ ../OS.h ../Display.h
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/msp.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/DeviceFamily.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/mspm0g350x.h:
@@ -70,4 +71,6 @@ OS.o: ../OS.c \
 /Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/LaunchPad.h:
 /Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/Timer.h:
 /Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/ST7735.h:
+/Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/RTOS_UART.h:
 ../OS.h:
+../Display.h:

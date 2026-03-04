@@ -18,8 +18,6 @@ C_SRCS += \
 ../inc/Dump.c \
 ../inc/EdgeTriggered.c \
 ../inc/FFT.c \
-../inc/FIFO.c \
-../inc/FIFO1.c \
 ../inc/I2C.c \
 ../inc/IRDistance.c \
 ../inc/InputCapture.c \
@@ -28,12 +26,13 @@ C_SRCS += \
 ../inc/Motor.c \
 ../inc/PWM.c \
 ../inc/PWM1.c \
+../inc/RTOS_FIFO.c \
+../inc/RTOS_UART.c \
+../inc/RTOS_UARTints.c \
 ../inc/SPI.c \
 ../inc/SSD1306.c \
 ../inc/ST7735.c \
-../inc/Timer.c \
-../inc/UART.c \
-../inc/UARTints.c 
+../inc/Timer.c 
 
 S_DEPS += \
 ./inc/SysTick.d \
@@ -50,8 +49,6 @@ C_DEPS += \
 ./inc/Dump.d \
 ./inc/EdgeTriggered.d \
 ./inc/FFT.d \
-./inc/FIFO.d \
-./inc/FIFO1.d \
 ./inc/I2C.d \
 ./inc/IRDistance.d \
 ./inc/InputCapture.d \
@@ -60,12 +57,13 @@ C_DEPS += \
 ./inc/Motor.d \
 ./inc/PWM.d \
 ./inc/PWM1.d \
+./inc/RTOS_FIFO.d \
+./inc/RTOS_UART.d \
+./inc/RTOS_UARTints.d \
 ./inc/SPI.d \
 ./inc/SSD1306.d \
 ./inc/ST7735.d \
-./inc/Timer.d \
-./inc/UART.d \
-./inc/UARTints.d 
+./inc/Timer.d 
 
 OBJS += \
 ./inc/ADC.o \
@@ -78,8 +76,6 @@ OBJS += \
 ./inc/Dump.o \
 ./inc/EdgeTriggered.o \
 ./inc/FFT.o \
-./inc/FIFO.o \
-./inc/FIFO1.o \
 ./inc/I2C.o \
 ./inc/IRDistance.o \
 ./inc/InputCapture.o \
@@ -88,13 +84,14 @@ OBJS += \
 ./inc/Motor.o \
 ./inc/PWM.o \
 ./inc/PWM1.o \
+./inc/RTOS_FIFO.o \
+./inc/RTOS_UART.o \
+./inc/RTOS_UARTints.o \
 ./inc/SPI.o \
 ./inc/SSD1306.o \
 ./inc/ST7735.o \
 ./inc/SysTick.o \
 ./inc/Timer.o \
-./inc/UART.o \
-./inc/UARTints.o \
 ./inc/msp.o 
 
 OBJS__QUOTED += \
@@ -108,8 +105,6 @@ OBJS__QUOTED += \
 "inc/Dump.o" \
 "inc/EdgeTriggered.o" \
 "inc/FFT.o" \
-"inc/FIFO.o" \
-"inc/FIFO1.o" \
 "inc/I2C.o" \
 "inc/IRDistance.o" \
 "inc/InputCapture.o" \
@@ -118,13 +113,14 @@ OBJS__QUOTED += \
 "inc/Motor.o" \
 "inc/PWM.o" \
 "inc/PWM1.o" \
+"inc/RTOS_FIFO.o" \
+"inc/RTOS_UART.o" \
+"inc/RTOS_UARTints.o" \
 "inc/SPI.o" \
 "inc/SSD1306.o" \
 "inc/ST7735.o" \
 "inc/SysTick.o" \
 "inc/Timer.o" \
-"inc/UART.o" \
-"inc/UARTints.o" \
 "inc/msp.o" 
 
 C_DEPS__QUOTED += \
@@ -138,8 +134,6 @@ C_DEPS__QUOTED += \
 "inc/Dump.d" \
 "inc/EdgeTriggered.d" \
 "inc/FFT.d" \
-"inc/FIFO.d" \
-"inc/FIFO1.d" \
 "inc/I2C.d" \
 "inc/IRDistance.d" \
 "inc/InputCapture.d" \
@@ -148,12 +142,13 @@ C_DEPS__QUOTED += \
 "inc/Motor.d" \
 "inc/PWM.d" \
 "inc/PWM1.d" \
+"inc/RTOS_FIFO.d" \
+"inc/RTOS_UART.d" \
+"inc/RTOS_UARTints.d" \
 "inc/SPI.d" \
 "inc/SSD1306.d" \
 "inc/ST7735.d" \
-"inc/Timer.d" \
-"inc/UART.d" \
-"inc/UARTints.d" 
+"inc/Timer.d" 
 
 S_DEPS__QUOTED += \
 "inc/SysTick.d" \
@@ -170,8 +165,6 @@ C_SRCS__QUOTED += \
 "../inc/Dump.c" \
 "../inc/EdgeTriggered.c" \
 "../inc/FFT.c" \
-"../inc/FIFO.c" \
-"../inc/FIFO1.c" \
 "../inc/I2C.c" \
 "../inc/IRDistance.c" \
 "../inc/InputCapture.c" \
@@ -180,12 +173,13 @@ C_SRCS__QUOTED += \
 "../inc/Motor.c" \
 "../inc/PWM.c" \
 "../inc/PWM1.c" \
+"../inc/RTOS_FIFO.c" \
+"../inc/RTOS_UART.c" \
+"../inc/RTOS_UARTints.c" \
 "../inc/SPI.c" \
 "../inc/SSD1306.c" \
 "../inc/ST7735.c" \
-"../inc/Timer.c" \
-"../inc/UART.c" \
-"../inc/UARTints.c" 
+"../inc/Timer.c" 
 
 S_SRCS__QUOTED += \
 "../inc/SysTick.s" \

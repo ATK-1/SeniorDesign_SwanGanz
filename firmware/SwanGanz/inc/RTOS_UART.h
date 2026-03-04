@@ -70,11 +70,11 @@
  * - UART_Init in <b>UARTbusywait.c</b> implements busy-wait synchronization
  * - UART_Init in <b>UARTints.c</b> implements interrupt synchronization
  *
- * @param none
+ * @param priority 0 for highest, 3 for lowest
  * @return none
  * @brief  Initialize UART0
 */
-void UART_Init(void);
+void UART_Init(uint32_t priority);
 
 /**
  * Wait for new serial port input
@@ -125,6 +125,24 @@ uint32_t UART_InUDec(void);
 void UART_OutUDec(uint32_t n);
 
 /**
+ * Output a 32-bit number in unsigned decimal format
+ * @param n 32-bit number to be transferred
+ * @return none
+ * @note fixed format 3 digits with no space before or after
+ * @brief output a number to UART0
+ */
+void UART_OutUDec3(uint32_t n);
+
+/**
+ * Output a 32-bit number in unsigned decimal format
+ * @param n 32-bit number to be transferred
+ * @return none
+ * @note Variable fixed format 5 digits with no space before or after
+ * @brief output a number to UART0
+ */
+void UART_OutUDec5(uint32_t n);
+
+/**
  * Output a 32-bit number in signed decimal format
  * @param n 32-bit number to be transferred
  * @return none
@@ -157,6 +175,15 @@ uint32_t UART_InUHex(void);
 void UART_OutUHex(uint32_t number);
 
 /**
+ * Output an 8-bit number in unsigned hexadecimal format
+ * @param number 32-bit number to be transferred
+ * @return none
+ * @note Fixed format, 5 characters e.g., " 0x1A"
+ * @brief output a 2-digit hex number to UART0
+ */
+ void UART_OutUHex2(uint32_t number);
+
+/**
  * Accepts ASCII characters from the serial port
  *    and adds them to a string until <enter> is typed
  *    or until max length of the string is reached.
@@ -172,7 +199,19 @@ void UART_OutUHex(uint32_t number);
  * @brief input a string from UART0
  */
  void UART_InString(char *bufPt, uint16_t max);
-
+/**
+ * Output a 32-bit number in 0.01 fixed-point format
+ * Fixed format <br>
+ *   12345 to " 123.45"   <br>
+ *  -22100 to "-221.00" <br>
+ *    -102 to "  -1.02"  <br>
+ *      31 to "   0.31"  <br>
+ *  error     " ***.**"  
+ * @param number32-bit number to be transferred -99999 to +99999
+ * @return none
+ * @brief output a fixed-point number to UART0
+*/ 
+void UART_Fix2(long number);
 /**
  * Initialize the UART for 115,200 baud rate (assuming 48 MHz bus clock),
  * 8 bit word length, no parity bits, one stop bit.

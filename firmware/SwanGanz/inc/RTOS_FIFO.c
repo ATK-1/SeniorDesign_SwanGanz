@@ -1,19 +1,13 @@
-// FIFO.c
+// RTOS_FIFO.c
 // Runs on any Microcontroller
 // Provide functions that initialize a FIFO, put data in, get data out,
-// and return the current size.  The file includes a transmit FIFO
-// using index implementation and a receive FIFO using pointer
-// implementation.  Other index or pointer implementation FIFOs can be
-// created using the macros supplied at the end of the file.
+// and return the current size.  The FIFO
+// uses index implementation.
 // Daniel Valvano
-// November 18, 2022
+// June 20, 2025
 
-/* This example accompanies the book
-   "Embedded Systems: Real Time Interfacing to the Arm Cortex M3",
-   ISBN: 978-1463590154, Jonathan Valvano, copyright (c) 2011
-   Programs 3.7, 3.8., 3.9 and 3.10 in Section 3.7
-
- Copyright 2022 by Jonathan W. Valvano, valvano@mail.utexas.edu
+/* 
+ Copyright 2025 by Jonathan W. Valvano, valvano@mail.utexas.edu
     You may use, edit, run or distribute this file
     as long as the above copyright notice remains
  THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
@@ -25,30 +19,47 @@
  http://users.ece.utexas.edu/~valvano/
  */
 #include <ti/devices/msp/msp.h>
-#include "../inc/FIFO.h"
-
+#include "../inc/RTOS_UART.h"
+#include "../inc/RTOS_FIFO.h"
+#include "OS.h"
+long StartCritical(void);
+void EndCritical(long);
+long sr;
 // Two-index implementation of the transmit FIFO
 // can hold 0 to TXFIFOSIZE-1 elements
-uint32_t volatile TxPutI; // where to put next
-uint32_t volatile TxGetI; // where to get next
+uint32_t volatile TxPutI; 
+uint32_t volatile TxGetI; 
+Sema4_t TxFifoFull;
+
+
 char static TxFifo[TXFIFOSIZE];
 
 void TxFifo_Init(void){
   TxPutI = TxGetI = 0; // empty
+  OS_InitSemaphore(&TxFifoFull, TXFIFOSIZE - 1);
 }
+
 int TxFifo_Put(char data){
-uint32_t newPutI = (TxPutI+1)&(TXFIFOSIZE-1);
-  if(newPutI == TxGetI) return 0; // fail if full
+  OS_bWait(&TxFifoFull);
+  StartCritical();
+  uint32_t newPutI = (TxPutI+1)&(TXFIFOSIZE-1);
   TxFifo[TxPutI] = data;          // save in Fifo
   TxPutI = newPutI;               // next place to put
+  //OS_Signal(&TxFifoEmpty);
+  EndCritical(sr);
   return 1;
 }
 char TxFifo_Get(void){char data;
-  if(TxGetI == TxPutI) return 0;      // fail if empty
+  if (TxGetI == TxPutI) {
+    return 0;
+  }
+  //TxFifoEmpty.value -= 1;
   data = TxFifo[TxGetI];              // retrieve data
   TxGetI = (TxGetI+1)&(TXFIFOSIZE-1); // next place to get
+  OS_bSignal(&TxFifoFull);
   return data;
 }
+
 uint32_t TxFifo_Size(void){
   return (TxPutI-TxGetI)&(TXFIFOSIZE-1);
 }
@@ -58,23 +69,34 @@ uint32_t TxFifo_Size(void){
 uint32_t volatile RxPutI; // where to put next
 uint32_t volatile RxGetI; // where to get next
 char static RxFifo[RXFIFOSIZE];
+Sema4_t RxFifoEmpty;
 
 void RxFifo_Init(void){
   RxPutI = RxGetI = 0;  // empty
+  OS_InitSemaphore(&RxFifoEmpty, 0);
 }
 int RxFifo_Put(char data){
-uint32_t newPutI = (RxPutI+1)&(RXFIFOSIZE-1);
-  if(newPutI == RxGetI) return 0; // fail if full
+  uint32_t newPutI = (RxPutI+1)&(RXFIFOSIZE-1);
+  if (newPutI == RxGetI) {
+    return 0;
+  }
+  //RxFifoFull.value -= 1;
   RxFifo[RxPutI] = data;          // save in Fifo
   RxPutI = newPutI;               // next place to put
+  OS_bSignal(&RxFifoEmpty);
   return 1;
 }
-char RxFifo_Get(void){char data;
-  if(RxGetI == RxPutI) return 0;      // fail if empty
+char RxFifo_Get(void){
+  char data;
+  OS_bWait(&RxFifoEmpty);
+  StartCritical();
   data = RxFifo[RxGetI];              // retrieve data
   RxGetI = (RxGetI+1)&(RXFIFOSIZE-1); // next place to get
+  //OS_Signal(&RxFifoFull);
+  EndCritical(sr);
   return data;
 }
+
 uint32_t RxFifo_Size(void){
   return (RxPutI-RxGetI)&(RXFIFOSIZE-1);
 }

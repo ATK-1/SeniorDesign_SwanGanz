@@ -1,6 +1,6 @@
-/* UART.c
+ /* RTOS_UART.c
  * Jonathan Valvano
- * November 19, 2022
+ * June 11, 2025
  * Derived from uart_rw_multibyte_fifo_poll_LP_MSPM0G3507_nortos_ticlang
  * PA.10 UART0 Tx to XDS Rx
  * PA.11 UART0 Rx from XDS Tx
@@ -10,9 +10,10 @@
 
 
 #include <ti/devices/msp/msp.h>
-#include "../inc/UART.h"
+#include "../inc/RTOS_UART.h"
 #include "file.h"
 #include <stdio.h>
+#include <string.h>
 
 //------------UART_OutString------------
 // Output String (NULL termination)
@@ -72,6 +73,86 @@ void UART_OutUDec(uint32_t n){
   }
   UART_OutChar(n+'0'); /* n is between 0 and 9 */
 }
+
+//-----------------------UART_OutUDec3-----------------------
+// Output a 32-bit number in unsigned decimal format
+// Input: 32-bit number to be transferred
+// Output: none
+// Fixed format 3 digits with space after
+void UART_OutUDec3(uint32_t n){
+  if(n>999){
+    UART_OutString("***");
+  }else if(n >= 100){
+    UART_OutChar(n/100+'0'); 
+    n = n%100;
+    UART_OutChar(n/10+'0'); 
+    n = n%10;
+    UART_OutChar(n+'0'); 
+  }else if(n >= 10){
+    UART_OutChar(' '); 
+    UART_OutChar(n/10+'0'); 
+    n = n%10;
+    UART_OutChar(n+'0'); 
+  }else{
+    UART_OutChar(' '); 
+    UART_OutChar(' '); 
+    UART_OutChar(n+'0'); 
+  }
+  UART_OutChar(' ');
+}
+
+//-----------------------UART_OutUDec5-----------------------
+// Output a 32-bit number in unsigned decimal format
+// Input: 32-bit number to be transferred
+// Output: none
+// Fixed format 5 digits with space after
+void UART_OutUDec5(uint32_t n){
+  if(n>99999){
+    UART_OutString("*****");
+  }else if(n >= 10000){
+    UART_OutChar(n/10000+'0'); 
+    n = n%10000;
+    UART_OutChar(n/1000+'0'); 
+    n = n%1000;
+    UART_OutChar(n/100+'0'); 
+    n = n%100;
+    UART_OutChar(n/10+'0'); 
+    n = n%10;
+    UART_OutChar(n+'0'); 
+  }else if(n >= 1000){
+    UART_OutChar(' '); 
+    UART_OutChar(n/1000+'0'); 
+    n = n%1000;
+    UART_OutChar(n/100+'0'); 
+    n = n%100;
+    UART_OutChar(n/10+'0'); 
+    n = n%10;
+    UART_OutChar(n+'0'); 
+  }else if(n >= 100){
+    UART_OutChar(' '); 
+    UART_OutChar(' '); 
+    UART_OutChar(n/100+'0'); 
+    n = n%100;
+    UART_OutChar(n/10+'0'); 
+    n = n%10;
+    UART_OutChar(n+'0'); 
+  }else if(n >= 10){
+    UART_OutChar(' '); 
+    UART_OutChar(' '); 
+    UART_OutChar(' '); 
+    UART_OutChar(n/10+'0'); 
+    n = n%10;
+    UART_OutChar(n+'0'); 
+  }else{
+    UART_OutChar(' '); 
+    UART_OutChar(' '); 
+    UART_OutChar(' '); 
+    UART_OutChar(' '); 
+    UART_OutChar(n+'0'); 
+  }
+  UART_OutChar(' ');
+}
+
 //-----------------------UART_OutSDec-----------------------
 // Output a 32-bit number in signed decimal format
 // Input: 32-bit number to be transferred
@@ -146,7 +227,19 @@ void UART_OutUHex(uint32_t number){
     }
   }
 }
-
+void OutHex(uint32_t number){
+  if(number < 0xA){
+    UART_OutChar(number+'0');
+  }
+  else{
+   UART_OutChar((number-0x0A)+'A');
+  }
+}
+void UART_OutUHex2(uint32_t number){  
+  UART_OutString(" 0x");
+  OutHex(number/0x10);
+  OutHex(number%0x10);
+}
 //------------UART_InString------------
 // Accepts ASCII characters from the serial port
 //    and adds them to a string until <enter> is typed
@@ -155,7 +248,7 @@ void UART_OutUHex(uint32_t number){
 // If a backspace is inputted, the string is modified
 //    and the backspace is echoed
 // terminates the string with a null character
-// uses busy-waiting synchronization on RDRF
+// uses interrupt synchronization on
 // Input: pointer to empty buffer, size of buffer
 // Output: Null terminated string
 // -- Modified by Agustinus Darmawan + Mingjie Qiu --
@@ -183,9 +276,85 @@ char character;
 }
 
 
+/****************Fixed_Fix2Str***************
+ converts fixed point number to ASCII string
+ format signed 16-bit with resolution 0.01
+ range -327.67 to +327.67
+ Input: signed 16-bit integer part of fixed point number
+         -32768 means invalid fixed-point number
+ Output: null-terminated string exactly 8 characters plus null
+ Examples
+  12345 to " 123.45"  
+ -22100 to "-221.00"
+   -102 to "  -1.02" 
+     31 to "   0.31" 
+ -32768 to " ***.**"    
+ */ 
+void Fixed_Fix2Str(long const num,char *string){
+  short n;
+  if((num>99999)||(num<-99990)){
+    strcpy((char *)string," ***.**");
+    return;
+  }
+  if(num<0){
+    n = -num;
+    string[0] = '-';
+  } else{
+    n = num;
+    string[0] = ' ';
+  }
+  if(n>9999){
+    string[1] = '0'+n/10000;
+    n = n%10000;
+    string[2] = '0'+n/1000;
+  } else{
+    if(n>999){
+      if(num<0){
+        string[0] = ' ';
+        string[1] = '-';
+      } else {
+        string[1] = ' ';
+      }
+      string[2] = '0'+n/1000;
+    } else{
+      if(num<0){
+        string[0] = ' ';
+        string[1] = ' ';
+        string[2] = '-';
+      } else {
+        string[1] = ' ';
+        string[2] = ' ';
+      }
+    }
+  }
+  n = n%1000;
+  string[3] = '0'+n/100;
+  n = n%100;
+  string[4] = '.';
+  string[5] = '0'+n/10;
+  n = n%10;
+  string[6] = '0'+n;
+  string[7] = 0;
+}
+//--------------------------UART_Fix2----------------------------
+// Output a 32-bit number in 0.01 fixed-point format
+// Input: 32-bit number to be transferred -99999 to +99999
+// Output: none
+// Fixed format 
+//  12345 to " 123.45"  
+// -22100 to "-221.00"
+//   -102 to "  -1.02" 
+//     31 to "   0.31" 
+// error     " ***.**"   
+void UART_Fix2(long number){
+  char message[10];
+  Fixed_Fix2Str(number,message);
+  UART_OutString(message);
+}
+
 
 int uart_open(const char *path, unsigned flags, int llv_fd){
-  UART_Init();
+  UART_Init(1);
   return 0;
 }
 int uart_close( int dev_fd){
@@ -216,12 +385,12 @@ int uart_rename(const char *old_name, const char *new_name){
 }
 
 //------------UART_InitPrintf------------
-// Initialize the UART for 115,200 baud rate (assuming 48 MHz bus clock),
+// Initialize the UART for 115,200 baud rate (assuming 32 40 or 80 MHz bus clock),
 // 8 bit word length, no parity bits, one stop bit
 // Input: none
 // Output: none
 void UART_InitPrintf(void){int ret_val; FILE *fptr;
-  UART_Init();
+  UART_Init(1);
   ret_val = add_device("uart", _SSA, uart_open, uart_close, uart_read, uart_write, uart_lseek, uart_unlink, uart_rename);
   if(ret_val) return; // error
   fptr = fopen("uart","w");
@@ -230,4 +399,3 @@ void UART_InitPrintf(void){int ret_val; FILE *fptr;
   setvbuf(stdout, NULL, _IONBF, 0); // turn off buffering for stdout
 
 }
-

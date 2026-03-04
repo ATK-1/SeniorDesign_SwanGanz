@@ -15,7 +15,9 @@
 #include "../inc/LaunchPad.h"
 #include "../inc/Timer.h"
 #include "../inc/ST7735.h"
+#include "../inc/RTOS_UART.h"
 #include "OS.h"
+#include "Display.h"
 
 
 // Hardware interrupt priorities
@@ -86,13 +88,6 @@ Sema4_t MailBoxEmpty;
 Sema4_t MailBoxFull;
 uint32_t MailBox;
 
-// OS_Fifo
-uint32_t OsFifoArray[OS_FIFO_SIZE];
-uint32_t OsFifoGetI;
-uint32_t OsFifoPutI;
-Sema4_t OsFifoEmpty;
-Sema4_t OsFifoFull;
-
 // Background Threads
 backgroundTask_t S2Task;
 backgroundTask_t PA28Task;
@@ -102,11 +97,120 @@ uint32_t PTaskIdx;
 uint32_t NumPeriodicThreads;
 
 
-#define PSCHEDULE_SIZE 1
+#define PSCHEDULE_SIZE 111
 ptask_t PTaskSchedule[PSCHEDULE_SIZE] = {
-    {NULL, 1000, 0, 1}
+  {NULL, 25, 0, 200},         // 0
+  {NULL, 25, 0, 20},          // 25
+  {NULL, 50, 0, 2},           // 50
+  {NULL, 100, 0, 200},          // 100
+  {NULL, 100, 0, 200},          // 200
+  {NULL, 100, 0, 200},          // 300
+  {NULL, 100, 0, 200},          // 400
+  {NULL, 100, 0, 200},          // 500
+  {NULL, 100, 0, 200},          // 600
+  {NULL, 100, 0, 200},          // 700
+  {NULL, 100, 0, 200},          // 800
+  {NULL, 100, 0, 200},          // 900
+  {NULL, 25, 0, 200},           // 1000
+  {NULL, 75, 0, 20},          // 1025
+  {NULL, 100, 0, 200},          // 1100
+  {NULL, 100, 0, 200},          // 1200
+  {NULL, 100, 0, 200},          // 1300
+  {NULL, 100, 0, 200},          // 1400
+  {NULL, 100, 0, 200},          // 1500
+  {NULL, 100, 0, 200},          // 1600
+  {NULL, 100, 0, 200},          // 1700
+  {NULL, 100, 0, 200},          // 1800
+  {NULL, 100, 0, 200},          // 1900
+  {NULL, 25, 0, 200},           // 2000
+  {NULL, 75, 0, 20},          // 2025
+  {NULL, 100, 0, 200},          // 2100
+  {NULL, 100, 0, 200},          // 2200
+  {NULL, 100, 0, 200},          // 2300
+  {NULL, 100, 0, 200},          // 2400
+  {NULL, 100, 0, 200},          // 2500
+  {NULL, 100, 0, 200},          // 2600
+  {NULL, 100, 0, 200},          // 2700
+  {NULL, 100, 0, 200},          // 2800
+  {NULL, 100, 0, 200},          // 2900
+  {NULL, 25, 0, 200},           // 3000
+  {NULL, 75, 0, 20},          // 3025
+  {NULL, 100, 0, 200},          // 3100
+  {NULL, 100, 0, 200},          // 3200
+  {NULL, 100, 0, 200},          // 3300
+  {NULL, 100, 0, 200},          // 3400
+  {NULL, 100, 0, 200},          // 3500
+  {NULL, 100, 0, 200},          // 3600
+  {NULL, 100, 0, 200},          // 3700
+  {NULL, 100, 0, 200},          // 3800
+  {NULL, 100, 0, 200},          // 3900
+  {NULL, 25, 0, 200},           // 4000
+  {NULL, 75, 0, 20},          // 4025
+  {NULL, 100, 0, 200},          // 4100
+  {NULL, 100, 0, 200},          // 4200
+  {NULL, 100, 0, 200},          // 4300
+  {NULL, 100, 0, 200},          // 4400
+  {NULL, 100, 0, 200},          // 4500
+  {NULL, 100, 0, 200},          // 4600
+  {NULL, 100, 0, 200},          // 4700
+  {NULL, 100, 0, 200},          // 4800
+  {NULL, 100, 0, 200},          // 4900
+  {NULL, 25, 0, 200},           // 5000
+  {NULL, 75, 0, 20},          // 5025
+  {NULL, 100, 0, 200},          // 5100
+  {NULL, 100, 0, 200},          // 5200
+  {NULL, 100, 0, 200},          // 5300
+  {NULL, 100, 0, 200},          // 5400
+  {NULL, 100, 0, 200},          // 5500
+  {NULL, 100, 0, 200},          // 5600
+  {NULL, 100, 0, 200},          // 5700
+  {NULL, 100, 0, 200},          // 5800
+  {NULL, 100, 0, 200},          // 5900
+  {NULL, 25, 0, 200},           // 6000
+  {NULL, 75, 0, 20},          // 6025
+  {NULL, 100, 0, 200},          // 6100
+  {NULL, 100, 0, 200},          // 6200
+  {NULL, 100, 0, 200},          // 6300
+  {NULL, 100, 0, 200},          // 6400
+  {NULL, 100, 0, 200},          // 6500
+  {NULL, 100, 0, 200},          // 6600
+  {NULL, 100, 0, 200},          // 6700
+  {NULL, 100, 0, 200},          // 6800
+  {NULL, 100, 0, 200},          // 6900
+  {NULL, 25, 0, 200},           // 7000
+  {NULL, 75, 0, 20},          // 7025
+  {NULL, 100, 0, 200},          // 7100
+  {NULL, 100, 0, 200},          // 7200
+  {NULL, 100, 0, 200},          // 7300
+  {NULL, 100, 0, 200},          // 7400
+  {NULL, 100, 0, 200},          // 7500
+  {NULL, 100, 0, 200},          // 7600
+  {NULL, 100, 0, 200},          // 7700
+  {NULL, 100, 0, 200},          // 7800
+  {NULL, 100, 0, 200},          // 7900
+  {NULL, 25, 0, 200},           // 8000
+  {NULL, 75, 0, 20},          // 8025
+  {NULL, 100, 0, 200},          // 8100
+  {NULL, 100, 0, 200},          // 8200
+  {NULL, 100, 0, 200},          // 8300
+  {NULL, 100, 0, 200},          // 8400
+  {NULL, 100, 0, 200},          // 8500
+  {NULL, 100, 0, 200},          // 8600
+  {NULL, 100, 0, 200},          // 8700
+  {NULL, 100, 0, 200},          // 8800
+  {NULL, 100, 0, 200},          // 8900
+  {NULL, 25, 0, 200},           // 9000
+  {NULL, 75, 0, 20},          // 9025
+  {NULL, 100, 0, 200},          // 9100
+  {NULL, 100, 0, 200},          // 9200
+  {NULL, 100, 0, 200},          // 9300
+  {NULL, 100, 0, 200},          // 9400
+  {NULL, 100, 0, 200},          // 9500
+  {NULL, 100, 0, 200},          // 9600
+  {NULL, 100, 0, 200},          // 9700
+  {NULL, 100, 0, 200},          // 9800
+  {NULL, 100, 0, 200}           // 9900
 };
-
 
 // ******** OS_ClearMsTime ************
 // sets the system time to zero and start a periodic interrupt
@@ -211,10 +315,7 @@ void OS_Init(void){
     UART_Init(1);
 
     // Initialize screen
-    ST7735_InitR(INITR_BLACKTAB); //INITR_REDTAB for AdaFruit, INITR_BLACKTAB for SPI HiLetgo ST7735R
-    ST7735_FillScreen(ST7735_BLACK);
-    ST7735_SetCursor(0, 0);
-    OS_InitSemaphore(&LCDAvail, 1);
+    DisplayInit();
 }
 
 // ******** OS_InitSemaphore ************
@@ -288,7 +389,7 @@ void OS_bSignal(Sema4_t *semaPt){
 }; 
 
 
-int OS_AddThread(void(*task)(void), uint32_t stackSize, uint32_t priority) { 
+int OS_AddThread(void(*task)(void), uint32_t priority) { 
     // Get a free TCB
     tcb_t* newTcb = TcbFifoGet();
     if (!newTcb) {
@@ -342,7 +443,7 @@ static void InsertSleepyThread(tcb_t* tcb, uint32_t timeOffset) {
 //         priority 0 is the highest, 3 is the lowest
 // Priorities are relative to other background periodic threads
 // Outputs: 1 if successful, 0 if this thread can not be added
-int OS_AddPeriodicThread(void(*task)(void), uint32_t period, uint32_t priority) {
+int OS_AddPeriodicThread(void(*task)(void), uint32_t period) {
     // Activate your thread in the task scheduler
     for (int i = 0; i < PSCHEDULE_SIZE; i++) {
         ptask_t* scheduledTask = &PTaskSchedule[i];
@@ -360,7 +461,7 @@ int OS_AddPeriodicThread(void(*task)(void), uint32_t period, uint32_t priority) 
         while (!PTaskSchedule[PTaskIdx].isActive) {
             PTaskIdx = (PTaskIdx + 1) % PSCHEDULE_SIZE;
         }
-        TimerG8_IntArm(10, 40, 0);
+        TimerG8_IntArm(100, 800, 0);
     }
     NumPeriodicThreads++;
     return 1;
@@ -441,64 +542,6 @@ void OS_Suspend(void) {
     SCB->ICSR = 0x10000000;
 };
   
-
-
-
-// ******** OS_Fifo_Init ************
-// Initialize the Fifo to be empty
-// Inputs: size
-// Outputs: none 
-void OS_Fifo_Init(uint32_t size){
-    OsFifoPutI = 0;
-    OsFifoGetI = 0;
-    OS_InitSemaphore(&OsFifoEmpty, 0);
-    OS_InitSemaphore(&OsFifoFull, OS_FIFO_SIZE - 1);
-}
-
-// ******** OS_Fifo_Put ************
-// Enter one data sample into the Fifo
-// Called from the background, so no waiting 
-// Inputs:  data
-// Outputs: true if data is properly saved,
-//          false if data not saved, because it was full
-// Since this is called by interrupt handlers 
-//  this function can not disable or enable interrupts
-int OS_Fifo_Put(uint32_t data){
-    uint32_t newPutI = (OsFifoPutI + 1) & (OS_FIFO_SIZE - 1);
-    if (newPutI == OsFifoPutI) {
-        return 0;
-    }
-    OsFifoArray[OsFifoPutI] = data;          // save in Fifo
-    OsFifoPutI = newPutI;               // next place to put
-    OS_bSignal(&OsFifoEmpty);
-    return 1;
-}
-
-// ******** OS_Fifo_Get ************
-// Remove one data sample from the Fifo
-// Called in foreground, will spin/block if empty
-// Inputs:  none
-// Outputs: data 
-uint32_t OS_Fifo_Get(void){
-    uint32_t data;
-    OS_bWait(&OsFifoEmpty);
-    StartCritical();
-    data = OsFifoArray[OsFifoGetI];                    
-    OsFifoGetI = (OsFifoGetI + 1) & (OS_FIFO_SIZE - 1); 
-    EndCritical(sr);
-    return data;
-}
-
-// ******** OS_Fifo_Size ************
-// Check the status of the Fifo
-// Inputs: none
-// Outputs: returns the number of elements in the Fifo
-//          greater than zero if a call to OS_Fifo_Get will return right away
-//          zero or less than zero if the Fifo is empty 
-//          zero or less than zero if a call to OS_Fifo_Get will spin or block
-int32_t OS_Fifo_Size(void){
-  return OS_FIFO_SIZE - OsFifoEmpty.value; 
-}
  
 
 // ******** OS_Time ************
@@ -541,7 +584,7 @@ void OS_Launch(uint32_t theTimeSlice) {
         while (!PTaskSchedule[PTaskIdx].isActive) {
             PTaskIdx = (PTaskIdx + 1) % PSCHEDULE_SIZE;
         }
-        TimerG8_IntArm(100, 40, 0);
+        TimerG8_IntArm(100, 800, 0);
     }
     OSEnableInterrupts(); 
     OS_Suspend();

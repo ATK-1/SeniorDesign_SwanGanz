@@ -35,10 +35,15 @@
 #include "../inc/Clock.h"
 #include "../inc/ADC.h"
 #include "../inc/SPI.h"
-#include "LCD.h"
+#include "Display.h"
 #include "DAS.h"
+#include "OS.h"
 
-//6 adc's
+#define TIME_1MS    80000      
+
+// MODE button PB12
+// ENTER button PB13
+
 // ADC0.2 = PA25 - pressure 1 
 // ADC0.3 = PA24 - pressure 1 
 // ADC0.5 = PB24 - thermistor 
@@ -47,12 +52,14 @@
 // ADC1.3 = PA18 - pressure 2 
 // UART_Tx = PA8
 // UART_Rx = PA9
-void Logic_Init(void) {
-    // Debug Pins
+void Logic_Init() {
+    // Inputs - debug pins and LED
     IOMUX->SECCFG.PINCM[PA10INDEX] = (uint32_t) 0x00000081;
     IOMUX->SECCFG.PINCM[PA11INDEX] = (uint32_t) 0x00000081;
     IOMUX->SECCFG.PINCM[PA12INDEX] = (uint32_t) 0x00000081;
     IOMUX->SECCFG.PINCM[PA13INDEX] = (uint32_t) 0x00000081;
+    IOMUX->SECCFG.PINCM[PA15INDEX] = (uint32_t) 0x00000081; // Working LED
+    IOMUX->SECCFG.PINCM[PA16INDEX] = (uint32_t) 0x00000081; // Error LED
     IOMUX->SECCFG.PINCM[PB17INDEX] = (uint32_t) 0x00000081;
     IOMUX->SECCFG.PINCM[PB18INDEX] = (uint32_t) 0x00000081;
     IOMUX->SECCFG.PINCM[PB19INDEX] = (uint32_t) 0x00000081;
@@ -60,7 +67,11 @@ void Logic_Init(void) {
     GPIOA->DOE31_0 |= (0xF << 10);
     GPIOB->DOE31_0 |= (0xF << 17);
 
-    // ADC Pins 
+    // Outputs- buttons
+    IOMUX->SECCFG.PINCM[PB12INDEX] = (uint32_t) 0x00040081;
+    IOMUX->SECCFG.PINCM[PB13INDEX] = (uint32_t) 0x00040081;
+
+    // ADC Pins (idk if i need this)
     IOMUX->SECCFG.PINCM[PA8INDEX]  = (uint32_t) 0x00000000;
     IOMUX->SECCFG.PINCM[PA9INDEX]  = (uint32_t) 0x00000000;
     IOMUX->SECCFG.PINCM[PA17INDEX] = (uint32_t) 0x00000000;
@@ -71,15 +82,27 @@ void Logic_Init(void) {
     IOMUX->SECCFG.PINCM[PB24INDEX] = (uint32_t) 0x00000000;
 }
 
+static void IdleThread() {
+    while (1) {
+        OS_Suspend();
+    }
+}
+
 int main(void) {
     __disable_irq();
     Clock_Init80MHz(1);
     LaunchPad_Init();
     Logic_Init();
-    LCD_Init();
-    DAS_Init();
-    __enable_irq();
-    while (1) {
-        
-    }
+    OS_Init();
+    DASInit();
+
+    OS_AddPeriodicThread(&DAS, 100);
+    OS_AddPeriodicThread(&InputPolling, 1000);
+    OS_AddPeriodicThread(&HeartBeat, 10000);
+    OS_AddThread(&DisplayTemp, 1);
+    OS_AddThread(&DisplayStartMenu, 1);
+    OS_AddThread(&IdleThread, 2);
+    
+    OS_Launch(TIME_1MS);
 }
+

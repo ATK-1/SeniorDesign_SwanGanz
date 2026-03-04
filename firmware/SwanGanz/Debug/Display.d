@@ -1,6 +1,6 @@
 # FIXED
 
-inc/FIFO.o: ../inc/FIFO.c \
+Display.o: ../Display.c \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/msp.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/DeviceFamily.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/mspm0g350x.h \
@@ -31,7 +31,8 @@ inc/FIFO.o: ../inc/FIFO.c \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/hw_debugss.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/hw_sysctl.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0g1x0x_g3x0x.h \
- ../inc/FIFO.h
+ /Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/ST7735.h \
+ ../OS.h ../Display.h
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/msp.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/DeviceFamily.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/mspm0g350x.h:
@@ -62,4 +63,6 @@ inc/FIFO.o: ../inc/FIFO.c \
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/hw_debugss.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/hw_sysctl.h:
 /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/peripherals/m0p/sysctl/hw_sysctl_mspm0g1x0x_g3x0x.h:
-../inc/FIFO.h:
+/Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/inc/ST7735.h:
+../OS.h:
+../Display.h:

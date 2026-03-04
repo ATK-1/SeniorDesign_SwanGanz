@@ -1,6 +1,6 @@
-/* UARTints.c
+/* RTOS_UARTints.c
  * Jonathan Valvano
- * November 18, 2022
+ * June 10, 2025
  * Derived from uart_rw_multibyte_fifo_poll_LP_MSPM0G3507_nortos_ticlang
  *              uart_echo_interrupts_standby_LP_MSPM0G3507_nortos_ticlang
  * PA.10 UART0 Tx to XDS Rx
@@ -11,30 +11,31 @@
 
 
 #include <ti/devices/msp/msp.h>
-#include "../inc/UART.h"
+#include "../inc/RTOS_UART.h"
 #include "../inc/Clock.h"
-#include "../inc/FIFO.h"
-#define PA10INDEX 20
-#define PA11INDEX 21
+#include "../inc/RTOS_FIFO.h"
+#include "../inc/LaunchPad.h"
+
+
 // power Domain PD0
 // for 32MHz bus clock, bus clock is 32MHz
 // for 40MHz bus clock, bus clock is ULPCLK 20MHz
 // for 80MHz bus clock, bus clock is ULPCLK 40MHz
-// assume 40MHz bus clock, bus clock = 20MHz
+// assume 32 40 or 80 MHz bus clock
 // initialize UART for 115200 baud rate
+// priority 0 for highest, 3 for lowest
 // interrupt synchronization
-void UART_Init(void){
+void UART_Init(uint32_t priority){
     // RSTCLR to GPIOA and UART0 peripherals
     //   bits 31-24 unlock key 0xB1
     //   bit 1 is Clear reset sticky bit
     //   bit 0 is reset gpio port
- // GPIOA->GPRCM.RSTCTL = (uint32_t)0xB1000003; // called previously
+ // assumes GPIOA has been reset and enabled in LaunchPad_Init
   UART0->GPRCM.RSTCTL = 0xB1000003;
     // Enable power to GPIOA and UART0 peripherals
     // PWREN
     //   bits 31-24 unlock key 0x26
     //   bit 0 is Enable Power
- // GPIOA->GPRCM.PWREN = (uint32_t)0x26000001; // called previously
   UART0->GPRCM.PWREN = 0x26000001;
   Clock_Delay(24); // time for uart to power up
   // configure PA11 PA10 as alternate UART0 function
@@ -61,14 +62,7 @@ void UART_Init(void){
    // bit  3     RXE=1    enable TxD
    // bit  2     LBE=0    no loop back
    // bit  0     ENABLE   0 is disable, 1 to enable
-  // 20000000/16 = 1,250,000 Hz
- // Baud = 115200
-  /*
-  //   1,250,000/115200 = 10.850694
-  //   divider = 10+54/64 = 10.84375
-  UART0->IBRD = 10;
-  UART0->FBRD = 54; // baud =1,250,000/10.84375 = 115,274 bps
-  */
+  
   if(Clock_Freq() == 40000000){
       // 20000000/16 = 1,250,000 Hz
      // Baud = 115200
@@ -107,14 +101,15 @@ void UART_Init(void){
   // bits 2-0  TXIFLSEL 2 is less than or equal to half
   NVIC->ICPR[0] = 1<<15; // UART0 is IRQ 15
   NVIC->ISER[0] = 1<<15;
-  NVIC->IP[3] = (NVIC->IP[3]&(~0xFF000000))|(2<<30);    // set priority (bits 31,30) IRQ 15
+  NVIC->IP[3] = (NVIC->IP[3]&(~0xFF000000))|(priority<<30);    // set priority (bits 31,30) IRQ 15
   UART0->CTL0 |= 0x01; // enable UART0
 }
 // copy from hardware RX FIFO to software RX FIFO
-// stop when hardware RX FIFO is empty or software RX FIFO is full
+// stop when hardware RX FIFO is empty or discard data if software RX FIFO is full
 void static copyHardwareToSoftware(void){
   char letter;
-  while(((UART0->STAT&0x04) == 0) && (RxFifo_Size() < (RXFIFOSIZE - 1))){
+  while((UART0->STAT&0x04) == 0){
+//  while(((UART0->STAT&0x04) == 0) && (RxFifo_Size() < (RxSIZE - 1))){
     letter = UART0->RXDATA;
     RxFifo_Put(letter);
   }
@@ -164,4 +159,3 @@ void UART0_IRQHandler(void){ uint32_t status;
     }
   }
 }
-
