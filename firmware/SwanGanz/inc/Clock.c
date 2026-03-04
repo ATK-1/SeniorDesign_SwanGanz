@@ -1,6 +1,6 @@
 /* Clock.c
  * Jonathan Valvano
- * July 9, 2023
+ * July 19, 2025
  * Derived from sysctl_hfxt_run_LP_MSPM0G3507_nortos_ticlang
  *              systick_periodic_timer_LP_MSPM0G3507_nortos_ticlang
  *              sysctl_mclk_syspll_LP_MSPM0G3507_nortos_ticlang
@@ -21,6 +21,7 @@ uint32_t volatile BusFreq = 32000000; // default clock
 uint32_t Clock_Freq(void){
   return BusFreq;
 }
+
 void Clock_Init80MHz(int enablePA14){
 // turn on PortA portB in LaunchPad_Init()
   if(enablePA14){

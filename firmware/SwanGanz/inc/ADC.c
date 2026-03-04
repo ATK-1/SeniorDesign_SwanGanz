@@ -93,3 +93,23 @@ void ADC_Init() {
   ADC0->ULLMEM.SCOMP0 = 0; // 8 sample clocks
   ADC1->ULLMEM.SCOMP0 = 0;
 }
+
+void ADC_In(uint32_t* sampleBuffer) {
+  TIMG0->CPU_INT.ICLR = 1;
+
+  ADC0->ULLMEM.CTL0 |= 1;
+  ADC0->ULLMEM.CTL1 |= (1<<8); 
+  ADC1->ULLMEM.CTL0 |= 1;
+  ADC1->ULLMEM.CTL1 |= (1<<8);
+  
+  volatile uint32_t delay = ADC0->ULLMEM.STATUS;
+  while (ADC0->ULLMEM.STATUS & 0x01);
+
+  sampleBuffer[0] = ADC0->ULLMEM.MEMRES[0];
+  sampleBuffer[1] = ADC0->ULLMEM.MEMRES[1];
+  sampleBuffer[2] = ADC0->ULLMEM.MEMRES[2];
+  sampleBuffer[3] = ADC0->ULLMEM.MEMRES[3]; 
+  
+  sampleBuffer[4] = ADC1->ULLMEM.MEMRES[0];
+  sampleBuffer[5] = ADC1->ULLMEM.MEMRES[1];
+}

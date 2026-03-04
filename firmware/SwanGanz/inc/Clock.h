@@ -13,12 +13,12 @@
  * @file      Clock.h
  * @brief     Provide functions that initialize the MSPM0 clock module
  * @details   Reconfigure MSPM0 to run at 4, 32, 40 or 80 MHz
- * @version   ECE319K v1.0
+ * @version   ECE319K v1.2
  * @author    Daniel Valvano and Jonathan Valvano
- * @copyright Copyright 2023 by Jonathan W. Valvano, valvano@mail.utexas.edu,
+ * @copyright Copyright 2025 by Jonathan W. Valvano, valvano@mail.utexas.edu,
  * @warning   AS-IS
  * @note      For more information see  http://users.ece.utexas.edu/~valvano/
- * @date      August 13, 2023
+ * @date      December 23, 2024
  <table>
 <caption id="Clockpins">Clock pins</caption>
 <tr><th>Pin  <th>Description
@@ -31,9 +31,10 @@
 
 #ifndef __CLOCK_H__
 #define __CLOCK_H__
+#include <stdint.h>
 
 /**
- * Configure the MSPM0 clock to run at 80 MHz
+ * Configure the MSPM0 clock to run at 80 MHz. In ECE319K we will not enable clock output onPA14.
  * @param enablePA14 1 means clock output on PA14, 0 means no output on PA14
  * @return none
  * @note  Since the crystal is used, the bus clock will be very accurate
