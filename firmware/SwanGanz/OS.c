@@ -238,7 +238,7 @@ void StartOS(void); // implemented in osasm.s
   if priority n is null, check list n+1
   check if sleeping
 */
-void OS_Scheduler() {
+static void OS_Scheduler() {
     GPIOB->DOUTTGL31_0 = (1<<1);
     GPIOB->DOUTTGL31_0 = (1<<1);
     SysTick->VAL = 0;                //Reset systick
@@ -254,10 +254,10 @@ void OS_Scheduler() {
     }
 
     tcb_t* candidate = (*roundRobinPt)->next;
-    StartCritical();
+    OSEnableInterrupts();
     *roundRobinPt = candidate;
     NextThreadPt = candidate;
-    EndCritical(sr);
+    OSDisableInterrupts();
     GPIOB->DOUTTGL31_0 = (1<<1);
 }
 //------------------------------------------------------------------------------
@@ -443,12 +443,12 @@ static void InsertSleepyThread(tcb_t* tcb, uint32_t timeOffset) {
 //         priority 0 is the highest, 3 is the lowest
 // Priorities are relative to other background periodic threads
 // Outputs: 1 if successful, 0 if this thread can not be added
-int OS_AddPeriodicThread(void(*task)(void), uint32_t period) {
+int OS_AddPeriodicThread(void(*task)(void), uint32_t freq) {
     // Activate your thread in the task scheduler
     for (int i = 0; i < PSCHEDULE_SIZE; i++) {
         ptask_t* scheduledTask = &PTaskSchedule[i];
-        if (scheduledTask->period == period) {
-            scheduledTask->period = period;
+        if (scheduledTask->period == freq) {
+            scheduledTask->period = freq;
             scheduledTask->isActive = 1;
             scheduledTask->periodicTask = task;
         }

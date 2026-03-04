@@ -160,7 +160,7 @@ int OS_AddThread(void(*task)(void), uint32_t priority);
 //         priority 0 is the highest, 3 is the lowest
 // Priorities are relative to other background periodic threads
 // Outputs: 1 if successful, 0 if this thread can not be added
-int OS_AddPeriodicThread(void(*task)(void), uint32_t period);
+int OS_AddPeriodicThread(void(*task)(void), uint32_t freq);
 
 
 // ******** OS_Sleep ************

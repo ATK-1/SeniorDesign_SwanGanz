@@ -11,7 +11,6 @@ void DisplayInit() {
     ST7735_FillScreen(ST7735_BLACK);
     ST7735_SetCursor(0, 0);
     OS_InitSemaphore(LCD_Mutex, 1);
-    ST7735_OutString("Press any button to start calculating");
 }
 
 static void DisplayAll() {

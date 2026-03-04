@@ -1,6 +1,6 @@
 # FIXED
 
-OS.o: ../OS.c \
+.o: ../OS.c \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/msp.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/DeviceFamily.h \
  /Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/mspm0g350x.h \
