@@ -2,8 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-SHELL = cmd.exe
-
 # Add inputs and outputs from these tool invocations to the build variables 
 SYSCFG_SRCS += \
 ../empty.syscfg 
@@ -17,7 +15,7 @@ C_SRCS += \
 ../FIFO.c \
 ../OS.c \
 ./ti_msp_dl_config.c \
-C:/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c \
+/Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c \
 ../main.c 
 
 S_DEPS += \
@@ -93,7 +91,7 @@ C_SRCS__QUOTED += \
 "../Display.c" \
 "../FIFO.c" \
 "./ti_msp_dl_config.c" \
-"C:/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c" 
+"/Applications/ti/mspm0_sdk_2_09_00_01/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g350x_ticlang.c" 
 
 SYSCFG_SRCS__QUOTED += \
 "../empty.syscfg" 
