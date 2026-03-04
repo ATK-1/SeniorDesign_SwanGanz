@@ -239,6 +239,7 @@ void StartOS(void); // implemented in osasm.s
   check if sleeping
 */
 static void OS_Scheduler() {
+    uint32_t crit;
     GPIOB->DOUTTGL31_0 = (1<<1);
     GPIOB->DOUTTGL31_0 = (1<<1);
     SysTick->VAL = 0;                //Reset systick
@@ -254,10 +255,10 @@ static void OS_Scheduler() {
     }
 
     tcb_t* candidate = (*roundRobinPt)->next;
-    OSEnableInterrupts();
+    crit = StartCritical();
     *roundRobinPt = candidate;
     NextThreadPt = candidate;
-    OSDisableInterrupts();
+    EndCritical(crit);
     GPIOB->DOUTTGL31_0 = (1<<1);
 }
 //------------------------------------------------------------------------------

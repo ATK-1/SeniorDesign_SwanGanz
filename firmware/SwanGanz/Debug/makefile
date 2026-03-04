@@ -2,7 +2,9 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-CG_TOOL_ROOT := /Applications/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS
+SHELL = cmd.exe
+
+CG_TOOL_ROOT := C:/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS
 
 GEN_OPTS__FLAG := @"./device.opt" 
 GEN_CMDS__FLAG := -Wl,-l"./device_linker.cmd" 
@@ -49,8 +51,8 @@ $(GEN_CMDS__FLAG) \
 
 -include ../makefile.init
 
-RM := rm -rf
-RMDIR := rm -rf
+RM := DEL /F
+RMDIR := RMDIR /S/Q
 
 # All of the sources participating in the build are defined here
 -include sources.mk
@@ -164,16 +166,16 @@ all: $(OBJS) $(GEN_CMDS)
 SwanGanz.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"/Applications/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/bin/tiarmclang" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O0 -gdwarf-3 -Wl,-m"SwanGanz.map" -Wl,-i"/Applications/ti/mspm0_sdk_2_09_00_01/source" -Wl,-i"/Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz" -Wl,-i"/Users/nathan/Dev/464H/SeniorDesign_SwanGanz/firmware/SwanGanz/Debug/syscfg" -Wl,-i"/Applications/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="SwanGanz_linkInfo.xml" -Wl,--rom_model -o "SwanGanz.out" $(ORDERED_OBJS)
+	"C:/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O0 -gdwarf-3 -Wl,-m"SwanGanz.map" -Wl,-i"C:/ti/mspm0_sdk_2_09_00_01/source" -Wl,-i"C:/Users/ashto/Dev/SeniorDesign_SwanGanz/firmware/SwanGanz" -Wl,-i"C:/Users/ashto/Dev/SeniorDesign_SwanGanz/firmware/SwanGanz/Debug/syscfg" -Wl,-i"C:/ti/ccs2040/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="SwanGanz_linkInfo.xml" -Wl,--rom_model -o "SwanGanz.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "DAS.o" "Display.o" "FIFO.o" "OS.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "main.o" "osasm.o" "inc/ADC.o" "inc/ADCTimer.o" "inc/Arabic.o" "inc/Bump.o" "inc/Clock.o" "inc/DAC.o" "inc/DAC5.o" "inc/Dump.o" "inc/EdgeTriggered.o" "inc/FFT.o" "inc/I2C.o" "inc/IRDistance.o" "inc/InputCapture.o" "inc/Key.o" "inc/LaunchPad.o" "inc/Motor.o" "inc/PWM.o" "inc/PWM1.o" "inc/RTOS_FIFO.o" "inc/RTOS_UART.o" "inc/RTOS_UARTints.o" "inc/SPI.o" "inc/SSD1306.o" "inc/ST7735.o" "inc/SysTick.o" "inc/Timer.o" "inc/msp.o" 
-	-$(RM) "DAS.d" "Display.d" "FIFO.d" "OS.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "main.d" "inc/ADC.d" "inc/ADCTimer.d" "inc/Arabic.d" "inc/Bump.d" "inc/Clock.d" "inc/DAC.d" "inc/DAC5.d" "inc/Dump.d" "inc/EdgeTriggered.d" "inc/FFT.d" "inc/I2C.d" "inc/IRDistance.d" "inc/InputCapture.d" "inc/Key.d" "inc/LaunchPad.d" "inc/Motor.d" "inc/PWM.d" "inc/PWM1.d" "inc/RTOS_FIFO.d" "inc/RTOS_UART.d" "inc/RTOS_UARTints.d" "inc/SPI.d" "inc/SSD1306.d" "inc/ST7735.d" "inc/Timer.d" 
-	-$(RM) "osasm.d" "inc/SysTick.d" "inc/msp.d" 
+	-$(RM) "DAS.o" "Display.o" "FIFO.o" "OS.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "main.o" "osasm.o" "inc\ADC.o" "inc\ADCTimer.o" "inc\Arabic.o" "inc\Bump.o" "inc\Clock.o" "inc\DAC.o" "inc\DAC5.o" "inc\Dump.o" "inc\EdgeTriggered.o" "inc\FFT.o" "inc\I2C.o" "inc\IRDistance.o" "inc\InputCapture.o" "inc\Key.o" "inc\LaunchPad.o" "inc\Motor.o" "inc\PWM.o" "inc\PWM1.o" "inc\RTOS_FIFO.o" "inc\RTOS_UART.o" "inc\RTOS_UARTints.o" "inc\SPI.o" "inc\SSD1306.o" "inc\ST7735.o" "inc\SysTick.o" "inc\Timer.o" "inc\msp.o" 
+	-$(RM) "DAS.d" "Display.d" "FIFO.d" "OS.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "main.d" "inc\ADC.d" "inc\ADCTimer.d" "inc\Arabic.d" "inc\Bump.d" "inc\Clock.d" "inc\DAC.d" "inc\DAC5.d" "inc\Dump.d" "inc\EdgeTriggered.d" "inc\FFT.d" "inc\I2C.d" "inc\IRDistance.d" "inc\InputCapture.d" "inc\Key.d" "inc\LaunchPad.d" "inc\Motor.d" "inc\PWM.d" "inc\PWM1.d" "inc\RTOS_FIFO.d" "inc\RTOS_UART.d" "inc\RTOS_UARTints.d" "inc\SPI.d" "inc\SSD1306.d" "inc\ST7735.d" "inc\Timer.d" 
+	-$(RM) "osasm.d" "inc\SysTick.d" "inc\msp.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

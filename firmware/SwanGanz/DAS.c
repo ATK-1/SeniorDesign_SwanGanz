@@ -23,16 +23,24 @@ void DASInit() {
 void DAS() {
     uint32_t sampleBuffer[6];
     ADC_In(sampleBuffer);
-    Fifo_Put(THERM_LOW_FIFO, sampleBuffer[THERM_HI]); //doing this six times may be cumbersome, consider making function to do it for all channels
+    for (int i = 0; i < 6; i++) {
+        Fifo_Put(i, sampleBuffer[i]);
+    }
+   // Fifo_Put(THERM_LOW_FIFO, sampleBuffer[THERM_HI]); //doing this six times may be cumbersome, consider making function to do it for all channels
 }
 
 // for now we're just polling for any button and will send a 1 if anything is pressed
+uint32_t PrevMode;
+uint32_t PrevEnter;
 void InputPolling() {
-    uint32_t mode  = GPIOB->DIN31_0 & (1<<12);
-    uint32_t enter = GPIOB->DIN31_0 & (1<<13);
-    if (mode || enter) {
+    uint32_t mode  = !(GPIOB->DIN31_0 & (1<<12));
+    uint32_t enter = !(GPIOB->DIN31_0 & (1<<13));
+
+    if ((PrevMode && !mode) || (PrevEnter && !enter)) {
         Fifo_Put(INPUT_FIFO, 1);
     }
+    PrevMode = mode;
+    PrevEnter = enter;
 }
 
 /*

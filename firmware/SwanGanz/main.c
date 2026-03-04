@@ -84,7 +84,7 @@ void Logic_Init() {
 
 static void IdleThread() {
     while (1) {
-        OS_Suspend();
+        //OS_Suspend();
     }
 }
 

@@ -85,11 +85,22 @@ typedef struct {
     uint32_t period;
 } ptask_t;
 
+
+/**
+ * \brief Semaphore structure. Feel free to change the type of semaphore, there are lots of good solutions
+ */  
+struct Sema4{
+  int32_t value;   // >0 means free, otherwise means busy        
+// add other components here, if necessary to implement blocking
+  tcbList_t blockedList;
+};
+typedef struct Sema4 Sema4_t;
+
 typedef struct {
     uint32_t getI;
     uint32_t putI;
     uint32_t data[FIFO_CAPACITY];
-    struct Sema4* empty;
+    struct Sema4 empty;
 } fifo_t;
 
 enum FIFO {
@@ -102,15 +113,8 @@ enum FIFO {
     INPUT_FIFO,
 };
 
-/**
- * \brief Semaphore structure. Feel free to change the type of semaphore, there are lots of good solutions
- */  
-struct  Sema4{
-  int32_t value;   // >0 means free, otherwise means busy        
-// add other components here, if necessary to implement blocking
-  tcbList_t blockedList;
-};
-typedef struct Sema4 Sema4_t;
+
+ 
 
 /**
  * @details  Initialize operating system, disable interrupts until OS_Launch.
