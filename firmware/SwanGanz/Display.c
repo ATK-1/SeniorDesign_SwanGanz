@@ -6,6 +6,7 @@
 #define NUM_CHANNELS 6
 Sema4_t LCD_Mutex;
 static int input;
+static uint32_t NumThermSamples;
 
 const uint32_t TempLUT[4096] = {
 	69523, 69489, 69456, 69422, 69388, 69354, 69320, 69287, 69253, 69219, 69185, 69152, 69118, 69084, 69050, 69017,
@@ -305,6 +306,7 @@ static void DisplayAll() {
     }
 }
 
+
 /*
     DisplayTemp - foreground thread
     Waits for sampled data in FIFO and displays in on LCD
@@ -317,10 +319,16 @@ void DisplayTemp() {
         ST7735_OutString("Current Temperature: ");
         ST7735_SetCursor(0, 4);
         ST7735_OutUDec(temp);
-		ST7735_SetCursor(0, 5);
-		ST7735_OutString("Temperature (LUT): ");
-		ST7735_SetCursor(0, 6);
-		ST7735_OutUDec(TempLUT[temp]);
+		// ST7735_SetCursor(0, 5);
+		// ST7735_OutString("Temperature (LG - LUT): ");
+		// ST7735_SetCursor(0, 6);
+		// ST7735_OutUDec(TempLUT[temp]);
+		// ST7735_SetCursor(0, 7);
+		// ST7735_OutString("Number of Samples: ");
+		ST7735_SetCursor(0, 8);
+		ST7735_OutUDec(NumThermSamples++);
+
+
         OS_bSignal(&LCD_Mutex);
         if (input) {
             OS_AddThread(&DisplayAll, 1);

@@ -101,6 +101,7 @@ typedef struct {
     uint32_t putI;
     uint32_t data[FIFO_CAPACITY];
     struct Sema4 empty;
+    uint32_t samplesLost;
 } fifo_t;
 
 enum FIFO {

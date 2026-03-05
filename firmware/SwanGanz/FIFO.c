@@ -30,6 +30,7 @@ int Fifo_Put(enum FIFO fifoNum, uint32_t data) {
     fifo_t* fifo = &Fifos[fifoNum];
     uint32_t newPutI = (fifo->putI + 1) & (FIFO_CAPACITY - 1);
     if (newPutI == fifo->putI) {
+        fifo->samplesLost++;
         return 0;
     }
     fifo->data[fifo->putI] = data;          // save in Fifo

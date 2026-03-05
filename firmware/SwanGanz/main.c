@@ -54,18 +54,18 @@
 // UART_Rx = PA9
 void Logic_Init() {
     // Inputs - debug pins and LED
-    IOMUX->SECCFG.PINCM[PA10INDEX] = (uint32_t) 0x00000081;
-    IOMUX->SECCFG.PINCM[PA11INDEX] = (uint32_t) 0x00000081;
-    IOMUX->SECCFG.PINCM[PA12INDEX] = (uint32_t) 0x00000081;
-    IOMUX->SECCFG.PINCM[PA13INDEX] = (uint32_t) 0x00000081;
+    IOMUX->SECCFG.PINCM[PA10INDEX] = (uint32_t) 0x00000081; // Debug Pin 1
+    IOMUX->SECCFG.PINCM[PA11INDEX] = (uint32_t) 0x00000081; // Debug Pin 2
+    IOMUX->SECCFG.PINCM[PA12INDEX] = (uint32_t) 0x00000081; // Debug Pin 3
+    IOMUX->SECCFG.PINCM[PA13INDEX] = (uint32_t) 0x00000081; // Debug Pin 4
     IOMUX->SECCFG.PINCM[PA15INDEX] = (uint32_t) 0x00000081; // Working LED
     IOMUX->SECCFG.PINCM[PA16INDEX] = (uint32_t) 0x00000081; // Error LED
-    IOMUX->SECCFG.PINCM[PB17INDEX] = (uint32_t) 0x00000081;
-    IOMUX->SECCFG.PINCM[PB18INDEX] = (uint32_t) 0x00000081;
-    IOMUX->SECCFG.PINCM[PB19INDEX] = (uint32_t) 0x00000081;
-    IOMUX->SECCFG.PINCM[PB20INDEX] = (uint32_t) 0x00000081;
-    GPIOA->DOE31_0 |= (0xF << 10);
-    GPIOB->DOE31_0 |= (0xF << 17);
+    IOMUX->SECCFG.PINCM[PB17INDEX] = (uint32_t) 0x00000081; // Debug Pin 5
+    IOMUX->SECCFG.PINCM[PB18INDEX] = (uint32_t) 0x00000081; 
+    IOMUX->SECCFG.PINCM[PB19INDEX] = (uint32_t) 0x00000081; 
+    IOMUX->SECCFG.PINCM[PB20INDEX] = (uint32_t) 0x00000081; // Debug Pin 8
+    GPIOA->DOE31_0 |= (1 << 10) | (1 << 11) | (1 << 12) | (1 << 13) | (1 << 15) | (1 << 16);
+    GPIOB->DOE31_0 |= (0x0F << 17);
 
     // Outputs- buttons
     IOMUX->SECCFG.PINCM[PB12INDEX] = (uint32_t) 0x00040081;
@@ -85,6 +85,7 @@ void Logic_Init() {
 static void IdleThread() {
     while (1) {
         //OS_Suspend();
+        __asm("WFI");
     }
 }
 
@@ -102,6 +103,7 @@ int main(void) {
     OS_AddThread(&DisplayTemp, 1);
     OS_AddThread(&DisplayStartMenu, 1);
     OS_AddThread(&IdleThread, 2);
+    
     
     OS_Launch(TIME_1MS);
 }
