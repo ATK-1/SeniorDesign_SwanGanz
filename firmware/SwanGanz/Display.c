@@ -2,14 +2,11 @@
 #include "../inc/ST7735.h"
 #include "OS.h"
 #include "Display.h"
+#include "LUT.h"
 
 #define NUM_CHANNELS 6
 Sema4_t LCD_Mutex;
 static int input;
-static uint32_t NumThermSamples;
-
-
-
 
 
 void DisplayInit() {
@@ -62,17 +59,14 @@ static void DisplayAll() {
 void DisplayTemp() {
     while (1) {
         uint32_t temp = Fifo_Get(THERM_LOW_FIFO);
-        OS_bWait(&LCD_Mutex);
+        
+		OS_bWait(&LCD_Mutex);
         ST7735_SetCursor(0, 3);
         ST7735_OutString("Current Temperature: ");
         ST7735_SetCursor(0, 4);
 		ST7735_OutUDec(TempLUT[temp]);
-
-		ST7735_SetCursor(0, 8);
-		ST7735_OutUDec(NumThermSamples++);
-
-
         OS_bSignal(&LCD_Mutex);
+
         if (input) {
             OS_AddThread(&DisplayAll, 1);
             OS_Kill();

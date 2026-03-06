@@ -21,14 +21,14 @@ void DASInit() {
     Samples ADC and puts sampled data into designated FIFO
 */
 void DAS() {
-    GPIOA->DOUTTGL31_0 = (1<<10);
-    GPIOA->DOUTTGL31_0 = (1<<10);
+    GPIOB->DOUTTGL31_0 = (1<<17);
     uint32_t sampleBuffer[6];
     ADC_In(sampleBuffer);
+    GPIOB->DOUTTGL31_0 = (1<<17);
     for (int i = 0; i < 6; i++) {
         Fifo_Put(i, sampleBuffer[i]);
     }
-    GPIOA->DOUTTGL31_0 = (1<<10);
+    GPIOB->DOUTTGL31_0 = (1<<17);
 }
 
 // for now we're just polling for any button and will send a 1 if anything is pressed

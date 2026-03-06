@@ -253,4 +253,6 @@ ptask_t PTaskSchedule[PSCHEDULE_SIZE] = {
 void Fifo_Init(enum FIFO fifoNum);
 int Fifo_Put(enum FIFO fifoNum, uint32_t data);
 uint32_t Fifo_Get(enum FIFO fifoNum);
+
 #endif
+
