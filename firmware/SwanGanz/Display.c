@@ -69,6 +69,7 @@ void DisplayTemp() {
 
         if (input) {
             OS_AddThread(&DisplayAll, 1);
+			OS_SetPerioidcSchedule(1);
             OS_Kill();
         }
     }

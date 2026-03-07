@@ -29,7 +29,7 @@ void Fifo_Init(enum FIFO fifoNum) {
 int Fifo_Put(enum FIFO fifoNum, uint32_t data) {
     fifo_t* fifo = &Fifos[fifoNum];
     uint32_t newPutI = (fifo->putI + 1) & (FIFO_CAPACITY - 1);
-    if (newPutI == fifo->putI) {
+    if (newPutI == fifo->getI) {
         fifo->samplesLost++;
         return 0;
     }

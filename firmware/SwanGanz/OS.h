@@ -78,12 +78,6 @@ typedef struct {
     uint32_t priority;
 } backgroundTask_t;
 
-typedef struct {
-    void (*periodicTask)(void);
-    uint32_t timeToNext;
-    uint32_t isActive;
-    uint32_t period;
-} ptask_t;
 
 
 /**
@@ -157,15 +151,9 @@ void OS_bSignal(Sema4_t *semaPt);
 int OS_AddThread(void(*task)(void), uint32_t priority);
 
 
-//******** OS_AddPeriodicThread *************** 
-// Add a background periodic thread
-// typically this function receives the highest priority
-// Inputs: task is pointer to a void/void background function
-//         period in ms
-//         priority 0 is the highest, 3 is the lowest
-// Priorities are relative to other background periodic threads
-// Outputs: 1 if successful, 0 if this thread can not be added
-int OS_AddPeriodicThread(void(*task)(void), uint32_t freq);
+//******** OS_SetPerioidcSchedule *************** 
+// Sets the current fixed scheudle of periodic threads to run
+void OS_SetPerioidcSchedule(uint32_t scheudleNumber);
 
 
 // ******** OS_Sleep ************

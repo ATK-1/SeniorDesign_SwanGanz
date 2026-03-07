@@ -20,11 +20,24 @@ void DASInit() {
 /*
     Samples ADC and puts sampled data into designated FIFO
 */
-void DAS() {
+void DasStartMenu() {
     GPIOB->DOUTTGL31_0 = (1<<17);
     uint32_t sampleBuffer[6];
     ADC_In(sampleBuffer);
+
     GPIOB->DOUTTGL31_0 = (1<<17);
+    Fifo_Put(THERM_LOW_FIFO, sampleBuffer[THERM_LOW]);
+
+    GPIOB->DOUTTGL31_0 = (1<<17);
+}
+
+void DasAllSamples() {
+    GPIOB->DOUTTGL31_0 = (1<<17);
+    uint32_t sampleBuffer[6];
+    ADC_In(sampleBuffer);
+    
+    GPIOB->DOUTTGL31_0 = (1<<17);
+    //maybe make function to do this all at once
     for (int i = 0; i < 6; i++) {
         Fifo_Put(i, sampleBuffer[i]);
     }
@@ -38,8 +51,11 @@ void InputPolling() {
     uint32_t mode  = !(GPIOB->DIN31_0 & (1<<12));
     uint32_t enter = !(GPIOB->DIN31_0 & (1<<13));
 
-    if ((PrevMode && !mode) || (PrevEnter && !enter)) {
-        Fifo_Put(INPUT_FIFO, 1);
+    if ((PrevMode && !mode)) {
+        Fifo_Put(INPUT_FIFO, MODE);
+    }
+    else {
+        Fifo_Put(INPUT_FIFO, ENTER);
     }
     PrevMode = mode;
     PrevEnter = enter;

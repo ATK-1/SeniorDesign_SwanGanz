@@ -87,9 +87,7 @@ int main(void) {
     OS_Init();
     DASInit();
 
-    OS_AddPeriodicThread(&DAS, 200);
-    OS_AddPeriodicThread(&InputPolling, 20);
-    OS_AddPeriodicThread(&HeartBeat, 2);
+    OS_SetPerioidcSchedule(0);
     OS_AddThread(&DisplayTemp, 1);
     OS_AddThread(&DisplayStartMenu, 1);
     OS_AddThread(&IdleThread, 2);

@@ -18,7 +18,7 @@
 #include "../inc/RTOS_UART.h"
 #include "OS.h"
 #include "Display.h"
-
+#include "Schedule.h"
 
 // Hardware interrupt priorities
 //   Priority 0: Periodic threads 
@@ -93,124 +93,9 @@ backgroundTask_t S2Task;
 backgroundTask_t PA28Task;
 
 // Periodic Threads
+periodicScheudler_t CurrentSchedule;
 uint32_t PTaskIdx;
-uint32_t NumPeriodicThreads;
 
-
-#define PSCHEDULE_SIZE 111
-ptask_t PTaskSchedule[PSCHEDULE_SIZE] = {
-  {NULL, 250, 0, 200},         // 0
-  {NULL, 250, 0, 20},          // 25
-  {NULL, 500, 0, 2},           // 50
-  {NULL, 1000, 0, 200},          // 100
-  {NULL, 1000, 0, 200},          // 200
-  {NULL, 1000, 0, 200},          // 300
-  {NULL, 1000, 0, 200},          // 400
-  {NULL, 1000, 0, 200},          // 500
-  {NULL, 1000, 0, 200},          // 600
-  {NULL, 1000, 0, 200},          // 700
-  {NULL, 1000, 0, 200},          // 800
-  {NULL, 1000, 0, 200},          // 900
-  {NULL, 250, 0, 200},           // 1000
-  {NULL, 750, 0, 20},          // 1025
-  {NULL, 1000, 0, 200},          // 1100
-  {NULL, 1000, 0, 200},          // 1200
-  {NULL, 1000, 0, 200},          // 1300
-  {NULL, 1000, 0, 200},          // 1400
-  {NULL, 1000, 0, 200},          // 1500
-  {NULL, 1000, 0, 200},          // 1600
-  {NULL, 1000, 0, 200},          // 1700
-  {NULL, 1000, 0, 200},          // 1800
-  {NULL, 1000, 0, 200},          // 1900
-  {NULL, 250, 0, 200},           // 2000
-  {NULL, 750, 0, 20},          // 2025
-  {NULL, 1000, 0, 200},          // 2100
-  {NULL, 1000, 0, 200},          // 2200
-  {NULL, 1000, 0, 200},          // 2300
-  {NULL, 1000, 0, 200},          // 2400
-  {NULL, 1000, 0, 200},          // 2500
-  {NULL, 1000, 0, 200},          // 2600
-  {NULL, 1000, 0, 200},          // 2700
-  {NULL, 1000, 0, 200},          // 2800
-  {NULL, 1000, 0, 200},          // 2900
-  {NULL, 250, 0, 200},           // 3000
-  {NULL, 750, 0, 20},          // 3025
-  {NULL, 1000, 0, 200},          // 3100
-  {NULL, 1000, 0, 200},          // 3200
-  {NULL, 1000, 0, 200},          // 3300
-  {NULL, 1000, 0, 200},          // 3400
-  {NULL, 1000, 0, 200},          // 3500
-  {NULL, 1000, 0, 200},          // 3600
-  {NULL, 1000, 0, 200},          // 3700
-  {NULL, 1000, 0, 200},          // 3800
-  {NULL, 1000, 0, 200},          // 3900
-  {NULL, 250, 0, 200},           // 4000
-  {NULL, 750, 0, 20},          // 4025
-  {NULL, 1000, 0, 200},          // 4100
-  {NULL, 1000, 0, 200},          // 4200
-  {NULL, 1000, 0, 200},          // 4300
-  {NULL, 1000, 0, 200},          // 4400
-  {NULL, 1000, 0, 200},          // 4500
-  {NULL, 1000, 0, 200},          // 4600
-  {NULL, 1000, 0, 200},          // 4700
-  {NULL, 1000, 0, 200},          // 4800
-  {NULL, 1000, 0, 200},          // 4900
-  {NULL, 250, 0, 200},           // 5000
-  {NULL, 750, 0, 20},          // 5025
-  {NULL, 1000, 0, 200},          // 5100
-  {NULL, 1000, 0, 200},          // 5200
-  {NULL, 1000, 0, 200},          // 5300
-  {NULL, 1000, 0, 200},          // 5400
-  {NULL, 1000, 0, 200},          // 5500
-  {NULL, 1000, 0, 200},          // 5600
-  {NULL, 1000, 0, 200},          // 5700
-  {NULL, 1000, 0, 200},          // 5800
-  {NULL, 1000, 0, 200},          // 5900
-  {NULL, 250, 0, 200},           // 6000
-  {NULL, 750, 0, 20},          // 6025
-  {NULL, 1000, 0, 200},          // 6100
-  {NULL, 1000, 0, 200},          // 6200
-  {NULL, 1000, 0, 200},          // 6300
-  {NULL, 1000, 0, 200},          // 6400
-  {NULL, 1000, 0, 200},          // 6500
-  {NULL, 1000, 0, 200},          // 6600
-  {NULL, 1000, 0, 200},          // 6700
-  {NULL, 1000, 0, 200},          // 6800
-  {NULL, 1000, 0, 200},          // 6900
-  {NULL, 250, 0, 200},           // 7000
-  {NULL, 750, 0, 20},          // 7025
-  {NULL, 1000, 0, 200},          // 7100
-  {NULL, 1000, 0, 200},          // 7200
-  {NULL, 1000, 0, 200},          // 7300
-  {NULL, 1000, 0, 200},          // 7400
-  {NULL, 1000, 0, 200},          // 7500
-  {NULL, 1000, 0, 200},          // 7600
-  {NULL, 1000, 0, 200},          // 7700
-  {NULL, 1000, 0, 200},          // 7800
-  {NULL, 1000, 0, 200},          // 7900
-  {NULL, 250, 0, 200},           // 8000
-  {NULL, 750, 0, 20},          // 8025
-  {NULL, 1000, 0, 200},          // 8100
-  {NULL, 1000, 0, 200},          // 8200
-  {NULL, 1000, 0, 200},          // 8300
-  {NULL, 1000, 0, 200},          // 8400
-  {NULL, 1000, 0, 200},          // 8500
-  {NULL, 1000, 0, 200},          // 8600
-  {NULL, 1000, 0, 200},          // 8700
-  {NULL, 1000, 0, 200},          // 8800
-  {NULL, 1000, 0, 200},          // 8900
-  {NULL, 250, 0, 200},           // 9000
-  {NULL, 750, 0, 20},          // 9025
-  {NULL, 1000, 0, 200},          // 9100
-  {NULL, 1000, 0, 200},          // 9200
-  {NULL, 1000, 0, 200},          // 9300
-  {NULL, 1000, 0, 200},          // 9400
-  {NULL, 1000, 0, 200},          // 9500
-  {NULL, 1000, 0, 200},          // 9600
-  {NULL, 1000, 0, 200},          // 9700
-  {NULL, 1000, 0, 200},          // 9800
-  {NULL, 1000, 0, 200}           // 9900
-};
 
 // ******** OS_ClearMsTime ************
 // sets the system time to zero and start a periodic interrupt
@@ -436,36 +321,11 @@ static void InsertSleepyThread(tcb_t* tcb, uint32_t timeOffset) {
     EndCritical(sr);
 }
 
-//******** OS_AddPeriodicThread *************** 
-// Add a background periodic thread
-// typically this function receives the highest priority
-// Inputs: task is pointer to a void/void background function
-//         period in ms
-//         priority 0 is the highest, 3 is the lowest
-// Priorities are relative to other background periodic threads
-// Outputs: 1 if successful, 0 if this thread can not be added
-int OS_AddPeriodicThread(void(*task)(void), uint32_t freq) {
-    // Activate your thread in the task scheduler
-    for (int i = 0; i < PSCHEDULE_SIZE; i++) {
-        ptask_t* scheduledTask = &PTaskSchedule[i];
-        if (scheduledTask->period == freq) {
-            scheduledTask->period = freq;
-            scheduledTask->isActive = 1;
-            scheduledTask->periodicTask = task;
-        }
-    }
+//******** OS_SetPerioidcSchedule *************** 
+// Sets the current fixed scheudle of periodic threads to run
+void OS_SetPerioidcSchedule(uint32_t scheudleNumber) {
+    CurrentSchedule = FixedSchedule[scheudleNumber];
 
-    // If this is the first periodic thread after the os has already launched start timer
-    // MIGHT NOT NEED FOR SENIOR DESIGN
-    if (!NumPeriodicThreads && isLaunched) {
-        PTaskIdx = 0;
-        while (!PTaskSchedule[PTaskIdx].isActive) {
-            PTaskIdx = (PTaskIdx + 1) % PSCHEDULE_SIZE;
-        }
-        TimerG8_IntArm(1000, 40, 0);
-    }
-    NumPeriodicThreads++;
-    return 1;
 }
 
 /*
@@ -580,13 +440,7 @@ void OS_Launch(uint32_t theTimeSlice) {
     isLaunched = 1;
 
     TimerG12_IntArm(0xFFFFFFFF, 0);
-    if (NumPeriodicThreads) {
-        PTaskIdx = 0;
-        while (!PTaskSchedule[PTaskIdx].isActive) {
-            PTaskIdx = (PTaskIdx + 1) % PSCHEDULE_SIZE;
-        }
-        TimerG8_IntArm(1000, 200, 0);
-    }
+    TimerG8_IntArm(1000, 200, 0);
     OSEnableInterrupts(); 
     OS_Suspend();
 }
@@ -726,16 +580,11 @@ static void BackgroundThreadRun(void(*task)(void)) {
 */
 void TIMG8_IRQHandler(void){
   if ((TIMG8->CPU_INT.IIDX) == 1) {
-    (*PTaskSchedule[PTaskIdx].periodicTask)();
+    (*CurrentSchedule.schedule[PTaskIdx].periodicTask)();
 
     // Accumulate next time
-    PTaskIdx = (PTaskIdx + 1) % PSCHEDULE_SIZE;
-    uint32_t nextTime = PTaskSchedule[PTaskIdx].timeToNext;
-    while (!PTaskSchedule[PTaskIdx].isActive) {
-        PTaskIdx = (PTaskIdx + 1) % PSCHEDULE_SIZE;
-        nextTime += PTaskSchedule[PTaskIdx++].timeToNext;
-    }
-
+    PTaskIdx = (PTaskIdx + 1) % CurrentSchedule.scheulde_size;
+    uint32_t nextTime = CurrentSchedule.schedule[PTaskIdx].timeToNext;
     TIMG8->COUNTERREGS.LOAD = nextTime - 1;
   }
 }
