@@ -7,7 +7,13 @@ enum CHANNEL {
     PRESSURE2B
 };
 
+enum BUTTON {
+    MODE,
+    ENTER
+};
+
 void DASInit();
-void DAS();
+void DasStartMenu();
+void DasAllSamples();
 void InputPolling();
 void HeartBeat();

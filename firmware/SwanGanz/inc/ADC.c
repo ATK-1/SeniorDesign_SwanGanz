@@ -56,14 +56,14 @@ void ADC_Init() {
   ADC0->ULLMEM.CTL0 = (3 << 24) | (1 << 16);
   ADC1->ULLMEM.CTL0 = (3 << 24) | (1 << 16);
   
-  // bits 30-28 =0  no shift
-  // bits 26-24 =0  no averaging
+  // bits 30-28 = 2  Right Shift result by 2 bits
+  // bits 26-24 = 2  Hardware Average 4 Samples
   // bit 20 SAMPMODE=1 software triggers
   // bits 17-16 CONSEQ=0 ADC at start will be sampled once, 10 for repeated sampling
   // bit 8 SC=0 for stop, =1 to software start
   // bit 0 TRIGSRC=0 software trigger
-  ADC0->ULLMEM.CTL1 = (1<<16);  //MAYBE NEED BIT 20?
-  ADC1->ULLMEM.CTL1 = (1<<16);
+  ADC0->ULLMEM.CTL1 = (2 << 28) | (2 << 24) | (1 << 16);  //MAYBE NEED BIT 20?
+  ADC1->ULLMEM.CTL1 = (2 << 28) | (2 << 24) | (1 << 16);
   
   // bits 28-24 ENDADD (which  MEMCTL to end)
   // bits 20-16 STARTADD (which  MEMCTL to start)

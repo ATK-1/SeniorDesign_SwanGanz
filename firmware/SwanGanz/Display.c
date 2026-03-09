@@ -2,10 +2,12 @@
 #include "../inc/ST7735.h"
 #include "OS.h"
 #include "Display.h"
+#include "LUT.h"
 
 #define NUM_CHANNELS 6
 Sema4_t LCD_Mutex;
 static int input;
+
 
 void DisplayInit() {
     ST7735_InitR(INITR_BLACKTAB); //INITR_REDTAB for AdaFruit
@@ -16,12 +18,12 @@ void DisplayInit() {
 
 static void DisplayAll() {
     char* messages[] = {
-        "P1A:   ",
-        "P1B:   ",
-        "T-Low: ",
-        "T-Hi:  ",
-        "P2A:   ",
-        "P2B:   ",
+        "P1-Low: ",
+        "P1-Hi:  ",
+        "T-Low:  ",
+        "T-Hi:   ",
+        "P2-Low: ",
+        "P2-Hi:  ",
     };
     OS_bWait(&LCD_Mutex);
     ST7735_FillScreen(ST7735_BLACK);
@@ -37,12 +39,18 @@ static void DisplayAll() {
             data[i] = Fifo_Get(i);
         }
         for (int i = 0; i < NUM_CHANNELS; i++) {
-            ST7735_FillRect(78 , (i + 1) * 20, 5, 7, ST7735_BLACK);
+            ST7735_FillRect(78 , (i + 1) * 20, 11, 7, ST7735_BLACK);
             ST7735_SetCursor(10, (i + 1) * 2);
-            ST7735_OutUDec(data[i]);
+			if (i == 2) {
+				ST7735_OutUDec(TempLUT[data[i]]);
+			}
+			else {
+            	ST7735_OutUDec(data[i]);
+			}
         }
     }
 }
+
 
 /*
     DisplayTemp - foreground thread
@@ -51,14 +59,17 @@ static void DisplayAll() {
 void DisplayTemp() {
     while (1) {
         uint32_t temp = Fifo_Get(THERM_LOW_FIFO);
-        OS_bWait(&LCD_Mutex);
+        
+		OS_bWait(&LCD_Mutex);
         ST7735_SetCursor(0, 3);
         ST7735_OutString("Current Temperature: ");
         ST7735_SetCursor(0, 4);
-        ST7735_OutUDec(temp);
+		ST7735_OutUDec(TempLUT[temp]);
         OS_bSignal(&LCD_Mutex);
+
         if (input) {
             OS_AddThread(&DisplayAll, 1);
+			OS_SetPerioidcSchedule(1);
             OS_Kill();
         }
     }
