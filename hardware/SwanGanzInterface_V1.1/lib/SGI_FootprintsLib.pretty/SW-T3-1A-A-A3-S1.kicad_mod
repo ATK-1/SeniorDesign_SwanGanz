@@ -1,0 +1,119 @@
+(footprint "SW-T3-1A-A-A3-S1"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "29e5278f-4df4-46a3-a7ff-da3fa2a09108")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "SW-T3-1A-A-A3-S1"
+		(at 0 6 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "353d22bc-ecca-4c44-85a5-d03d465fdfe8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a43f49bd-5b7f-4dee-8e7b-c8b677e51c85")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "d5b83589-11b5-46be-b385-9231365cfea9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -5 -2.1)
+		(end 2.5 2.1)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "B.CrtYd")
+		(uuid "bd91a364-af67-4242-b6bd-d79d41d8d934")
+	)
+	(fp_rect
+		(start -5 -3)
+		(end 5 3)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "fd570afa-a42c-4db6-a628-0fca848d46a8")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 7.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "2bb0d27e-635b-4337-8569-0689dec43d86")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole oval
+		(at -2.5 0)
+		(size 1.2 2.8)
+		(drill oval 0.7 2.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "faf30772-1110-4b8d-8953-5ccc297df745")
+	)
+	(pad "2" thru_hole oval
+		(at 0 0)
+		(size 1.2 2.8)
+		(drill oval 0.7 2.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "3d75981e-0dc7-4347-ab2f-b2b1f9d5edd7")
+	)
+	(embedded_fonts no)
+	(model "C:/Users/ashto/Dev/ECE445L/lab-7-and-10-project-nnat/hw/Part Libraries/models/SW-T3-1A-A-A3-S1.stp"
+		(offset
+			(xyz 0 0 7)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -0)
+		)
+	)
+)
