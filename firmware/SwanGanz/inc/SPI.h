@@ -83,5 +83,9 @@ void SPI_OutCommand(char command);
  * @brief Reset LCD
  */
 void SPI_Reset(void);
+
+typedef unsigned char	BYTE;
+
+BYTE xchg_spi(BYTE data);
 #endif // __SPI_H__
 /** @}*/

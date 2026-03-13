@@ -19,7 +19,7 @@ J4.31 LCD RS     PB16
 // initialize SPI for 8 MHz baud clock
 // busy-wait synchronization
 // SPI0,SPI1 in power domain PD1 SysClk equals bus CPU clock
-void SPI_Init(void){uint32_t busfreq =  Clock_Freq();
+void SPI_Init(void) {uint32_t busfreq =  Clock_Freq();
     // assumes GPIOA and GPIOB are reset and powered previously
     // RSTCLR to SPI1 peripherals
     //   bits 31-24 unlock key 0xB1
@@ -55,9 +55,9 @@ void SPI_Init(void){uint32_t busfreq =  Clock_Freq();
 //     8,000,000 = (80,000,000)/((4 + 1) * 2)
 //     8,000,000 = (Clock_Freq)/((m + 1) * 2)
 //     m = (Clock_Freq/16000000) - 1
-   if(busfreq <= 16000000){
+   if(busfreq <= 16000000) {
      SPI1->CLKCTL = 0; // frequency= busfreq/2
-   }else if(busfreq == 40000000){
+   }else if(busfreq == 40000000) {
      SPI1->CLKCTL = 1; // frequency= 10MHz
     // SPI1->CLKCTL = 2; // frequency= 6.66MHz
    }else{
@@ -94,8 +94,8 @@ void SPI_Init(void){uint32_t busfreq =  Clock_Freq();
 // Output 8-bit data to SPI port
 // Input: data is an 8-bit data to be transferred
 // Output: none
-void SPI_OutData(char data){
-  while((SPI1->STAT&0x02) == 0x00){}; // spin if TxFifo full
+void SPI_OutData(char data) {
+  while((SPI1->STAT&0x02) == 0x00) {}; // spin if TxFifo full
   GPIOB->DOUTSET31_0 = 1<<16;         // RS=PB16=1 for data
   SPI1->TXDATA = data;
 }
@@ -103,11 +103,11 @@ void SPI_OutData(char data){
  // Output 8-bit command to SPI port
  // Input: data is an 8-bit data to be transferred
  // Output: none
- void SPI_OutCommand(char command){
-   while((SPI1->STAT&0x10) == 0x10){}; // spin if SPI busy
+ void SPI_OutCommand(char command) {
+   while((SPI1->STAT&0x10) == 0x10) {}; // spin if SPI busy
    GPIOB->DOUTCLR31_0 = 1<<16;         // RS=PA13=0 for command
    SPI1->TXDATA = command;
-   while((SPI1->STAT&0x10) == 0x10){}; // spin if SPI busy
+   while((SPI1->STAT&0x10) == 0x10) {}; // spin if SPI busy
  }
 
  //---------SPI_Reset------------
@@ -115,7 +115,7 @@ void SPI_OutData(char data){
  // Input: none
  // Output: none
  // at 48 MHz
- void SPI_Reset(void){
+ void SPI_Reset(void) {
    GPIOB->DOUTSET31_0 = 1<<15; // PB15=!RST=1
    Clock_Delay1ms(500);        // 500ms (calibrated with logic analyzer)
    GPIOB->DOUTCLR31_0 = 1<<15; // PB15=!RST=0
@@ -123,3 +123,17 @@ void SPI_OutData(char data){
    GPIOB->DOUTSET31_0 = 1<<15; // PB15=!RST=1
    Clock_Delay1ms(500);        // 500ms
  }
+
+ /* Exchange a byte */
+// Inputs:  byte to be sent to SPI
+// Outputs: byte received from SPI
+// assumes it has been selected with CS low
+BYTE xchg_spi(BYTE data) {
+  BYTE volatile rcvdat;
+  // wait until SPI1 not busy/
+  while((SPI1->STAT&0x10) == 0x10){}; // spin SPI busy
+  SPI1->TXDATA = data;
+  while((SPI1->STAT&0x04) == 0x04){}; // spin SPI RxFifo empty
+  rcvdat = SPI1->RXDATA; // acknowledge response
+  return rcvdat;
+}
