@@ -107,14 +107,6 @@ void touchEnable(int on);
 int touched(void);
 int touchRead(uint16_t* x, uint16_t* y);
 
-/* Low level access */
-void writeReg(uint8_t reg, uint8_t val);
-uint8_t readReg(uint8_t reg);
-void writeData(uint8_t d);
-uint8_t readData(void);
-void writeCommand(uint8_t d);
-uint8_t readStatus(void);
-
 
 // Colors (RGB565)
 #define RA8875_BLACK 0x0000   ///< Black Color

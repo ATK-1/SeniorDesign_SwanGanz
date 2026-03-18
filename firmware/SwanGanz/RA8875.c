@@ -49,38 +49,10 @@ static uint16_t _height;
 static uint8_t _textScale;
 static uint8_t _rotation;
 static uint8_t _voffset;
-enum RA8875sizes _size;
+static enum RA8875sizes _size;
 
 
 /************************* Low Level ***********************************/
-
-/**************************************************************************/
-/*!
-    Write data to the specified register
-
-    @param reg Register to write to
-    @param val Value to write
-*/
-/**************************************************************************/
-void writeReg(uint8_t reg, uint8_t val) {
-  writeCommand(reg);
-  writeData(val);
-}
-
-/**************************************************************************/
-/*!
-    Set the register to read from
-
-    @param reg Register to read
-
-    @return The value
-*/
-/**************************************************************************/
-uint8_t readReg(uint8_t reg) {
-  writeCommand(reg);
-  return readData();
-}
-
 /**************************************************************************/
 /*!
     Write data to the current register
@@ -88,7 +60,7 @@ uint8_t readReg(uint8_t reg) {
     @param d Data to write
 */
 /**************************************************************************/
-void writeData(uint8_t d) {
+static void writeData(uint8_t d) {
   TFT_CS_LOW();
   
   SPI_OutCommand(RA8875_DATAWRITE);
@@ -104,7 +76,7 @@ void writeData(uint8_t d) {
     @return The Value
 */
 /**************************************************************************/
-uint8_t readData(void) {
+static uint8_t readData(void) {
   TFT_CS_LOW();
 
   SPI_OutCommand(RA8875_DATAREAD);
@@ -121,7 +93,7 @@ uint8_t readData(void) {
     @param d The data to write as a command
  */
 /**************************************************************************/
-void writeCommand(uint8_t d) {
+static void writeCommand(uint8_t d) {
   TFT_CS_LOW();
 
   SPI_OutCommand(RA8875_CMDWRITE);
@@ -137,7 +109,7 @@ void writeCommand(uint8_t d) {
     @return The value
  */
 /**************************************************************************/
-uint8_t readStatus(void) {
+static uint8_t readStatus(void) {
   TFT_CS_LOW();
 
   SPI_OutCommand(RA8875_CMDREAD);
@@ -145,6 +117,33 @@ uint8_t readStatus(void) {
 
   TFT_CS_HIGH();
   return x;
+}
+
+/**************************************************************************/
+/*!
+    Write data to the specified register
+
+    @param reg Register to write to
+    @param val Value to write
+*/
+/**************************************************************************/
+static void writeReg(uint8_t reg, uint8_t val) {
+  writeCommand(reg);
+  writeData(val);
+}
+
+/**************************************************************************/
+/*!
+    Set the register to read from
+
+    @param reg Register to read
+
+    @return The value
+*/
+/**************************************************************************/
+static uint8_t readReg(uint8_t reg) {
+  writeCommand(reg);
+  return readData();
 }
 
 /************************* Initialization *********************************/
@@ -166,7 +165,7 @@ void softReset(void) {
       Initialise the PLL
 */
 /**************************************************************************/
-void PLLinit(void) {
+static void PLLinit(void) {
   if (_size == RA8875_480x80 || _size == RA8875_480x128 ||
       _size == RA8875_480x272) {
     writeReg(RA8875_PLLC1, RA8875_PLLC1_PLLDIV1 + 10);
@@ -400,7 +399,7 @@ void graphicsMode(void) {
       @return True if the expected status has been reached
 */
 /**************************************************************************/
-int waitPoll(uint8_t regname, uint8_t waitflag) {
+static int waitPoll(uint8_t regname, uint8_t waitflag) {
   /* Wait for the command to finish */
   while (1) {
     uint8_t temp = readReg(regname);
@@ -462,7 +461,7 @@ void fillScreenWithCurrentColor(void) {
     @return the X value with current rotation applied
  */
 /**************************************************************************/
-int16_t applyRotationX(int16_t x) {
+static int16_t applyRotationX(int16_t x) {
   switch (_rotation) {
     case 2:
       x = _width - 1 - x;
@@ -479,7 +478,7 @@ int16_t applyRotationX(int16_t x) {
     @return the Y value with current rotation applied
  */
 /**************************************************************************/
-int16_t applyRotationY(int16_t y) {
+static int16_t applyRotationY(int16_t y) {
   switch (_rotation) {
     case 2:
       y = _height - 1 - y;
@@ -544,7 +543,9 @@ void drawPixels(uint16_t* p, uint32_t num, int16_t x,
   TFT_CS_LOW();
   SPI_OutCommand(RA8875_DATAWRITE);
   while (num--) {
-    SPI_transfer16(*p++); //TODO 16 bit transfer?
+    //SPI_transfer16(*p++); //TODO 16 bit transfer?
+    SPI_OutData(*p & 0x00FF);
+    SPI_OutData((*p & 0xFF00) >> 8);
   }
   TFT_CS_HIGH();
 }
@@ -641,7 +642,7 @@ void drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color) {
       Helper function for higher level circle drawing code
 */
 /**************************************************************************/
-void circleHelper(int16_t x, int16_t y, int16_t r, uint16_t color, int filled) {
+static void circleHelper(int16_t x, int16_t y, int16_t r, uint16_t color, int filled) {
   x = applyRotationX(x);
   y = applyRotationY(y);
 
@@ -686,7 +687,7 @@ void circleHelper(int16_t x, int16_t y, int16_t r, uint16_t color, int filled) {
       Helper function for higher level rectangle drawing code
 */
 /**************************************************************************/
-void rectHelper(int16_t x, int16_t y, int16_t w, int16_t h,
+static void rectHelper(int16_t x, int16_t y, int16_t w, int16_t h,
                                  uint16_t color, bool filled) {
   x = applyRotationX(x);
   y = applyRotationY(y);
@@ -742,7 +743,7 @@ void rectHelper(int16_t x, int16_t y, int16_t w, int16_t h,
       Helper function for higher level triangle drawing code
 */
 /**************************************************************************/
-void triangleHelper(int16_t x0, int16_t y0, int16_t x1,
+static void triangleHelper(int16_t x0, int16_t y0, int16_t x1,
                                      int16_t y1, int16_t x2, int16_t y2,
                                      uint16_t color, bool filled) {
   x0 = applyRotationX(x0);
@@ -807,7 +808,7 @@ void triangleHelper(int16_t x0, int16_t y0, int16_t x1,
       Helper function for higher level ellipse drawing code
 */
 /**************************************************************************/
-void ellipseHelper(int16_t xCenter, int16_t yCenter,
+static void ellipseHelper(int16_t xCenter, int16_t yCenter,
                                     int16_t longAxis, int16_t shortAxis,
                                     uint16_t color, bool filled) {
   xCenter = applyRotationX(xCenter);
@@ -858,7 +859,7 @@ void ellipseHelper(int16_t xCenter, int16_t yCenter,
       Helper function for higher level curve drawing code
 */
 /**************************************************************************/
-void curveHelper(int16_t xCenter, int16_t yCenter,
+static void curveHelper(int16_t xCenter, int16_t yCenter,
                                   int16_t longAxis, int16_t shortAxis,
                                   uint8_t curvePart, uint16_t color,
                                   bool filled) {
@@ -917,7 +918,7 @@ static void swap(int16_t* x, int16_t* y) {
       Helper function for higher level rounded rectangle drawing code
  */
 /**************************************************************************/
-void roundRectHelper(int16_t x, int16_t y, int16_t w,
+static void roundRectHelper(int16_t x, int16_t y, int16_t w,
                                       int16_t h, int16_t r, uint16_t color,
                                       int filled) {
   x = applyRotationX(x);
@@ -1448,10 +1449,10 @@ void textWrite(const char* buffer, uint16_t len) {
   writeCommand(RA8875_MRWC);
   for (uint16_t i = 0; i < len; i++) {
     writeData(buffer[i]);
-  //  if (_textScale > 0) TRY IF NOT FAST ENOUGH
-
-    if (_textScale > 1)
+    //if (_textScale > 1)
+    if (_textScale > 0) { 
       Clock_Delay1ms(1);
+    }
   }
 }
 
