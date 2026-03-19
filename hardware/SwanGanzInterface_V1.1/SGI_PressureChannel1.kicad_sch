@@ -2798,7 +2798,7 @@
 			)
 		)
 	)
-	(global_label "ADC_0.3"
+	(global_label "ADC_1.4"
 		(shape input)
 		(at 179.07 88.9 0)
 		(fields_autoplaced yes)
@@ -2886,7 +2886,7 @@
 			)
 		)
 	)
-	(global_label "ADC_0.2"
+	(global_label "ADC_1.3"
 		(shape input)
 		(at 167.64 64.77 0)
 		(fields_autoplaced yes)

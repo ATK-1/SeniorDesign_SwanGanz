@@ -57,7 +57,49 @@
 		)
 	)
 	(sheet
-		(at 96.774 33.02)
+		(at 98.044 73.914)
+		(size 44.196 31.496)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 216 174 255 1.0000)
+		)
+		(uuid "2a61924c-1b61-4422-811f-a61fd6f6c556")
+		(property "Sheetname" "FT232"
+			(at 98.044 73.2024 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "FT232.kicad_sch"
+			(at 98.044 105.9946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 36.576 114.046)
 		(size 44.196 31.496)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -73,7 +115,7 @@
 		)
 		(uuid "2d5e901e-83ed-4d76-b163-6429564a2d4c")
 		(property "Sheetname" "Thermistor"
-			(at 96.774 32.3084 0)
+			(at 36.576 113.3344 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -82,7 +124,7 @@
 			)
 		)
 		(property "Sheetfile" "SGI_Thermistor.kicad_sch"
-			(at 96.774 65.1006 0)
+			(at 36.576 146.1266 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -99,7 +141,7 @@
 		)
 	)
 	(sheet
-		(at 158.496 32.766)
+		(at 98.298 113.792)
 		(size 44.196 31.496)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -115,7 +157,7 @@
 		)
 		(uuid "3d8fa9e7-4833-4941-a955-d778effe3e32")
 		(property "Sheetname" "PressureChannel1"
-			(at 158.496 32.0544 0)
+			(at 98.298 113.0804 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -124,7 +166,7 @@
 			)
 		)
 		(property "Sheetfile" "SGI_PressureChannel1.kicad_sch"
-			(at 158.496 64.8466 0)
+			(at 98.298 145.8726 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -141,7 +183,7 @@
 		)
 	)
 	(sheet
-		(at 215.392 32.766)
+		(at 155.194 113.792)
 		(size 44.196 31.496)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -157,7 +199,7 @@
 		)
 		(uuid "5b443651-3bea-4d19-bd25-a234ca65ad96")
 		(property "Sheetname" "PressureChannel2"
-			(at 215.392 32.0544 0)
+			(at 155.194 113.0804 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -166,7 +208,7 @@
 			)
 		)
 		(property "Sheetfile" "SGI_PressureChannel2.kicad_sch"
-			(at 215.392 64.8466 0)
+			(at 155.194 145.8726 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -220,6 +262,48 @@
 			(project "SwanGanzInterface_V1.1"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545"
 					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 155.194 73.914)
+		(size 44.196 31.496)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 129 226 255 1.0000)
+		)
+		(uuid "f7080da7-b463-4c5e-88b4-efa970c84168")
+		(property "Sheetname" "Speaker"
+			(at 155.194 73.2024 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Speaker.kicad_sch"
+			(at 155.194 105.9946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545"
+					(page "8")
 				)
 			)
 		)

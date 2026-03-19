@@ -1,0 +1,15 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "5b84298a-cd22-4188-813e-9e9f282e3523")
+	(paper "A4")
+	(title_block
+		(title "Swan Ganz Interface")
+		(date "2026-03-12")
+		(rev "Rev 1.1")
+		(company "Univerisity of Texas at Austin")
+		(comment 1 "Senior Design Project Fall 2025 - Spring 2026")
+	)
+	(lib_symbols)
+)

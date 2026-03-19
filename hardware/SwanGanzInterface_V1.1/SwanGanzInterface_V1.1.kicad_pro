@@ -873,6 +873,14 @@
     [
       "5b443651-3bea-4d19-bd25-a234ca65ad96",
       "PressureChannel2"
+    ],
+    [
+      "2a61924c-1b61-4422-811f-a61fd6f6c556",
+      "FT232"
+    ],
+    [
+      "f7080da7-b463-4c5e-88b4-efa970c84168",
+      "Speaker"
     ]
   ],
   "text_variables": {}
