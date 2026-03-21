@@ -1,4 +1,4 @@
-26823695247598797
+26830833573019240
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -97355,6 +97355,34 @@ LED diameter 5.0mm 2 pins
 0
 2
 2
+SGI_FootprintsLib
+MSPM0_PT0048A-IPC_A
+
+XM0G3507QPTRQ1 
+0
+48
+48
+SGI_FootprintsLib
+MSPM0_PT0048A-IPC_B
+
+XM0G3507QPTRQ1 
+0
+48
+48
+SGI_FootprintsLib
+MSPM0_PT0048A-IPC_C
+
+XM0G3507QPTRQ1 
+0
+48
+48
+SGI_FootprintsLib
+MSPM0_PT0048A-MFG
+
+XM0G3507QPTRQ1 
+0
+48
+48
 SGI_FootprintsLib
 MountingHole_4_40
 Mounting Hole 0.125in
