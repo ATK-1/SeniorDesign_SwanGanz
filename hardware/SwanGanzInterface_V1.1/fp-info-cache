@@ -1,4 +1,4 @@
-26830833573019240
+26836156241901706
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -97335,6 +97335,20 @@ Connector
 10
 10
 SGI_FootprintsLib
+1051640001
+1051640001-3
+Connector
+0
+11
+11
+SGI_FootprintsLib
+ABM8AIG25000MHZ122ZT3
+ABM8AIG
+Crystal or Oscillator
+0
+4
+4
+SGI_FootprintsLib
 AdaFruit_1590
 
 
@@ -97348,6 +97362,13 @@ FT232R-Breakout
 0
 22
 22
+SGI_FootprintsLib
+FT232RL
+SSOP-28 1
+Integrated Circuit
+0
+28
+28
 SGI_FootprintsLib
 LED_D5.0mm
 LED, diameter 5.0mm, 2 pins, http://cdn-reichelt.de/documents/datenblatt/A500/LL-504BC2E-009.pdf

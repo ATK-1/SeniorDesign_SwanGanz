@@ -635,6 +635,487 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "SGI_SymbolLib:FT232R-Breakout"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U5"
+				(at 10.16 1.2701 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "FT232R"
+				(at 10.16 -1.2699 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "SGI_FootprintsLib:FT232R-Breakout"
+				(at 0 20.828 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_locked" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "FT232R-Breakout_1_1"
+				(rectangle
+					(start -8.89 10.16)
+					(end 8.89 -10.16)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 7.62 0)
+					(length 2.54)
+					(name "3V3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 2.54 0)
+					(length 2.54)
+					(name "TXD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 -2.54 0)
+					(length 2.54)
+					(name "RXD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -11.43 -7.62 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "FT232R-Breakout_2_1"
+				(rectangle
+					(start -8.89 19.05)
+					(end 8.89 -20.32)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 15.24 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 11.43 0)
+					(length 2.54)
+					(name "TXLED"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 7.62 0)
+					(length 2.54)
+					(name "RXLED"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 3.81 0)
+					(length 2.54)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 0 0)
+					(length 2.54)
+					(name "3v3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 -3.81 0)
+					(length 2.54)
+					(name "CTS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 -7.62 0)
+					(length 2.54)
+					(name "SLEEP"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 -11.43 0)
+					(length 2.54)
+					(name "TXDEN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -11.43 -15.24 0)
+					(length 2.54)
+					(name "PWREN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 11.43 15.24 180)
+					(length 2.54)
+					(name "TXD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 11.43 11.43 180)
+					(length 2.54)
+					(name "DTR"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 11.43 7.62 180)
+					(length 2.54)
+					(name "RTS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "16"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 11.43 3.81 180)
+					(length 2.54)
+					(name "VCCIO"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "17"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 11.43 0 180)
+					(length 2.54)
+					(name "RXD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "18"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 11.43 -3.81 180)
+					(length 2.54)
+					(name "RI"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "19"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 11.43 -7.62 180)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "20"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 11.43 -11.43 180)
+					(length 2.54)
+					(name "DSR"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "21"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 11.43 -15.24 180)
+					(length 2.54)
+					(name "DCD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "22"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "SGI_SymbolLib:FT232RL"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -667,7 +1148,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf"
+			(property "Datasheet" "http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232RN.pdf"
 				(at 29.21 -194.92 0)
 				(effects
 					(font
@@ -706,7 +1187,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Part_Number" "FT232RL"
+			(property "Manufacturer_Part_Number" "FT232RNL"
 				(at 29.21 -594.92 0)
 				(effects
 					(font
@@ -736,7 +1217,7 @@
 					(hide yes)
 				)
 			)
-			(property "Arrow Part Number" "FT232RL"
+			(property "Arrow Part Number" "FT232RNL"
 				(at 29.21 -894.92 0)
 				(effects
 					(font
@@ -2036,7 +2517,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf"
+		(property "Datasheet" "http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232RN.pdf"
 			(at 75.692 215.748 0)
 			(effects
 				(font
@@ -2075,7 +2556,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "FT232RL"
+		(property "Manufacturer_Part_Number" "FT232RNL"
 			(at 75.692 615.748 0)
 			(effects
 				(font
@@ -2105,7 +2586,7 @@
 				(hide yes)
 			)
 		)
-		(property "Arrow Part Number" "FT232RL"
+		(property "Arrow Part Number" "FT232RNL"
 			(at 75.692 915.748 0)
 			(effects
 				(font
@@ -2648,6 +3129,134 @@
 		)
 	)
 	(symbol
+		(lib_id "SGI_SymbolLib:FT232R-Breakout")
+		(at 191.008 72.644 0)
+		(unit 2)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "43be0bdd-1e5f-4dd2-a639-d11b3fe45307")
+		(property "Reference" "U7"
+			(at 191.008 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "FT232R"
+			(at 191.008 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:FT232R-Breakout"
+			(at 191.008 51.816 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 191.008 72.644 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 191.008 72.644 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "10"
+			(uuid "5b378a84-745d-43ec-a672-e134ae9e00e3")
+		)
+		(pin "3"
+			(uuid "aac82b15-bccc-4281-a65b-2c10bd72f499")
+		)
+		(pin "5"
+			(uuid "c363462a-524a-4d48-bd21-9943f830a322")
+		)
+		(pin "6"
+			(uuid "9601269a-a943-482d-ac25-3390ea0203e5")
+		)
+		(pin "7"
+			(uuid "c02fd581-f106-48e1-8785-160b12c01848")
+		)
+		(pin "2"
+			(uuid "59fafca6-6cf1-4a1b-bb79-ce5860dfb6b3")
+		)
+		(pin "21"
+			(uuid "2f92570e-8e7e-41ab-9c0e-5983974408d3")
+		)
+		(pin "12"
+			(uuid "2a7c5241-91da-43f8-8696-9f53fe551d2f")
+		)
+		(pin "1"
+			(uuid "2731f318-f394-4829-a968-bf8c67010036")
+		)
+		(pin "4"
+			(uuid "abd6bccc-92dd-40c7-95bb-0b3200940312")
+		)
+		(pin "9"
+			(uuid "2c68163f-bd38-48cc-8dcd-3779c84f087c")
+		)
+		(pin "8"
+			(uuid "a0b58d04-4a52-435e-a60a-14e2c20f909c")
+		)
+		(pin "13"
+			(uuid "9d73f8c0-95a1-4ada-9917-e8ece79f74c5")
+		)
+		(pin "14"
+			(uuid "1c9ca499-922a-4d9c-9aac-17326efcdece")
+		)
+		(pin "15"
+			(uuid "35de67c3-2289-42a2-9628-9bc2ac19d462")
+		)
+		(pin "16"
+			(uuid "d1e6d892-2db1-4109-a437-f8bebdb5aa6a")
+		)
+		(pin "18"
+			(uuid "e8beff2a-6c27-4adc-92e0-e3d7efa15e16")
+		)
+		(pin "17"
+			(uuid "80b0314c-bcc9-4a37-8a39-cc9f9140b181")
+		)
+		(pin "11"
+			(uuid "4173799c-513d-4cfa-8e81-ac489dd3587c")
+		)
+		(pin "19"
+			(uuid "757218db-5047-41a0-a9a4-8c90ca6feb00")
+		)
+		(pin "20"
+			(uuid "0b50bca3-c7a9-41cb-9b58-3496a0a2e29b")
+		)
+		(pin "22"
+			(uuid "f9cf0eaf-53a8-4f74-a3d5-d3cc99f424fa")
+		)
+		(instances
+			(project ""
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "U7")
+					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 120.65 23.876 0)
 		(unit 1)
@@ -3050,6 +3659,136 @@
 		)
 	)
 	(symbol
+		(lib_id "SGI_SymbolLib:FT232R-Breakout")
+		(at 190.246 34.544 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9ecf34f4-7a71-43aa-b6ff-b0836a1054ae")
+		(property "Reference" "U14"
+			(at 200.66 33.2739 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "FT232R"
+			(at 200.66 35.8139 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:FT232R-Breakout"
+			(at 190.246 13.716 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 190.246 34.544 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 190.246 34.544 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "10"
+			(uuid "5b378a84-745d-43ec-a672-e134ae9e00e4")
+		)
+		(pin "3"
+			(uuid "aac82b15-bccc-4281-a65b-2c10bd72f49a")
+		)
+		(pin "5"
+			(uuid "c363462a-524a-4d48-bd21-9943f830a323")
+		)
+		(pin "6"
+			(uuid "9601269a-a943-482d-ac25-3390ea0203e6")
+		)
+		(pin "7"
+			(uuid "c02fd581-f106-48e1-8785-160b12c01849")
+		)
+		(pin "2"
+			(uuid "59fafca6-6cf1-4a1b-bb79-ce5860dfb6b4")
+		)
+		(pin "21"
+			(uuid "2f92570e-8e7e-41ab-9c0e-5983974408d4")
+		)
+		(pin "12"
+			(uuid "2a7c5241-91da-43f8-8696-9f53fe551d30")
+		)
+		(pin "1"
+			(uuid "2731f318-f394-4829-a968-bf8c67010037")
+		)
+		(pin "4"
+			(uuid "abd6bccc-92dd-40c7-95bb-0b3200940313")
+		)
+		(pin "9"
+			(uuid "2c68163f-bd38-48cc-8dcd-3779c84f087d")
+		)
+		(pin "8"
+			(uuid "a0b58d04-4a52-435e-a60a-14e2c20f909d")
+		)
+		(pin "13"
+			(uuid "9d73f8c0-95a1-4ada-9917-e8ece79f74c6")
+		)
+		(pin "14"
+			(uuid "1c9ca499-922a-4d9c-9aac-17326efcdecf")
+		)
+		(pin "15"
+			(uuid "35de67c3-2289-42a2-9628-9bc2ac19d463")
+		)
+		(pin "16"
+			(uuid "d1e6d892-2db1-4109-a437-f8bebdb5aa6b")
+		)
+		(pin "18"
+			(uuid "e8beff2a-6c27-4adc-92e0-e3d7efa15e17")
+		)
+		(pin "17"
+			(uuid "80b0314c-bcc9-4a37-8a39-cc9f9140b182")
+		)
+		(pin "11"
+			(uuid "4173799c-513d-4cfa-8e81-ac489dd3587d")
+		)
+		(pin "19"
+			(uuid "757218db-5047-41a0-a9a4-8c90ca6feb01")
+		)
+		(pin "20"
+			(uuid "0b50bca3-c7a9-41cb-9b58-3496a0a2e29c")
+		)
+		(pin "22"
+			(uuid "f9cf0eaf-53a8-4f74-a3d5-d3cc99f424fb")
+		)
+		(instances
+			(project ""
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "U14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 91.44 59.69 0)
 		(unit 1)
@@ -3240,6 +3979,136 @@
 			(project "SwanGanzInterface_V1.1"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
 					(reference "#PWR077")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:FT232R-Breakout")
+		(at 19.05 -8.128 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ed15be02-42b4-41c6-bce3-84b19110ba97")
+		(property "Reference" "U7"
+			(at 29.21 -9.3981 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "FT232R"
+			(at 29.21 -6.8581 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:FT232R-Breakout"
+			(at 19.05 -28.956 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 19.05 -8.128 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 19.05 -8.128 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "17"
+			(uuid "6b29fa70-5d71-4207-98fc-d51fb2dbddb6")
+		)
+		(pin "15"
+			(uuid "ebc42897-c164-4de1-b71e-da32fcc51d9d")
+		)
+		(pin "1"
+			(uuid "1d57a1db-59a5-41fc-8a48-2c8eb55f16ba")
+		)
+		(pin "10"
+			(uuid "b6eed7f3-193f-42dd-b27f-4ad9a7ea3931")
+		)
+		(pin "19"
+			(uuid "b24e6b82-7a9f-4487-bb83-fb14e60c322e")
+		)
+		(pin "20"
+			(uuid "1bb5e63d-eb00-468a-a679-a8481172052f")
+		)
+		(pin "3"
+			(uuid "9d13e146-eee7-4da9-8c70-38a364c710ed")
+		)
+		(pin "5"
+			(uuid "f4ad8775-b869-4426-a66c-5be9f393ea9e")
+		)
+		(pin "4"
+			(uuid "339bd700-f290-4624-8fff-2cb4df1fbdcd")
+		)
+		(pin "7"
+			(uuid "7eeef856-9758-40f0-a65a-c38c28ffea9f")
+		)
+		(pin "22"
+			(uuid "3c5bae14-f163-4801-b9dc-30eb0b9dbcbc")
+		)
+		(pin "12"
+			(uuid "47905202-c41a-40e7-b12f-35f2d86598ac")
+		)
+		(pin "13"
+			(uuid "76d19518-ea64-475e-bddc-31383332160d")
+		)
+		(pin "6"
+			(uuid "b6479f67-b450-4e55-873a-20b8e1503153")
+		)
+		(pin "18"
+			(uuid "d6c1e582-bc7a-4628-baeb-b8b85ab9d64f")
+		)
+		(pin "8"
+			(uuid "5cbcb9f8-ddcf-474c-b4b6-9914447bf0ff")
+		)
+		(pin "11"
+			(uuid "971b441d-07b6-4694-b2c5-275dcce15546")
+		)
+		(pin "9"
+			(uuid "612db365-093f-4831-8377-22456603e3c2")
+		)
+		(pin "14"
+			(uuid "451f7e76-9154-485d-a84f-f504c9155837")
+		)
+		(pin "2"
+			(uuid "2b3a4e84-0241-4119-88e8-46f110216e98")
+		)
+		(pin "16"
+			(uuid "4df9a7a8-20b3-4e6d-b1b3-c549ba98d219")
+		)
+		(pin "21"
+			(uuid "d57cc004-7d76-4916-93e9-6923cd7a7b22")
+		)
+		(instances
+			(project ""
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "U7")
 					(unit 1)
 				)
 			)
