@@ -51884,7 +51884,7 @@
 			)
 		)
 	)
-	(global_label "ADC_1.2"
+	(global_label "THERM__HG_ADC_1.2"
 		(shape input)
 		(at 203.2 74.93 0)
 		(fields_autoplaced yes)
@@ -51896,7 +51896,7 @@
 		)
 		(uuid "a0d1e27b-8209-4cce-b7b6-551f96245124")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 213.8052 74.93 0)
+			(at 225.477 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -51928,7 +51928,7 @@
 			)
 		)
 	)
-	(global_label "ADC_1.1"
+	(global_label "THERM_LG_ADC_1.1"
 		(shape input)
 		(at 204.47 53.34 0)
 		(fields_autoplaced yes)
@@ -51940,7 +51940,7 @@
 		)
 		(uuid "a8e00d2e-7dc7-46cc-bbf9-d32a8cb7e378")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 215.0752 53.34 0)
+			(at 225.477 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
