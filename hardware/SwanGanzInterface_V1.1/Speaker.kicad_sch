@@ -607,7 +607,6 @@
 				)
 			)
 			(embedded_fonts no)
-			(embedded_files)
 		)
 		(symbol "power:+3V3"
 			(power)
@@ -866,6 +865,26 @@
 		)
 		(uuid "4b8c4041-a4a2-42d0-b7ad-b94e1b2444f8")
 	)
+	(text "P = V^2 / R\n1W = V^2 / 8\nV^2 = 8\nV = 2.83 Vrms \n2.83 Vrms = Vpp / (2 * sqrt(2))\nVpp = 1V"
+		(exclude_from_sim no)
+		(at 227.33 64.77 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "8fc10042-0b0f-429e-9d54-ec72bc8738eb")
+	)
+	(text "Speaker:\nInput Impedance : 8 Ohms\nFrequency Range : 100 Hz - 10kHz\nNominal Power Input : 1 Watt RMS\nMaximum Power Input : 1.5 Watts"
+		(exclude_from_sim no)
+		(at 226.568 46.228 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "c43a85fc-9e66-4d34-a3cd-ae2836dc51f4")
+	)
 	(text "Speaker"
 		(exclude_from_sim no)
 		(at 188.976 48.006 0)
@@ -875,6 +894,16 @@
 			)
 		)
 		(uuid "e3476915-0426-4ab6-81e0-57c03fec9943")
+	)
+	(text "DAC Range : 0 to 3.3V \nGain = 1 / 3.3 = ~0.3\n\nDifferential Gain = 2 x (Rf / Ri) \n\n0.3 = 2 x (Rf / Ri)\n0.6 = Rf / Ri\nRi = Rf / 0.6\nLet Rf = 10 kOhms\nRi = 10k / 0.6\nRi = 16.67 kOhms\n\nRf = 10k kOhms\nRi = 16.67 kOhms\n\n"
+		(exclude_from_sim no)
+		(at 227.33 88.392 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "f1808f45-e94c-4459-b3a1-117ebf117f5d")
 	)
 	(text "Rf"
 		(exclude_from_sim no)
@@ -1197,7 +1226,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "16.6k"
 			(at 134.112 51.562 90)
 			(effects
 				(font
@@ -1910,7 +1939,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "10k"
 			(at 161.036 29.972 90)
 			(effects
 				(font
