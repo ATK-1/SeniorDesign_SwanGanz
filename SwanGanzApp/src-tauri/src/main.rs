@@ -2,5 +2,9 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
+    tauri::Builder::default();
+        .plugin(tauri_plugin_serialplugin::init())
+        .run(tauri::generate_context!())
+        .expect("Error while running tauri application")
     swanganzapp_lib::run()
 }

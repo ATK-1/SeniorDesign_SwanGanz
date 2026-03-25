@@ -3,16 +3,27 @@
 #include "OS.h"
 #include "Display.h"
 #include "LUT.h"
+#include "RA8875.h"
 
 #define NUM_CHANNELS 6
 Sema4_t LCD_Mutex;
 static int input;
 
 
-void DisplayInit() {
+void DisplayInit0() {
     ST7735_InitR(INITR_BLACKTAB); //INITR_REDTAB for AdaFruit
     ST7735_FillScreen(ST7735_BLACK);
     ST7735_SetCursor(0, 0);
+    OS_InitSemaphore(&LCD_Mutex, 1);
+}
+
+void DisplayInit() {
+    if (!RA8875_begin(RA8875_800x480)) {
+        while(1) {
+            // writeCommand(0x35);
+        }
+    }
+    fillScreen(RA8875_MAGENTA);
     OS_InitSemaphore(&LCD_Mutex, 1);
 }
 
@@ -58,20 +69,20 @@ static void DisplayAll() {
 */
 void DisplayTemp() {
     while (1) {
-        uint32_t temp = Fifo_Get(THERM_LOW_FIFO);
+        // uint32_t temp = Fifo_Get(THERM_LOW_FIFO);
         
-		OS_bWait(&LCD_Mutex);
-        ST7735_SetCursor(0, 3);
-        ST7735_OutString("Current Temperature: ");
-        ST7735_SetCursor(0, 4);
-		ST7735_OutUDec(TempLUT[temp]);
-        OS_bSignal(&LCD_Mutex);
+		// OS_bWait(&LCD_Mutex);
+        // ST7735_SetCursor(0, 3);
+        // ST7735_OutString("Current Temperature: ");
+        // ST7735_SetCursor(0, 4);
+		// ST7735_OutUDec(TempLUT[temp]);
+        // OS_bSignal(&LCD_Mutex);
 
-        if (input) {
-            OS_AddThread(&DisplayAll, 1);
-			OS_SetPerioidcSchedule(1);
-            OS_Kill();
-        }
+        // if (input) {
+        //     OS_AddThread(&DisplayAll, 1);
+		// 	OS_SetPerioidcSchedule(1);
+        //     OS_Kill();
+        // }
     }
 }
 
@@ -83,14 +94,14 @@ void DisplayTemp() {
 */
 void DisplayStartMenu() {
     while (1) {
-        ST7735_SetCursor(0, 0);
-        OS_bWait(&LCD_Mutex);
-        ST7735_OutString("Press any button to ");
-        ST7735_SetCursor(0, 1);
-        ST7735_OutString("begin calculation");
-        OS_bSignal(&LCD_Mutex);
-        input = Fifo_Get(INPUT_FIFO); 
-        OS_Kill();
+        // ST7735_SetCursor(0, 0);
+        // OS_bWait(&LCD_Mutex);
+        // ST7735_OutString("Press any button to ");
+        // ST7735_SetCursor(0, 1);
+        // ST7735_OutString("begin calculation");
+        // OS_bSignal(&LCD_Mutex);
+        // input = Fifo_Get(INPUT_FIFO); 
+        // OS_Kill();
     }
 }
 

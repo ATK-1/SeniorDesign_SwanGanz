@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2"
+  },
+  "dependencies": {
+    "tauri-plugin-serialplugin-api": "^2.21.1"
   }
 }
