@@ -3,10 +3,15 @@
 #include "OS.h"
 #include "Display.h"
 #include "LUT.h"
+#include "../inc/RTOS_UART.h"
+
 
 #define NUM_CHANNELS 6
 Sema4_t LCD_Mutex;
-static int input;
+static uint32_t input;
+static uint32_t initTemp;
+static uint32_t tempVals[4000];
+static uint32_t tempIdx;
 
 
 void DisplayInit() {
@@ -38,16 +43,13 @@ static void DisplayAll() {
         for (int i = 0; i < NUM_CHANNELS; i++) {
             data[i] = Fifo_Get(i);
         }
-        for (int i = 0; i < NUM_CHANNELS; i++) {
-            ST7735_FillRect(78 , (i + 1) * 20, 11, 7, ST7735_BLACK);
-            ST7735_SetCursor(10, (i + 1) * 2);
-			if (i == 2) {
-				ST7735_OutUDec(TempLUT[data[i]]);
-			}
-			else {
-            	ST7735_OutUDec(data[i]);
-			}
-        }
+        uint32_t temp = TempLUT[data[2]];
+        if (tempIdx < 4000) {
+            tempVals[tempIdx] = temp;
+            tempIdx++;
+            UART_OutUDec(temp);
+            UART_OutChar(',');
+        }  
     }
 }
 
@@ -57,8 +59,9 @@ static void DisplayAll() {
     Waits for sampled data in FIFO and displays in on LCD
 */
 void DisplayTemp() {
+    uint32_t temp;
     while (1) {
-        uint32_t temp = Fifo_Get(THERM_LOW_FIFO);
+        temp = Fifo_Get(THERM_LOW_FIFO);
         
 		OS_bWait(&LCD_Mutex);
         ST7735_SetCursor(0, 3);
@@ -68,6 +71,11 @@ void DisplayTemp() {
         OS_bSignal(&LCD_Mutex);
 
         if (input) {
+            initTemp = TempLUT[temp];
+            UART_OutString("Init temp: ");
+            UART_OutUDec(initTemp);
+            UART_OutString("\r\n\n");
+            Fifo_Init(THERM_LOW_FIFO);
             OS_AddThread(&DisplayAll, 1);
 			OS_SetPerioidcSchedule(1);
             OS_Kill();
