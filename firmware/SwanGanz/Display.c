@@ -23,6 +23,7 @@ void DisplayInit() {
             // writeCommand(0x35);
         }
     }
+    displayOn(1);
     fillScreen(RA8875_MAGENTA);
     OS_InitSemaphore(&LCD_Mutex, 1);
 }

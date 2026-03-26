@@ -286,9 +286,9 @@ static void writeData(uint8_t d) {
 static uint16_t readData(void) {
   TFT_CS_LOW();
 
-  // SPI_OutCommand(RA8875_DATAREAD);
-  // uint16_t x = xchg_spi(0x00);
-  uint16_t x = SPI_OutRead16(RA8875_DATAREAD << 8);
+  SPI_OutCommand(RA8875_DATAREAD);
+  uint16_t x = xchg_spi(0x00);
+  //uint16_t x = SPI_OutRead16(RA8875_DATAREAD << 8);
 
   TFT_CS_HIGH();
   return x;
@@ -304,9 +304,9 @@ static uint16_t readData(void) {
 static void writeCommand(uint8_t d) {
   TFT_CS_LOW();
 
-  // SPI_OutCommand(RA8875_CMDWRITE);
-  // SPI_OutData(d);
-  SPI_Out16((RA8875_CMDWRITE << 8) | d);
+  SPI_OutCommand(RA8875_CMDWRITE);
+  SPI_OutData(d);
+  //SPI_Out16((RA8875_CMDWRITE << 8) | d);
 
   TFT_CS_HIGH();
 }

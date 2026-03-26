@@ -67,7 +67,9 @@ void SPI_Init(void) {
   // else{
   //   SPI1->CLKCTL = busfreq/16000000 -1; // 8 MHz
   // }
-  SPI1->CLKCTL = 9; // 4 MHz
+
+  // Bits 31-28 - Delay Sampling Value - Delay by 5 clock cycles of internal functional clk
+  SPI1->CLKCTL = (5<<28) | 9; // 4 MHz 
   //SPI1->CLKCTL = 39; //1 MHz
  
  
@@ -77,7 +79,7 @@ void SPI_Init(void) {
   // bit 8 SPO = 0
   // bits 6-5 FRF = 01 (4 wire)
   // bits 4-0 n=7, data size is n+1 (8bit data)
-  SPI1->CTL0 = 0x002F; //motorolla 4 wire. (changed 3 to zero for pol)
+  SPI1->CTL0 = 0x0027; //motorolla 4 wire. (changed 3 to zero for pol)
   
   SPI1->CTL1 = 0x0015;
 // bits 29-24 RXTIMEOUT=0
