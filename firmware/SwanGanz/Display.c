@@ -24,7 +24,12 @@ void DisplayInit() {
         }
     }
     displayOn(1);
-    fillScreen(RA8875_MAGENTA);
+    GPIOX(1);
+    PWM1config(1, 0);
+    PWM1out(255);
+    
+    fillScreen(RA8875_WHITE);
+
     OS_InitSemaphore(&LCD_Mutex, 1);
 }
 

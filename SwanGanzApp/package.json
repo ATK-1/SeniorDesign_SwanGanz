@@ -10,6 +10,10 @@
     "@tauri-apps/cli": "^2"
   },
   "dependencies": {
+<<<<<<< Updated upstream
     "tauri-plugin-serialplugin-api": "^2.21.1"
+=======
+    "tauri-plugin-serialplugin-api": "^2.22.0"
+>>>>>>> Stashed changes
   }
 }

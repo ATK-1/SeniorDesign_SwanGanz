@@ -7,7 +7,12 @@
   ],
   "permissions": [
     "core:default",
+<<<<<<< Updated upstream
     "opener:default",
     "serialplugin:default"
+=======
+    "serialplugin:default",
+    "opener:default"
+>>>>>>> Stashed changes
   ]
 }
