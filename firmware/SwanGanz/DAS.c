@@ -53,11 +53,11 @@ void InputPolling() {
     uint32_t enter = !(GPIOB->DIN31_0 & (1<<13));
 
     if (PrevMode && !mode) {
-        UART_OutString("mode\n");
+       // UART_OutString("mode\n");
         Fifo_Put(INPUT_FIFO, MODE);
     }
     if (PrevEnter && !enter) {
-        UART_OutString("Enter\n");
+      //  UART_OutString("Enter\n");
         Fifo_Put(INPUT_FIFO, ENTER);
     }
     PrevMode = mode;
