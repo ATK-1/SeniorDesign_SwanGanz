@@ -30,6 +30,22 @@ void DisplayInit() {
     
     fillScreen(RA8875_WHITE);
 
+    drawCircle(100, 100, 50, RA8875_BLACK);
+    fillCircle(100, 100, 49, RA8875_GREEN);
+    fillRect(11, 11, 398, 198, RA8875_BLUE);
+    drawRect(10, 10, 400, 200, RA8875_GREEN);
+    fillRoundRect(200, 10, 200, 100, 10, RA8875_RED);
+    drawPixel(10,10,RA8875_BLACK);
+    drawPixel(11,11,RA8875_BLACK);
+    drawLine(10, 10, 200, 100, RA8875_RED);
+    drawTriangle(200, 15, 250, 100, 150, 125, RA8875_BLACK);
+    fillTriangle(200, 16, 249, 99, 151, 124, RA8875_YELLOW);
+    drawEllipse(300, 100, 100, 40, RA8875_BLACK);
+    fillEllipse(300, 100, 98, 38, RA8875_GREEN);
+  // Argument 5 (curvePart) is a 2-bit value to control each corner (select 0, 1, 2, or 3)
+    drawCurve(50, 100, 80, 40, 2, RA8875_BLACK);
+    fillCurve(50, 100, 78, 38, 2, RA8875_WHITE);
+
     OS_InitSemaphore(&LCD_Mutex, 1);
 }
 
@@ -100,6 +116,12 @@ void DisplayTemp() {
 */
 void DisplayStartMenu() {
     while (1) {
+        textMode();
+        textSetCursor(10, 10);
+        char s[39] = "Press any button to begin calculations";
+        textEnlarge(1);
+        textTransparent(RA8875_BLACK);
+        textWrite(s, 39);
         // ST7735_SetCursor(0, 0);
         // OS_bWait(&LCD_Mutex);
         // ST7735_OutString("Press any button to ");
