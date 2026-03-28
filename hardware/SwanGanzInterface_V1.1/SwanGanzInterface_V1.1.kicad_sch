@@ -72,7 +72,7 @@
 			(color 216 174 255 1.0000)
 		)
 		(uuid "2a61924c-1b61-4422-811f-a61fd6f6c556")
-		(property "Sheetname" "FT232"
+		(property "Sheetname" "AuxiliaryDevices"
 			(at 98.044 73.2024 0)
 			(effects
 				(font
@@ -81,7 +81,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "FT232.kicad_sch"
+		(property "Sheetfile" "AuxiliaryDevices.kicad_sch"
 			(at 98.044 105.9946 0)
 			(effects
 				(font

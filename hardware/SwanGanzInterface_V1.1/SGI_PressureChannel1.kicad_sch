@@ -2798,7 +2798,7 @@
 			)
 		)
 	)
-	(global_label "P1_HG_ADC_1.4"
+	(global_label "P1_HG_A1.4"
 		(shape input)
 		(at 179.07 88.9 0)
 		(fields_autoplaced yes)
@@ -2810,7 +2810,7 @@
 		)
 		(uuid "b7330728-3663-43c3-95d0-f05eef4c3a28")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 196.6904 88.9 0)
+			(at 193.1828 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2886,7 +2886,7 @@
 			)
 		)
 	)
-	(global_label "P1_LG_ADC_1.3"
+	(global_label "P1_LG_A1.3"
 		(shape input)
 		(at 167.64 64.77 0)
 		(fields_autoplaced yes)
@@ -2898,7 +2898,7 @@
 		)
 		(uuid "e2c75c74-6aee-447e-a0f6-8589782d9512")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 184.958 64.77 0)
+			(at 181.4504 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
