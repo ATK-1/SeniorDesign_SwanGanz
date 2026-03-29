@@ -2756,7 +2756,7 @@
 			)
 		)
 	)
-	(global_label "P2_HG_A1.6"
+	(global_label "P2_HG_A1.5"
 		(shape input)
 		(at 201.93 88.9 0)
 		(fields_autoplaced yes)
@@ -2866,7 +2866,7 @@
 			)
 		)
 	)
-	(global_label "P2_LG_A1.5"
+	(global_label "P2_LG_A1.4"
 		(shape input)
 		(at 182.88 64.77 0)
 		(fields_autoplaced yes)
@@ -3642,6 +3642,7 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Datasheet" "~"
@@ -4387,6 +4388,7 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Datasheet" "~"

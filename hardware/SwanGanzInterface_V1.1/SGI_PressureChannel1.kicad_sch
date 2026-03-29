@@ -2798,7 +2798,7 @@
 			)
 		)
 	)
-	(global_label "P1_HG_A1.4"
+	(global_label "P1_HG_A1.2"
 		(shape input)
 		(at 179.07 88.9 0)
 		(fields_autoplaced yes)
@@ -2886,7 +2886,7 @@
 			)
 		)
 	)
-	(global_label "P1_LG_A1.3"
+	(global_label "P1_LG_A1.1"
 		(shape input)
 		(at 167.64 64.77 0)
 		(fields_autoplaced yes)
@@ -3852,6 +3852,7 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Datasheet" "~"
@@ -3987,6 +3988,7 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Datasheet" "~"
@@ -4057,6 +4059,7 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
 			)
 		)
 		(property "Datasheet" "~"

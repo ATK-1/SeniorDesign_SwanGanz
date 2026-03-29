@@ -40136,6 +40136,168 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "SGI_SymbolLib:LED"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 1.27 1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "LED"
+				(at -5.08 -1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "SGI_FootprintsLib:LED_D5.0mm"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://users.ece.utexas.edu/~valvano/mspm0/HLMP-4700.pdf"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Light emitting diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "LED diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "LED_0_1"
+				(polyline
+					(pts
+						(xy -0.508 -1.778) (xy 1.016 -3.302) (xy 1.016 -2.54) (xy 1.016 -3.302) (xy 0.254 -3.302)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.508 -3.048) (xy 1.016 -4.572) (xy 1.016 -3.81) (xy 1.016 -4.572) (xy 0.254 -4.572)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 1.27) (xy -2.54 1.27) (xy -1.27 -1.27) (xy 0 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -1.27) (xy -2.54 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "LED_1_1"
+				(pin passive line
+					(at -1.27 3.81 270)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -1.27 -3.81 90)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "SGI_SymbolLib:TSC2046IPWR"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -40971,6 +41133,16 @@
 		)
 		(uuid "6e02b7d4-e24b-4161-b701-2a12f786f896")
 	)
+	(text "Debug LEDs"
+		(exclude_from_sim no)
+		(at 136.144 143.002 0)
+		(effects
+			(font
+				(size 1.905 1.905)
+			)
+		)
+		(uuid "76428e65-5b40-42f9-bd4a-8395c01de91e")
+	)
 	(text "Transmit"
 		(exclude_from_sim no)
 		(at 201.422 46.736 0)
@@ -40990,6 +41162,16 @@
 			)
 		)
 		(uuid "8a8d5994-27c1-42df-83b1-00fae6902a99")
+	)
+	(text "Power On"
+		(exclude_from_sim no)
+		(at 138.938 170.942 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "ccdf163d-c3ed-46b4-89b8-36fd5baf40bd")
 	)
 	(text "Recieve"
 		(exclude_from_sim no)
@@ -41100,6 +41282,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9be39f71-f1c1-4560-aeaa-b10582f7a979")
+	)
+	(junction
+		(at 151.638 185.928)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b250ecbc-78f6-42b8-b969-fa2a4fce2bcd")
 	)
 	(junction
 		(at 106.172 106.426)
@@ -41283,6 +41471,16 @@
 	)
 	(wire
 		(pts
+			(xy 138.938 154.432) (xy 138.938 158.496)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08c805b2-0a3b-4799-be62-f3b9925551ea")
+	)
+	(wire
+		(pts
 			(xy 188.214 115.57) (xy 188.214 119.38)
 		)
 		(stroke
@@ -41413,6 +41611,16 @@
 	)
 	(wire
 		(pts
+			(xy 163.068 185.928) (xy 163.068 178.308)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1f3e5bd6-b206-4e9c-9031-6ba35d1d837f")
+	)
+	(wire
+		(pts
 			(xy 98.806 57.15) (xy 100.584 57.15)
 		)
 		(stroke
@@ -41503,6 +41711,16 @@
 	)
 	(wire
 		(pts
+			(xy 138.938 166.116) (xy 138.938 170.688)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "343f528a-8537-4136-a0be-a31a5dcd9a12")
+	)
+	(wire
+		(pts
 			(xy 64.008 167.386) (xy 67.818 167.386)
 		)
 		(stroke
@@ -41530,6 +41748,16 @@
 			(type default)
 		)
 		(uuid "37eef6e8-ae8a-4748-b69e-af6d867f083a")
+	)
+	(wire
+		(pts
+			(xy 163.068 155.194) (xy 163.068 158.496)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "38d11ff5-0170-4f25-8547-b26ed4919537")
 	)
 	(wire
 		(pts
@@ -41623,6 +41851,16 @@
 	)
 	(wire
 		(pts
+			(xy 151.638 185.928) (xy 151.638 188.468)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a99017d-ccdc-4627-bc33-77d0dcf2dc9e")
+	)
+	(wire
+		(pts
 			(xy 44.45 148.082) (xy 47.244 148.082)
 		)
 		(stroke
@@ -41680,6 +41918,16 @@
 			(type default)
 		)
 		(uuid "5adf0a4a-7712-4c75-8b68-f379d276d79f")
+	)
+	(wire
+		(pts
+			(xy 151.638 155.194) (xy 151.638 158.496)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5bf9227a-1078-40c3-8220-bfd886cd78f2")
 	)
 	(wire
 		(pts
@@ -41793,6 +42041,16 @@
 	)
 	(wire
 		(pts
+			(xy 151.638 166.116) (xy 151.638 170.688)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "758c8a11-92d2-4fa8-b30e-6069b3c74ee6")
+	)
+	(wire
+		(pts
 			(xy 98.806 62.23) (xy 121.412 62.23)
 		)
 		(stroke
@@ -41810,6 +42068,16 @@
 			(type default)
 		)
 		(uuid "7ae0239e-da92-4d1f-bafe-4df3fa6e22b5")
+	)
+	(wire
+		(pts
+			(xy 151.638 178.308) (xy 151.638 185.928)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7c12fd37-e4e2-429d-812f-5cca90aa645e")
 	)
 	(wire
 		(pts
@@ -41900,6 +42168,16 @@
 			(type default)
 		)
 		(uuid "93f21fa5-50a5-4453-94a7-f27e3eb92b20")
+	)
+	(wire
+		(pts
+			(xy 138.938 178.308) (xy 138.938 185.928)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "95f3a6c6-a747-4abf-aadc-1b0bda67ff33")
 	)
 	(wire
 		(pts
@@ -42093,6 +42371,16 @@
 	)
 	(wire
 		(pts
+			(xy 151.638 185.928) (xy 163.068 185.928)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b5f7ec95-a979-40e2-86ae-92e3cdadbf93")
+	)
+	(wire
+		(pts
 			(xy 256.794 89.408) (xy 260.604 89.408)
 		)
 		(stroke
@@ -42140,6 +42428,16 @@
 			(type default)
 		)
 		(uuid "c00bfe14-12a0-48c3-88f5-d15340221b38")
+	)
+	(wire
+		(pts
+			(xy 163.068 166.116) (xy 163.068 170.688)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c1b0e7b3-bc29-43c8-b200-e55745cdc932")
 	)
 	(wire
 		(pts
@@ -42270,6 +42568,16 @@
 			(type default)
 		)
 		(uuid "d5a5ae0b-841c-4a97-bf3c-1ca4fa6bbb85")
+	)
+	(wire
+		(pts
+			(xy 138.938 185.928) (xy 151.638 185.928)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d8ea6082-543d-4ddf-aa3d-6c9fc03c657e")
 	)
 	(wire
 		(pts
@@ -42749,6 +43057,28 @@
 			)
 		)
 	)
+	(global_label "LED_WRK_PB20"
+		(shape input)
+		(at 151.638 155.194 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7826212f-ac8f-4405-adf3-76a5bd36ce0a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 151.638 137.8761 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "TouchBusy"
 		(shape input)
 		(at 271.526 162.814 0)
@@ -42969,7 +43299,7 @@
 			)
 		)
 	)
-	(global_label "TOUCH_SPI0_PICO"
+	(global_label "TOUCH_PICO_PA9"
 		(shape input)
 		(at 242.316 124.46 0)
 		(fields_autoplaced yes)
@@ -42981,7 +43311,7 @@
 		)
 		(uuid "b07be8e2-6800-4a3b-8b03-a5e92c32a365")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 262.2346 124.46 0)
+			(at 261.5089 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -43057,7 +43387,7 @@
 			)
 		)
 	)
-	(global_label "PENIRQ"
+	(global_label "PENIRQ_PB5"
 		(shape input)
 		(at 263.906 127.254 0)
 		(fields_autoplaced yes)
@@ -43069,7 +43399,7 @@
 		)
 		(uuid "be09e0b0-c63b-4a08-a571-4ed2bd7d396d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 273.846 127.254 0)
+			(at 278.5631 127.254 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -43079,7 +43409,7 @@
 			)
 		)
 	)
-	(global_label "TOUCH_SPI0_CS3"
+	(global_label "TOUCH_CS0_PA8"
 		(shape input)
 		(at 242.316 121.92 0)
 		(fields_autoplaced yes)
@@ -43091,7 +43421,29 @@
 		)
 		(uuid "bec98d98-b5db-437b-b6c6-bb1b991807c9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 261.4483 121.92 0)
+			(at 260.7226 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "LED_ER_PB24"
+		(shape input)
+		(at 163.068 155.194 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c1c17e36-d58c-4627-8c68-c4a8dad49cb4")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 163.068 139.4485 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -43167,7 +43519,7 @@
 			)
 		)
 	)
-	(global_label "TOUCH_SPI0_SCK"
+	(global_label "TOUCH_SCK_PA11"
 		(shape input)
 		(at 242.316 119.38 0)
 		(fields_autoplaced yes)
@@ -43179,7 +43531,7 @@
 		)
 		(uuid "e5bef31a-34d0-4d22-8c2f-55a9f7c9e540")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 261.5088 119.38 0)
+			(at 261.9926 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -43277,7 +43629,7 @@
 			)
 		)
 	)
-	(global_label "TOUCH_SPI0_POCI"
+	(global_label "TOUCH_POCI_PA10"
 		(shape input)
 		(at 242.316 129.54 0)
 		(fields_autoplaced yes)
@@ -43289,7 +43641,7 @@
 		)
 		(uuid "efb7a4a4-e6e3-4d7e-80c2-22b3d394f29b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 262.2346 129.54 0)
+			(at 262.7184 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -43299,7 +43651,7 @@
 			)
 		)
 	)
-	(global_label "TouchBusy"
+	(global_label "TOUCH_BSY_PB4"
 		(shape input)
 		(at 242.316 127 0)
 		(fields_autoplaced yes)
@@ -43311,13 +43663,82 @@
 		)
 		(uuid "f45e46c3-7b22-4fd6-bf6f-8167aa5f472b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 255.2191 127 0)
+			(at 260.7831 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 151.638 162.306 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "01798cd4-8dc1-49d9-9e7d-7ce2bfbc60fb")
+		(property "Reference" "R46"
+			(at 151.892 158.496 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "2k"
+			(at 151.638 163.576 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 149.86 162.306 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 151.638 162.306 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 151.638 162.306 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "837d37a2-3da9-4a94-977d-91b3e41f4f25")
+		)
+		(pin "1"
+			(uuid "0ee03112-fdce-4fe6-855d-f89302b0c7fd")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "R46")
+					(unit 1)
+				)
 			)
 		)
 	)
@@ -43604,6 +44025,138 @@
 			(project "SwanGanzInterface_V1.1"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
 					(reference "TP19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 138.938 154.432 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "13d6fa97-97b8-4eeb-9a09-217418a9f337")
+		(property "Reference" "#PWR028"
+			(at 138.938 158.242 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 138.938 150.114 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 138.938 154.432 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 138.938 154.432 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 138.938 154.432 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b4e47edb-84de-4098-8e5f-3e0f460c4c9d")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "#PWR028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 151.638 188.468 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "160561a9-8167-4170-a20a-fa54c4c8828f")
+		(property "Reference" "#PWR038"
+			(at 151.638 194.818 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 151.638 193.548 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 151.638 188.468 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 151.638 188.468 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 151.638 188.468 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3f097857-310a-4fd4-b6bd-8becf8e4f484")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "#PWR038")
 					(unit 1)
 				)
 			)
@@ -44695,6 +45248,75 @@
 		)
 	)
 	(symbol
+		(lib_id "SGI_SymbolLib:LED")
+		(at 152.908 174.498 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "53a95db3-842b-419c-8d94-f39e41a223b3")
+		(property "Reference" "D7"
+			(at 155.448 174.8154 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "WORKING"
+			(at 155.448 177.3554 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:LED_D5.0mm"
+			(at 152.908 171.958 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://users.ece.utexas.edu/~valvano/mspm0/HLMP-4700.pdf"
+			(at 152.908 171.958 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 152.908 174.498 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "f843d4db-26f0-49aa-97c9-da4be2988c39")
+		)
+		(pin "1"
+			(uuid "80e68488-a8ec-46d5-ba2a-e61aae87d63d")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "D7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Jumper:Jumper_2_Small_Bridged")
 		(at 61.722 106.426 0)
 		(unit 1)
@@ -44894,6 +45516,76 @@
 			(project "SwanGanzInterface_V1.1"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
 					(reference "C27")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:LED")
+		(at 164.338 174.498 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "57e3ac84-8f8f-4da8-88e6-145648f0e7aa")
+		(property "Reference" "D8"
+			(at 166.878 174.8154 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "ERROR"
+			(at 166.878 177.3554 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:LED_D5.0mm"
+			(at 164.338 171.958 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://users.ece.utexas.edu/~valvano/mspm0/HLMP-4700.pdf"
+			(at 164.338 171.958 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 164.338 174.498 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "48c46e18-1783-4ab1-9337-eed4e97f8d7d")
+		)
+		(pin "1"
+			(uuid "86f1664d-e9f8-4888-9784-8e4fc75d9e69")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "D8")
 					(unit 1)
 				)
 			)
@@ -46298,6 +46990,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 138.938 162.306 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ce732e33-ca2f-4a9d-809d-f29502700576")
+		(property "Reference" "R11"
+			(at 139.192 158.496 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "2k"
+			(at 138.938 163.576 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 137.16 162.306 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 138.938 162.306 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 138.938 162.306 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "1d97b5bc-5c7c-4422-a060-488022d60b07")
+		)
+		(pin "1"
+			(uuid "87d27519-b061-4e5d-a869-e644fae65e8f")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "R11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "SGI_SymbolLib:Testpoint")
 		(at 49.149 148.082 0)
 		(unit 1)
@@ -46363,6 +47124,76 @@
 			(project "SwanGanzInterface_V1.1"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
 					(reference "TP17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:LED")
+		(at 140.208 174.498 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e953d219-8492-4911-9d5a-51a207b2d70f")
+		(property "Reference" "D5"
+			(at 142.748 174.8154 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 142.748 177.3554 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:LED_D5.0mm"
+			(at 140.208 171.958 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://users.ece.utexas.edu/~valvano/mspm0/HLMP-4700.pdf"
+			(at 140.208 171.958 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 140.208 174.498 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "97d29c12-0644-47a5-b62d-500dbed611db")
+		)
+		(pin "1"
+			(uuid "ab3f876c-a90a-4b55-8f8c-12229c6fa35c")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "D5")
 					(unit 1)
 				)
 			)
@@ -46569,6 +47400,75 @@
 			(project "SwanGanzInterface_V1.1"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
 					(reference "TP20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 163.068 162.306 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f73d0897-e7a9-42f8-8351-1a038df26dae")
+		(property "Reference" "R47"
+			(at 163.322 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "2k"
+			(at 163.068 163.322 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 161.29 162.306 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 163.068 162.306 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 163.068 162.306 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "3922770c-0c24-4763-a0ea-0838c6c1f537")
+		)
+		(pin "1"
+			(uuid "9bf158e6-7dc5-46b3-93a0-48a301df608a")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
+					(reference "R47")
 					(unit 1)
 				)
 			)
