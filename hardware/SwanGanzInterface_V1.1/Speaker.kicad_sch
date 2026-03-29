@@ -1334,6 +1334,16 @@
 		)
 		(uuid "8fc10042-0b0f-429e-9d54-ec72bc8738eb")
 	)
+	(text "Add Debug Pins"
+		(exclude_from_sim no)
+		(at 74.676 129.286 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "b72293d3-956f-4372-9de3-795dcf7f8f80")
+	)
 	(text "Speaker:\nInput Impedance : 8 Ohms\nFrequency Range : 100 Hz - 10kHz\nNominal Power Input : 1 Watt RMS\nMaximum Power Input : 1.5 Watts"
 		(exclude_from_sim no)
 		(at 182.626 45.72 0)
