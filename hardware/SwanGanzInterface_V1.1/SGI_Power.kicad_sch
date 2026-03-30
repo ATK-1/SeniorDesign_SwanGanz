@@ -45394,6 +45394,16 @@
 		)
 		(uuid "16249afd-cc64-43f5-baa9-daa327eba960")
 	)
+	(text "Updatae to flat linear regulator"
+		(exclude_from_sim no)
+		(at 105.156 17.78 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "5ba11a0b-deaa-4556-8809-902c3903d059")
+	)
 	(text "Reverse Polarity Fet\nRds On : 0.188 Ohms @ -4.5V\nVgs (Max) : +-20V"
 		(exclude_from_sim no)
 		(at 115.57 74.93 0)

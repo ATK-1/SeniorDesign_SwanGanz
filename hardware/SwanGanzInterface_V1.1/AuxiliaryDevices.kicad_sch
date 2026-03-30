@@ -41562,16 +41562,6 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "Resistor Values"
-		(exclude_from_sim no)
-		(at 263.144 14.986 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "051ca572-efba-43be-a5ba-870c5b1942d8")
-	)
 	(text "TODO: Review FT232RL to MSP Pins"
 		(exclude_from_sim no)
 		(at 113.03 40.64 0)
@@ -41621,6 +41611,16 @@
 			)
 		)
 		(uuid "4496d42f-f547-4c3f-a386-8534de7227d6")
+	)
+	(text "Verify Resistor Values"
+		(exclude_from_sim no)
+		(at 177.546 156.464 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "5fc20054-69c7-42dd-9271-8b62694dfc7c")
 	)
 	(text "VCC = 5V to power internal 3V3 LDO\nVCCIO = 3V3 to set UART to 3V3 logic"
 		(exclude_from_sim no)
