@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "identifier": "com.nathan.swanganzapp",
   "build": {
+    "beforeDevCommand": "npx vite",
+    "devUrl": "http://localhost:1420",
     "frontendDist": "../src"
   },
   "app": {

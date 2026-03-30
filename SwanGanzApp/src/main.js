@@ -1,9 +1,24 @@
-import { SerialPort } from "tauri-plugin-serialplugin";
-const { invoke } = window.__TAURI__.core;
+import { listen } from "@tauri-apps/api/event";
+import { invoke } from '@tauri-apps/api/core';
 
+let pollInterval;
 
-document.addEventListener("DOMContentLoaded", (event) => {
-    console.log("DOM fully loaded and parsed");
-    const ports = await SerialPort.available_ports();
-    console.log(ports);
+try {
+    invoke("ping")
+} catch (e) {
+    console.error("ping error:", e);
+}
+
+await listen("port-connected", (event) => {
+    console.log("Port found: ", event.payload);
+    clearInterval(pollInterval);
+    // transition UI state here
 });
+
+pollInterval = setInterval(async () => {
+    try {
+        await invoke("check_connected");
+    } catch (e) {
+        console.error("Error checking ports:", e);
+    }
+}, 1500);
