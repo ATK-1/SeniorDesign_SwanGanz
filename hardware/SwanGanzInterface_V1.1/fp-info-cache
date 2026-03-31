@@ -1,4 +1,4 @@
-26836156241901706
+26846849690181302
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -97377,6 +97377,13 @@ LED diameter 5.0mm 2 pins
 2
 2
 SGI_FootprintsLib
+LM2937ESX-3.3_NOPB
+KTT0003B
+Integrated Circuit
+0
+6
+6
+SGI_FootprintsLib
 MSPM0_PT0048A-IPC_A
 
 XM0G3507QPTRQ1 
@@ -97412,6 +97419,34 @@ mounting hole 0.125in 4_40
 1
 1
 SGI_FootprintsLib
+PM0064A-IPC_A
+
+XM0G3507QPMRQ1 
+0
+64
+64
+SGI_FootprintsLib
+PM0064A-IPC_B
+
+XM0G3507QPMRQ1 
+0
+64
+64
+SGI_FootprintsLib
+PM0064A-IPC_C
+
+XM0G3507QPMRQ1 
+0
+64
+64
+SGI_FootprintsLib
+PM0064A-MFG
+
+XM0G3507QPMRQ1 
+0
+64
+64
+SGI_FootprintsLib
 PinHeader_1x02_P2.54mm_Vertical
 Through hole straight pin header, 1x02, 2.54mm pitch, single row
 Through hole pin header THT 1x02 2.54mm single row
@@ -97432,6 +97467,13 @@ Pressure_Connector_1.1
 0
 12
 12
+SGI_FootprintsLib
+SOP65P640X120-16N
+PW0016A
+Integrated Circuit
+0
+16
+16
 SGI_FootprintsLib
 SW-T3-1A-A-A3-S1
 

@@ -1691,7 +1691,7 @@
 		)
 		(uuid "8fc10042-0b0f-429e-9d54-ec72bc8738eb")
 	)
-	(text "Potential High Pass Filter Resistor\nFOr Flexibility"
+	(text "Potential High Pass Filter Resistor\nFor Flexibility"
 		(exclude_from_sim no)
 		(at 109.22 71.12 0)
 		(effects
@@ -2948,7 +2948,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical"
 			(at 151.384 164.592 0)
 			(effects
 				(font
@@ -3135,7 +3135,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 129.794 52.832 90)
 			(effects
 				(font
@@ -3205,7 +3205,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 109.474 59.436 90)
 			(effects
 				(font
@@ -3337,7 +3337,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 129.8448 58.928 0)
 			(effects
 				(font
@@ -3720,7 +3720,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 160.528 38.4048 0)
 			(effects
 				(font
@@ -3982,7 +3982,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 123.4948 58.928 0)
 			(effects
 				(font
@@ -4114,7 +4114,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 156.718 31.242 90)
 			(effects
 				(font
@@ -4181,7 +4181,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 102.616 50.0888 0)
 			(effects
 				(font

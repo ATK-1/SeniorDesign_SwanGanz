@@ -50990,7 +50990,7 @@
 		)
 		(uuid "4f5112b7-6631-49a7-9f3d-1a83bb275477")
 	)
-	(text "Cutoff Frequency :\nfc = 1 / (2 * pi * R * C)\n1 / ( 2 * pi * 160k Ohms * 0.1uF) = 9.9472 Hz"
+	(text "Cutoff Frequency :\nfc = 1 / (2 * pi * R * C)\n1 / ( 2 * pi * 100k Ohms * 0.022uF) = 72.3432 Hz"
 		(exclude_from_sim no)
 		(at 165.608 32.258 0)
 		(effects
@@ -52831,7 +52831,7 @@
 				)
 			)
 		)
-		(property "Value" "160k"
+		(property "Value" "100k"
 			(at 115.57 50.8 90)
 			(effects
 				(font
@@ -53032,7 +53032,7 @@
 				)
 			)
 		)
-		(property "Value" "160k"
+		(property "Value" "100k"
 			(at 128.27 50.8 90)
 			(effects
 				(font
@@ -53187,7 +53187,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1u"
+		(property "Value" "0.022u"
 			(at 135.255 60.96 0)
 			(effects
 				(font
@@ -53196,7 +53196,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 135.5852 62.23 0)
 			(effects
 				(font
@@ -53882,15 +53882,15 @@
 				)
 			)
 		)
-		(property "Value" "0.1u"
-			(at 142.24 45.085 90)
+		(property "Value" "0.022u"
+			(at 143.002 44.958 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 142.24 42.8498 0)
 			(effects
 				(font
