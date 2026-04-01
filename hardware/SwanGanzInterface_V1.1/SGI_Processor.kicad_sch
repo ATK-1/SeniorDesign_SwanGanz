@@ -2821,6 +2821,16 @@
 		)
 		(uuid "88b6388e-591d-4a47-8901-6c5b9e32429b")
 	)
+	(text "LEFT / RIGHT\nAllocate Pins"
+		(exclude_from_sim no)
+		(at 193.548 75.184 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "9124074c-c5fd-49e5-81ba-a60805a01200")
+	)
 	(text "Debug Pins"
 		(exclude_from_sim no)
 		(at 30.48 156.718 0)
@@ -2882,6 +2892,12 @@
 		(uuid "ea9b58bb-be81-467c-94f9-fb2af5c55e4d")
 	)
 	(junction
+		(at 181.61 110.236)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "07aa539e-adc9-41a3-b54c-84cd9f1592d7")
+	)
+	(junction
 		(at 66.802 38.354)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2892,6 +2908,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "0931d524-b670-4d52-8855-eea755e66e53")
+	)
+	(junction
+		(at 210.82 93.726)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0dec75b8-31a5-45b3-9853-fc02d75dcbb7")
 	)
 	(junction
 		(at 250.698 44.45)
@@ -2916,6 +2938,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "37ee8050-9c35-42a0-8ca4-b626375e36e5")
+	)
+	(junction
+		(at 217.17 110.236)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3adaab57-1aef-4c7e-a4fc-5da4a41fe56c")
 	)
 	(junction
 		(at 226.568 143.51)
@@ -2954,6 +2982,12 @@
 		(uuid "9e3e29a2-5cd7-4fdd-93be-05cf1d99a177")
 	)
 	(junction
+		(at 175.26 93.726)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9f157cfa-ec59-4a19-a7ef-e84de3d54f88")
+	)
+	(junction
 		(at 221.488 60.96)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2964,6 +2998,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ac10b687-a2b3-43fa-b823-a10bc329d4e9")
+	)
+	(junction
+		(at 223.52 93.726)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ac334d10-3a90-482c-9293-7a0fb092eee6")
 	)
 	(junction
 		(at 95.504 25.146)
@@ -2988,6 +3028,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ed71e114-d909-4a88-b60f-cdcf0555b88b")
+	)
+	(junction
+		(at 187.96 93.726)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ef2c1fd7-9851-4f9f-88db-7f4129dcb698")
 	)
 	(junction
 		(at 229.362 155.448)
@@ -3055,6 +3101,16 @@
 	)
 	(wire
 		(pts
+			(xy 217.17 110.236) (xy 223.52 110.236)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "00da0784-c720-431d-a51a-56eecabeffb4")
+	)
+	(wire
+		(pts
 			(xy 100.33 96.266) (xy 57.404 96.266)
 		)
 		(stroke
@@ -3075,6 +3131,26 @@
 	)
 	(wire
 		(pts
+			(xy 223.52 106.426) (xy 223.52 110.236)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e1c9674-c34d-4053-8212-53481fd9b28d")
+	)
+	(wire
+		(pts
+			(xy 185.42 93.726) (xy 187.96 93.726)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0eb264a6-b871-484e-b67b-9bfec209e27e")
+	)
+	(wire
+		(pts
 			(xy 250.698 44.45) (xy 250.698 48.26)
 		)
 		(stroke
@@ -3092,6 +3168,16 @@
 			(type default)
 		)
 		(uuid "131228ff-2efc-438b-9384-8981d1c7e8d2")
+	)
+	(wire
+		(pts
+			(xy 187.96 93.726) (xy 187.96 98.806)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "146999b8-255d-4616-998e-04c1368b0bda")
 	)
 	(wire
 		(pts
@@ -3142,6 +3228,16 @@
 			(type default)
 		)
 		(uuid "1df1e47e-4834-4429-bb96-682086bf1a93")
+	)
+	(wire
+		(pts
+			(xy 175.26 110.236) (xy 175.26 107.696)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1e298104-0662-4842-8b0a-bc3f60279386")
 	)
 	(wire
 		(pts
@@ -3225,6 +3321,16 @@
 	)
 	(wire
 		(pts
+			(xy 181.61 110.236) (xy 187.96 110.236)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2489d772-4ce7-404b-aaec-cbd9934f31db")
+	)
+	(wire
+		(pts
 			(xy 98.552 81.026) (xy 100.33 81.026)
 		)
 		(stroke
@@ -3305,6 +3411,16 @@
 	)
 	(wire
 		(pts
+			(xy 210.82 89.916) (xy 210.82 93.726)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "38ea5b78-e1fa-47e4-b55b-0027ef981a76")
+	)
+	(wire
+		(pts
 			(xy 233.426 148.59) (xy 232.156 148.59)
 		)
 		(stroke
@@ -3322,6 +3438,16 @@
 			(type default)
 		)
 		(uuid "3f03840e-4455-4c73-abca-547b344b55b7")
+	)
+	(wire
+		(pts
+			(xy 175.26 93.726) (xy 175.26 97.536)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3fa6dddb-ec4f-42ca-8946-ecc21e8af712")
 	)
 	(wire
 		(pts
@@ -3352,6 +3478,26 @@
 			(type default)
 		)
 		(uuid "48af75ee-85b3-42a4-ac8e-2c9d44d433ad")
+	)
+	(wire
+		(pts
+			(xy 217.17 110.236) (xy 217.17 112.776)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ab87ee4-9d86-438a-a748-5dfbb09f039f")
+	)
+	(wire
+		(pts
+			(xy 181.61 110.236) (xy 175.26 110.236)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c54ed3f-d02a-4a92-8e51-c67fbb376917")
 	)
 	(wire
 		(pts
@@ -3495,6 +3641,26 @@
 	)
 	(wire
 		(pts
+			(xy 223.52 93.726) (xy 226.06 93.726)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "67b5ef63-5abc-482b-b490-01eefcfe16c9")
+	)
+	(wire
+		(pts
+			(xy 210.82 110.236) (xy 210.82 107.696)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "67e00424-bc9f-4360-b59d-df7b5a7ff36e")
+	)
+	(wire
+		(pts
 			(xy 98.298 177.546) (xy 100.33 177.546)
 		)
 		(stroke
@@ -3545,6 +3711,16 @@
 	)
 	(wire
 		(pts
+			(xy 210.82 79.756) (xy 210.82 82.296)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6f72dacc-ebf3-4afc-a6fa-c3b0bacbaf54")
+	)
+	(wire
+		(pts
 			(xy 32.258 185.674) (xy 32.258 187.706)
 		)
 		(stroke
@@ -3552,6 +3728,16 @@
 			(type default)
 		)
 		(uuid "6fd72ce4-54ac-4801-9499-2335ca2afaba")
+	)
+	(wire
+		(pts
+			(xy 187.96 106.426) (xy 187.96 110.236)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7076a072-bc92-4c26-a936-fbd957a36537")
 	)
 	(wire
 		(pts
@@ -3565,6 +3751,16 @@
 	)
 	(wire
 		(pts
+			(xy 175.26 89.916) (xy 175.26 93.726)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7208beb3-4ce5-4088-913c-b86e3579db0d")
+	)
+	(wire
+		(pts
 			(xy 29.718 137.414) (xy 31.496 137.414)
 		)
 		(stroke
@@ -3572,6 +3768,16 @@
 			(type default)
 		)
 		(uuid "7226af42-08b0-4ff1-ba6f-068f8704d49e")
+	)
+	(wire
+		(pts
+			(xy 181.61 110.236) (xy 181.61 112.776)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "733f8c7d-4f26-450f-aa24-325f154ec5c0")
 	)
 	(wire
 		(pts
@@ -3592,6 +3798,16 @@
 			(type default)
 		)
 		(uuid "744d4c27-28d4-4f13-8078-adde8e4e0132")
+	)
+	(wire
+		(pts
+			(xy 175.26 93.726) (xy 177.8 93.726)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "75fc56d9-a842-42b5-9e2d-ddba23e367b9")
 	)
 	(wire
 		(pts
@@ -3652,6 +3868,26 @@
 			(type default)
 		)
 		(uuid "7b9f71b6-d5c1-46bc-83ad-04ed2d653ba6")
+	)
+	(wire
+		(pts
+			(xy 220.98 93.726) (xy 223.52 93.726)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7cb2b7fb-5505-43d2-bc23-7f9166d93c31")
+	)
+	(wire
+		(pts
+			(xy 175.26 79.756) (xy 175.26 82.296)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7eb4e65e-006c-43c5-b776-c0919c59069b")
 	)
 	(wire
 		(pts
@@ -3802,6 +4038,16 @@
 			(type default)
 		)
 		(uuid "8c02cafa-3e7d-45a0-9b1c-d95f3d40c6ba")
+	)
+	(wire
+		(pts
+			(xy 187.96 93.726) (xy 190.5 93.726)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90926549-7822-4e60-86fa-15283efeb2ab")
 	)
 	(wire
 		(pts
@@ -4025,6 +4271,16 @@
 	)
 	(wire
 		(pts
+			(xy 217.17 110.236) (xy 210.82 110.236)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b8757b70-b43d-45e9-be95-7c57dbfe56ac")
+	)
+	(wire
+		(pts
 			(xy 176.022 43.434) (xy 176.022 47.244)
 		)
 		(stroke
@@ -4215,6 +4471,16 @@
 	)
 	(wire
 		(pts
+			(xy 210.82 93.726) (xy 213.36 93.726)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "db48f50d-bb9b-4dc0-bbb5-5f2efe9c7811")
+	)
+	(wire
+		(pts
 			(xy 249.936 90.17) (xy 249.936 93.98)
 		)
 		(stroke
@@ -4305,6 +4571,16 @@
 	)
 	(wire
 		(pts
+			(xy 223.52 93.726) (xy 223.52 98.806)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e7b21f91-c560-4ced-8fe5-a480b0869b97")
+	)
+	(wire
+		(pts
 			(xy 99.06 114.046) (xy 100.33 114.046)
 		)
 		(stroke
@@ -4362,6 +4638,16 @@
 			(type default)
 		)
 		(uuid "f2599a30-8da9-4b5e-8182-fa79ac8056e5")
+	)
+	(wire
+		(pts
+			(xy 210.82 93.726) (xy 210.82 97.536)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f49e6623-15de-43c0-a86a-5e96bb40e501")
 	)
 	(wire
 		(pts
@@ -4522,6 +4808,28 @@
 		(uuid "0e7b202c-afc4-42d0-8e59-9bb23de18f6d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 283.5824 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SW_DOWN_PB21"
+		(shape input)
+		(at 226.06 93.726 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "162e5f86-a601-49ad-bc64-bbef7d81dc19")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 243.9827 93.726 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5279,6 +5587,28 @@
 			)
 		)
 	)
+	(global_label "SW_UP_PB20"
+		(shape input)
+		(at 190.5 93.726 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "902e4d53-aa76-4fef-a019-cc1bc8ae949a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 205.6408 93.726 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "LED_WRK_PB23"
 		(shape input)
 		(at 98.298 180.086 180)
@@ -5949,6 +6279,71 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 181.61 112.776 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "06963f4a-af7d-4cb8-bad9-b54fd53e7ea6")
+		(property "Reference" "#PWR0103"
+			(at 181.61 119.126 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 181.356 117.602 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 181.61 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 181.61 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 181.61 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f3917341-9840-470a-9f21-fa9af7d877de")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "#PWR0103")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 269.494 156.464 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6339,6 +6734,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 210.82 86.106 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "103535a0-bbaa-4669-890f-4001ea9b19e7")
+		(property "Reference" "R51"
+			(at 212.09 82.296 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100k"
+			(at 210.82 88.392 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 209.042 86.106 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 210.82 86.106 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 210.82 86.106 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1ea54408-1438-4d36-a8ea-b04169ab3b73")
+		)
+		(pin "2"
+			(uuid "807039ed-27ce-40fd-8049-57aa88314347")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "R51")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 226.568 148.844 180)
 		(unit 1)
@@ -6363,7 +6827,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 225.6028 145.034 0)
 			(effects
 				(font
@@ -6568,7 +7032,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric_Pad1.08x0.95mm_HandSolder"
 			(at 79.1972 35.814 0)
 			(effects
 				(font
@@ -6706,7 +7170,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 67.7672 35.814 0)
 			(effects
 				(font
@@ -6773,7 +7237,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 85.852 44.704 90)
 			(effects
 				(font
@@ -7321,7 +7785,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 271.0688 146.304 0)
 			(effects
 				(font
@@ -8443,6 +8907,76 @@
 		)
 	)
 	(symbol
+		(lib_id "SGI_SymbolLib:SW_Push")
+		(at 210.82 102.616 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a412989a-d363-479d-8770-bc4cf2c6003b")
+		(property "Reference" "SW7"
+			(at 212.09 101.3459 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "ENTER"
+			(at 212.09 103.8859 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:SW_PUSH_6mm"
+			(at 205.74 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 205.74 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 210.82 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "34dfe334-476a-452c-80d2-2d6b29ff84c2")
+		)
+		(pin "1"
+			(uuid "0abe5767-cb6a-411c-9b98-b12311dd838d")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "SW7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 257.048 63.5 0)
 		(unit 1)
@@ -8575,6 +9109,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 175.26 86.106 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b0153b3d-bab0-4a69-823d-7c9a27ad9ebc")
+		(property "Reference" "R49"
+			(at 176.53 82.296 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100k"
+			(at 175.26 88.392 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 173.482 86.106 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 175.26 86.106 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 175.26 86.106 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1efded90-b03a-4125-b150-769cc4954934")
+		)
+		(pin "2"
+			(uuid "29cfaffa-fc81-4c23-983d-adc7449444cb")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "R49")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:Conn_01x09_Pin")
 		(at 23.368 175.514 0)
 		(unit 1)
@@ -8690,7 +9293,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 56.4388 98.298 0)
 			(effects
 				(font
@@ -8733,6 +9336,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 175.26 79.756 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c6b5d7d5-84f3-4f3e-8971-f1bb3fe72c0e")
+		(property "Reference" "#PWR0102"
+			(at 175.26 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 175.26 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 175.26 79.756 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 175.26 79.756 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 175.26 79.756 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8e41931e-cbb8-4877-8244-ebd3348add7a")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "#PWR0102")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 57.912 32.004 0)
 		(unit 1)
@@ -8759,7 +9428,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 58.8772 35.814 0)
 			(effects
 				(font
@@ -8796,6 +9465,76 @@
 			(project "SwanGanzInterface_V1.1"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
 					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 223.52 102.616 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "cb439785-1224-44af-85d3-3a362b395d4c")
+		(property "Reference" "C39"
+			(at 227.33 101.3459 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0.1u"
+			(at 227.33 103.8859 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 224.4852 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 223.52 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 223.52 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c9c9cd34-c0b0-435a-996b-092428bb363c")
+		)
+		(pin "2"
+			(uuid "74c25344-c9ee-4bbf-88d3-a13608225588")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "C39")
 					(unit 1)
 				)
 			)
@@ -8868,6 +9607,141 @@
 	)
 	(symbol
 		(lib_id "Device:R")
+		(at 181.61 93.726 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ce43f014-8fba-4f7c-8d9e-df7552acc2c5")
+		(property "Reference" "R50"
+			(at 183.134 91.694 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100R"
+			(at 184.15 93.726 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 181.61 95.504 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 181.61 93.726 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 181.61 93.726 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c07006a1-9385-4332-a348-44ab7f3374ca")
+		)
+		(pin "2"
+			(uuid "6996b58a-5497-4863-8772-50949c71cd1b")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "R50")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 217.17 112.776 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ced30a3c-6a59-4711-a2d4-7367a8e37637")
+		(property "Reference" "#PWR0105"
+			(at 217.17 119.126 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 217.17 117.856 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 217.17 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 217.17 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 217.17 112.776 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "98dc730c-03d3-4ee8-ab55-d57f6a352f40")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "#PWR0105")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
 		(at 221.488 44.45 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8930,6 +9804,142 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
 					(reference "R7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 187.96 102.616 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d34a6c32-da95-4636-9765-9150524db108")
+		(property "Reference" "C38"
+			(at 191.77 101.3459 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0.1u"
+			(at 191.77 103.8859 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 188.9252 106.426 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 187.96 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 187.96 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "487f03a9-55ca-4b8b-98a3-0629d4bb1557")
+		)
+		(pin "2"
+			(uuid "232d713b-0a2d-46e8-9823-2d6b9e3b31df")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "C38")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 210.82 79.756 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e1447fe4-2e55-4380-ab41-57d7ca30d10d")
+		(property "Reference" "#PWR0104"
+			(at 210.82 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 210.82 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 210.82 79.756 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 210.82 79.756 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 210.82 79.756 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a6e43090-3996-43f4-a5fa-d6f3ac03e230")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "#PWR0104")
 					(unit 1)
 				)
 			)
@@ -9006,6 +10016,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 217.17 93.726 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ee933eaa-0a94-4931-b680-56c1632d97bc")
+		(property "Reference" "R52"
+			(at 218.694 91.694 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100R"
+			(at 219.71 93.726 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 217.17 95.504 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 217.17 93.726 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 217.17 93.726 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ca1f5287-b28f-4bdb-a1c4-3497f24a8acc")
+		)
+		(pin "2"
+			(uuid "1b775039-6d98-49e9-87a7-32d1ffdec9f1")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "R52")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 176.022 29.464 0)
 		(unit 1)
@@ -9066,6 +10145,76 @@
 			(project "SwanGanzInterface_V1.1"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
 					(reference "#PWR025")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SGI_SymbolLib:SW_Push")
+		(at 175.26 102.616 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ff11ebe5-d35b-433a-b12e-41ba552f231a")
+		(property "Reference" "SW6"
+			(at 176.53 101.3459 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "MODE"
+			(at 176.53 103.8859 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "SGI_FootprintsLib:SW_PUSH_6mm"
+			(at 170.18 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 170.18 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 175.26 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "b09cb358-fb6c-42d7-8d1e-e355d827897f")
+		)
+		(pin "1"
+			(uuid "6019dc8f-d4d4-47f4-9e32-7f6b201298a0")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/b7986f9d-7bcd-462e-9f66-fb6deb5be406"
+					(reference "SW6")
 					(unit 1)
 				)
 			)
