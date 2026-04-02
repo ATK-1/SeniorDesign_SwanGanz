@@ -522,7 +522,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "SGI_SymbolLib:INA122D"
+		(symbol "SGI_SymbolLib:INA122P"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -534,7 +534,7 @@
 					)
 				)
 			)
-			(property "Value" "INA122D"
+			(property "Value" "INA122P"
 				(at -2.032 -1.524 0)
 				(effects
 					(font
@@ -542,7 +542,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Package_SO:SOIC-8_5.3x5.3mm_P1.27mm"
+			(property "Footprint" "Package_DIP:DIP-8_W7.62mm_LongPads"
 				(at 30.226 -5.842 0)
 				(effects
 					(font
@@ -578,7 +578,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "INA122D_0_1"
+			(symbol "INA122P_0_1"
 				(polyline
 					(pts
 						(xy -15.24 15.24) (xy -15.24 -15.24) (xy 15.24 0) (xy -15.24 15.24)
@@ -617,7 +617,7 @@
 					)
 				)
 			)
-			(symbol "INA122D_1_1"
+			(symbol "INA122P_1_1"
 				(pin input line
 					(at -17.78 7.62 0)
 					(length 2.54)
@@ -764,6 +764,7 @@
 				)
 			)
 			(embedded_fonts no)
+			(embedded_files)
 		)
 		(symbol "SGI_SymbolLib:OPA2350PA"
 			(pin_names
@@ -3108,6 +3109,93 @@
 		)
 	)
 	(symbol
+		(lib_id "SGI_SymbolLib:INA122P")
+		(at 69.85 62.23 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0a9bea2a-0b79-4ca2-a972-eddb5e3eeb18")
+		(property "Reference" "U7"
+			(at 64.3733 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "INA122P"
+			(at 60.452 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_DIP:DIP-8_W7.62mm_LongPads"
+			(at 100.076 68.072 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "kicad-embed://ina122.pdf"
+			(at 92.964 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Instrumentation Amp"
+			(at 89.662 70.104 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "8"
+			(uuid "e731b9ca-96c9-418c-8621-4db70139822d")
+		)
+		(pin "2"
+			(uuid "1e9e3888-84f3-4987-9208-0cf7769cc346")
+		)
+		(pin "6"
+			(uuid "dd1a8858-1d29-48f6-92ea-354e6746e200")
+		)
+		(pin "5"
+			(uuid "51abac59-b30f-478c-96b8-6a1c6caa1955")
+		)
+		(pin "4"
+			(uuid "da1557a0-301b-4fb8-a302-0bf05eb8a2a8")
+		)
+		(pin "7"
+			(uuid "e20a0aa8-57b2-4e4e-b97d-dec6d2908a47")
+		)
+		(pin "3"
+			(uuid "7d113017-0f42-4cdf-ba97-26141a37cb77")
+		)
+		(pin "1"
+			(uuid "d594eb5e-3f85-4b51-b5da-d917b10476f6")
+		)
+		(instances
+			(project "SwanGanzInterface_V1.1"
+				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
+					(reference "U7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 112.395 69.215 0)
 		(unit 1)
@@ -4307,93 +4395,6 @@
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
 					(reference "#PWR047")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SGI_SymbolLib:INA122D")
-		(at 69.85 62.23 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "9c26d1c3-1776-4477-85d1-a5cbb646cbfd")
-		(property "Reference" "U7"
-			(at 69.596 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "INA122D"
-			(at 69.85 64.008 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_SO:SOIC-8_5.3x5.3mm_P1.27mm"
-			(at 100.076 68.072 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ina122.pdf"
-			(at 92.964 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Instrumentation Amp"
-			(at 89.662 70.104 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "04bb185c-b08b-4374-a31d-9c36cfef137e")
-		)
-		(pin "8"
-			(uuid "0c565072-0b95-45aa-82d2-f93e3d09e686")
-		)
-		(pin "2"
-			(uuid "5ce39566-e2f1-481e-beb2-18eac7fe8acc")
-		)
-		(pin "3"
-			(uuid "33f49c45-5b15-4a3e-8f9d-d1bcf2fa09a3")
-		)
-		(pin "7"
-			(uuid "8f5c64b1-224a-432a-a9cc-472ec7277283")
-		)
-		(pin "4"
-			(uuid "f5418b25-6b13-4592-8d3f-b66b463daf1a")
-		)
-		(pin "5"
-			(uuid "e72ea3c4-f222-489c-832c-6c8369a55086")
-		)
-		(pin "6"
-			(uuid "73266f29-7180-4109-9d58-2babb54ec952")
-		)
-		(instances
-			(project "SwanGanzInterface"
-				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/3d8fa9e7-4833-4941-a955-d778effe3e32"
-					(reference "U7")
 					(unit 1)
 				)
 			)
