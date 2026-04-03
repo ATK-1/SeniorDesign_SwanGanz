@@ -22779,7 +22779,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "12fdcf55-5a7a-4457-900d-16edc78a1b65")
-		(property "Reference" "#PWR042"
+		(property "Reference" "#PWR048"
 			(at 140.97 82.55 0)
 			(effects
 				(font
@@ -22829,7 +22829,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR042")
+					(reference "#PWR048")
 					(unit 1)
 				)
 			)
@@ -22844,7 +22844,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "137b1bda-3522-49ae-9a92-1100382be671")
-		(property "Reference" "R12"
+		(property "Reference" "R16"
 			(at 46.482 49.7839 0)
 			(effects
 				(font
@@ -22898,7 +22898,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "R12")
+					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -22913,7 +22913,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "180f927c-cb4a-4302-af56-a7d10ca52622")
-		(property "Reference" "J3"
+		(property "Reference" "J4"
 			(at 51.054 35.052 0)
 			(effects
 				(font
@@ -22968,7 +22968,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "J3")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -22983,7 +22983,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1e08be52-1b72-4e80-92cc-8cbb05c588ee")
-		(property "Reference" "U6"
+		(property "Reference" "U7"
 			(at 148.59 53.34 0)
 			(effects
 				(font
@@ -23053,7 +23053,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "U6")
+					(reference "U7")
 					(unit 1)
 				)
 			)
@@ -23068,7 +23068,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "299e5224-bf79-463b-8a59-ddf99ce0daef")
-		(property "Reference" "#PWR039"
+		(property "Reference" "#PWR045"
 			(at 96.52 35.56 0)
 			(effects
 				(font
@@ -23118,7 +23118,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR039")
+					(reference "#PWR045")
 					(unit 1)
 				)
 			)
@@ -23134,7 +23134,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2bdaf801-517a-4f35-b94e-a74b59ab1d93")
-		(property "Reference" "#PWR040"
+		(property "Reference" "#PWR046"
 			(at 96.52 72.39 0)
 			(effects
 				(font
@@ -23185,7 +23185,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR040")
+					(reference "#PWR046")
 					(unit 1)
 				)
 			)
@@ -23200,7 +23200,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "34e09616-292a-4aa6-88d4-d1e8f8dcd9f8")
-		(property "Reference" "#PWR037"
+		(property "Reference" "#PWR043"
 			(at 83.82 27.94 0)
 			(effects
 				(font
@@ -23250,7 +23250,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR037")
+					(reference "#PWR043")
 					(unit 1)
 				)
 			)
@@ -23265,7 +23265,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "406c4f91-9b9e-4915-9f9c-811f565d71db")
-		(property "Reference" "#PWR043"
+		(property "Reference" "#PWR049"
 			(at 171.45 102.87 0)
 			(effects
 				(font
@@ -23315,7 +23315,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR043")
+					(reference "#PWR049")
 					(unit 1)
 				)
 			)
@@ -23330,7 +23330,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "51f80f5d-25a2-479a-b762-c48e9477d3be")
-		(property "Reference" "R14"
+		(property "Reference" "R18"
 			(at 68.326 34.5439 0)
 			(effects
 				(font
@@ -23384,7 +23384,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "R14")
+					(reference "R18")
 					(unit 1)
 				)
 			)
@@ -23399,7 +23399,7 @@
 		(on_board yes)
 		(dnp yes)
 		(uuid "620aa59c-a332-4ea6-b126-a1ee8be350e5")
-		(property "Reference" "R18"
+		(property "Reference" "R22"
 			(at 139.065 69.85 90)
 			(effects
 				(font
@@ -23451,7 +23451,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "R18")
+					(reference "R22")
 					(unit 1)
 				)
 			)
@@ -23466,7 +23466,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "64bc0394-b42d-4779-a8dd-d40a80eb4e43")
-		(property "Reference" "R19"
+		(property "Reference" "R23"
 			(at 151.13 60.325 90)
 			(effects
 				(font
@@ -23518,7 +23518,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "R19")
+					(reference "R23")
 					(unit 1)
 				)
 			)
@@ -23533,7 +23533,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6a86f2a9-411b-48f4-939a-0896a91ab2b3")
-		(property "Reference" "R16"
+		(property "Reference" "R20"
 			(at 115.57 48.895 90)
 			(effects
 				(font
@@ -23585,7 +23585,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "R16")
+					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -23601,7 +23601,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "72cf3bf9-53ff-4880-b197-00ba0c77afa6")
-		(property "Reference" "#PWR045"
+		(property "Reference" "#PWR051"
 			(at 265.43 59.69 0)
 			(effects
 				(font
@@ -23652,7 +23652,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR045")
+					(reference "#PWR051")
 					(unit 1)
 				)
 			)
@@ -23667,7 +23667,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7567ea33-6f0f-4135-8499-f650e238be78")
-		(property "Reference" "R21"
+		(property "Reference" "R25"
 			(at 180.34 81.915 90)
 			(effects
 				(font
@@ -23719,7 +23719,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "R21")
+					(reference "R25")
 					(unit 1)
 				)
 			)
@@ -23734,7 +23734,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8504c87e-f7c0-406f-9ac4-209f7942b333")
-		(property "Reference" "R17"
+		(property "Reference" "R21"
 			(at 128.27 48.895 90)
 			(effects
 				(font
@@ -23786,7 +23786,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "R17")
+					(reference "R21")
 					(unit 1)
 				)
 			)
@@ -23801,7 +23801,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "89564e31-39fb-45ae-b44c-2af14fd548b3")
-		(property "Reference" "C16"
+		(property "Reference" "C18"
 			(at 135.255 56.515 0)
 			(effects
 				(font
@@ -23855,7 +23855,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "C16")
+					(reference "C18")
 					(unit 1)
 				)
 			)
@@ -23870,7 +23870,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8ffb813a-02fa-4d7e-982d-27abe9632b62")
-		(property "Reference" "C18"
+		(property "Reference" "C20"
 			(at 278.765 35.56 0)
 			(effects
 				(font
@@ -23924,7 +23924,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "C18")
+					(reference "C20")
 					(unit 1)
 				)
 			)
@@ -23939,7 +23939,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9cc4b0b6-3053-44c2-ac50-4225d249e23c")
-		(property "Reference" "U6"
+		(property "Reference" "U7"
 			(at 176.784 75.184 0)
 			(effects
 				(font
@@ -24009,7 +24009,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "U6")
+					(reference "U7")
 					(unit 2)
 				)
 			)
@@ -24024,7 +24024,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "aedad508-f091-4ddb-a169-75362d88b0ea")
-		(property "Reference" "R13"
+		(property "Reference" "R17"
 			(at 46.99 62.9919 0)
 			(effects
 				(font
@@ -24078,7 +24078,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "R13")
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -24093,7 +24093,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b673fa3f-abff-4609-ba4a-b065ea1f517a")
-		(property "Reference" "#PWR035"
+		(property "Reference" "#PWR041"
 			(at 44.45 76.2 0)
 			(effects
 				(font
@@ -24143,7 +24143,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR035")
+					(reference "#PWR041")
 					(unit 1)
 				)
 			)
@@ -24158,7 +24158,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b95b970a-d5d0-4fcf-b99e-bca2bd9b7681")
-		(property "Reference" "C15"
+		(property "Reference" "C17"
 			(at 90.17 22.86 90)
 			(effects
 				(font
@@ -24210,7 +24210,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "C15")
+					(reference "C17")
 					(unit 1)
 				)
 			)
@@ -24225,7 +24225,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bf79bbea-2c4d-4ecb-a971-c4fc2608b6da")
-		(property "Reference" "U5"
+		(property "Reference" "U6"
 			(at 85.9633 68.58 0)
 			(effects
 				(font
@@ -24297,7 +24297,7 @@
 		(instances
 			(project "SwanGanzInterface_V1.1"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "U5")
+					(reference "U6")
 					(unit 1)
 				)
 			)
@@ -24312,7 +24312,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d20feaf9-e847-496a-ae27-0a131e4d5713")
-		(property "Reference" "#PWR036"
+		(property "Reference" "#PWR042"
 			(at 63.5 54.864 0)
 			(effects
 				(font
@@ -24362,7 +24362,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR036")
+					(reference "#PWR042")
 					(unit 1)
 				)
 			)
@@ -24377,7 +24377,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "dbcb845f-2432-43df-90cd-75584072386f")
-		(property "Reference" "#PWR044"
+		(property "Reference" "#PWR050"
 			(at 265.43 29.21 0)
 			(effects
 				(font
@@ -24427,7 +24427,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR044")
+					(reference "#PWR050")
 					(unit 1)
 				)
 			)
@@ -24584,7 +24584,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e6c23fc4-9399-4399-b98e-c715c3bf93d4")
-		(property "Reference" "C17"
+		(property "Reference" "C19"
 			(at 141.732 42.799 90)
 			(effects
 				(font
@@ -24636,7 +24636,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "C17")
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -24651,7 +24651,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e840fe60-2d2c-4536-8184-c53ded9d8f8f")
-		(property "Reference" "R15"
+		(property "Reference" "R19"
 			(at 95.25 33.274 90)
 			(effects
 				(font
@@ -24703,7 +24703,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "R15")
+					(reference "R19")
 					(unit 1)
 				)
 			)
@@ -24719,7 +24719,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f15d2af2-1059-4a4e-854a-94e7bd424fbf")
-		(property "Reference" "U6"
+		(property "Reference" "U7"
 			(at 266.7 38.0999 0)
 			(effects
 				(font
@@ -24791,7 +24791,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "U6")
+					(reference "U7")
 					(unit 3)
 				)
 			)
@@ -24806,7 +24806,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f1b51d33-2750-46a2-90fb-a86126f81a5f")
-		(property "Reference" "#PWR038"
+		(property "Reference" "#PWR044"
 			(at 83.82 77.47 0)
 			(effects
 				(font
@@ -24856,7 +24856,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR038")
+					(reference "#PWR044")
 					(unit 1)
 				)
 			)
@@ -24942,7 +24942,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f3e77f73-7c43-43f8-a53d-61c8b6377e9b")
-		(property "Reference" "R20"
+		(property "Reference" "R24"
 			(at 169.545 90.17 90)
 			(effects
 				(font
@@ -24994,7 +24994,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "R20")
+					(reference "R24")
 					(unit 1)
 				)
 			)
@@ -25009,7 +25009,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fafa7637-3f9a-470c-9fc2-adcf8778df3b")
-		(property "Reference" "#PWR041"
+		(property "Reference" "#PWR047"
 			(at 134.62 71.12 0)
 			(effects
 				(font
@@ -25060,7 +25060,7 @@
 		(instances
 			(project "SwanGanzInterface"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2d5e901e-83ed-4d76-b163-6429564a2d4c"
-					(reference "#PWR041")
+					(reference "#PWR047")
 					(unit 1)
 				)
 			)
