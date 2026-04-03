@@ -764,7 +764,6 @@
 				)
 			)
 			(embedded_fonts no)
-			(embedded_files)
 		)
 		(symbol "SGI_SymbolLib:OPA2350PA"
 			(pin_names

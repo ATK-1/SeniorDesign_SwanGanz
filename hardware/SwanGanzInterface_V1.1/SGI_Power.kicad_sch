@@ -45454,7 +45454,7 @@
 	)
 	(text "Reverse Polarity Fet\nRds On : 0.188 Ohms @ -4.5V\nVgs (Max) : +-20V"
 		(exclude_from_sim no)
-		(at 89.154 185.674 0)
+		(at 93.98 184.658 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -46078,16 +46078,6 @@
 	)
 	(wire
 		(pts
-			(xy 70.612 189.23) (xy 70.612 187.198)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "82f6513d-bda1-4cc5-8dd6-6312408468bc")
-	)
-	(wire
-		(pts
 			(xy 232.918 111.252) (xy 235.712 111.252)
 		)
 		(stroke
@@ -46208,7 +46198,7 @@
 	)
 	(wire
 		(pts
-			(xy 75.692 179.578) (xy 86.614 179.578)
+			(xy 78.232 179.578) (xy 86.614 179.578)
 		)
 		(stroke
 			(width 0)
@@ -46548,7 +46538,7 @@
 	)
 	(wire
 		(pts
-			(xy 56.896 179.578) (xy 65.532 179.578)
+			(xy 56.896 179.578) (xy 68.072 179.578)
 		)
 		(stroke
 			(width 0)
@@ -46585,6 +46575,16 @@
 			(type default)
 		)
 		(uuid "f063d096-f2d1-4b90-bd31-9328b0a4edb4")
+	)
+	(wire
+		(pts
+			(xy 73.152 187.198) (xy 73.152 189.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f560c7f2-f176-4d30-810a-212defd58a87")
 	)
 	(wire
 		(pts
@@ -46656,27 +46656,15 @@
 		)
 		(uuid "fe6c68e9-5de0-41c3-952e-eaca125707f0")
 	)
-	(global_label "Touch_VRef"
-		(shape output)
-		(at 235.712 111.252 0)
-		(fields_autoplaced yes)
+	(label "SW_TO_FET"
+		(at 57.404 179.578 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify left bottom)
 		)
-		(uuid "0d727586-a10e-4a4f-9abd-08a190fc866e")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 249.3409 111.252 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
+		(uuid "253c4a2f-d14e-4508-9da9-f3602c9923d4")
 	)
 	(global_label "+VRef"
 		(shape input)
@@ -46801,6 +46789,28 @@
 		(uuid "89ca4d7a-e984-4987-8600-871e4e77a3f8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 246.7889 69.596 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Touch_VRef"
+		(shape output)
+		(at 235.712 111.252 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9721a8e0-aaa0-4ff4-baed-440c8bf780a9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 249.3409 111.252 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -46947,7 +46957,7 @@
 	)
 	(symbol
 		(lib_id "SGI_SymbolLib:SQ2389CES-T1_GE3")
-		(at 70.612 182.118 90)
+		(at 73.152 182.118 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -46955,7 +46965,7 @@
 		(dnp no)
 		(uuid "00728806-a532-4554-b18d-bc2cf53a62ff")
 		(property "Reference" "Q1"
-			(at 70.612 172.974 90)
+			(at 73.152 172.974 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -46963,7 +46973,7 @@
 			)
 		)
 		(property "Value" "SQ2389CES-T1_GE3"
-			(at 70.612 175.514 90)
+			(at 73.152 175.514 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -46971,7 +46981,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 72.517 177.038 0)
+			(at 75.057 177.038 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -46982,7 +46992,7 @@
 			)
 		)
 		(property "Datasheet" "kicad-embed://sq2389ces.pdf"
-			(at 74.422 177.038 0)
+			(at 76.962 177.038 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -46992,7 +47002,7 @@
 			)
 		)
 		(property "Description" "-0.18A Id, -60V Vds, P-Channel MOSFET, SOT-23"
-			(at 70.612 182.118 0)
+			(at 73.152 182.118 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -48525,7 +48535,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDA")
-		(at 70.612 189.23 0)
+		(at 73.152 189.23 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -48534,7 +48544,7 @@
 		(fields_autoplaced yes)
 		(uuid "7db52427-62fe-4ddd-90b9-063b99b4407b")
 		(property "Reference" "#PWR04"
-			(at 70.612 195.58 0)
+			(at 73.152 195.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -48543,7 +48553,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 73.152 190.4999 0)
+			(at 75.692 190.4999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -48552,7 +48562,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 70.612 189.23 0)
+			(at 73.152 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -48561,7 +48571,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 70.612 189.23 0)
+			(at 73.152 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -48570,7 +48580,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDA\" , analog ground"
-			(at 70.612 189.23 0)
+			(at 73.152 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -48665,8 +48675,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "83aa3526-45bb-4058-8eb5-a29842d8faf7")
-		(property "Reference" "IC1"
-			(at 58.42 111.76 0)
+		(property "Reference" "U15"
+			(at 58.42 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -48674,7 +48684,7 @@
 			)
 		)
 		(property "Value" "LM2937ESX-3.3_NOPB"
-			(at 58.42 114.3 0)
+			(at 58.42 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -48795,7 +48805,7 @@
 		(instances
 			(project ""
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/090a1e64-9482-4912-b352-6eea35714559"
-					(reference "IC1")
+					(reference "U15")
 					(unit 1)
 				)
 			)

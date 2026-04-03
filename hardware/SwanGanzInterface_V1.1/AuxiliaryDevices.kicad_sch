@@ -40915,7 +40915,7 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "IC"
+			(property "Reference" "U"
 				(at 29.21 7.62 0)
 				(effects
 					(font
@@ -47112,7 +47112,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b4bca819-2131-4abb-837c-db9bbce179f5")
-		(property "Reference" "IC2"
+		(property "Reference" "U14"
 			(at 223.52 101.092 0)
 			(effects
 				(font
@@ -47278,7 +47278,7 @@
 		(instances
 			(project "SwanGanzInterface_V1.1"
 				(path "/4e9a6e30-f660-472b-9696-bea1f34b4545/2a61924c-1b61-4422-811f-a61fd6f6c556"
-					(reference "IC2")
+					(reference "U14")
 					(unit 1)
 				)
 			)

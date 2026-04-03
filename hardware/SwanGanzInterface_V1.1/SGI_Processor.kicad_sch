@@ -5587,7 +5587,7 @@
 			)
 		)
 	)
-	(global_label "SW_UP_PB20"
+	(global_label "SW_LEFT_PB20"
 		(shape input)
 		(at 190.5 93.726 0)
 		(fields_autoplaced yes)
@@ -5599,7 +5599,7 @@
 		)
 		(uuid "902e4d53-aa76-4fef-a019-cc1bc8ae949a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.6408 93.726 0)
+			(at 207.2736 93.726 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7838,7 +7838,7 @@
 		(fields_autoplaced yes)
 		(uuid "4c4dc74c-326f-4fef-a3ab-d4484b7361e4")
 		(property "Reference" "SW3"
-			(at 216.408 52.0699 90)
+			(at 217.17 52.0699 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7846,8 +7846,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "MODE"
-			(at 216.408 54.6099 90)
+		(property "Value" "UP"
+			(at 217.17 54.6099 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8242,7 +8242,7 @@
 		(fields_autoplaced yes)
 		(uuid "67a0a6fa-7a24-4c18-ad23-567fc8fdac00")
 		(property "Reference" "SW2"
-			(at 177.292 51.0539 90)
+			(at 177.8 51.0539 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8250,8 +8250,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "MODE"
-			(at 177.292 53.5939 90)
+		(property "Value" "NRST"
+			(at 177.8 53.5939 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8925,7 +8925,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "ENTER"
+		(property "Value" "RIGHT"
 			(at 212.09 103.8859 90)
 			(effects
 				(font
@@ -9956,7 +9956,7 @@
 		(fields_autoplaced yes)
 		(uuid "e62ea04c-d7dd-4980-93a8-5e186c1e7d59")
 		(property "Reference" "SW5"
-			(at 251.968 52.0699 90)
+			(at 252.73 52.0699 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9964,8 +9964,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "ENTER"
-			(at 251.968 54.6099 90)
+		(property "Value" "DOWN"
+			(at 252.73 54.6099 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10169,7 +10169,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "MODE"
+		(property "Value" "LEFT"
 			(at 176.53 103.8859 90)
 			(effects
 				(font
