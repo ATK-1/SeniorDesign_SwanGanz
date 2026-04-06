@@ -41652,16 +41652,6 @@
 		)
 		(uuid "5e46fb6b-6b70-4407-82fc-769a33dc6508")
 	)
-	(text "Verify Resistor Values"
-		(exclude_from_sim no)
-		(at 177.546 156.464 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "5fc20054-69c7-42dd-9271-8b62694dfc7c")
-	)
 	(text "Resistive Touch Screen Controller"
 		(exclude_from_sim no)
 		(at 229.87 95.504 0)

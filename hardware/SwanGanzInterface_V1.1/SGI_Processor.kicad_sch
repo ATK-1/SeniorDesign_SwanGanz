@@ -2821,16 +2821,6 @@
 		)
 		(uuid "88b6388e-591d-4a47-8901-6c5b9e32429b")
 	)
-	(text "LEFT / RIGHT\nAllocate Pins"
-		(exclude_from_sim no)
-		(at 193.548 75.184 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "9124074c-c5fd-49e5-81ba-a60805a01200")
-	)
 	(text "Debug Pins"
 		(exclude_from_sim no)
 		(at 30.48 156.718 0)
