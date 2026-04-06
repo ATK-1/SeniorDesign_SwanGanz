@@ -44250,8 +44250,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "2k"
-			(at 151.638 163.576 90)
+		(property "Value" "1k"
+			(at 151.638 163.322 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -47626,7 +47626,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "2k"
+		(property "Value" "1k"
 			(at 138.938 163.576 90)
 			(effects
 				(font
@@ -47972,8 +47972,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "2k"
-			(at 163.068 163.322 90)
+		(property "Value" "1.8k"
+			(at 163.068 164.084 90)
 			(effects
 				(font
 					(size 1.27 1.27)
