@@ -75,7 +75,7 @@ void Logic_Init() {
 static void IdleThread() {
     while (1) {
         //OS_Suspend();
-        __asm("WFI");
+        //__asm("WFI");
     }
 }
 
