@@ -40,72 +40,72 @@ enum RA8875sizes {
 };
 
 int RA8875_begin(enum RA8875sizes s);
-void softReset(void);
-void displayOn(int on);
-void sleep(int sleep);
+void RA8875_softReset(void);
+void RA8875_displayOn(int on);
+void RA8875_sleep(int sleep);
 
 /* Text functions */
-void textMode(void);
-void textSetCursor(uint16_t x, uint16_t y);
-void textColor(uint16_t foreColor, uint16_t bgColor);
-void textTransparent(uint16_t foreColor);
-void textEnlarge(uint8_t scale);
-void textWrite(const char* buffer, uint16_t len);
-void cursorBlink(uint8_t rate);
+void RA8875_textMode(void);
+void RA8875_textSetCursor(uint16_t x, uint16_t y);
+void RA8875_textColor(uint16_t foreColor, uint16_t bgColor);
+void RA8875_textTransparent(uint16_t foreColor);
+void RA8875_textEnlarge(uint8_t scale);
+void RA8875_textWrite(const char* buffer, uint16_t len);
+void RA8875_cursorBlink(uint8_t rate);
 
 /* Graphics functions */
-void graphicsMode(void);
-void setXY(uint16_t x, uint16_t y);
-void pushPixels(uint32_t num, uint16_t p);
-void fillScreenWithCurrentColor(void);
+void RA8875_graphicsMode(void);
+void RA8875_setXY(uint16_t x, uint16_t y);
+void RA8875_pushPixels(uint32_t num, uint16_t p);
+void RA8875_fillScreenWithCurrentColor(void);
 
 /* Adafruit_GFX functions */
-void drawPixel(int16_t x, int16_t y, uint16_t color);
-void drawPixels(uint16_t* p, uint32_t count, int16_t x, int16_t y);
-void drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
-void drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color);
+void RA8875_drawPixel(int16_t x, int16_t y, uint16_t color);
+void RA8875_drawPixels(uint16_t* p, uint32_t count, int16_t x, int16_t y);
+void RA8875_drawFastVLine(int16_t x, int16_t y, int16_t h, uint16_t color);
+void RA8875_drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color);
 
 /* HW accelerated wrapper functions (override Adafruit_GFX prototypes) */
-void fillScreen(uint16_t color);
-void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color);
-void drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
-void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
-void drawCircle(int16_t x, int16_t y, int16_t r, uint16_t color);
-void fillCircle(int16_t x, int16_t y, int16_t r, uint16_t color);
-void drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2,
+void RA8875_fillScreen(uint16_t color);
+void RA8875_drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint16_t color);
+void RA8875_drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
+void RA8875_fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color);
+void RA8875_drawCircle(int16_t x, int16_t y, int16_t r, uint16_t color);
+void RA8875_fillCircle(int16_t x, int16_t y, int16_t r, uint16_t color);
+void RA8875_drawTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2,
                 int16_t y2, uint16_t color);
-void fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2,
+void RA8875_fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2,
                 int16_t y2, uint16_t color);
-void drawEllipse(int16_t xCenter, int16_t yCenter, int16_t longAxis,
+void RA8875_drawEllipse(int16_t xCenter, int16_t yCenter, int16_t longAxis,
                 int16_t shortAxis, uint16_t color);
-void fillEllipse(int16_t xCenter, int16_t yCenter, int16_t longAxis,
+void RA8875_fillEllipse(int16_t xCenter, int16_t yCenter, int16_t longAxis,
                 int16_t shortAxis, uint16_t color);
-void drawCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis,
+void RA8875_drawCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis,
                 int16_t shortAxis, uint8_t curvePart, uint16_t color);
-void fillCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis,
+void RA8875_fillCurve(int16_t xCenter, int16_t yCenter, int16_t longAxis,
                 int16_t shortAxis, uint8_t curvePart, uint16_t color);
-void drawRoundRect(int16_t x, int16_t y, int16_t w, int16_t h, int16_t r,
+void RA8875_drawRoundRect(int16_t x, int16_t y, int16_t w, int16_t h, int16_t r,
                     uint16_t color);
-void fillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h, int16_t r,
+void RA8875_fillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h, int16_t r,
                     uint16_t color);
 
 /* Scroll */
-void setScrollWindow(int16_t x, int16_t y, int16_t w, int16_t h,
+void RA8875_setScrollWindow(int16_t x, int16_t y, int16_t w, int16_t h,
                     uint8_t mode);
-void scrollX(int16_t dist);
-void scrollY(int16_t dist);
+void RA8875_scrollX(int16_t dist);
+void RA8875_scrollY(int16_t dist);
 
 /* Backlight */
-void GPIOX(int on);
-void PWM1config(int on, uint8_t clock);
-void PWM2config(int on, uint8_t clock);
-void PWM1out(uint8_t p);
-void PWM2out(uint8_t p);
+void RA8875_setGPIOX(int on);
+void RA8875_PWM1config(int on, uint8_t clock);
+void RA8875_PWM2config(int on, uint8_t clock);
+void RA8875_PWM1out(uint8_t p);
+void RA8875_PWM2out(uint8_t p);
 
 /* Touch screen */
-void touchEnable(int on);
-int touched(void);
-int touchRead(uint16_t* x, uint16_t* y);
+void RA8875_touchEnable(int on);
+int RA8875_touched(void);
+int RA8875_touchRead(uint16_t* x, uint16_t* y);
 
 
 // Colors (RGB565)

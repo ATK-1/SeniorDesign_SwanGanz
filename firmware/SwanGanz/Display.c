@@ -1,4 +1,5 @@
 #include <ti/devices/msp/msp.h>
+#include <string.h>
 #include "../inc/ST7735.h"
 #include "OS.h"
 #include "Display.h"
@@ -10,41 +11,18 @@ Sema4_t LCD_Mutex;
 static int input;
 
 
-void DisplayInit0() {
-    ST7735_InitR(INITR_BLACKTAB); //INITR_REDTAB for AdaFruit
-    ST7735_FillScreen(ST7735_BLACK);
-    ST7735_SetCursor(0, 0);
-    OS_InitSemaphore(&LCD_Mutex, 1);
-}
 
 void DisplayInit() {
     if (!RA8875_begin(RA8875_800x480)) {
-        while(1) {
-            // writeCommand(0x35);
-        }
+        while(1) {} // LCD Initialization failed
     }
-    displayOn(1);
-    GPIOX(1);
-    PWM1config(1, 0);
-    PWM1out(255);
+    RA8875_displayOn(1);
+    RA8875_setGPIOX(1);
+    RA8875_PWM1config(1, 0);
+    RA8875_PWM1out(255);
+     
+    RA8875_fillScreen(0xE7BF);
     
-    fillScreen(RA8875_WHITE);
-
-    drawCircle(100, 100, 50, RA8875_BLACK);
-    fillCircle(100, 100, 49, RA8875_GREEN);
-    fillRect(11, 11, 398, 198, RA8875_BLUE);
-    drawRect(10, 10, 400, 200, RA8875_GREEN);
-    fillRoundRect(200, 10, 200, 100, 10, RA8875_RED);
-    drawPixel(10,10,RA8875_BLACK);
-    drawPixel(11,11,RA8875_BLACK);
-    drawLine(10, 10, 200, 100, RA8875_RED);
-    drawTriangle(200, 15, 250, 100, 150, 125, RA8875_BLACK);
-    fillTriangle(200, 16, 249, 99, 151, 124, RA8875_YELLOW);
-    drawEllipse(300, 100, 100, 40, RA8875_BLACK);
-    fillEllipse(300, 100, 98, 38, RA8875_GREEN);
-  // Argument 5 (curvePart) is a 2-bit value to control each corner (select 0, 1, 2, or 3)
-    drawCurve(50, 100, 80, 40, 2, RA8875_BLACK);
-    fillCurve(50, 100, 78, 38, 2, RA8875_WHITE);
 
     OS_InitSemaphore(&LCD_Mutex, 1);
 }
@@ -109,19 +87,59 @@ void DisplayTemp() {
 }
 
 
+void displayConnected() {
+    RA8875_textMode();
+    RA8875_textSetCursor(10, 0);
+    const char* connectedStr = "Connected";
+    const char* unconnectedStr = "Not Connected";
+    RA8875_textEnlarge(1);
+    RA8875_textTransparent(RA8875_BLACK); //test if needed
+    uint32_t connected = 0;
+    if (connected) {
+        RA8875_textWrite(connectedStr, strlen(connectedStr));
+        RA8875_drawCircle(175, 18, 9, RA8875_BLACK);
+        RA8875_fillCircle(175, 18, 8, RA8875_GREEN);
+    }
+    else {
+        RA8875_textWrite(unconnectedStr, strlen(unconnectedStr));
+        RA8875_drawCircle(235, 18, 9, RA8875_BLACK);
+        RA8875_fillCircle(235, 18, 8, RA8875_RED);
+    }
+}
 /*
     DisplayStartMenu - foreground thread
     Waits for an input in fifo
     Changes state of system
 */
 void DisplayStartMenu() {
+    displayConnected();
+    RA8875_drawRoundRect(0, 40, 800, 200, 5, RA8875_BLACK);
+    //RA8875_fillRoundRect(1, 41, 798, 198, 5 , (uint16_t)0xBFCE7E);
+
+    // Injectate header
+    const char* injectateStr = "Injectate";
+    RA8875_textMode();
+    RA8875_textEnlarge(2);
+    RA8875_textSetCursor(7, 45);
+    RA8875_textTransparent(RA8875_BLACK); //test if needed
+    RA8875_textWrite(injectateStr, strlen(injectateStr));
+    // Volume header
+    const char* volumeHeaderStr = "Volume (mL)";
+    RA8875_textEnlarge(1);
+    RA8875_textSetCursor(15, 100);
+    RA8875_textWrite(volumeHeaderStr, strlen(volumeHeaderStr));
+    // Volume value
+    const char* volumeValStr = "10";
+    RA8875_textEnlarge(3);
+    RA8875_textSetCursor(65, 135);
+    RA8875_textWrite(volumeValStr, strlen(volumeValStr));
+    // Temperature Header
+    const char* tempStr = "0 C";
     while (1) {
-        textMode();
-        textSetCursor(10, 10);
-        char s[39] = "Press any button to begin calculations";
-        textEnlarge(1);
-        textTransparent(RA8875_BLACK);
-        textWrite(s, 39);
+
+
+        
+
         // ST7735_SetCursor(0, 0);
         // OS_bWait(&LCD_Mutex);
         // ST7735_OutString("Press any button to ");

@@ -362,7 +362,7 @@ static uint8_t readReg(uint8_t reg) {
       Performs a SW-based reset of the RA8875
 */
 /**************************************************************************/
-void softReset(void) {
+void RA8875_softReset(void) {
   writeCommand(RA8875_PWRR);
   writeData(RA8875_PWRR_SOFTRESET);
   writeData(RA8875_PWRR_NORMAL);
@@ -592,7 +592,7 @@ void setRotation(int8_t rotation) {
       Sets the display in graphics mode (as opposed to text mode)
 */
 /**************************************************************************/
-void graphicsMode(void) {
+void RA8875_graphicsMode(void) {
   writeCommand(RA8875_MWCR0);
   uint8_t temp = readData();
   temp &= ~RA8875_MWCR0_TXTMODE; // bit #7
@@ -627,7 +627,7 @@ static int waitPoll(uint8_t regname, uint8_t waitflag) {
       @param y The 0-base y location
 */
 /**************************************************************************/
-void setXY(uint16_t x, uint16_t y) {
+void RA8875_setXY(uint16_t x, uint16_t y) {
   writeReg(RA8875_CURH0, x);
   writeReg(RA8875_CURH1, x >> 8);
   writeReg(RA8875_CURV0, y);
@@ -642,7 +642,7 @@ void setXY(uint16_t x, uint16_t y) {
       @param p   The pixel color to use
 */
 /**************************************************************************/
-void pushPixels(uint32_t num, uint16_t p) {
+void RA8875_pushPixels(uint32_t num, uint16_t p) {
   TFT_CS_LOW();
   SPI_OutCommand(RA8875_DATAWRITE);
   while (num--) {
@@ -657,7 +657,7 @@ void pushPixels(uint32_t num, uint16_t p) {
     Fill the screen with the current color
 */
 /**************************************************************************/
-void fillScreenWithCurrentColor(void) {
+void RA8875_fillScreenWithCurrentColor(void) {
   writeCommand(RA8875_DCR);
   writeData(RA8875_DCR_LINESQUTRI_STOP | RA8875_DCR_DRAWSQUARE);
   writeData(RA8875_DCR_LINESQUTRI_START | RA8875_DCR_FILL |
@@ -707,7 +707,7 @@ static int16_t applyRotationY(int16_t y) {
       @param color The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void drawPixel(int16_t x, int16_t y, uint16_t color) {
+void RA8875_drawPixel(int16_t x, int16_t y, uint16_t color) {
   x = applyRotationX(x);
   y = applyRotationY(y);
 
@@ -733,7 +733,7 @@ void drawPixel(int16_t x, int16_t y, uint16_t color) {
  @param y     The 0-base y location
  */
 /**************************************************************************/
-void drawPixels(uint16_t* p, uint32_t num, int16_t x,
+void RA8875_drawPixels(uint16_t* p, uint32_t num, int16_t x,
                                  int16_t y) {
   x = applyRotationX(x);
   y = applyRotationY(y);
@@ -771,7 +771,7 @@ void drawPixels(uint16_t* p, uint32_t num, int16_t x,
       @param color The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
+void RA8875_drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
                                uint16_t color) {
   x0 = applyRotationX(x0);
   y0 = applyRotationY(y0);
@@ -828,9 +828,9 @@ void drawLine(int16_t x0, int16_t y0, int16_t x1, int16_t y1,
     @param color The color
 */
 /**************************************************************************/
-void drawFastVLine(int16_t x, int16_t y, int16_t h,
+void RA8875_drawFastVLine(int16_t x, int16_t y, int16_t h,
                                     uint16_t color) {
-  drawLine(x, y, x, y + h, color);
+  RA8875_drawLine(x, y, x, y + h, color);
 }
 
 /**************************************************************************/
@@ -843,8 +843,8 @@ void drawFastVLine(int16_t x, int16_t y, int16_t h,
      @param color The color
 */
 /**************************************************************************/
-void drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color) {
-  drawLine(x, y, x + w, y, color);
+void RA8875_drawFastHLine(int16_t x, int16_t y, int16_t w, uint16_t color) {
+  RA8875_drawLine(x, y, x + w, y, color);
 }
 
 /**************************************************************************/
@@ -1205,7 +1205,7 @@ static void roundRectHelper(int16_t x, int16_t y, int16_t w,
       @param color The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color) {
+void RA8875_drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color) {
   rectHelper(x, y, x + w - 1, y + h - 1, color, FALSE);
 }
 
@@ -1220,7 +1220,7 @@ void drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color) {
       @param color The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color) {
+void RA8875_fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color) {
   rectHelper(x, y, x + w - 1, y + h - 1, color, TRUE);
 }
 
@@ -1231,7 +1231,7 @@ void fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color) {
       @param color The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void fillScreen(uint16_t color) {
+void RA8875_fillScreen(uint16_t color) {
   rectHelper(0, 0, _width - 1, _height - 1, color, TRUE);
 }
 
@@ -1245,7 +1245,7 @@ void fillScreen(uint16_t color) {
       @param color The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void drawCircle(int16_t x, int16_t y, int16_t r, uint16_t color) {
+void RA8875_drawCircle(int16_t x, int16_t y, int16_t r, uint16_t color) {
   circleHelper(x, y, r, color, FALSE);
 }
 
@@ -1259,7 +1259,7 @@ void drawCircle(int16_t x, int16_t y, int16_t r, uint16_t color) {
       @param color The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void fillCircle(int16_t x, int16_t y, int16_t r, uint16_t color) {
+void RA8875_fillCircle(int16_t x, int16_t y, int16_t r, uint16_t color) {
   circleHelper(x, y, r, color, TRUE);
 }
 
@@ -1276,7 +1276,7 @@ void fillCircle(int16_t x, int16_t y, int16_t r, uint16_t color) {
       @param color The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void drawTriangle(int16_t x0, int16_t y0, int16_t x1,
+void RA8875_drawTriangle(int16_t x0, int16_t y0, int16_t x1,
                                    int16_t y1, int16_t x2, int16_t y2,
                                    uint16_t color) {
   triangleHelper(x0, y0, x1, y1, x2, y2, color, FALSE);
@@ -1295,7 +1295,7 @@ void drawTriangle(int16_t x0, int16_t y0, int16_t x1,
       @param color The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void fillTriangle(int16_t x0, int16_t y0, int16_t x1,
+void RA8875_fillTriangle(int16_t x0, int16_t y0, int16_t x1,
                                    int16_t y1, int16_t x2, int16_t y2,
                                    uint16_t color) {
   triangleHelper(x0, y0, x1, y1, x2, y2, color, TRUE);
@@ -1312,7 +1312,7 @@ void fillTriangle(int16_t x0, int16_t y0, int16_t x1,
       @param color     The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void drawEllipse(int16_t xCenter, int16_t yCenter,
+void RA8875_drawEllipse(int16_t xCenter, int16_t yCenter,
                                   int16_t longAxis, int16_t shortAxis,
                                   uint16_t color) {
   ellipseHelper(xCenter, yCenter, longAxis, shortAxis, color, FALSE);
@@ -1329,7 +1329,7 @@ void drawEllipse(int16_t xCenter, int16_t yCenter,
       @param color     The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void fillEllipse(int16_t xCenter, int16_t yCenter,
+void RA8875_fillEllipse(int16_t xCenter, int16_t yCenter,
                                   int16_t longAxis, int16_t shortAxis,
                                   uint16_t color) {
   ellipseHelper(xCenter, yCenter, longAxis, shortAxis, color, TRUE);
@@ -1351,7 +1351,7 @@ void fillEllipse(int16_t xCenter, int16_t yCenter,
       @param color     The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void drawCurve(int16_t xCenter, int16_t yCenter,
+void RA8875_drawCurve(int16_t xCenter, int16_t yCenter,
                                 int16_t longAxis, int16_t shortAxis,
                                 uint8_t curvePart, uint16_t color) {
   curveHelper(xCenter, yCenter, longAxis, shortAxis, curvePart, color, FALSE);
@@ -1373,7 +1373,7 @@ void drawCurve(int16_t xCenter, int16_t yCenter,
       @param color     The RGB565 color to use when drawing the pixel
 */
 /**************************************************************************/
-void fillCurve(int16_t xCenter, int16_t yCenter,
+void RA8875_fillCurve(int16_t xCenter, int16_t yCenter,
                                 int16_t longAxis, int16_t shortAxis,
                                 uint8_t curvePart, uint16_t color) {
   curveHelper(xCenter, yCenter, longAxis, shortAxis, curvePart, color, TRUE);
@@ -1391,7 +1391,7 @@ void fillCurve(int16_t xCenter, int16_t yCenter,
       @param color  The RGB565 color to use when drawing the pixel
  */
 /**************************************************************************/
-void drawRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
+void RA8875_drawRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
                                     int16_t r, uint16_t color) {
   roundRectHelper(x, y, x + w, y + h, r, color, FALSE);
 }
@@ -1408,7 +1408,7 @@ void drawRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
       @param color  The RGB565 color to use when drawing the pixel
  */
 /**************************************************************************/
-void fillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
+void RA8875_fillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
                                     int16_t r, uint16_t color) {
   roundRectHelper(x, y, x + w, y + h, r, color, TRUE);
 }
@@ -1425,7 +1425,7 @@ void fillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h,
 
  */
 /**************************************************************************/
-void setScrollWindow(int16_t x, int16_t y, int16_t w, int16_t h, uint8_t mode) {
+void RA8875_setScrollWindow(int16_t x, int16_t y, int16_t w, int16_t h, uint8_t mode) {
   // Horizontal Start point of Scroll Window
   writeCommand(0x38);
   writeData(x);
@@ -1463,7 +1463,7 @@ void setScrollWindow(int16_t x, int16_t y, int16_t w, int16_t h, uint8_t mode) {
 
  */
 /**************************************************************************/
-void scrollX(int16_t dist) {
+void RA8875_scrollX(int16_t dist) {
   writeCommand(0x24);
   writeData(dist);
   writeCommand(0x25);
@@ -1478,7 +1478,7 @@ void scrollX(int16_t dist) {
 
  */
 /**************************************************************************/
-void scrollY(int16_t dist) {
+void RA8875_scrollY(int16_t dist) {
   writeCommand(0x26);
   writeData(dist);
   writeCommand(0x27);
@@ -1492,7 +1492,7 @@ void scrollY(int16_t dist) {
       Sets the display in text mode (as opposed to graphics mode)
 */
 /**************************************************************************/
-void textMode(void) {
+void RA8875_textMode(void) {
   /* Set text mode */
   writeCommand(RA8875_MWCR0);
   uint8_t temp = readData();
@@ -1514,7 +1514,7 @@ void textMode(void) {
       @param y The y position of the cursor (in pixels, 0..511)
 */
 /**************************************************************************/
-void textSetCursor(uint16_t x, uint16_t y) {
+void RA8875_textSetCursor(uint16_t x, uint16_t y) {
   x = applyRotationX(x);
   y = applyRotationY(y);
 
@@ -1537,7 +1537,7 @@ void textSetCursor(uint16_t x, uint16_t y) {
       @param bgColor   The RGB565 colot to use for the background
 */
 /**************************************************************************/
-void textColor(uint16_t foreColor, uint16_t bgColor) {
+void RA8875_textColor(uint16_t foreColor, uint16_t bgColor) {
   /* Set Fore Color */
   writeCommand(0x63);
   writeData((foreColor & 0xf800) >> 11);
@@ -1568,7 +1568,7 @@ void textColor(uint16_t foreColor, uint16_t bgColor) {
       @param foreColor The RGB565 color to use when rendering the text
 */
 /**************************************************************************/
-void textTransparent(uint16_t foreColor) {
+void RA8875_textTransparent(uint16_t foreColor) {
   /* Set Fore Color */
   writeCommand(0x63);
   writeData((foreColor & 0xf800) >> 11);
@@ -1596,7 +1596,7 @@ void textTransparent(uint16_t foreColor) {
       @param scale   The zoom factor (0..3 for 1-4x zoom)
 */
 /**************************************************************************/
-void textEnlarge(uint8_t scale) {
+void RA8875_textEnlarge(uint8_t scale) {
   if (scale > 3)
     scale = 3; // highest setting is 3
 
@@ -1627,7 +1627,7 @@ void textEnlarge(uint8_t scale) {
  */
 /**************************************************************************/
 
-void cursorBlink(uint8_t rate) {
+void RA8875_cursorBlink(uint8_t rate) {
   writeCommand(RA8875_MWCR0);
   uint8_t temp = readData();
   temp |= RA8875_MWCR0_CURSOR;
@@ -1652,7 +1652,7 @@ void cursorBlink(uint8_t rate) {
       @param len       The size of the buffer in bytes
 */
 /**************************************************************************/
-void textWrite(const char* buffer, uint16_t len) {
+void RA8875_textWrite(const char* buffer, uint16_t len) {
   if (len == 0) {
     return;
   }
@@ -1676,7 +1676,7 @@ void textWrite(const char* buffer, uint16_t len) {
 
  */
 /**************************************************************************/
-void GPIOX(int isOn) {
+void RA8875_setGPIOX(int isOn) {
   if (isOn)
     writeReg(RA8875_GPIOX, 1);
   else
@@ -1690,7 +1690,7 @@ void GPIOX(int isOn) {
     @param p The duty Cycle (0-255)
 */
 /**************************************************************************/
-void PWM1out(uint8_t p) {
+void RA8875_PWM1out(uint8_t p) {
   writeReg(RA8875_P1DCR, p);
 }
 
@@ -1701,7 +1701,7 @@ void PWM1out(uint8_t p) {
      @param p The duty Cycle (0-255)
 */
 /**************************************************************************/
-void PWM2out(uint8_t p) {
+void RA8875_PWM2out(uint8_t p) {
   writeReg(RA8875_P2DCR, p);
 }
 
@@ -1713,7 +1713,7 @@ void PWM2out(uint8_t p) {
     @param clock The Clock Divider
 */
 /**************************************************************************/
-void PWM1config(int isOn, uint8_t clock) {
+void RA8875_PWM1config(int isOn, uint8_t clock) {
   if (isOn) {
     writeReg(RA8875_P1CR, RA8875_P1CR_ENABLE | (clock & 0xF));
   } else {
@@ -1729,7 +1729,7 @@ void PWM1config(int isOn, uint8_t clock) {
      @param clock The Clock Divider
 */
 /**************************************************************************/
-void PWM2config(int isOn, uint8_t clock) {
+void RA8875_PWM2config(int isOn, uint8_t clock) {
   if (isOn) {
     writeReg(RA8875_P2CR, RA8875_P2CR_ENABLE | (clock & 0xF));
   } else {
@@ -1744,7 +1744,7 @@ void PWM2config(int isOn, uint8_t clock) {
       @param on Whether to turn touch sensing on or not
 */
 /**************************************************************************/
-void touchEnable(int isOn) {
+void RA8875_touchEnable(int isOn) {
   uint8_t adcClk = (uint8_t)RA8875_TPCR0_ADCCLK_DIV4;
 
   if (_size == RA8875_800x480) // match up touch size with LCD size
@@ -1776,7 +1776,7 @@ void touchEnable(int isOn) {
                touchRead() will clear the interrupt in memory)
 */
 /**************************************************************************/
-int touched(void) {
+int RA8875_touched(void) {
   if (readReg(RA8875_INTC2) & RA8875_INTC2_TP)
     return TRUE;
   return FALSE;
@@ -1795,7 +1795,7 @@ int touched(void) {
             the RA8875, resetting the flag used by the 'touched' function
 */
 /**************************************************************************/
-int touchRead(uint16_t* x, uint16_t* y) {
+int RA8875_touchRead(uint16_t* x, uint16_t* y) {
   uint16_t tx, ty;
   uint8_t temp;
 
@@ -1823,8 +1823,8 @@ int touchRead(uint16_t* x, uint16_t* y) {
       @param on Whether to turn the display on or not
 */
 /**************************************************************************/
-void displayOn(int isOn) {
-  if (isOn)
+void RA8875_displayOn(int on) {
+  if (on)
     writeReg(RA8875_PWRR, RA8875_PWRR_NORMAL | RA8875_PWRR_DISPON);
   else
     writeReg(RA8875_PWRR, RA8875_PWRR_NORMAL | RA8875_PWRR_DISPOFF);
@@ -1837,7 +1837,7 @@ void displayOn(int isOn) {
     @param sleep Whether to sleep or not
 */
 /**************************************************************************/
-void sleep(int isSleep) {
+void RA8875_sleep(int isSleep) {
   if (isSleep)
     writeReg(RA8875_PWRR, RA8875_PWRR_DISPOFF | RA8875_PWRR_SLEEP);
   else
