@@ -43,24 +43,45 @@
 */
 
 
+/*
+    TSC2046 Command Structure
+    Bit 7   :   (S)       Start Bit - Must be high for a control byte
+    Bit 6-4 :   (A2-A0)   Channel Select Bits - Chooses multiplexer inputs, touch driver switches and refenerce inputs
+    Bit 3   :   (MODE)    1 = 12-bit, 0 = 8-bit
+    Bit 2   :   (SER/DFR) 1 = Single Ended (Not wanted), 0 = Differential
+    Bit 1-0 :   (PD1-PD0) Power Down Mode Select
+
+*/
+
+// TSC2046_READ_X -> 0b_1_101_1_0_00
+#define TSC2046_READ_X ((uint8_t) 0b11011000)
+
+// TSC2046_READ_Y -> -b_1_001_1_0_00
+#define TSC2046_READ_Y ((uint8_t) 0b10011000)
+
+// TSC2046_Blank -> No high start bit thus TSC knows this is not a control byte
+#define TSC2046_BLANK ((uint8_t) 0b00000000)
+
+
 // CS Macros
-#define TSC2026_CS_LOW()     (GPIOA->DOUTCLR31_0 = (1<<8))   // PA8 low
-#define TSC2026_CS_HIGH()    (GPIOA->DOUTSET31_0 = (1<<8))   // PA8 high
+#define TSC2046_CS_LOW()     (GPIOA->DOUTCLR31_0 = (1<<8))   // PA8 low
+#define TSC2046_CS_HIGH()    (GPIOA->DOUTSET31_0 = (1<<8))   // PA8 high
 
 
 // Static Helper Functions
-static void TSC2026_SpiInit();
-static void TSC2026_CS_Init();
-static void TSC2026_SPI_Reset();
+static void TSC2046_SpiInit();
+static void TSC2046_CS_Init();
+static void TSC2046_SPI_Reset();
 
 
-void TSC2026_Init() {
-    TSC2026_SpiInit();
-
+void TSC2046IPWR_Init() {
+    TSC2046_SpiInit();
+    IOMUX->SECCFG.PINCM[PB5INDEX]  = 0x00040081;
+    IOMUX->SECCFG.PINCM[PB4INDEX]  = 0x00040081;
 }
 
 
-static void TSC2026_SpiInit() {
+static void TSC2046_SpiInit() {
     uint32_t busfreq =  Clock_Freq();
 
     // assumes GPIOA and GPIOB are reset and powered previously
@@ -128,9 +149,10 @@ static void TSC2026_SpiInit() {
     // bit 2=1 CP controller mode
     // bit 1=0 LBM disable loop back
     // bit 0=1 enable SPI
-    TSC2026_CS_Init();
+    TSC2046_CS_Init();
     // configure PA11 PA9 PA10 as alternate SPI0 function
-    IOMUX->SECCFG.PINCM[PA11INDEX]  = 0x00000083;  // SPI0 SCLK
+    // TODO: change this back to PA11
+    IOMUX->SECCFG.PINCM[PA12INDEX]  = 0x00000083;  // SPI0 SCLK 
     IOMUX->SECCFG.PINCM[PA9INDEX]  = 0x00000083;  // SPI0 PICO
     IOMUX->SECCFG.PINCM[PA10INDEX]  = 0x00040083;  // SPI0 POCI
     // IOMUX->SECCFG.PINCM[PB15INDEX] = 0x00000081;  // GPIO output, LCD !RST
@@ -140,53 +162,64 @@ static void TSC2026_SpiInit() {
 
 
 // CS0 - PA8 - Negative Logic
-static void TSC2026_CS_Init() {
+static void TSC2046_CS_Init() {
   IOMUX->SECCFG.PINCM[PA8INDEX]  = (uint32_t) 0x00000081;
   GPIOA->DOE31_0 |= 1 << 8;
   GPIOA->DOUTSET31_0 = 1 << 8;
 }
 
 
-//---------TSC2026_OutByte------------
+//---------TSC2046_OutByte------------
 // Output 8-bit data to SPI port
 // Input: data is an 8-bit data to be transferred
-// Output: none
-void TSC2026_OutByte(uint8_t data) {
+// OuTSC2046_OutByte
+void TSC2046IPWR_OutByte(uint8_t data) {
     uint8_t response;
-    TSC2026_CS_LOW();
+    // TSC2046_CS_LOW();
     while((SPI0->STAT&0x10) == 0x10){}; // spin if SPI busy
     SPI0->TXDATA = data;
     // while((SPI1->STAT&0x04) == 0x04){}; // spin SPI RxFifo empty
     while((SPI0->STAT&0x10) == 0x10) {}; // spin if SPI busy
-    TSC2026_CS_HIGH();
+    // TSC2046_CS_HIGH();
     response = SPI0->RXDATA; // has no meaning, flush
 }
 
 
 
-uint8_t TSC2026_OutReadByte(uint8_t data) {
-    TSC2026_CS_LOW();
+uint8_t TSC2046IPWR_OutReadByte(uint8_t data) {
+    // TSC2046_CS_LOW();
     while((SPI0->STAT&0x10) == 0x10){}; // spin if SPI busy
     SPI0->TXDATA = data;
     // while((SPI1->STAT&0x04) == 0x04){}; // spin SPI RxFifo empty
     while((SPI0->STAT&0x10) == 0x10) {}; // spin if SPI busy
-    TSC2026_CS_HIGH();
+    // TSC2046_CS_HIGH();
     return SPI0->RXDATA; // has no meaning, flush
 }
 
-/*
-    TSC2046 Command Structure
-    Bit 7   :   (S)       Start Bit - Must be high for a control byte
-    Bit 6-4 :   (A2-A0)   Channel Select Bits - Chooses multiplexer inputs, touch driver switches and refenerce inputs
-    Bit 3   :   (MODE)    1 = 12-bit, 0 = 8-bit
-    Bit 2   :   (SER/DFR) 1 = Single Ended (Not wanted), 0 = Differential
-    Bit 1-0 :   (PD1-PD0) Power Down Mode Select
-
-*/
 
 
-#define ((uint8_t)TSC2026_READ_X) 0b1
+TSC2046Pos_t TSC2046IPWR_ReadRawPosition() {
+    TSC2046Pos_t result;
+    TSC2046_CS_LOW();
+    // Send Control Byte to specify x read
+    TSC2046IPWR_OutByte(TSC2046_READ_X);                                        // Send X control byte
+    result.xpos = ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) << 7;      // Read high 7 X bits
+    result.xpos |= ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_READ_Y)) >> 3;    // Read low 5  X bits and send Y control byte
+    result.ypos = ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) << 7;      // Read high 7 Y bits
+    result.ypos |= ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) >> 3;     // Read low 5 Y bits
+
+    TSC2046_CS_HIGH();
+    return result;
+}
 
 
+
+// ---------- TSC2046IWR_PollTouch ----------
+// Checks for a screen touch -- assumes screen is in PD = 00 mode
+// Outputs - 1 => Screen Touch, 0 => No Screen Touch
+uint32_t TSC2046IPWR_PollTouch() {
+    // Check PENIRQ pin (PB5) -> Negative Logic
+    return !(GPIOB->DIN31_0 & 0x0020);
+}
 
 
