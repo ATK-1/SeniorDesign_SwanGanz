@@ -5,15 +5,19 @@ let pollInterval;
 let connected = false;
 
 await listen("port-connected", (event) => {
-    const element = document.getElementsByClassName("connection-status")[0];
-    element.textContent = "Connected";
+    const statusElement = document.getElementsByClassName("connection-status")[0];
+    const circleElement = document.getElementsByClassName("connection-circle")[0];
+    statusElement.textContent = "Connected";
+    circleElement.style["background-color"] = "green";
     console.log("Connected");
     connected = true;
 });
 
 await listen("port-disconnected", (event) => {
-    const element = document.getElementsByClassName("connection-status")[0];
-    element.textContent = "Not Connected";
+    const statusElement = document.getElementsByClassName("connection-status")[0];
+    const circleElement = document.getElementsByClassName("connection-circle")[0];
+    statusElement.textContent = "Not Connected";
+    circleElement.style["background-color"] = "#bbb";
     console.log("Disconnected");
     connected = false;
 });

@@ -51,20 +51,25 @@ async fn check_disconnected(
     app: AppHandle<tauri::Wry>,
     serial: State<'_, tauri_plugin_serialplugin::desktop_api::SerialPort<tauri::Wry>>,
 ) -> Result<(), String> {
-    let open_ports = managed_ports(app.clone(), serial.clone()).map_err(|e| e.to_string())?;
-    for port_name in open_ports.iter() {
+    let available = available_ports(app.clone(), serial.clone()).map_err(|e| e.to_string())?;
+    let mut still_connected = false;
+    let mut port = String::new();
+    for (port_name, _port_info) in available.iter() {
         if port_name.contains("cu.usbserial-A106DAXQ") {
-            let result = read(
-                app.clone(),
-                serial.clone(),
-                port_name.to_string(),
-                Some(1),
-                Some(100),
-            );
-            if result.is_err() {
-                app.emit("port-disconnected", port_name).unwrap();
+            still_connected = true;
+            port = port_name.to_string();
+        }
+    }
+    if !still_connected {
+        let managed = managed_ports(app.clone(), serial.clone()).map_err(|e| e.to_string())?;
+        for port_name in managed.iter() {
+            if port_name.contains("cu.usbserial-A106DAXQ") {
+                close(app.clone(), serial.clone(), port_name.to_string())
+                    .map_err(|e| e.to_string())?;
             }
         }
+        app.emit("port-disconnected", "cu.usbserial-A106DAXQ")
+            .unwrap();
     }
 
     Ok(())
