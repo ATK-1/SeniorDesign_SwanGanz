@@ -1,5 +1,6 @@
 import { listen } from "@tauri-apps/api/event";
 import { invoke } from '@tauri-apps/api/core';
+import Chart from "chart.js/auto";
 
 let pollInterval;
 let connected = false;
@@ -43,8 +44,35 @@ pollInterval = setInterval(async () => {
     }
 }, 1000);
 
-document.addEventListener("DOMContentLoaded", function() {
-    const pressureGraph = document.getElementById("pressureGraph");
-    new Chart(pressureGraph, {
-        type: "scatter";
-    })
+
+const pressureGraph = document.getElementById("pressureGraph");
+new Chart(pressureGraph, {
+    type: "scatter",
+    data: {
+        labels: [],
+        datasets: [
+            {
+                label: "Pressure 1",
+                data: [],
+            },
+            {
+                label: "Pressure 2",
+                data: []
+            }
+        ]
+    }
+});
+
+const tempGraph = document.getElementById("tempGraph");
+new Chart(tempGraph, {
+    type: "scatter",
+    data: {
+        labels: [],
+        datasets: [
+            {
+                label: "Temperature",
+                data: [],
+            }
+        ]
+    }
+});

@@ -26,7 +26,7 @@
   text-align: center;
 }
 
-.connection {
+.connection-container {
     position: fixed;
     top: 0px;
     display: flex;
@@ -43,6 +43,17 @@
     background-color: #bbb;
     border-radius: 50%;
     margin: 1em;
+}
+
+.graph-container {
+    position: fixed;
+    display: flex;
+    bottom: 2em;
+    gap: 20px;
+}
+
+.graph {
+    flex: 1;
 }
 
 @media (prefers-color-scheme: dark) {
