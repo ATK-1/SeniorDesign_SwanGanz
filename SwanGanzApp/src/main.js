@@ -41,5 +41,10 @@ pollInterval = setInterval(async () => {
             console.error("Error checking ports:", e);
         }
     }
-}, 1500);
+}, 1000);
 
+document.addEventListener("DOMContentLoaded", function() {
+    const pressureGraph = document.getElementById("pressureGraph");
+    new Chart(pressureGraph, {
+        type: "scatter";
+    })
