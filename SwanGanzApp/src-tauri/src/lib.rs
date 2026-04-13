@@ -1,7 +1,11 @@
+mod state;
 use tauri::{AppHandle, Emitter, State};
 use tauri_plugin_serialplugin::commands::{
-    available_ports, close, managed_ports, open, read, write,
+    available_ports, close, managed_ports, open, read, read_binary, write,
 };
+use tauri_plugin_serialplugin::state::{DataBits, FlowControl, Parity, StopBits};
+
+use crate::state::SensorQueues;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -9,9 +13,12 @@ pub fn run() {
         .plugin(tauri_plugin_serialplugin::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_log::Builder::new().build())
+        .manage(SensorQueues::new())
         .invoke_handler(tauri::generate_handler![
             check_connected,
-            check_disconnected
+            check_disconnected,
+            get_data,
+            drain_queues
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -31,13 +38,14 @@ async fn check_connected(
                 app.clone(),
                 serial.clone(),
                 port_name.to_string(),
-                9600,
-                None,
-                None,
-                None,
-                None,
-                None,
-            );
+                128000,
+                Some(DataBits::Eight),
+                Some(FlowControl::None),
+                Some(Parity::None),
+                None,          // StopBits
+                Some(1000u64), // Timeout
+            )
+            .map_err(|e| format!("Failed to open port: {}", e))?;
             app.emit("port-connected", port_name).unwrap();
         }
     }
@@ -73,4 +81,74 @@ async fn check_disconnected(
     }
 
     Ok(())
+}
+
+// Reads data from UART and adds it to dataset
+#[tauri::command]
+async fn get_data(
+    app: AppHandle<tauri::Wry>,
+    serial: State<'_, tauri_plugin_serialplugin::desktop_api::SerialPort<tauri::Wry>>,
+    queues: State<'_, SensorQueues>,
+) -> Result<(), String> {
+    let path = "/dev/cu.usbserial-A106DAXQ".to_string();
+    let data_ascii = [0x44, 0x41, 0x54, 0x41];
+    let mut header = read_binary(
+        app.clone(),
+        serial.clone(),
+        path.clone(),
+        Some(1000u64),
+        Some(4usize),
+    )
+    .map_err(|e| format!("Failed to read binary data: {}", e))?;
+
+    if header == data_ascii {
+        app.emit("data-begin", &path).unwrap();
+    }
+
+    while header == data_ascii {
+        let received_data = read_binary(
+            app.clone(),
+            serial.clone(),
+            path.clone(),
+            Some(1000u64),
+            Some(6usize),
+        )
+        .map_err(|e| format!("Failed to read binary data: {}", e))?;
+
+        queues
+            .p1
+            .lock()
+            .unwrap()
+            .push_back((received_data[0] as u16) << 8 | received_data[1] as u16);
+        queues
+            .p2
+            .lock()
+            .unwrap()
+            .push_back((received_data[2] as u16) << 8 | received_data[3] as u16);
+        queues
+            .temp
+            .lock()
+            .unwrap()
+            .push_back((received_data[4] as u16) << 8 | received_data[5] as u16);
+
+        header = read_binary(
+            app.clone(),
+            serial.clone(),
+            path.clone(),
+            Some(1000u64),
+            Some(4usize),
+        )
+        .map_err(|e| format!("Failed to read binary data: {}", e))?;
+    }
+
+    app.emit("data-done", &path).unwrap();
+    Ok(())
+}
+
+#[tauri::command]
+fn drain_queues(queues: State<'_, SensorQueues>) -> (Vec<u16>, Vec<u16>, Vec<u16>) {
+    let p1 = queues.p1.lock().unwrap().drain(..).collect();
+    let p2 = queues.p2.lock().unwrap().drain(..).collect();
+    let temp = queues.temp.lock().unwrap().drain(..).collect();
+    (p1, p2, temp)
 }
