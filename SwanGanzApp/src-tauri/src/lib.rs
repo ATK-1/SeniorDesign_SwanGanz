@@ -104,7 +104,6 @@ async fn get_data(
     if header == data_ascii {
         app.emit("data-begin", &path).unwrap();
     }
-
     while header == data_ascii {
         let received_data = read_binary(
             app.clone(),

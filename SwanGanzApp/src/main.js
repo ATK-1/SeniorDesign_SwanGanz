@@ -3,6 +3,8 @@ import { invoke } from '@tauri-apps/api/core';
 import Chart from "chart.js/auto";
 
 let connected = false;
+let dataInterval = false;
+let drainInterval = false;
 
 await listen("port-connected", (event) => {
     console.log(event);
@@ -42,6 +44,7 @@ await listen("port-disconnected", (event) => {
 });
 
 await listen("data-begin", (event) => {
+    console.log("data begin");
     if (dataInterval) {
         clearInterval(dataInterval);
         dataInterval = null;
@@ -57,6 +60,7 @@ await listen("data-begin", (event) => {
 });
 
 await listen("data-done", (event) => {
+    console.log("data done");
     if (drainInterval) {
         clearInterval(drainInterval);
         drainInterval = null;
