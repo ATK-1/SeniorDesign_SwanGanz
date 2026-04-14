@@ -4,82 +4,49 @@
 #include "Display.h"
 #include "LUT.h"
 #include "RA8875.h"
+#include "../inc/RTOS_UART.h"
 
 #define NUM_CHANNELS 6
 Sema4_t LCD_Mutex;
 static int input;
 
 
-void DisplayInit0() {
+void DisplayInit() {
     ST7735_InitR(INITR_BLACKTAB); //INITR_REDTAB for AdaFruit
     ST7735_FillScreen(ST7735_BLACK);
     ST7735_SetCursor(0, 0);
     OS_InitSemaphore(&LCD_Mutex, 1);
 }
 
-void DisplayInit() {
-    if (!RA8875_begin(RA8875_800x480)) {
-        while(1) {
-            // writeCommand(0x35);
-        }
-    }
-    displayOn(1);
-    GPIOX(1);
-    PWM1config(1, 0);
-    PWM1out(255);
-    
-    fillScreen(RA8875_WHITE);
+// void DisplayInit() {
+//     if (!RA8875_begin(RA8875_800x480)) {
+//         while(1) {
+//             // writeCommand(0x35);
+//         }
+//     }
+//     displayOn(1);
+//     GPIOX(1);
+//     PWM1config(1, 0);
+//     PWM1out(255);
 
-    drawCircle(100, 100, 50, RA8875_BLACK);
-    fillCircle(100, 100, 49, RA8875_GREEN);
-    fillRect(11, 11, 398, 198, RA8875_BLUE);
-    drawRect(10, 10, 400, 200, RA8875_GREEN);
-    fillRoundRect(200, 10, 200, 100, 10, RA8875_RED);
-    drawPixel(10,10,RA8875_BLACK);
-    drawPixel(11,11,RA8875_BLACK);
-    drawLine(10, 10, 200, 100, RA8875_RED);
-    drawTriangle(200, 15, 250, 100, 150, 125, RA8875_BLACK);
-    fillTriangle(200, 16, 249, 99, 151, 124, RA8875_YELLOW);
-    drawEllipse(300, 100, 100, 40, RA8875_BLACK);
-    fillEllipse(300, 100, 98, 38, RA8875_GREEN);
-  // Argument 5 (curvePart) is a 2-bit value to control each corner (select 0, 1, 2, or 3)
-    drawCurve(50, 100, 80, 40, 2, RA8875_BLACK);
-    fillCurve(50, 100, 78, 38, 2, RA8875_WHITE);
+//     OS_InitSemaphore(&LCD_Mutex, 1);
+// }
 
-    OS_InitSemaphore(&LCD_Mutex, 1);
-}
-
+int32_t transmissions;
 static void DisplayAll() {
-    char* messages[] = {
-        "P1-Low: ",
-        "P1-Hi:  ",
-        "T-Low:  ",
-        "T-Hi:   ",
-        "P2-Low: ",
-        "P2-Hi:  ",
-    };
-    OS_bWait(&LCD_Mutex);
-    ST7735_FillScreen(ST7735_BLACK);
-    for (int i = 0; i < NUM_CHANNELS; i++) {
-        ST7735_SetCursor(0, (i + 1) * 2);
-        ST7735_OutString(messages[i]);
-    }
-    OS_bSignal(&LCD_Mutex);
+    
+    ST7735_DrawString(0, 2, "calculating", ST7735_BLUE);
 
     while (1) {
         uint32_t data[NUM_CHANNELS];
         for (int i = 0; i < NUM_CHANNELS; i++) {
             data[i] = Fifo_Get(i);
         }
-        for (int i = 0; i < NUM_CHANNELS; i++) {
-            ST7735_FillRect(78 , (i + 1) * 20, 11, 7, ST7735_BLACK);
-            ST7735_SetCursor(10, (i + 1) * 2);
-			if (i == 2) {
-				ST7735_OutUDec(TempLUT[data[i]]);
-			}
-			else {
-            	ST7735_OutUDec(data[i]);
-			}
+        if (transmissions < 2000) {
+            UART_OutString("DATA");
+            UART_OutUDec(data[0]); //p1
+            UART_OutUDec(data[4]); //p2
+            UART_OutUDec(data[2]); //therm
         }
     }
 }
@@ -90,21 +57,20 @@ static void DisplayAll() {
     Waits for sampled data in FIFO and displays in on LCD
 */
 void DisplayTemp() {
+    DisplayStartMenu();
     while (1) {
-        // uint32_t temp = Fifo_Get(THERM_LOW_FIFO);
-        
-		// OS_bWait(&LCD_Mutex);
-        // ST7735_SetCursor(0, 3);
-        // ST7735_OutString("Current Temperature: ");
-        // ST7735_SetCursor(0, 4);
-		// ST7735_OutUDec(TempLUT[temp]);
-        // OS_bSignal(&LCD_Mutex);
-
-        // if (input) {
-        //     OS_AddThread(&DisplayAll, 1);
-		// 	OS_SetPerioidcSchedule(1);
-        //     OS_Kill();
-        // }
+        if (Fifo_Get(INPUT_FIFO)) {
+            Fifo_Init(PRESSURE_1A_FIFO);
+            Fifo_Init(PRESSURE_1B_FIFO);
+            Fifo_Init(THERM_LOW_FIFO);
+            Fifo_Init(THERM_HI_FIFO);
+            Fifo_Init(PRESSURE_2A_FIFO);
+            Fifo_Init(PRESSURE_2B_FIFO);
+            Fifo_Init(INPUT_FIFO);
+            OS_AddThread(&DisplayAll, 1);
+			OS_SetPerioidcSchedule(1);
+            OS_Kill();
+        }
     }
 }
 
@@ -115,21 +81,6 @@ void DisplayTemp() {
     Changes state of system
 */
 void DisplayStartMenu() {
-    while (1) {
-        textMode();
-        textSetCursor(10, 10);
-        char s[39] = "Press any button to begin calculations";
-        textEnlarge(1);
-        textTransparent(RA8875_BLACK);
-        textWrite(s, 39);
-        // ST7735_SetCursor(0, 0);
-        // OS_bWait(&LCD_Mutex);
-        // ST7735_OutString("Press any button to ");
-        // ST7735_SetCursor(0, 1);
-        // ST7735_OutString("begin calculation");
-        // OS_bSignal(&LCD_Mutex);
-        // input = Fifo_Get(INPUT_FIFO); 
-        // OS_Kill();
-    }
+    ST7735_DrawString(0, 0, "start", ST7735_BLUE);
 }
 

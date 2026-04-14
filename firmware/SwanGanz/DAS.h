@@ -8,7 +8,7 @@ enum CHANNEL {
 };
 
 enum BUTTON {
-    MODE,
+    MODE = 1,
     ENTER
 };
 

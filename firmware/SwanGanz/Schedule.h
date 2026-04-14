@@ -16,7 +16,7 @@ typedef struct {
 typedef struct {
     const ptask_t* schedule;
     uint32_t scheulde_size;
-} periodicScheudler_t; 
+} periodicScheduler_t; 
 
 const ptask_t PSchedule_StartMenu[PSCHEDULE_STARTMENU_SIZE] = {
   {&DasStartMenu, 250, 200},          // 0
@@ -247,7 +247,7 @@ const ptask_t PSchedule_AllSamples[PSCHEDULE_ALLSAMPLES_SIZE] = {
   {&DasAllSamples, 1000, 200}         // 9900
 };
 
-const periodicScheudler_t FixedSchedule[2] = {
+const periodicScheduler_t FixedSchedule[2] = {
     {PSchedule_StartMenu, PSCHEDULE_STARTMENU_SIZE},
     {PSchedule_AllSamples, PSCHEDULE_ALLSAMPLES_SIZE}
 };
