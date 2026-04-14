@@ -91,29 +91,34 @@ async fn get_data(
     queues: State<'_, SensorQueues>,
 ) -> Result<(), String> {
     let path = "/dev/cu.usbserial-A106DAXQ".to_string();
-    let data_ascii = [0x44, 0x41, 0x54, 0x41];
-    let mut header = read_binary(
+    let data_ascii = [0xFA];
+    let mut header = match read_binary(
         app.clone(),
         serial.clone(),
         path.clone(),
         Some(1000u64),
-        Some(4usize),
-    )
-    .map_err(|e| format!("Failed to read binary data: {}", e))?;
+        Some(1usize),
+    ) {
+        Ok(data) => data,
+        Err(_) => return Ok(()),
+    };
 
-    if header == data_ascii {
-        app.emit("data-begin", &path).unwrap();
+    if header != data_ascii {
+        return Ok(());
     }
-    while header == data_ascii {
-        let received_data = read_binary(
+
+    app.emit("data-begin", &path).unwrap();
+    'outer: while header == data_ascii {
+        let received_data = match read_binary(
             app.clone(),
             serial.clone(),
             path.clone(),
             Some(1000u64),
             Some(6usize),
-        )
-        .map_err(|e| format!("Failed to read binary data: {}", e))?;
-
+        ) {
+            Ok(data) => data,
+            Err(_) => break,
+        };
         queues
             .p1
             .lock()
@@ -130,14 +135,23 @@ async fn get_data(
             .unwrap()
             .push_back((received_data[4] as u16) << 8 | received_data[5] as u16);
 
-        header = read_binary(
-            app.clone(),
-            serial.clone(),
-            path.clone(),
-            Some(1000u64),
-            Some(4usize),
-        )
-        .map_err(|e| format!("Failed to read binary data: {}", e))?;
+        let max_search = 12; // give up after this many bytes searched
+        for _ in 0..max_search {
+            header = match read_binary(
+                app.clone(),
+                serial.clone(),
+                path.clone(),
+                Some(1000u64),
+                Some(1usize),
+            ) {
+                Ok(data) => data,
+                Err(_) => break 'outer,
+            };
+            if header == data_ascii {
+                continue 'outer;
+            }
+        }
+        break; // exhausted search budget, exit
     }
 
     app.emit("data-done", &path).unwrap();

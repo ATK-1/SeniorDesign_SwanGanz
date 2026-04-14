@@ -43,10 +43,11 @@ static void DisplayAll() {
             data[i] = Fifo_Get(i);
         }
         if (transmissions < 2000) {
-            UART_OutString("DATA");
-            UART_OutUDec(data[0]); //p1
-            UART_OutUDec(data[4]); //p2
-            UART_OutUDec(data[2]); //therm
+            UART_OutChar(0xFA);
+            UART_OutU16(data[0]); //p1
+            UART_OutU16(data[4]); //p2
+            UART_OutU16(data[2]); //therm
+            transmissions++;
         }
     }
 }

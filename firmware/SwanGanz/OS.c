@@ -93,7 +93,7 @@ backgroundTask_t S2Task;
 backgroundTask_t PA28Task;
 
 // Periodic Threads
-periodicScheudler_t CurrentSchedule;
+periodicScheduler_t CurrentSchedule;
 uint32_t PTaskIdx;
 
 

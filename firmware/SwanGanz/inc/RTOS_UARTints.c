@@ -74,7 +74,6 @@ void UART_Init(uint32_t priority){
     // baud = 2,500,000/19.53125= 128,000
     UART1->IBRD = 19;
     UART1->FBRD = 34;
-
   }
   else return;
   

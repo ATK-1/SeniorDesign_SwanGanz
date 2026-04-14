@@ -4,7 +4,13 @@ import Chart from "chart.js/auto";
 
 let connected = false;
 let dataInterval = false;
+let gettingData = false;
 let drainInterval = false;
+
+
+await listen("debug-header", (event) => {
+    console.log("header byte:", event.payload.toString(16));
+});
 
 await listen("port-connected", (event) => {
     console.log(event);
@@ -15,12 +21,16 @@ await listen("port-connected", (event) => {
     console.log("Connected");
     connected = true;
     dataInterval = setInterval(async () => {
-        if (connected) {
+        if (connected && !gettingData) {
+            gettingData = true;
             try {
                 await invoke("get_data");
             }
             catch (e) {
                 console.error("Error getting data:", e);
+            }
+            finally {
+                gettingData = false;
             }
         }
     }, 200);
@@ -64,6 +74,10 @@ await listen("data-done", (event) => {
     if (drainInterval) {
         clearInterval(drainInterval);
         drainInterval = null;
+    }
+    if (dataInterval) {
+        clearInterval(dataInterval);
+        dataInterval = null;
     }
 });
 
@@ -120,10 +134,17 @@ const tempGraph = new Chart(tempCanvas, {
     }
 });
 
+let index = 0;
 function updateGraph(p1Vals, p2Vals, tempVals) {
-    pressureGraph.data.datasets[0].data.push(...p1Vals);
-    pressureGraph.data.datasets[1].data.push(...p2Vals);
-    tempGraph.data.datasets[0].data.push(...tempVals);
+    const p1Points = p1Vals.map((y, i) => ({ x: index + i, y }));
+    const p2Points = p2Vals.map((y, i) => ({ x: index + i, y }));
+    const tempPoints = tempVals.map((y, i) => ({ x: index + i, y }));
+
+    index += p1Vals.length;
+
+    pressureGraph.data.datasets[0].data.push(...p1Points);
+    pressureGraph.data.datasets[1].data.push(...p2Points);
+    tempGraph.data.datasets[0].data.push(...tempPoints);
     pressureGraph.update();
     tempGraph.update();
 }

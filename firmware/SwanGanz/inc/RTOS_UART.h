@@ -237,5 +237,8 @@ char UART1_InChar(void);
 // Output: none
 void UART1_OutChar(char data);
 
+// Output raw big-endian uint16_t
+void UART_OutU16(uint16_t n);
+
 #endif // __UART_H__
 /** @}*/
