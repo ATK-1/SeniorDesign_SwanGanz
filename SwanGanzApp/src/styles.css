@@ -48,12 +48,22 @@
 .graph-container {
     position: fixed;
     display: flex;
+    flex-direction: column;
+    top: 60px;
     bottom: 2em;
+    left: 1.5em;
+    right: 1.5em;
     gap: 20px;
 }
 
 .graph {
     flex: 1;
+    width: 100%;
+}
+
+graph canvas {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 @media (prefers-color-scheme: dark) {
