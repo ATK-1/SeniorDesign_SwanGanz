@@ -25,28 +25,10 @@ void DisplayInit() {
     RA8875_fillScreen(0xE7BF);
     
 
-//     OS_InitSemaphore(&LCD_Mutex, 1);
-// }
-
-int32_t transmissions;
-static void DisplayAll() {
-    
-    ST7735_DrawString(0, 2, "calculating", ST7735_BLUE);
-
-    while (1) {
-        uint32_t data[NUM_CHANNELS];
-        for (int i = 0; i < NUM_CHANNELS; i++) {
-            data[i] = Fifo_Get(i);
-        }
-        if (transmissions < 2000) {
-            UART_OutChar(0xFA);
-            UART_OutU16(data[0]); //p1
-            UART_OutU16(data[4]); //p2
-            UART_OutU16(data[2]); //therm
-            transmissions++;
-        }
-    }
+    OS_InitSemaphore(&LCD_Mutex, 1);
 }
+
+
 
 
 /*
@@ -64,7 +46,7 @@ void DisplayTemp() {
             Fifo_Init(PRESSURE_2A_FIFO);
             Fifo_Init(PRESSURE_2B_FIFO);
             Fifo_Init(INPUT_FIFO);
-            OS_AddThread(&DisplayAll, 1);
+            //OS_AddThread(&DisplayAll, 1);
 			OS_SetPerioidcSchedule(1);
             OS_Kill();
         }
