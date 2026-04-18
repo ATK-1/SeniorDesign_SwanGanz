@@ -15,61 +15,72 @@ J4.31 LCD RS     PB16
 #include "../inc/SPI.h"
 #include "../inc/Clock.h"
 #include "../inc/LaunchPad.h"
+
+static void CS_Init();
+
 // calls Clock_Freq to get bus clock
 // initialize SPI for 8 MHz baud clock
 // busy-wait synchronization
 // SPI0,SPI1 in power domain PD1 SysClk equals bus CPU clock
-void SPI_Init(void){uint32_t busfreq =  Clock_Freq();
-    // assumes GPIOA and GPIOB are reset and powered previously
-    // RSTCLR to SPI1 peripherals
-    //   bits 31-24 unlock key 0xB1
-    //   bit 1 is Clear reset sticky bit
-    //   bit 0 is reset gpio port
+void SPI_Init(void) {
+  uint32_t busfreq =  Clock_Freq();
+
+  // assumes GPIOA and GPIOB are reset and powered previously
+  // RSTCLR to SPI1 peripherals
+  //   bits 31-24 unlock key 0xB1
+  //   bit 1 is Clear reset sticky bit
+  //   bit 0 is reset gpio port
   SPI1->GPRCM.RSTCTL = 0xB1000003;
-    // Enable power to SPI1 peripherals
-    // PWREN
-    //   bits 31-24 unlock key 0x26
-    //   bit 0 is Enable Power
+
+  // Enable power to SPI1 peripherals
+  // PWREN
+  //   bits 31-24 unlock key 0x26
+  //   bit 0 is Enable Power
   SPI1->GPRCM.PWREN = 0x26000001;
-  // configure PB9 PB6 PB8 as alternate SPI1 function
-  IOMUX->SECCFG.PINCM[PB9INDEX]  = 0x00000083;  // SPI1 SCLK
-  IOMUX->SECCFG.PINCM[PB6INDEX]  = 0x00000083;  // SPI1 CS0
-  IOMUX->SECCFG.PINCM[PB8INDEX]  = 0x00000083;  // SPI1 PICO
-  IOMUX->SECCFG.PINCM[PB15INDEX] = 0x00000081;  // GPIO output, LCD !RST
-  IOMUX->SECCFG.PINCM[PB16INDEX] = 0x00000081;  // GPIO output, LCD RS
+
   Clock_Delay(24); // time for gpio to power up
-  GPIOB->DOE31_0 |= (1<<15) | (1<<16);    // PB15 is LCD !RST, PB16 is LCD RS
-  GPIOB->DOUTSET31_0 = (1<<15) | (1<<16); // !RST = 1, RS=1
+
   SPI1->CLKSEL = 8; // SYSCLK
-// bit 3 SYSCLK
-// bit 2 MFCLK
-// bit 1 LFCLK
-   SPI1->CLKDIV = 0; // divide by 1
-// bits 2-0 n (0 to 7), divide by n+1
-//Set the bit rate clock divider to generate the serial output clock
-//     outputBitRate = (spiInputClock) / ((1 + SCR) * 2)
-//     8,000,000 = (16,000,000)/((0 + 1) * 2)
-//     8,000,000 = (32,000,000)/((1 + 1) * 2)
-//     6,666,667 = (40,000,000)/((2 + 1) * 2)
-//    10,000,000 = (40,000,000)/((1 + 1) * 2)
-//     8,000,000 = (80,000,000)/((4 + 1) * 2)
-//     8,000,000 = (Clock_Freq)/((m + 1) * 2)
-//     m = (Clock_Freq/16000000) - 1
-   if(busfreq <= 16000000){
-     SPI1->CLKCTL = 0; // frequency= busfreq/2
-   }else if(busfreq == 40000000){
-     SPI1->CLKCTL = 1; // frequency= 10MHz
-    // SPI1->CLKCTL = 2; // frequency= 6.66MHz
-   }else{
-     SPI1->CLKCTL = busfreq/16000000 -1; // 8 MHz
-   }
-   SPI1->CTL0 = 0x0027;
-// bit 14 CSCLR=0 not cleared
-// bits 13-12 CSSEL=0 CS0
-// bit 9 SPH = 0
-// bit 8 SPO = 0
-// bits 6-5 FRF = 01 (4 wire)
-// bits 4-0 n=7, data size is n+1 (8bit data)
+
+  // bit 3 SYSCLK
+  // bit 2 MFCLK
+  // bit 1 LFCLK
+  SPI1->CLKDIV = 0; // divide by 1
+  
+  // bits 2-0 n (0 to 7), divide by n+1
+  //Set the bit rate clock divider to generate the serial output clock
+  //     outputBitRate = (spiInputClock) / ((1 + SCR) * 2)
+  //     8,000,000 = (16,000,000)/((0 + 1) * 2)
+  //     8,000,000 = (32,000,000)/((1 + 1) * 2)
+  //     6,666,667 = (40,000,000)/((2 + 1) * 2)
+  //    10,000,000 = (40,000,000)/((1 + 1) * 2)
+  //     8,000,000 = (80,000,000)/((4 + 1) * 2)
+  //     8,000,000 = (Clock_Freq)/((m + 1) * 2)
+  //     m = (Clock_Freq/16000000) - 1
+  // if(busfreq <= 16000000) {
+  //   SPI1->CLKCTL = 0; // frequency= busfreq/2
+  // }
+  // else if(busfreq == 40000000) {
+  //   SPI1->CLKCTL = 1; // frequency= 10MHz
+  // // SPI1->CLKCTL = 2; // frequency= 6.66MHz
+  // }
+  // else{
+  //   SPI1->CLKCTL = busfreq/16000000 -1; // 8 MHz
+  // }
+
+  // Bits 31-28 - Delay Sampling Value - Delay by 5 clock cycles of internal functional clk
+  SPI1->CLKCTL = (5<<28) | 9; // 4 MHz 
+  //SPI1->CLKCTL = 39; //1 MHz
+ 
+ 
+  // bit 14 CSCLR=0 not cleared
+  // bits 13-12 CSSEL=0 CS0
+  // bit 9 SPH = 0
+  // bit 8 SPO = 0
+  // bits 6-5 FRF = 01 (4 wire)
+  // bits 4-0 n=7, data size is n+1 (8bit data)
+  SPI1->CTL0 = 0x0027; //motorolla 4 wire. (changed 3 to zero for pol)
+  
   SPI1->CTL1 = 0x0015;
 // bits 29-24 RXTIMEOUT=0
 // bits 23-16 REPEATX=0 disabled
@@ -81,7 +92,21 @@ void SPI_Init(void){uint32_t busfreq =  Clock_Freq();
 // bit 2=1 CP controller mode
 // bit 1=0 LBM disable loop back
 // bit 0=1 enable SPI
+  CS_Init();
+  // configure PB9 PB6 PB8 as alternate SPI1 function
+  IOMUX->SECCFG.PINCM[PB9INDEX]  = 0x00000083;  // SPI1 SCLK
+  IOMUX->SECCFG.PINCM[PB8INDEX]  = 0x00000083;  // SPI1 PICO
+  IOMUX->SECCFG.PINCM[PB7INDEX]  = 0x00040083;  // SPI1 POCI
+  IOMUX->SECCFG.PINCM[PB15INDEX] = 0x00000081;  // GPIO output, LCD !RST
+  GPIOB->DOE31_0 |= (1<<15);    // PB15 is LCD !RST
+  GPIOB->DOUTSET31_0 = (1<<15); // !RST = 1, RS=1
   SPI_Reset();
+}
+
+static void CS_Init(void){
+  IOMUX->SECCFG.PINCM[PB6INDEX]  = (uint32_t) 0x00000081;
+  GPIOB->DOE31_0 |= 1 << 6;
+  GPIOB->DOUTSET31_0 = 1 << 6;
 }
 /* STAT register
  * 4 BUSY 0h = SPI is in idle mode. 1h = SPI is currently transmitting and/or receiving data, or transmit FIFO is not empty.
@@ -94,32 +119,67 @@ void SPI_Init(void){uint32_t busfreq =  Clock_Freq();
 // Output 8-bit data to SPI port
 // Input: data is an 8-bit data to be transferred
 // Output: none
-void SPI_OutData(char data){
-  while((SPI1->STAT&0x02) == 0x00){}; // spin if TxFifo full
-  GPIOB->DOUTSET31_0 = 1<<16;         // RS=PB16=1 for data
+void SPI_OutData(char data) {
+  char response;
+  while((SPI1->STAT&0x10) == 0x10){}; // spin if SPI busy
   SPI1->TXDATA = data;
+  // while((SPI1->STAT&0x04) == 0x04){}; // spin SPI RxFifo empty
+  while((SPI1->STAT&0x10) == 0x10) {}; // spin if SPI busy
+  response = SPI1->RXDATA; // has no meaning, flush
 }
- //---------SPI_OutCommand------------
- // Output 8-bit command to SPI port
- // Input: data is an 8-bit data to be transferred
- // Output: none
- void SPI_OutCommand(char command){
-   while((SPI1->STAT&0x10) == 0x10){}; // spin if SPI busy
-   GPIOB->DOUTCLR31_0 = 1<<16;         // RS=PA13=0 for command
-   SPI1->TXDATA = command;
-   while((SPI1->STAT&0x10) == 0x10){}; // spin if SPI busy
- }
+//---------SPI_OutCommand------------
+// Output 8-bit command to SPI port
+// Input: data is an 8-bit data to be transferred
+// Output: none
+void SPI_OutCommand(char command) {
+  char response;
+  while((SPI1->STAT&0x10) == 0x10) {}; // spin if SPI busy
+  SPI1->TXDATA = command;
+  while((SPI1->STAT&0x10) == 0x10) {}; // spin if SPI busy
+  response = SPI1->RXDATA; // has no meaning, flush
+}
 
- //---------SPI_Reset------------
- // Reset LCD
- // Input: none
- // Output: none
- // at 48 MHz
- void SPI_Reset(void){
-   GPIOB->DOUTSET31_0 = 1<<15; // PB15=!RST=1
-   Clock_Delay1ms(500);        // 500ms (calibrated with logic analyzer)
-   GPIOB->DOUTCLR31_0 = 1<<15; // PB15=!RST=0
-   Clock_Delay1ms(500);        // 500ms
-   GPIOB->DOUTSET31_0 = 1<<15; // PB15=!RST=1
-   Clock_Delay1ms(500);        // 500ms
- }
+void SPI_Out16(uint16_t cmdData) {
+  char response;
+  while ((SPI1->STAT & 0x10) == 0x10) {}
+  SPI1->TXDATA = cmdData;
+  while((SPI1->STAT & 0x10) == 0x10) {}
+  response = SPI1->RXDATA;
+}
+
+uint16_t SPI_OutRead16(uint16_t cmdData) {
+  uint16_t volatile response;
+  while ((SPI1->STAT & 0x10) == 0x10) {}
+  SPI1->TXDATA = cmdData;
+  while((SPI1->STAT & 0x10) == 0x10) {}
+  response = SPI1->RXDATA;
+  return response;
+}
+//---------SPI_Reset------------
+// Reset LCD
+// Input: none
+// Output: none
+// at 48 MHz
+void SPI_Reset(void) {
+  GPIOB->DOUTSET31_0 = 1<<15; // PB15=!RST=1
+  Clock_Delay1ms(500);        // 500ms (calibrated with logic analyzer)
+  GPIOB->DOUTCLR31_0 = 1<<15; // PB15=!RST=0
+  Clock_Delay1ms(500);        // 500ms
+  GPIOB->DOUTSET31_0 = 1<<15; // PB15=!RST=1
+  Clock_Delay1ms(500);        // 500ms
+}
+
+ /* Exchange a byte */
+// Inputs:  byte to be sent to SPI
+// Outputs: byte received from SPI
+// assumes it has been selected with CS low
+uint16_t xchg_spi(uint16_t data) {
+  uint16_t volatile rcvdat;
+  // wait until SPI1 not busy/
+  while((SPI1->STAT&0x10) == 0x10){}; // spin SPI busy
+  SPI1->TXDATA = data;
+  // while((SPI1->STAT&0x04) == 0x04){}; // spin SPI RxFifo empty
+  while((SPI1->STAT&0x10) == 0x10) {}; // spin if SPI busy
+  rcvdat = SPI1->RXDATA; // acknowledge response
+  return rcvdat;
+}

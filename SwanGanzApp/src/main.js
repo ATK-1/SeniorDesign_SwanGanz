@@ -1,18 +1,41 @@
-const { invoke } = window.__TAURI__.core;
+import { listen } from "@tauri-apps/api/event";
+import { invoke } from '@tauri-apps/api/core';
 
-let greetInputEl;
-let greetMsgEl;
+let pollInterval;
+let connected = false;
 
-async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
-  });
+await listen("port-connected", (event) => {
+    const element = document.getElementsByClassName("connection-status")[0];
+    element.textContent = "Connected";
+    console.log("Connected");
+    connected = true;
 });
+
+await listen("port-disconnected", (event) => {
+    const element = document.getElementsByClassName("connection-status")[0];
+    element.textContent = "Not Connected";
+    console.log("Disconnected");
+    connected = false;
+});
+
+
+
+pollInterval = setInterval(async () => {
+    if (!connected) {
+        try {
+            await invoke("check_connected");
+        }
+        catch (e) {
+            console.error("Error checking ports:", e);
+        }
+    }
+    else {
+        try {
+            await invoke("check_disconnected");
+        }
+        catch (e) {
+            console.error("Error checking ports:", e);
+        }
+    }
+}, 1500);
+
