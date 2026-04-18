@@ -5,7 +5,6 @@
 #include "Display.h"
 #include "LUT.h"
 #include "RA8875.h"
-#include "../inc/RTOS_UART.h"
 
 #define NUM_CHANNELS 6
 Sema4_t LCD_Mutex;
@@ -25,27 +24,7 @@ void DisplayInit() {
     RA8875_fillScreen(0xE7BF);
     
 
-//     OS_InitSemaphore(&LCD_Mutex, 1);
-// }
-
-int32_t transmissions;
-static void DisplayAll() {
-    
-    ST7735_DrawString(0, 2, "calculating", ST7735_BLUE);
-
-    while (1) {
-        uint32_t data[NUM_CHANNELS];
-        for (int i = 0; i < NUM_CHANNELS; i++) {
-            data[i] = Fifo_Get(i);
-        }
-        if (transmissions < 2000) {
-            UART_OutChar(0xFA);
-            UART_OutU16(data[0]); //p1
-            UART_OutU16(data[4]); //p2
-            UART_OutU16(data[2]); //therm
-            transmissions++;
-        }
-    }
+    OS_InitSemaphore(&LCD_Mutex, 1);
 }
 
 
@@ -54,20 +33,21 @@ static void DisplayAll() {
     Waits for sampled data in FIFO and displays in on LCD
 */
 void DisplayTemp() {
-    DisplayStartMenu();
     while (1) {
-        if (Fifo_Get(INPUT_FIFO)) {
-            Fifo_Init(PRESSURE_1A_FIFO);
-            Fifo_Init(PRESSURE_1B_FIFO);
-            Fifo_Init(THERM_LOW_FIFO);
-            Fifo_Init(THERM_HI_FIFO);
-            Fifo_Init(PRESSURE_2A_FIFO);
-            Fifo_Init(PRESSURE_2B_FIFO);
-            Fifo_Init(INPUT_FIFO);
-            OS_AddThread(&DisplayAll, 1);
-			OS_SetPerioidcSchedule(1);
-            OS_Kill();
-        }
+        // uint32_t temp = Fifo_Get(THERM_LOW_FIFO);
+        
+		// OS_bWait(&LCD_Mutex);
+        // ST7735_SetCursor(0, 3);
+        // ST7735_OutString("Current Temperature: ");
+        // ST7735_SetCursor(0, 4);
+		// ST7735_OutUDec(TempLUT[temp]);
+        // OS_bSignal(&LCD_Mutex);
+
+        // if (input) {
+        //     OS_AddThread(&DisplayAll, 1);
+		// 	OS_SetPerioidcSchedule(1);
+        //     OS_Kill();
+        // }
     }
 }
 
@@ -143,26 +123,17 @@ void DisplayStartMenu() {
     RA8875_textWrite(tempValue, 1);
 
     // Rounded Squares
-    //RA8875_drawRoundRect(650, 65, 60, 60, 5, RA8875_BLACK);  // Top square
-    RA8875_fillRoundRect(650, 65, 60, 60, 5, RA8875_BLACK);
+    RA8875_fillRoundRect(650, 65, 60, 60, 5, RA8875_BLACK); // Top
+    RA8875_fillTriangle(680, 75, 660, 95, 700, 95, RA8875_WHITE);
 
-    //RA8875_drawRoundRect(715, 130, 60, 60, 5, RA8875_BLACK); // Left square
-    RA8875_fillRoundRect(715, 130, 60, 60, 5, RA8875_BLACK);
+    RA8875_fillRoundRect(715, 130, 60, 60, 5, RA8875_BLACK); // Right
+    RA8875_fillTriangle(765, 160, 745, 140, 745, 180, RA8875_WHITE);
 
-    //RA8875_drawRoundRect(585, 130, 60, 60, 5, RA8875_BLACK); // Right square
-    RA8875_fillRoundRect(585, 130, 60, 60, 5, RA8875_BLACK);
+    RA8875_fillRoundRect(585, 130, 60, 60, 5, RA8875_BLACK); // Left
+    RA8875_fillTriangle(595, 160, 615, 140, 615, 180, RA8875_WHITE);
 
-    //RA8875_drawRoundRect(650, 195, 60, 60, 5, RA8875_BLACK); // Left square
-    RA8875_fillRoundRect(650, 195, 60, 60, 5, RA8875_BLACK);
-
-    // // Up triangle
-    // RA8875_drawTriangle(601, 100, 701, 100, 650, 60, RA8875_BLACK);
-    // // Left triangle 
-    // RA8875_drawTriangle(595, 104, 595, 176, 550, 140, RA8875_BLACK);
-    // // Right triangle 
-    // RA8875_drawTriangle(705, 104, 705, 176, 755, 140, RA8875_BLACK);
-    // // Down triangle
-    // RA8875_drawTriangle(601, 180, 701, 180, 650, 220, RA8875_BLACK);
+    RA8875_fillRoundRect(650, 195, 60, 60, 5, RA8875_BLACK); // Down
+    RA8875_fillTriangle(680, 245, 660, 225, 700, 225, RA8875_WHITE);
     
     while (1) {
 

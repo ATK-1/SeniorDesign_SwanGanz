@@ -88,6 +88,7 @@ int main(void) {
 
     OS_SetPerioidcSchedule(0);
     OS_AddThread(&DisplayTemp, 1);
+    OS_AddThread(&DisplayStartMenu, 1);
     OS_AddThread(&IdleThread, 2);
     
     
