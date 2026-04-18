@@ -113,8 +113,7 @@ void displayConnected() {
 */
 void DisplayStartMenu() {
     displayConnected();
-    RA8875_drawRoundRect(0, 40, 800, 200, 5, RA8875_BLACK);
-    //RA8875_fillRoundRect(1, 41, 798, 198, 5 , (uint16_t)0xBFCE7E);
+    RA8875_drawRoundRect(0, 40, 800, 240, 5, RA8875_BLACK);
 
     // Injectate header
     const char* injectateStr = "Injectate";
@@ -123,18 +122,63 @@ void DisplayStartMenu() {
     RA8875_textSetCursor(7, 45);
     RA8875_textTransparent(RA8875_BLACK); //test if needed
     RA8875_textWrite(injectateStr, strlen(injectateStr));
+
+    // Volume 
+    RA8875_drawRect(10, 120, 251, 150, RA8875_BLACK);
     // Volume header
     const char* volumeHeaderStr = "Volume (mL)";
     RA8875_textEnlarge(1);
-    RA8875_textSetCursor(15, 100);
-    RA8875_textWrite(volumeHeaderStr, strlen(volumeHeaderStr));
+    RA8875_textSetCursor(50, 125);                            
+    RA8875_textWrite(volumeHeaderStr, strlen(volumeHeaderStr)); // Width of headerStr is 170 pixels
     // Volume value
     const char* volumeValStr = "10";
     RA8875_textEnlarge(3);
-    RA8875_textSetCursor(65, 135);
-    RA8875_textWrite(volumeValStr, strlen(volumeValStr));
+    RA8875_textSetCursor(92, 175);
+    RA8875_textWrite(volumeValStr, strlen(volumeValStr)); // width of two digit value is 67 pixels 
+
+    // Temperature 
+    RA8875_drawRect(266, 120, 251, 150, RA8875_BLACK);
     // Temperature Header
-    const char* tempStr = "0 C";
+    const char* tempHeaderStr = "Temperature (C)";
+    const char* degreeStr = " o";
+    uint32_t intermediateLen = strlen(tempHeaderStr) - 2;
+    RA8875_textEnlarge(1);
+    RA8875_textSetCursor(271, 125);
+    RA8875_textWrite(tempHeaderStr, intermediateLen);
+    RA8875_textEnlarge(0);
+    RA8875_textSetCursor(471, 125);
+    RA8875_textWrite(degreeStr, 2);
+    RA8875_textEnlarge(1);
+    RA8875_textSetCursor(486, 125);
+    RA8875_textWrite(tempHeaderStr + intermediateLen, 2);
+    // Temperature Value
+    const char* tempValue = "0";
+    RA8875_textEnlarge(3);
+    RA8875_textSetCursor(374, 175);
+    RA8875_textWrite(tempValue, 1);
+
+    // Rounded Squares
+    //RA8875_drawRoundRect(650, 65, 60, 60, 5, RA8875_BLACK);  // Top square
+    RA8875_fillRoundRect(650, 65, 60, 60, 5, RA8875_BLACK);
+
+    //RA8875_drawRoundRect(715, 130, 60, 60, 5, RA8875_BLACK); // Left square
+    RA8875_fillRoundRect(715, 130, 60, 60, 5, RA8875_BLACK);
+
+    //RA8875_drawRoundRect(585, 130, 60, 60, 5, RA8875_BLACK); // Right square
+    RA8875_fillRoundRect(585, 130, 60, 60, 5, RA8875_BLACK);
+
+    //RA8875_drawRoundRect(650, 195, 60, 60, 5, RA8875_BLACK); // Left square
+    RA8875_fillRoundRect(650, 195, 60, 60, 5, RA8875_BLACK);
+
+    // // Up triangle
+    // RA8875_drawTriangle(601, 100, 701, 100, 650, 60, RA8875_BLACK);
+    // // Left triangle 
+    // RA8875_drawTriangle(595, 104, 595, 176, 550, 140, RA8875_BLACK);
+    // // Right triangle 
+    // RA8875_drawTriangle(705, 104, 705, 176, 755, 140, RA8875_BLACK);
+    // // Down triangle
+    // RA8875_drawTriangle(601, 180, 701, 180, 650, 220, RA8875_BLACK);
+    
     while (1) {
 
 
