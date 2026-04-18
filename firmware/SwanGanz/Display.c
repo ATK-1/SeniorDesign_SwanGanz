@@ -5,6 +5,7 @@
 #include "Display.h"
 #include "LUT.h"
 #include "RA8875.h"
+#include "../inc/RTOS_UART.h"
 
 #define NUM_CHANNELS 6
 Sema4_t LCD_Mutex;
@@ -24,40 +25,25 @@ void DisplayInit() {
     RA8875_fillScreen(0xE7BF);
     
 
-    OS_InitSemaphore(&LCD_Mutex, 1);
-}
+//     OS_InitSemaphore(&LCD_Mutex, 1);
+// }
 
+int32_t transmissions;
 static void DisplayAll() {
-    char* messages[] = {
-        "P1-Low: ",
-        "P1-Hi:  ",
-        "T-Low:  ",
-        "T-Hi:   ",
-        "P2-Low: ",
-        "P2-Hi:  ",
-    };
-    OS_bWait(&LCD_Mutex);
-    ST7735_FillScreen(ST7735_BLACK);
-    for (int i = 0; i < NUM_CHANNELS; i++) {
-        ST7735_SetCursor(0, (i + 1) * 2);
-        ST7735_OutString(messages[i]);
-    }
-    OS_bSignal(&LCD_Mutex);
+    
+    ST7735_DrawString(0, 2, "calculating", ST7735_BLUE);
 
     while (1) {
         uint32_t data[NUM_CHANNELS];
         for (int i = 0; i < NUM_CHANNELS; i++) {
             data[i] = Fifo_Get(i);
         }
-        for (int i = 0; i < NUM_CHANNELS; i++) {
-            ST7735_FillRect(78 , (i + 1) * 20, 11, 7, ST7735_BLACK);
-            ST7735_SetCursor(10, (i + 1) * 2);
-			if (i == 2) {
-				ST7735_OutUDec(TempLUT[data[i]]);
-			}
-			else {
-            	ST7735_OutUDec(data[i]);
-			}
+        if (transmissions < 2000) {
+            UART_OutChar(0xFA);
+            UART_OutU16(data[0]); //p1
+            UART_OutU16(data[4]); //p2
+            UART_OutU16(data[2]); //therm
+            transmissions++;
         }
     }
 }
@@ -68,21 +54,20 @@ static void DisplayAll() {
     Waits for sampled data in FIFO and displays in on LCD
 */
 void DisplayTemp() {
+    DisplayStartMenu();
     while (1) {
-        // uint32_t temp = Fifo_Get(THERM_LOW_FIFO);
-        
-		// OS_bWait(&LCD_Mutex);
-        // ST7735_SetCursor(0, 3);
-        // ST7735_OutString("Current Temperature: ");
-        // ST7735_SetCursor(0, 4);
-		// ST7735_OutUDec(TempLUT[temp]);
-        // OS_bSignal(&LCD_Mutex);
-
-        // if (input) {
-        //     OS_AddThread(&DisplayAll, 1);
-		// 	OS_SetPerioidcSchedule(1);
-        //     OS_Kill();
-        // }
+        if (Fifo_Get(INPUT_FIFO)) {
+            Fifo_Init(PRESSURE_1A_FIFO);
+            Fifo_Init(PRESSURE_1B_FIFO);
+            Fifo_Init(THERM_LOW_FIFO);
+            Fifo_Init(THERM_HI_FIFO);
+            Fifo_Init(PRESSURE_2A_FIFO);
+            Fifo_Init(PRESSURE_2B_FIFO);
+            Fifo_Init(INPUT_FIFO);
+            OS_AddThread(&DisplayAll, 1);
+			OS_SetPerioidcSchedule(1);
+            OS_Kill();
+        }
     }
 }
 

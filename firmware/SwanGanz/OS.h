@@ -33,7 +33,7 @@
 #define TIME_500US  (TIME_1MS/2)  
 #define TIME_250US  (TIME_1MS/4)  
 
-#define STACK_SIZE 256
+#define STACK_SIZE 512
 #define MAX_THREAD_COUNT 10
 #define FIFO_CAPACITY 32
 #define NUM_PRIORITIES 6

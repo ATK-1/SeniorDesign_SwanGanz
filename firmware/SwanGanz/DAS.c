@@ -3,6 +3,7 @@
 #include "../inc/Timer.h"
 #include "OS.h"
 #include "DAS.h"
+#include "../inc/RTOS_UART.h"
 
 
 void DASInit() {
@@ -51,10 +52,12 @@ void InputPolling() {
     uint32_t mode  = !(GPIOB->DIN31_0 & (1<<12));
     uint32_t enter = !(GPIOB->DIN31_0 & (1<<13));
 
-    if ((PrevMode && !mode)) {
+    if (PrevMode && !mode) {
+       // UART_OutString("mode\n");
         Fifo_Put(INPUT_FIFO, MODE);
     }
-    else {
+    if (PrevEnter && !enter) {
+      //  UART_OutString("Enter\n");
         Fifo_Put(INPUT_FIFO, ENTER);
     }
     PrevMode = mode;

@@ -22,25 +22,31 @@
 #include "../inc/RTOS_UART.h"
 #include "../inc/RTOS_FIFO.h"
 #include "OS.h"
+// Two-index implementation of the transmit FIFO
+// can hold 0 to TXFIFOSIZE-1 elements
+uint32_t volatile TxPutI; // where to put next
+uint32_t volatile TxGetI; // where to get next
+//Sema4_t TxFifoEmpty;
+Sema4_t TxFifoFull;
+
 long StartCritical(void);
 void EndCritical(long);
 long sr;
-// Two-index implementation of the transmit FIFO
-// can hold 0 to TXFIFOSIZE-1 elements
-uint32_t volatile TxPutI; 
-uint32_t volatile TxGetI; 
-Sema4_t TxFifoFull;
 
-
+Sema4_t RxFifoEmpty;
+//Sema4_t RxFifoFull;
 char static TxFifo[TXFIFOSIZE];
 
 void TxFifo_Init(void){
   TxPutI = TxGetI = 0; // empty
+  //OS_InitSemaphore(&TxFifoEmpty, 0);
   OS_InitSemaphore(&TxFifoFull, TXFIFOSIZE - 1);
-}
 
+  OS_InitSemaphore(&RxFifoEmpty, 0);
+  //OS_InitSemaphore(&RxFifoFull, RXFIFOSIZE - 1);
+}
 int TxFifo_Put(char data){
-  OS_bWait(&TxFifoFull);
+  //OS_bWait(&TxFifoFull);
   StartCritical();
   uint32_t newPutI = (TxPutI+1)&(TXFIFOSIZE-1);
   TxFifo[TxPutI] = data;          // save in Fifo
@@ -56,7 +62,7 @@ char TxFifo_Get(void){char data;
   //TxFifoEmpty.value -= 1;
   data = TxFifo[TxGetI];              // retrieve data
   TxGetI = (TxGetI+1)&(TXFIFOSIZE-1); // next place to get
-  OS_bSignal(&TxFifoFull);
+  //OS_bSignal(&TxFifoFull);
   return data;
 }
 
@@ -69,11 +75,9 @@ uint32_t TxFifo_Size(void){
 uint32_t volatile RxPutI; // where to put next
 uint32_t volatile RxGetI; // where to get next
 char static RxFifo[RXFIFOSIZE];
-Sema4_t RxFifoEmpty;
 
 void RxFifo_Init(void){
   RxPutI = RxGetI = 0;  // empty
-  OS_InitSemaphore(&RxFifoEmpty, 0);
 }
 int RxFifo_Put(char data){
   uint32_t newPutI = (RxPutI+1)&(RXFIFOSIZE-1);
@@ -83,12 +87,12 @@ int RxFifo_Put(char data){
   //RxFifoFull.value -= 1;
   RxFifo[RxPutI] = data;          // save in Fifo
   RxPutI = newPutI;               // next place to put
-  OS_bSignal(&RxFifoEmpty);
+  //OS_bSignal(&RxFifoEmpty);
   return 1;
 }
 char RxFifo_Get(void){
   char data;
-  OS_bWait(&RxFifoEmpty);
+  //OS_bWait(&RxFifoEmpty);
   StartCritical();
   data = RxFifo[RxGetI];              // retrieve data
   RxGetI = (RxGetI+1)&(RXFIFOSIZE-1); // next place to get
@@ -100,4 +104,3 @@ char RxFifo_Get(void){
 uint32_t RxFifo_Size(void){
   return (RxPutI-RxGetI)&(RXFIFOSIZE-1);
 }
-

@@ -1,7 +1,11 @@
+mod state;
 use tauri::{AppHandle, Emitter, State};
 use tauri_plugin_serialplugin::commands::{
-    available_ports, close, managed_ports, open, read, write,
+    available_ports, close, managed_ports, open, read, read_binary, write,
 };
+use tauri_plugin_serialplugin::state::{DataBits, FlowControl, Parity, StopBits};
+
+use crate::state::SensorQueues;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -9,9 +13,12 @@ pub fn run() {
         .plugin(tauri_plugin_serialplugin::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_log::Builder::new().build())
+        .manage(SensorQueues::new())
         .invoke_handler(tauri::generate_handler![
             check_connected,
-            check_disconnected
+            check_disconnected,
+            get_data,
+            drain_queues
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -31,13 +38,14 @@ async fn check_connected(
                 app.clone(),
                 serial.clone(),
                 port_name.to_string(),
-                9600,
-                None,
-                None,
-                None,
-                None,
-                None,
-            );
+                128000,
+                Some(DataBits::Eight),
+                Some(FlowControl::None),
+                Some(Parity::None),
+                None,          // StopBits
+                Some(1000u64), // Timeout
+            )
+            .map_err(|e| format!("Failed to open port: {}", e))?;
             app.emit("port-connected", port_name).unwrap();
         }
     }
@@ -51,21 +59,109 @@ async fn check_disconnected(
     app: AppHandle<tauri::Wry>,
     serial: State<'_, tauri_plugin_serialplugin::desktop_api::SerialPort<tauri::Wry>>,
 ) -> Result<(), String> {
-    let open_ports = managed_ports(app.clone(), serial.clone()).map_err(|e| e.to_string())?;
-    for port_name in open_ports.iter() {
+    let available = available_ports(app.clone(), serial.clone()).map_err(|e| e.to_string())?;
+    let mut still_connected = false;
+    let mut port = String::new();
+    for (port_name, _port_info) in available.iter() {
         if port_name.contains("cu.usbserial-A106DAXQ") {
-            let result = read(
-                app.clone(),
-                serial.clone(),
-                port_name.to_string(),
-                Some(1),
-                Some(100),
-            );
-            if result.is_err() {
-                app.emit("port-disconnected", port_name).unwrap();
+            still_connected = true;
+            port = port_name.to_string();
+        }
+    }
+    if !still_connected {
+        let managed = managed_ports(app.clone(), serial.clone()).map_err(|e| e.to_string())?;
+        for port_name in managed.iter() {
+            if port_name.contains("cu.usbserial-A106DAXQ") {
+                close(app.clone(), serial.clone(), port_name.to_string())
+                    .map_err(|e| e.to_string())?;
             }
         }
+        app.emit("port-disconnected", "cu.usbserial-A106DAXQ")
+            .unwrap();
     }
 
     Ok(())
+}
+
+// Reads data from UART and adds it to dataset
+#[tauri::command]
+async fn get_data(
+    app: AppHandle<tauri::Wry>,
+    serial: State<'_, tauri_plugin_serialplugin::desktop_api::SerialPort<tauri::Wry>>,
+    queues: State<'_, SensorQueues>,
+) -> Result<(), String> {
+    let path = "/dev/cu.usbserial-A106DAXQ".to_string();
+    let data_ascii = [0xFA];
+    let mut header = match read_binary(
+        app.clone(),
+        serial.clone(),
+        path.clone(),
+        Some(1000u64),
+        Some(1usize),
+    ) {
+        Ok(data) => data,
+        Err(_) => return Ok(()),
+    };
+
+    if header != data_ascii {
+        return Ok(());
+    }
+
+    app.emit("data-begin", &path).unwrap();
+    'outer: while header == data_ascii {
+        let received_data = match read_binary(
+            app.clone(),
+            serial.clone(),
+            path.clone(),
+            Some(1000u64),
+            Some(6usize),
+        ) {
+            Ok(data) => data,
+            Err(_) => break,
+        };
+        queues
+            .p1
+            .lock()
+            .unwrap()
+            .push_back((received_data[0] as u16) << 8 | received_data[1] as u16);
+        queues
+            .p2
+            .lock()
+            .unwrap()
+            .push_back((received_data[2] as u16) << 8 | received_data[3] as u16);
+        queues
+            .temp
+            .lock()
+            .unwrap()
+            .push_back((received_data[4] as u16) << 8 | received_data[5] as u16);
+
+        let max_search = 12; // give up after this many bytes searched
+        for _ in 0..max_search {
+            header = match read_binary(
+                app.clone(),
+                serial.clone(),
+                path.clone(),
+                Some(1000u64),
+                Some(1usize),
+            ) {
+                Ok(data) => data,
+                Err(_) => break 'outer,
+            };
+            if header == data_ascii {
+                continue 'outer;
+            }
+        }
+        break; // exhausted search budget, exit
+    }
+
+    app.emit("data-done", &path).unwrap();
+    Ok(())
+}
+
+#[tauri::command]
+fn drain_queues(queues: State<'_, SensorQueues>) -> (Vec<u16>, Vec<u16>, Vec<u16>) {
+    let p1 = queues.p1.lock().unwrap().drain(..).collect();
+    let p2 = queues.p2.lock().unwrap().drain(..).collect();
+    let temp = queues.temp.lock().unwrap().drain(..).collect();
+    (p1, p2, temp)
 }

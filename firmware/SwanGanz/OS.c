@@ -93,7 +93,7 @@ backgroundTask_t S2Task;
 backgroundTask_t PA28Task;
 
 // Periodic Threads
-periodicScheudler_t CurrentSchedule;
+periodicScheduler_t CurrentSchedule;
 uint32_t PTaskIdx;
 
 
@@ -198,7 +198,7 @@ void OS_Init(void){
     SCB->SHP[1] |= 0xBFFFFFFF;
 
     // Initialize System stuff
-    //UART_Init(1);
+    UART_Init(1);
 
     // Initialize screen
     DisplayInit();
