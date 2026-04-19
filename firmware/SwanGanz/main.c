@@ -54,27 +54,25 @@
 // UART_Rx = PA9
 void Logic_Init() {
     // Inputs - debug pins and LED
-    IOMUX->SECCFG.PINCM[PA10INDEX] = (uint32_t) 0x00000081; // Debug Pin 1
-    IOMUX->SECCFG.PINCM[PA11INDEX] = (uint32_t) 0x00000081; // Debug Pin 2
-    IOMUX->SECCFG.PINCM[PA12INDEX] = (uint32_t) 0x00000081; // Debug Pin 3
-    IOMUX->SECCFG.PINCM[PA13INDEX] = (uint32_t) 0x00000081; // Debug Pin 4
-    IOMUX->SECCFG.PINCM[PA15INDEX] = (uint32_t) 0x00000081; // Working LED
-    IOMUX->SECCFG.PINCM[PA16INDEX] = (uint32_t) 0x00000081; // Error LED
-    IOMUX->SECCFG.PINCM[PB17INDEX] = (uint32_t) 0x00000081; // Debug Pin 5
-    IOMUX->SECCFG.PINCM[PB18INDEX] = (uint32_t) 0x00000081; 
-    IOMUX->SECCFG.PINCM[PB19INDEX] = (uint32_t) 0x00000081; 
-    IOMUX->SECCFG.PINCM[PB20INDEX] = (uint32_t) 0x00000081; // Debug Pin 8
-    GPIOA->DOE31_0 |= (1 << 10) | (1 << 11) | (1 << 12) | (1 << 13) | (1 << 15) | (1 << 16);
-    GPIOB->DOE31_0 |= (0x0F << 17);
-
-    // Outputs- buttons
-    IOMUX->SECCFG.PINCM[PB12INDEX] = (uint32_t) 0x00040081;
-    IOMUX->SECCFG.PINCM[PB13INDEX] = (uint32_t) 0x00040081;
+    IOMUX->SECCFG.PINCM[PB14INDEX] = (uint32_t) 0x00000081; // Debug Pin 1
+    IOMUX->SECCFG.PINCM[PB15INDEX] = (uint32_t) 0x00000081; // Debug Pin 2
+    IOMUX->SECCFG.PINCM[PB16INDEX] = (uint32_t) 0x00000081; // Debug Pin 3
+    IOMUX->SECCFG.PINCM[PA12INDEX] = (uint32_t) 0x00000081; // Debug Pin 4
+    IOMUX->SECCFG.PINCM[PA13INDEX] = (uint32_t) 0x00000081; // Debug Pin 5
+    IOMUX->SECCFG.PINCM[PA22INDEX] = (uint32_t) 0x00000081; // Debug Pin 6
+    IOMUX->SECCFG.PINCM[PA24INDEX] = (uint32_t) 0x00000081; // Debug Pin 7
+    IOMUX->SECCFG.PINCM[PB25INDEX] = (uint32_t) 0x00000081; // Debug Pin 8+
+    IOMUX->SECCFG.PINCM[PA18INDEX] = (uint32_t) 0x00000081; // Working LED
+    IOMUX->SECCFG.PINCM[PB19INDEX] = (uint32_t) 0x00000081; // Error LED
+    GPIOA->DOE31_0 |= (1<<12) | (1<<13) | (1<<18) | (1<<22) | (1<<24);
+    GPIOB->DOE31_0 |= (1<<14) | (1<<15) | (1<<16) | (1<<25) | (1<<19);
 }
 
 static void IdleThread() {
     while (1) {
         //__asm("WFI");
+        GPIOA->DOUTTGL31_0 = (1<<24);
+        for(int i = 0; i < 40000000; i++){}
     }
 }
 
@@ -85,6 +83,8 @@ int main(void) {
     Logic_Init();
     OS_Init();
     DASInit();
+    //UART_Init(1);   // USB to UART converter 
+    //DisplayInit(); 
 
     OS_SetPerioidcSchedule(0);
     OS_AddThread(&DisplayTemp, 1);
