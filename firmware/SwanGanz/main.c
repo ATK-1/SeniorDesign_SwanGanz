@@ -84,7 +84,7 @@ int main(void) {
     OS_Init();
     DASInit();
     //UART_Init(1);   // USB to UART converter 
-    //DisplayInit(); 
+    DisplayInit(); 
 
     OS_SetPerioidcSchedule(0);
     OS_AddThread(&DisplayTemp, 1);

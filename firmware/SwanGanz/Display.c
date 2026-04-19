@@ -302,18 +302,6 @@ void DisplayStartMenu() {
     displayCurrentReadings();
     
     while (1) {
-
-
-        
-
-        // ST7735_SetCursor(0, 0);
-        // OS_bWait(&LCD_Mutex);
-        // ST7735_OutString("Press any button to ");
-        // ST7735_SetCursor(0, 1);
-        // ST7735_OutString("begin calculation");
-        // OS_bSignal(&LCD_Mutex);
-        // input = Fifo_Get(INPUT_FIFO); 
-        // OS_Kill();
     }
 }
 
