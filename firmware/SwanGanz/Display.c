@@ -90,55 +90,9 @@ static void displayConnected() {
 #define ONE_DIG_SIZE 34
 #define SPACING 5
 #define DPAD_SIDE 60
-static void displayInjectate() {
-    // Injectate header
-    const char* injectateStr = "Injectate";
-    RA8875_textTransparent(RA8875_BLACK);
-    RA8875_textMode();
-    RA8875_textEnlarge(2);
-    RA8875_textSetCursor(HEADER_X, INJECTATE_Y);
-    RA8875_textWrite(injectateStr, strlen(injectateStr));
 
-    // Volume 
-    RA8875_drawRoundRect(VOLUME_BOX_X, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, RA8875_BLACK);
-
-    const char* volumeHeaderStr = "Volume (mL)";
-    uint32_t vHeaderStrX = VOLUME_BOX_X + ((ROUND_BOX_W - V_HEADER_SIZE) >> 1);
-    RA8875_textEnlarge(1);
-    RA8875_textSetCursor(vHeaderStrX, BUTTON_BOXS_Y + SPACING);                            
-    RA8875_textWrite(volumeHeaderStr, strlen(volumeHeaderStr)); 
-
-    const char* volumeValStr = "10";
-    uint32_t volValStrX = VOLUME_BOX_X + ((ROUND_BOX_W - TWO_DIG_SIZE) >> 1);
-    RA8875_textEnlarge(3);
-    RA8875_textSetCursor(volValStrX, BUTTONS_VAL_Y);
-    RA8875_textWrite(volumeValStr, strlen(volumeValStr)); 
-   
-    // Temperature 
-    uint32_t tempBoxX = VOLUME_BOX_X + ROUND_BOX_W + SPACING;
-    RA8875_drawRoundRect(tempBoxX, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, RA8875_BLACK);
-
-    const char* tempHeaderStr = "Temperature (C)";
-    const char* degreeStr = " o";
-    uint32_t intermediateLen = strlen(tempHeaderStr) - 2;
-    RA8875_textEnlarge(1);
-    RA8875_textSetCursor(tempBoxX + SPACING, BUTTON_BOXS_Y + SPACING);
-    RA8875_textWrite(tempHeaderStr, intermediateLen);
-    RA8875_textEnlarge(0);
-    RA8875_textSetCursor(471, BUTTON_BOXS_Y + SPACING); // 471 is where the parenthesis end
-    RA8875_textWrite(degreeStr, 2);
-    RA8875_textEnlarge(1);
-    RA8875_textSetCursor(486, BUTTON_BOXS_Y + SPACING); // 486 is where the degree symbol ends
-    RA8875_textWrite(tempHeaderStr + intermediateLen, 2);
-
-    const char* tempValue = "0";
-    uint32_t tempValueX = tempBoxX + ((ROUND_BOX_W - ONE_DIG_SIZE) >> 1);
-    RA8875_textEnlarge(3);
-    RA8875_textSetCursor(tempValueX, BUTTONS_VAL_Y);
-    RA8875_textWrite(tempValue, 1);
-
-    // Dpad of Rounded Squares with triangles inside
-
+// Dpad of Rounded Squares with triangles inside
+static void displayDpad() {
     // Right Dpad
     uint32_t halfBox = DPAD_SIDE >> 1;
     uint32_t R_DpadX = SCREEN_W - (SPACING * 5) - DPAD_SIDE;
@@ -189,6 +143,71 @@ static void displayInjectate() {
     RA8875_fillTriangle(D_TriX1, D_TriY1, D_TriX2, D_TriY2, D_TriX3, D_TriY3, RA8875_WHITE);
     // RA8875_fillRoundRect(650, 195, 60, 60, 5, RA8875_BLACK); // Down
     // RA8875_fillTriangle(680, 245, 660, 225, 700, 225, RA8875_WHITE);
+}
+static void displayInjectate() {
+    // Injectate header
+    const char* injectateStr = "Injectate";
+    RA8875_textTransparent(RA8875_BLACK);
+    RA8875_textMode();
+    RA8875_textEnlarge(2);
+    RA8875_textSetCursor(HEADER_X, INJECTATE_Y);
+    RA8875_textWrite(injectateStr, strlen(injectateStr));
+
+    uint32_t startButtonX = (SPACING * 2) + ROUND_BOX_W + SPACING;
+    uint32_t startButtonY = INJECTATE_SECTION_Y + (SPACING * 3);
+    RA8875_fillRoundRect(startButtonX, INJECTATE_SECTION_Y + (SPACING * 3), ROUND_BOX_W, 50, CORNER_ROUNDNESS, 0x35ee);
+
+    const char* startStr = "START";
+    uint32_t startStrSize = 80;
+    uint32_t startStrX = startButtonX + ((ROUND_BOX_W - startStrSize) >> 1);
+    uint32_t startStrY = startButtonY + (SPACING + 2);
+    //RA8875_drawRect(startButtonX, startButtonY, 80, 50, RA8875_BLACK);
+    RA8875_textEnlarge(1);
+    RA8875_textSetCursor(startStrX, startStrY);
+    RA8875_textTransparent(RA8875_BLACK);
+    RA8875_textWrite(startStr, strlen(startStr));
+
+
+
+    // Volume 
+    RA8875_drawRoundRect(VOLUME_BOX_X, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, RA8875_BLACK);
+
+    const char* volumeHeaderStr = "Volume (mL)";
+    uint32_t vHeaderStrX = VOLUME_BOX_X + ((ROUND_BOX_W - V_HEADER_SIZE) >> 1);
+    RA8875_textEnlarge(1);
+    RA8875_textSetCursor(vHeaderStrX, BUTTON_BOXS_Y + SPACING);                            
+    RA8875_textWrite(volumeHeaderStr, strlen(volumeHeaderStr)); 
+
+    const char* volumeValStr = "10";
+    uint32_t volValStrX = VOLUME_BOX_X + ((ROUND_BOX_W - TWO_DIG_SIZE) >> 1);
+    RA8875_textEnlarge(3);
+    RA8875_textSetCursor(volValStrX, BUTTONS_VAL_Y);
+    RA8875_textWrite(volumeValStr, strlen(volumeValStr)); 
+   
+    // Temperature 
+    uint32_t tempBoxX = VOLUME_BOX_X + ROUND_BOX_W + SPACING;
+    RA8875_drawRoundRect(tempBoxX, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, RA8875_BLACK);
+
+    const char* tempHeaderStr = "Temperature (C)";
+    const char* degreeStr = " o";
+    uint32_t intermediateLen = strlen(tempHeaderStr) - 2;
+    RA8875_textEnlarge(1);
+    RA8875_textSetCursor(tempBoxX + SPACING, BUTTON_BOXS_Y + SPACING);
+    RA8875_textWrite(tempHeaderStr, intermediateLen);
+    RA8875_textEnlarge(0);
+    RA8875_textSetCursor(471, BUTTON_BOXS_Y + SPACING); // 471 is where the parenthesis end
+    RA8875_textWrite(degreeStr, 2);
+    RA8875_textEnlarge(1);
+    RA8875_textSetCursor(486, BUTTON_BOXS_Y + SPACING); // 486 is where the degree symbol ends
+    RA8875_textWrite(tempHeaderStr + intermediateLen, 2);
+
+    const char* tempValue = "0";
+    uint32_t tempValueX = tempBoxX + ((ROUND_BOX_W - ONE_DIG_SIZE) >> 1);
+    RA8875_textEnlarge(3);
+    RA8875_textSetCursor(tempValueX, BUTTONS_VAL_Y);
+    RA8875_textWrite(tempValue, 1);
+
+    displayDpad();
 
 }
 
@@ -235,7 +254,7 @@ static void displayCurrentReadings() {
     // RA8875_textSetCursor(271, 330);
     RA8875_textWrite(tempHeaderStr, intermediateLen);
     RA8875_textEnlarge(0);
-    RA8875_textSetCursor(471, READING_VAL_Y);
+    RA8875_textSetCursor(471, READING_BOXES_Y);
     //RA8875_textSetCursor(471, 330);
     RA8875_textWrite(degreeStr, 2);
     RA8875_textEnlarge(1);
@@ -253,10 +272,11 @@ static void displayCurrentReadings() {
     // Current pressure 2
     const char* pres2Str = "Pressure 2";
     uint32_t pres2BoxX = tempBoxX + ROUND_BOX_W + SPACING;
+    uint32_t pres2StrX = pres2BoxX + ((ROUND_BOX_W - pressureStrPxSize) >> 1);
 
     //RA8875_drawRoundRect(522, 330, 251, 150, 5, RA8875_BLACK);
     RA8875_textEnlarge(1);
-    RA8875_textSetCursor(pres2BoxX, READING_BOXES_Y);
+    RA8875_textSetCursor(pres2StrX, READING_BOXES_Y);
     //RA8875_textSetCursor(522 + 43, 330);
     RA8875_textWrite(pres2Str, strlen(pres2Str)); // Size of string is 165 pixels
 
