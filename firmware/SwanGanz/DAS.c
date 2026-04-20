@@ -4,6 +4,8 @@
 #include "OS.h"
 #include "DAS.h"
 #include "../inc/RTOS_UART.h"
+#include "TSC2046IPWR.h"
+#include "TouchControl.h"
 
 
 void DASInit() {
@@ -46,22 +48,18 @@ void DasAllSamples() {
 }
 
 // for now we're just polling for any button and will send a 1 if anything is pressed
-static uint32_t PrevMode;
-static uint32_t PrevEnter;
+static uint32_t PrevPoll;
 void InputPolling() {
-    // uint32_t mode  = !(GPIOB->DIN31_0 & (1<<12));
-    // uint32_t enter = !(GPIOB->DIN31_0 & (1<<13));
+    uint32_t newPoll = TSC2046IPWR_PollTouch();
+    if ((!PrevPoll) && newPoll) {
+        TSC2046Pos_t pos = TSC2046IPWR_ReadRawPosition();
+        enum BUTTON button = ButtonSelect(pos);
+        if (button) {
+            Fifo_Put(INPUT_FIFO, button);
+        }
+    }
+    PrevPoll = newPoll;
 
-    // if (PrevMode && !mode) {
-    //    // UART_OutString("mode\n");
-    //     Fifo_Put(INPUT_FIFO, MODE);
-    // }
-    // if (PrevEnter && !enter) {
-    //   //  UART_OutString("Enter\n");
-    //     Fifo_Put(INPUT_FIFO, ENTER);
-    // }
-    // PrevMode = mode;
-    // PrevEnter = enter;
 }
 
 /*

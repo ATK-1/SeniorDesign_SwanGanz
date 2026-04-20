@@ -26,3 +26,7 @@ TSC2046Pos_t TSC2046IPWR_ReadRawPosition();
 // Checks for a screen touch -- assumes screen is in PD = 00 mode
 // Outputs - 1 => Screen Touch, 0 => No Screen Touch
 uint32_t TSC2046IPWR_PollTouch();
+
+uint32_t TSC2046IPWR_GetX();
+
+uint32_t TSC2046IPWR_GetY();
