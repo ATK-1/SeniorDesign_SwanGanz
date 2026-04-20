@@ -19,6 +19,7 @@
 #include "OS.h"
 #include "Display.h"
 #include "Schedule.h"
+#include "../inc/RTOS_UART.h"
 
 // Hardware interrupt priorities
 //   Priority 0: Periodic threads 
@@ -192,12 +193,6 @@ void OS_Init(void){
     // Clear and Set Priority of PendSV and Systick
     SCB->SHP[1] &= 0x3FFFFFFF;
     SCB->SHP[1] |= 0xBFFFFFFF;
-
-    // Initialize System stuff
-    UART_Init(1);
-
-    // Initialize screen
-    DisplayInit();
 }
 
 // ******** OS_InitSemaphore ************

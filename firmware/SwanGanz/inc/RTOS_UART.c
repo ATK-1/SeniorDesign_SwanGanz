@@ -74,11 +74,6 @@ void UART_OutUDec(uint32_t n){
   UART_OutChar(n+'0'); /* n is between 0 and 9 */
 }
 
-void UART_OutU16(uint16_t n) {
-  UART_OutChar((char)((n & 0xFF00) >> 8));
-  UART_OutChar((char)(n & 0x00FF)); 
-}
-
 //-----------------------UART_OutUDec3-----------------------
 // Output a 32-bit number in unsigned decimal format
 // Input: 32-bit number to be transferred

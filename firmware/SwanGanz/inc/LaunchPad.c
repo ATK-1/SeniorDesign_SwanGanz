@@ -64,18 +64,18 @@ void LaunchPad_Init(void){
 //   bit 16 is pull down control
 //   bit 7 is PC peripheral connected, enable transparent data flow
 //   bit 0 selects GPIO function
-  IOMUX->SECCFG.PINCM[PA0INDEX]  = (uint32_t) 0x00000081;
-  IOMUX->SECCFG.PINCM[PA18INDEX] = (uint32_t) 0x00050081; // input, pull down
-  IOMUX->SECCFG.PINCM[PB21INDEX] = (uint32_t) 0x00060081; // input, pull up
-  IOMUX->SECCFG.PINCM[PB22INDEX] = (uint32_t) 0x00000081;
-  IOMUX->SECCFG.PINCM[PB26INDEX] = (uint32_t) 0x00000081;
-  IOMUX->SECCFG.PINCM[PB27INDEX] = (uint32_t) 0x00000081;
+  // IOMUX->SECCFG.PINCM[PA0INDEX]  = (uint32_t) 0x00000081;
+  // IOMUX->SECCFG.PINCM[PA18INDEX] = (uint32_t) 0x00050081; // input, pull down
+  // IOMUX->SECCFG.PINCM[PB21INDEX] = (uint32_t) 0x00060081; // input, pull up
+  // IOMUX->SECCFG.PINCM[PB22INDEX] = (uint32_t) 0x00000081;
+  // IOMUX->SECCFG.PINCM[PB26INDEX] = (uint32_t) 0x00000081;
+  // IOMUX->SECCFG.PINCM[PB27INDEX] = (uint32_t) 0x00000081;
 // DOE31_0 Data output enable
-  GPIOA->DOE31_0 |= RED1;
-  GPIOB->DOE31_0 |= BLUE | RED | GREEN; // enable outputs
+  // GPIOA->DOE31_0 |= RED1;
+  // GPIOB->DOE31_0 |= BLUE | RED | GREEN; // enable outputs
 // DOUT31_0 read/write data output pins
-  GPIOA->DOUT31_0 &= ~RED1; // LED1 off
-  GPIOB->DOUT31_0 &= ~(BLUE | RED | GREEN); // clear LED2
+  // GPIOA->DOUT31_0 &= ~RED1; // LED1 off
+  // GPIOB->DOUT31_0 &= ~(BLUE | RED | GREEN); // clear LED2
 }
 
 // **** LaunchPad_InS1 *****

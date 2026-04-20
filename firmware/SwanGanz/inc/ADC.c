@@ -17,12 +17,12 @@
 #include "../inc/ADC.h"
 #include "../inc/Clock.h"
 
-// ADC0.2 = PA25 - pressure 1 
-// ADC0.3 = PA24 - pressure 1 
-// ADC0.5 = PB24 - thermistor 
-// ADC0.7 = PA22 - thermistor 
-// ADC1.2 = PA17 - pressure 2 
-// ADC1.3 = PA18 - pressure 2 
+// ADC1.1 = PA16 - pressure 1 LG
+// ADC1.2 = PA17 - pressure 1 HG
+// ADC0.0 = PA27 - thermistor LG
+// ADC0.1 = PA26 - thermistor HG 
+// ADC1.4 = PB17 - pressure 2 LG
+// ADC1.5 = PB18 - pressure 2 HG
 void ADC_Init() {
   // Reset ADC and VREF
   // RSTCLR
@@ -82,34 +82,34 @@ void ADC_Init() {
   // bit 12 = STIME=0 for SCOMP0
   // bits 9-8 VRSEL = 10 for internal VREF,(00 for VDDA)
   // bits 4-0 channel = 0 to 7 available
-  ADC0->ULLMEM.MEMCTL[0] = 2;             // PA25
-  ADC0->ULLMEM.MEMCTL[1] = 3;             // PA24
-  ADC0->ULLMEM.MEMCTL[2] = 5;             // PB24
-  ADC0->ULLMEM.MEMCTL[3] = (1<<24) | 7;   // PA22
+  ADC0->ULLMEM.MEMCTL[0] = 0;             // ADC0.0 = PA27 - thermistor LG
+  ADC0->ULLMEM.MEMCTL[1] = (1<<24) | 1;   // ADC0.1 = PA26 - thermistor HG 
+  ADC1->ULLMEM.MEMCTL[0] = 1;             // ADC1.1 = PA16 - pressure 1 LG
+  ADC1->ULLMEM.MEMCTL[1] = 2;             // ADC1.2 = PA17 - pressure 1 HG        
+  ADC1->ULLMEM.MEMCTL[2] = 4;             // ADC1.4 = PB17 - pressure 2 LG
+  ADC1->ULLMEM.MEMCTL[3] = (1<<24) | 5;   // ADC1.5 = PB18 - pressure 2 HG
   
-  ADC1->ULLMEM.MEMCTL[0] = 2;             // PA17
-  ADC1->ULLMEM.MEMCTL[1] = (1<<24) | 3;   // PA18
 
   ADC0->ULLMEM.SCOMP0 = 0; // 8 sample clocks
   ADC1->ULLMEM.SCOMP0 = 0;
 }
 
 void ADC_In(uint32_t* sampleBuffer) {
-  TIMG0->CPU_INT.ICLR = 1;
+  // TIMG0->CPU_INT.ICLR = 1;
 
-  ADC0->ULLMEM.CTL0 |= 1;
-  ADC0->ULLMEM.CTL1 |= (1<<8); 
-  ADC1->ULLMEM.CTL0 |= 1;
-  ADC1->ULLMEM.CTL1 |= (1<<8);
+  // ADC0->ULLMEM.CTL0 |= 1;
+  // ADC0->ULLMEM.CTL1 |= (1<<8); 
+  // ADC1->ULLMEM.CTL0 |= 1;
+  // ADC1->ULLMEM.CTL1 |= (1<<8);
   
-  volatile uint32_t delay = ADC0->ULLMEM.STATUS;
-  while (ADC0->ULLMEM.STATUS & 0x01);
+  // volatile uint32_t delay = ADC0->ULLMEM.STATUS;
+  // while (ADC0->ULLMEM.STATUS & 0x01);
 
-  sampleBuffer[0] = ADC0->ULLMEM.MEMRES[0];
-  sampleBuffer[1] = ADC0->ULLMEM.MEMRES[1];
-  sampleBuffer[2] = ADC0->ULLMEM.MEMRES[2];
-  sampleBuffer[3] = ADC0->ULLMEM.MEMRES[3]; 
+  // sampleBuffer[0] = ADC0->ULLMEM.MEMRES[0];
+  // sampleBuffer[1] = ADC0->ULLMEM.MEMRES[1];
+  // sampleBuffer[2] = ADC0->ULLMEM.MEMRES[2];
+  // sampleBuffer[3] = ADC0->ULLMEM.MEMRES[3]; 
   
-  sampleBuffer[4] = ADC1->ULLMEM.MEMRES[0];
-  sampleBuffer[5] = ADC1->ULLMEM.MEMRES[1];
+  // sampleBuffer[4] = ADC1->ULLMEM.MEMRES[0];
+  // sampleBuffer[5] = ADC1->ULLMEM.MEMRES[1];
 }

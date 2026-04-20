@@ -365,7 +365,7 @@ void DisplayStartMenu() {
     
     while (1) {
         if (Fifo_Get(INPUT_FIFO)) {
-			OS_SetPerioidcSchedule(1);
+			      OS_SetPerioidcSchedule(1);
             OS_AddThread(&displayMeasuring, 1);
             OS_Kill();
         }
