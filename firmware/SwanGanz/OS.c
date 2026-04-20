@@ -124,28 +124,23 @@ void StartOS(void); // implemented in osasm.s
   if priority n is null, check list n+1
   check if sleeping
 */
-static void OS_Scheduler() {
-    uint32_t crit;
-    GPIOB->DOUTTGL31_0 = (1<<1);
-    GPIOB->DOUTTGL31_0 = (1<<1);
-    SysTick->VAL = 0;                //Reset systick
+void OS_Scheduler() {
 
+  SysTick->VAL = 0;                //Reset systick
+  
+  
+  tcb_t** roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].RoundRobinPt;
 
-    tcb_t** roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].
-    RoundRobinPt;
-
-    if (!roundRobinPt) {
-        GetHighestPriority();
-        tcb_t** roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].
-        RoundRobinPt;
-    }
-
-    tcb_t* candidate = (*roundRobinPt)->next;
-    crit = StartCritical();
-    *roundRobinPt = candidate;
-    NextThreadPt = candidate;
-    EndCritical(crit);
-    GPIOB->DOUTTGL31_0 = (1<<1);
+  if (!roundRobinPt) {
+    GetHighestPriority();
+    roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].RoundRobinPt;
+  }
+  
+  tcb_t* candidate = (*roundRobinPt)->next;
+  uint32_t irStatus = StartCritical();
+  *roundRobinPt = candidate;
+  NextThreadPt = candidate;
+  EndCritical(irStatus);
 }
 //------------------------------------------------------------------------------
 //  Systick Interrupt Handler
