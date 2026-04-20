@@ -104,7 +104,8 @@ uint32_t PTaskIdx;
 // Outputs: none
 void OS_ClearMsTime(void) {
     TimeMs = 0;
-    TimerG7_IntArm(10000, 200, 0);
+    TimerG7_IntArm(10000, 8, 0);
+    
 };
 
 
@@ -124,28 +125,23 @@ void StartOS(void); // implemented in osasm.s
   if priority n is null, check list n+1
   check if sleeping
 */
-static void OS_Scheduler() {
-    uint32_t crit;
-    GPIOB->DOUTTGL31_0 = (1<<1);
-    GPIOB->DOUTTGL31_0 = (1<<1);
-    SysTick->VAL = 0;                //Reset systick
+void OS_Scheduler() {
 
+  SysTick->VAL = 0;                //Reset systick
+  
+  
+  tcb_t** roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].RoundRobinPt;
 
-    tcb_t** roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].
-    RoundRobinPt;
-
-    if (!roundRobinPt) {
-        GetHighestPriority();
-        tcb_t** roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].
-        RoundRobinPt;
-    }
-
-    tcb_t* candidate = (*roundRobinPt)->next;
-    crit = StartCritical();
-    *roundRobinPt = candidate;
-    NextThreadPt = candidate;
-    EndCritical(crit);
-    GPIOB->DOUTTGL31_0 = (1<<1);
+  if (!roundRobinPt) {
+    GetHighestPriority();
+    roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].RoundRobinPt;
+  }
+  
+  tcb_t* candidate = (*roundRobinPt)->next;
+  uint32_t irStatus = StartCritical();
+  *roundRobinPt = candidate;
+  NextThreadPt = candidate;
+  EndCritical(irStatus);
 }
 //------------------------------------------------------------------------------
 //  Systick Interrupt Handler
@@ -292,28 +288,31 @@ int OS_AddThread(void(*task)(void), uint32_t priority) {
 
 
 static void InsertSleepyThread(tcb_t* tcb, uint32_t timeOffset) {
-    uint32_t targetTime = OS_MsTime() + timeOffset;
-    tcb->targetTime = targetTime;
+  uint32_t targetTime = OS_MsTime() + timeOffset;
+  tcb->targetTime = targetTime;
+  tcb->next = NULL;
+  tcb->prev = NULL;
 
-    StartCritical();
-    if (!SleepyThreadsHead) {
-        SleepyThreadsHead = tcb;
-        EndCritical(sr);
-        return;
-    }
-    if (targetTime < SleepyThreadsHead->targetTime) {
-        tcb->next = SleepyThreadsHead;
-        SleepyThreadsHead = tcb;
-        EndCritical(sr);
-        return;
-    }
-    tcb_t* curr = SleepyThreadsHead;
-    while (curr->next && (curr->next->targetTime <= targetTime)) {
-        curr = curr->next;
-    }
-    tcb->next = curr->next;  
-    curr->next = tcb;
-    EndCritical(sr);
+  OSDisableInterrupts();
+    
+  if (!SleepyThreadsHead) {
+    SleepyThreadsHead = tcb;
+    OSEnableInterrupts();
+    return;
+  }
+  if (targetTime < SleepyThreadsHead->targetTime) {
+    tcb->next = SleepyThreadsHead;
+    SleepyThreadsHead = tcb;
+    OSEnableInterrupts();
+    return;
+  }
+  tcb_t* curr = SleepyThreadsHead;
+  while (curr->next && (curr->next->targetTime <= targetTime)) {
+      curr = curr->next;
+  }
+  tcb->next = curr->next;  
+  curr->next = tcb;
+  OSEnableInterrupts();  
 }
 
 //******** OS_SetPerioidcSchedule *************** 
