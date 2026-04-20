@@ -103,7 +103,8 @@ uint32_t PTaskIdx;
 // Outputs: none
 void OS_ClearMsTime(void) {
     TimeMs = 0;
-    TimerG7_IntArm(10000, 200, 0);
+    TimerG7_IntArm(10000, 8, 0);
+    
 };
 
 
@@ -297,28 +298,31 @@ int OS_AddThread(void(*task)(void), uint32_t priority) {
 
 
 static void InsertSleepyThread(tcb_t* tcb, uint32_t timeOffset) {
-    uint32_t targetTime = OS_MsTime() + timeOffset;
-    tcb->targetTime = targetTime;
+  uint32_t targetTime = OS_MsTime() + timeOffset;
+  tcb->targetTime = targetTime;
+  tcb->next = NULL;
+  tcb->prev = NULL;
 
-    StartCritical();
-    if (!SleepyThreadsHead) {
-        SleepyThreadsHead = tcb;
-        EndCritical(sr);
-        return;
-    }
-    if (targetTime < SleepyThreadsHead->targetTime) {
-        tcb->next = SleepyThreadsHead;
-        SleepyThreadsHead = tcb;
-        EndCritical(sr);
-        return;
-    }
-    tcb_t* curr = SleepyThreadsHead;
-    while (curr->next && (curr->next->targetTime <= targetTime)) {
-        curr = curr->next;
-    }
-    tcb->next = curr->next;  
-    curr->next = tcb;
-    EndCritical(sr);
+  OSDisableInterrupts();
+    
+  if (!SleepyThreadsHead) {
+    SleepyThreadsHead = tcb;
+    OSEnableInterrupts();
+    return;
+  }
+  if (targetTime < SleepyThreadsHead->targetTime) {
+    tcb->next = SleepyThreadsHead;
+    SleepyThreadsHead = tcb;
+    OSEnableInterrupts();
+    return;
+  }
+  tcb_t* curr = SleepyThreadsHead;
+  while (curr->next && (curr->next->targetTime <= targetTime)) {
+      curr = curr->next;
+  }
+  tcb->next = curr->next;  
+  curr->next = tcb;
+  OSEnableInterrupts();  
 }
 
 //******** OS_SetPerioidcSchedule *************** 
