@@ -5,6 +5,7 @@
 #include "Display.h"
 #include "LUT.h"
 #include "RA8875.h"
+#include "DAS.h"
 
 #define NUM_CHANNELS 6
 
@@ -18,6 +19,8 @@
 
 Sema4_t LCD_Mutex;
 static int input;
+uint32_t Started;
+uint32_t OtherButton;
 
 
 
@@ -31,6 +34,7 @@ void DisplayInit() {
     RA8875_PWM1out(255);
      
     RA8875_fillScreen(0xE7BF);
+    RA8875_touchEnable(0);
     
 
     OS_InitSemaphore(&LCD_Mutex, 1);
@@ -364,10 +368,15 @@ void DisplayStartMenu() {
     displayCurrentReadings();
     
     while (1) {
-        if (Fifo_Get(INPUT_FIFO)) {
-			      OS_SetPerioidcSchedule(1);
+        enum BUTTON input = Fifo_Get(INPUT_FIFO);
+        if (input == START_BUTTON) {
+            Started++;
+            OS_SetPerioidcSchedule(1);
             OS_AddThread(&displayMeasuring, 1);
             OS_Kill();
+        }
+        else {
+            OtherButton++;
         }
     }
 }

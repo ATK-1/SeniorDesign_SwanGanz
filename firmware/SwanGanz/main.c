@@ -38,6 +38,8 @@
 #include "Display.h"
 #include "DAS.h"
 #include "OS.h"
+#include "TSC2046IPWR.h"
+#include "TouchControl.h" 
 
 #define TIME_1MS    80000      
 
@@ -76,6 +78,8 @@ static void IdleThread() {
     }
 }
 
+
+
 int main(void) {
     __disable_irq();
     Clock_Init80MHz(1);
@@ -84,7 +88,8 @@ int main(void) {
     OS_Init();
     DASInit();
     //UART_Init(1);   // USB to UART converter 
-    DisplayInit(); 
+    DisplayInit();
+    TSC2046IPWR_Init();
 
     OS_SetPerioidcSchedule(0);
 //    OS_AddThread(&DisplayTemp, 1);
