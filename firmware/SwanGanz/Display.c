@@ -52,7 +52,7 @@ void DisplayInit() {
 
 #define MEASURING_TIME_MS 40000
 static void displayMeasuring() {
-    RA8875_fillScreen(0xE7BF);
+    RA8875_fillScreen(BCKGRND_COLOR);
 
     uint32_t headerRectX = SPACING;
     uint32_t headerRectY = SPACING;
@@ -84,20 +84,39 @@ static void displayMeasuring() {
     RA8875_fillRect(progressX, progressBarY, progressBarW, progressBarH, 0xbdf7);
     
     const char* injectateStr = "Injectate";
-    
-    uint32_t currX = progressX + 3;
-    uint32_t endX = progressX + progressBarW - 3;
-    uint32_t startTime = OS_MsTime();
-    uint32_t msPerLine = MEASURING_TIME_MS / (endX - currX);
-    uint32_t prevTime = startTime;
+    const uint32_t injectateStrX = (SCREEN_W - (progressBarW >> 1)) >> 1;
+    const uint32_t injecetateStrY = progressBarY + progressBarH + (SPACING * 15);
+    const uint32_t injecetateStrH = 31;
+    RA8875_textSetCursor(injectateStrX, injecetateStrY);
+    RA8875_textTransparent(ST7735_BLACK);
+    RA8875_textWrite(injectateStr, strlen(injectateStr));
+
+    const uint32_t InjBarW = progressBarW >> 1;
+    const uint32_t InjBarH = progressBarH << 1;
+    const uint32_t InjBarX = injectateStrX;
+    const uint32_t InjBarY = injecetateStrY + injecetateStrH + SPACING;
+    RA8875_fillRect(InjBarX, InjBarY, InjBarW, InjBarH, 0xbdf7);
+
+    uint32_t currProgX = progressX + 3;
+    uint32_t endProgX = progressX + progressBarW - 3;
+    uint32_t msPerProgLine = MEASURING_TIME_MS / (endProgX - currProgX);
+
+    uint32_t currInjX = InjBarX + 3;
+    uint32_t endInjX = InjBarX + InjBarW - 3;
+    uint32_t msPerInjLine = 8000 / (endInjX - currProgX);
+
+    uint32_t prevProgTime = OS_MsTime();
+    uint32_t prevInjTime = prevProgTime;
     while (1) {
         uint32_t currTime = OS_MsTime();
-        int32_t diff = currTime - prevTime;
-        while (diff >= msPerLine && currX < endX) {
-            RA8875_drawLine(currX, progressBarY + 2, currX, progressBarY + progressBarH - 3, RA8875_BLACK);
-            currX++;
-            diff -= msPerLine;
-            prevTime += msPerLine;
+        int32_t diffProgTime = currTime - prevProgTime;
+        int32_t diffInjTime = currTime - prevInjTime;
+
+        while (diffProgTime >= msPerProgLine && currProgX < endProgX) {
+            RA8875_drawLine(currProgX, progressBarY + 2, currProgX, progressBarY + progressBarH - 3, RA8875_BLACK);
+            currProgX++;
+            diffProgTime -= msPerProgLine;
+            prevProgTime += msPerProgLine;
         }
 
         while (diffInjTime >= msPerInjLine && currInjX < endInjX) {
