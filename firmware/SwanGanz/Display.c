@@ -97,10 +97,6 @@ static void displayMeasuring() {
             diff -= msPerLine;
             prevTime += msPerLine;
         }
-<<<<<<< Updated upstream
-        if (currX < endX) {
-            OS_Sleep(100);
-=======
 
         while (diffInjTime >= msPerInjLine && currInjX < endInjX) {
             RA8875_drawLine(currInjX, InjBarY + 2, currInjX, InjBarY + InjBarH - 3, INJECTATE_COLOR);
@@ -110,7 +106,6 @@ static void displayMeasuring() {
         }
         if ((currProgX < endProgX) || (currInjX < endInjX)) {
             OS_Sleep(50);
->>>>>>> Stashed changes
         }
         else {
             OS_Kill();
@@ -374,10 +369,6 @@ void DisplayStartMenu() {
     char volStr[3] = "10";
     char tempStr[2] = "0";
     while (1) {
-<<<<<<< Updated upstream
-        if (Fifo_Get(INPUT_FIFO)) {
-			      OS_SetPerioidcSchedule(1);
-=======
         uint32_t input = Fifo_Get(INPUT_FIFO);
         if (mode == VOLUME_BUTTON) {
             if (highlighted_dig == 1 && input == RIGHT_BUTTON) {
@@ -474,7 +465,6 @@ void DisplayStartMenu() {
         }
         if (input == START_BUTTON) {
             OS_SetPerioidcSchedule(1);
->>>>>>> Stashed changes
             OS_AddThread(&displayMeasuring, 1);
             OS_Kill();
         }
