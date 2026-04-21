@@ -8,6 +8,15 @@
 #include "DAS.h"
 
 #define NUM_CHANNELS 6
+
+#define SCREEN_W 800
+#define SCREEN_H 480
+
+#define ROUND_BOX_W 251
+#define ROUND_BOX_H 150
+#define CORNER_ROUNDNESS 5
+#define SPACING 5
+
 Sema4_t LCD_Mutex;
 static int input;
 uint32_t Started;
@@ -32,29 +41,89 @@ void DisplayInit() {
 }
 
 
-/*
-    DisplayTemp - foreground thread
-    Waits for sampled data in FIFO and displays in on LCD
-*/
-void DisplayTemp() {
-    while (1) {
-        // uint32_t temp = Fifo_Get(THERM_LOW_FIFO);
-        
-		// OS_bWait(&LCD_Mutex);
-        // ST7735_SetCursor(0, 3);
-        // ST7735_OutString("Current Temperature: ");
-        // ST7735_SetCursor(0, 4);
-		// ST7735_OutUDec(TempLUT[temp]);
-        // OS_bSignal(&LCD_Mutex);
+#define MEASURING_TIME_MS 40000
+static void displayMeasuring() {
+    RA8875_fillScreen(0xE7BF);
 
-        // if (input) {
-        //     OS_AddThread(&DisplayAll, 1);
-		// 	OS_SetPerioidcSchedule(1);
-        //     OS_Kill();
-        // }
+    uint32_t headerRectX = SPACING;
+    uint32_t headerRectY = SPACING;
+    uint32_t headerRectW = SCREEN_W - SPACING * 2;
+    uint32_t headerRectH = 80;
+    RA8875_fillRoundRect(headerRectX, headerRectY, headerRectW, headerRectH, CORNER_ROUNDNESS, 0xbaa0);
+    
+    const char* thermoHeaderStr = "Thermodilution Calculation";
+    const uint32_t thermoHeaderStrW = 620;
+    const uint32_t thermoHeaderStrH = 33;
+    const uint32_t thermoHeaderStrX = headerRectX + ((headerRectW - thermoHeaderStrW) >> 1);
+    const uint32_t thermoHeaderStrY = ((headerRectH - thermoHeaderStrH) >> 1) - SPACING;
+    RA8875_textEnlarge(2);
+    RA8875_textTransparent(RA8875_BLACK);
+    RA8875_textSetCursor(thermoHeaderStrX, thermoHeaderStrY);
+    RA8875_textWrite(thermoHeaderStr, strlen(thermoHeaderStr));
+
+    const char* progressStr = "Progress...";
+    const uint32_t progressX = SPACING * 5;
+    const uint32_t progressStrY = headerRectY + headerRectH + (SPACING * 15);
+    const uint32_t progressStrH = 31;
+    RA8875_textEnlarge(1);
+    RA8875_textSetCursor(progressX, progressStrY);
+    RA8875_textWrite(progressStr, strlen(progressStr));
+
+    const uint32_t progressBarY = progressStrY + progressStrH + SPACING;
+    const uint32_t progressBarW = SCREEN_W - (progressX * 2);
+    const uint32_t progressBarH = 35;
+    RA8875_fillRect(progressX, progressBarY, progressBarW, progressBarH, 0xbdf7);
+    
+    const char* injectateStr = "Injectate";
+    const uint32_t injectateStrX = (SCREEN_W - (progressBarW >> 1)) >> 1;
+    const uint32_t injecetateStrY = progressBarY + progressBarH + (SPACING * 15);
+    const uint32_t injecetateStrH = 31;
+    RA8875_textSetCursor(injectateStrX, injecetateStrY);
+    RA8875_textTransparent(ST7735_BLACK);
+    RA8875_textWrite(injectateStr, strlen(injectateStr));
+
+    const uint32_t InjBarW = progressBarW >> 1;
+    const uint32_t InjBarH = progressBarH << 1;
+    const uint32_t InjBarX = injectateStrX;
+    const uint32_t InjBarY = injecetateStrY + injecetateStrH + SPACING;
+    RA8875_fillRect(InjBarX, InjBarY, InjBarW, InjBarH, 0xbdf7);
+
+    uint32_t currProgX = progressX + 3;
+    uint32_t endProgX = progressX + progressBarW - 3;
+    uint32_t msPerProgLine = MEASURING_TIME_MS / (endProgX - currProgX);
+
+    uint32_t currInjX = InjBarX + 3;
+    uint32_t endInjX = InjBarX + InjBarW - 3;
+    uint32_t msPerInjLine = 8000 / (endInjX - currProgX);
+
+    uint32_t prevProgTime = OS_MsTime();
+    uint32_t prevInjTime = prevProgTime;
+    while (1) {
+        uint32_t currTime = OS_MsTime();
+        int32_t diffProgTime = currTime - prevProgTime;
+        int32_t diffInjTime = currTime - prevInjTime;
+
+        while (diffProgTime >= msPerProgLine && currProgX < endProgX) {
+            RA8875_drawLine(currProgX, progressBarY + 2, currProgX, progressBarY + progressBarH - 3, RA8875_BLACK);
+            currProgX++;
+            diffProgTime -= msPerProgLine;
+            prevProgTime += msPerProgLine;
+        }
+
+        while (diffInjTime >= msPerInjLine && currInjX < endInjX) {
+            RA8875_drawLine(currInjX, InjBarY + 2, currInjX, InjBarY + InjBarH - 3, 0x8dde);
+            currInjX++;
+            diffInjTime -= msPerInjLine;
+            prevInjTime += msPerInjLine;
+        }
+        if ((currProgX < endProgX) || (currInjX < endInjX)) {
+            OS_Sleep(50);
+        }
+        else {
+            OS_Kill();
+        }        
     }
 }
-
 
 static void displayConnected() {
     RA8875_textMode();
@@ -76,12 +145,6 @@ static void displayConnected() {
     }
 }
 
-#define SCREEN_W 800
-
-#define ROUND_BOX_W 251
-#define ROUND_BOX_H 150
-#define CORNER_ROUNDNESS 5
-
 #define INJECTATE_SECTION_Y 40
 #define INJECTATE_SECTION_H 240
 #define HEADER_X 7
@@ -92,7 +155,6 @@ static void displayConnected() {
 #define V_HEADER_SIZE 170
 #define TWO_DIG_SIZE 67
 #define ONE_DIG_SIZE 34
-#define SPACING 5
 #define DPAD_SIDE 60
 
 // Dpad of Rounded Squares with triangles inside
@@ -308,14 +370,18 @@ void DisplayStartMenu() {
     while (1) {
         enum BUTTON input = Fifo_Get(INPUT_FIFO);
         if (input == START_BUTTON) {
-            if (!Started) {
-                OS_SetPerioidcSchedule(1);
-            }
+
+
+            OS_SetPerioidcSchedule(1);
             Started++;   
+            OS_AddThread(&displayMeasuring, 1);
+            OS_Kill();
         }
         else {
             OtherButton++;
         }
     }
 }
+
+
 

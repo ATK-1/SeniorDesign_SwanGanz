@@ -93,7 +93,7 @@ int main(void) {
     TSC2046IPWR_Init();
 
     OS_SetPerioidcSchedule(0);
-    OS_AddThread(&DisplayTemp, 1);
+//    OS_AddThread(&DisplayTemp, 1);
     OS_AddThread(&DisplayStartMenu, 1);
     OS_AddThread(&TestDas, 1);
     OS_AddThread(&IdleThread, 2);
