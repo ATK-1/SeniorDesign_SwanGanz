@@ -55,9 +55,7 @@ void InputPolling() {
     if ((!PrevPoll) && newPoll) {
         TSC2046Pos_t pos = TSC2046IPWR_ReadRawPosition();
         enum BUTTON button = ButtonSelect(pos);
-        if (button) {
-            Fifo_Put(INPUT_FIFO, button);
-        }
+        Fifo_Put(INPUT_FIFO, button);
     }
     PrevPoll = newPoll;
 

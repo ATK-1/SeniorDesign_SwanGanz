@@ -24,7 +24,7 @@
 #define CURSOR_V_X1 102
 #define CURSOR_V_X0 (102 + ONE_DIG_SIZE)
 #define CURSOR_T_X 374
-#define CURSOR_Y (BUTTONS_VAL_Y + 60)
+#define CURSOR_Y (BUTTONS_VAL_Y + 65)
 #define CURSOR_H 10
 
 Sema4_t LCD_Mutex;
@@ -219,6 +219,15 @@ static void displayDpad() {
     // RA8875_fillRoundRect(650, 195, 60, 60, 5, RA8875_BLACK); // Down
     // RA8875_fillTriangle(680, 245, 660, 225, 700, 225, RA8875_WHITE);
 }
+
+static void coverDpad() {
+    uint32_t R_DpadX = SCREEN_W - (SPACING * 5) - DPAD_SIDE;
+    uint32_t L_DpadX = R_DpadX - (DPAD_SIDE * 2) - (SPACING * 2);
+    uint32_t U_DpadY = BUTTONS_VAL_Y - SPACING - DPAD_SIDE;
+    uint32_t D_DpadY = BUTTONS_VAL_Y + SPACING + DPAD_SIDE;
+    uint32_t size = (DPAD_SIDE * 3) + (SPACING * 3);
+    RA8875_fillRect(L_DpadX, U_DpadY, size, size, BCKGRND_COLOR);
+}
 static void displayInjectate() {
     // Injectate header
     const char* injectateStr = "Injectate";
@@ -284,7 +293,7 @@ static void displayInjectate() {
     RA8875_textSetCursor(tempValueX, BUTTONS_VAL_Y);
     RA8875_textWrite(tempValue, 1);
 
-    displayDpad();
+    //displayDpad();
 
 }
 
@@ -365,8 +374,120 @@ static void displayCurrentReadings() {
     RA8875_textWrite(exStr3, strlen(exStr3));
 }
 
-void displayNavigation() {
+static enum BUTTON mode = NULL_INPUT;
+static uint32_t highlighted_dig = 0;
+static uint32_t currentVol = 10;
+static uint32_t currentTemp = 0;
+static char volStr[3] = "10";
+static char tempStr[2] = "0";
 
+static void displayNavigation(enum BUTTON input) {
+    if (mode == VOLUME_BUTTON) {
+        if (highlighted_dig == 1 && input == RIGHT_BUTTON) {
+            RA8875_fillRect(CURSOR_V_X1, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, INJECTATE_COLOR);
+            RA8875_fillRect(CURSOR_V_X0, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, RA8875_BLACK);
+            highlighted_dig = 0;
+        }
+        else if (highlighted_dig == 0 && input == LEFT_BUTTON) {
+            RA8875_fillRect(CURSOR_V_X0, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, INJECTATE_COLOR);
+            RA8875_fillRect(CURSOR_V_X1, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, RA8875_BLACK);
+            highlighted_dig = 1;
+        }
+        else if (input == UP_BUTTON) {
+            if (highlighted_dig == 1) {
+                if (volStr[0] == '9') {
+                    return;
+                }
+                else {
+                    currentVol += 10;
+                    volStr[0] = volStr[0] + 1;
+                }                    
+                RA8875_textSetCursor(CURSOR_V_X1, BUTTONS_VAL_Y);
+            }
+            else {
+                if (volStr[1] >= '9') {
+                    return;
+                }
+                else {
+                    currentVol += 1;
+                    volStr[1] = volStr[1] + 1;
+                }
+            }
+            RA8875_textEnlarge(3);
+            RA8875_textSetCursor(CURSOR_V_X1, BUTTONS_VAL_Y);
+            RA8875_textColor(RA8875_BLACK, INJECTATE_COLOR);
+            RA8875_textWrite(volStr, 2); 
+        
+        }
+        else if (input == DOWN_BUTTON) {
+            if (highlighted_dig == 1) {
+                if (currentVol <= 10) {
+                    currentVol = 1;
+                    volStr[0] = '0';
+                    volStr[1] = '1';
+                }
+                else {
+                    currentVol -= 10;
+                    volStr[0] = volStr[0] - 1;
+                }
+            }
+            else {
+                if (volStr[0] == 0 && volStr[1] == '1') {
+                    return;
+                }
+                else if (volStr[0] != 0 && volStr[1] == '0') {
+                    return;
+                }
+                else {
+                    currentVol -= 1;
+                    volStr[1] = volStr[1] - 1;
+                }
+            }
+            RA8875_textEnlarge(3);
+            RA8875_textSetCursor(CURSOR_V_X1, BUTTONS_VAL_Y);
+            RA8875_textColor(RA8875_BLACK, INJECTATE_COLOR);
+            RA8875_textWrite(volStr, 2); 
+        }
+        else {
+            uint32_t x = highlighted_dig ? CURSOR_V_X1 : CURSOR_V_X0;
+            RA8875_fillRect(x, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, INJECTATE_COLOR);
+            coverDpad();
+            mode = NULL_INPUT;
+        }
+    }
+    else if (mode == TEMP_BUTTON) {
+        if (input == UP_BUTTON) {
+            if (currentTemp == 9) {
+                return;
+            }
+            else {
+                currentTemp += 1;
+                tempStr[0] = tempStr[0] + 1;
+            }
+            RA8875_textEnlarge(3);
+            RA8875_textSetCursor(CURSOR_T_X, BUTTONS_VAL_Y);
+            RA8875_textColor(RA8875_BLACK, INJECTATE_COLOR);
+            RA8875_textWrite(tempStr, 1);
+        }
+        else if (input == DOWN_BUTTON) {
+            if (currentTemp == 0) {
+                return;
+            }
+            else {
+                currentTemp -= 1;
+                tempStr[0] = tempStr[0] - 1;
+            }
+            RA8875_textEnlarge(3);
+            RA8875_textSetCursor(CURSOR_T_X, BUTTONS_VAL_Y);
+            RA8875_textColor(RA8875_BLACK, INJECTATE_COLOR);
+            RA8875_textWrite(tempStr, 1);
+        }
+        else {
+            RA8875_fillRect(CURSOR_T_X, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, INJECTATE_COLOR);
+            coverDpad();
+            mode = NULL_INPUT;
+        }
+    }
 }
 
 /*
@@ -383,108 +504,13 @@ void DisplayStartMenu() {
     displayInjectate();
     displayCurrentReadings();
     
-    enum BUTTON mode = NULL_INPUT;
-    uint32_t highlighted_dig = 0;
-    uint32_t currentVol = 10;
-    uint32_t currentTemp = 0;
-    char volStr[3] = "10";
-    char tempStr[2] = "0";
+
     while (1) {
         uint32_t input = Fifo_Get(INPUT_FIFO);
-        if (mode == VOLUME_BUTTON) {
-            if (highlighted_dig == 1 && input == RIGHT_BUTTON) {
-                RA8875_fillRect(CURSOR_V_X1, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, RA8875_BLACK);
-            }
-            else if (highlighted_dig == 0 && input == LEFT_BUTTON) {
-                RA8875_fillRect(CURSOR_V_X0, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, RA8875_BLACK);
-            }
-            else if (input == UP_BUTTON) {
-                if (highlighted_dig == 1) {
-                    if (currentVol >= 90) {
-                        currentVol = 99;
-                        volStr[0] = '9';
-                        volStr[1] = '9';
-                    }
-                    else {
-                        currentVol += 10;
-                        volStr[0] = volStr[0] + 1;
-                    }                    
-                    RA8875_textSetCursor(CURSOR_V_X1, BUTTONS_VAL_Y);
-                }
-                else {
-                    if (currentVol >= 99) {
-                        currentVol = 99;
-                        volStr[0] = '9';
-                        volStr[1] = '9';
-                    }
-                    else {
-                        currentVol += 1;
-                        volStr[1] = volStr[1] + 1;
-                    }
-                    RA8875_textSetCursor(CURSOR_V_X0, BUTTONS_VAL_Y);
-                }
-                RA8875_textEnlarge(3);
-                RA8875_textColor(RA8875_BLACK, INJECTATE_COLOR);
-                RA8875_textWrite(volStr, 1); 
-            
-            }
-            else if (input == DOWN_BUTTON) {
-                if (highlighted_dig == 1) {
-                    if (currentVol <= 10) {
-                        currentVol = 1;
-                        volStr[0] = '0';
-                        volStr[1] = '1';
-                    }
-                    else {
-                        currentVol -= 10;
-                        volStr[0] = volStr[0] - 1;
-                    }
-                }
-                else {
-                    if (currentVol <= 1) {
-                        currentVol = 1;
-                        volStr[0] = '0';
-                        volStr[1] = '1';
-                    }
-                    else {
-                        currentVol -= 1;
-                        volStr[1] = volStr[1] - 1;
-                    }
-                }
-                RA8875_textEnlarge(3);
-                RA8875_textColor(RA8875_BLACK, INJECTATE_COLOR);
-                RA8875_textWrite(volStr, 1); 
-            }
-            else {
-                uint32_t x = highlighted_dig ? CURSOR_V_X1 : CURSOR_V_X0;
-                RA8875_fillRect(x, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, INJECTATE_COLOR);
-            }
+        if (mode) {
+            displayNavigation(input);
         }
-        else if (mode == TEMP_BUTTON) {
-            if (input == UP_BUTTON) {
-                if (currentTemp == 9) {
-                    continue;
-                }
-                else {
-                    currentTemp += 1;
-                    tempStr[0] = tempStr[0] + 1;
-                }
-            }
-            else if (input == DOWN_BUTTON) {
-                if (currentTemp == 0) {
-                    continue;
-                }
-                else {
-                    currentTemp -= 1;
-                    tempStr[0] = tempStr[0] - 1;
-                }
-            }
-            RA8875_textEnlarge(3);
-            RA8875_textSetCursor(CURSOR_T_X, BUTTONS_VAL_Y);
-            RA8875_textColor(RA8875_BLACK, INJECTATE_COLOR);
-            RA8875_textWrite(tempStr, 1);
-        }
-        if (input == START_BUTTON) {
+        else if (input == START_BUTTON) {
             OS_SetPerioidcSchedule(1);
             OS_AddThread(&displayMeasuring, 1);
             OS_Kill();
