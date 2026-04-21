@@ -5,6 +5,7 @@
 #include "Display.h"
 #include "LUT.h"
 #include "RA8875.h"
+#include "DAS.h"
 
 #define NUM_CHANNELS 6
 
@@ -15,6 +16,16 @@
 #define ROUND_BOX_H 150
 #define CORNER_ROUNDNESS 5
 #define SPACING 5
+
+#define UT_COLOR 0xBAA0
+#define INJECTATE_COLOR 0x8DDE
+#define BCKGRND_COLOR 0xE7BF
+
+#define CURSOR_V_X1 102
+#define CURSOR_V_X0 (102 + ONE_DIG_SIZE)
+#define CURSOR_T_X 374
+#define CURSOR_Y (BUTTONS_VAL_Y + 60)
+#define CURSOR_H 10
 
 Sema4_t LCD_Mutex;
 static int input;
@@ -30,7 +41,7 @@ void DisplayInit() {
     RA8875_PWM1config(1, 0);
     RA8875_PWM1out(255);
      
-    RA8875_fillScreen(0xE7BF);
+    RA8875_fillScreen(BCKGRND_COLOR);
     
 
     OS_InitSemaphore(&LCD_Mutex, 1);
@@ -45,7 +56,7 @@ static void displayMeasuring() {
     uint32_t headerRectY = SPACING;
     uint32_t headerRectW = SCREEN_W - SPACING * 2;
     uint32_t headerRectH = 80;
-    RA8875_fillRoundRect(headerRectX, headerRectY, headerRectW, headerRectH, CORNER_ROUNDNESS, 0xbaa0);
+    RA8875_fillRoundRect(headerRectX, headerRectY, headerRectW, headerRectH, CORNER_ROUNDNESS, UT_COLOR);
     
     const char* thermoHeaderStr = "Thermodilution Calculation";
     const uint32_t thermoHeaderStrW = 620;
@@ -86,8 +97,20 @@ static void displayMeasuring() {
             diff -= msPerLine;
             prevTime += msPerLine;
         }
+<<<<<<< Updated upstream
         if (currX < endX) {
             OS_Sleep(100);
+=======
+
+        while (diffInjTime >= msPerInjLine && currInjX < endInjX) {
+            RA8875_drawLine(currInjX, InjBarY + 2, currInjX, InjBarY + InjBarH - 3, INJECTATE_COLOR);
+            currInjX++;
+            diffInjTime -= msPerInjLine;
+            prevInjTime += msPerInjLine;
+        }
+        if ((currProgX < endProgX) || (currInjX < endInjX)) {
+            OS_Sleep(50);
+>>>>>>> Stashed changes
         }
         else {
             OS_Kill();
@@ -206,6 +229,7 @@ static void displayInjectate() {
 
 
     // Volume 
+    RA8875_fillRoundRect(VOLUME_BOX_X, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, INJECTATE_COLOR);
     RA8875_drawRoundRect(VOLUME_BOX_X, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, RA8875_BLACK);
 
     const char* volumeHeaderStr = "Volume (mL)";
@@ -222,6 +246,7 @@ static void displayInjectate() {
    
     // Temperature 
     uint32_t tempBoxX = VOLUME_BOX_X + ROUND_BOX_W + SPACING;
+    RA8875_fillRoundRect(tempBoxX, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, INJECTATE_COLOR);
     RA8875_drawRoundRect(tempBoxX, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, RA8875_BLACK);
 
     const char* tempHeaderStr = "Temperature (C)";
@@ -323,6 +348,11 @@ static void displayCurrentReadings() {
     //RA8875_textSetCursor(522 + 45, 380);
     RA8875_textWrite(exStr3, strlen(exStr3));
 }
+
+void displayNavigation() {
+
+}
+
 /*
     DisplayStartMenu - foreground thread
     Waits for an input in fifo
@@ -337,11 +367,128 @@ void DisplayStartMenu() {
     displayInjectate();
     displayCurrentReadings();
     
+    enum BUTTON mode = NULL_INPUT;
+    uint32_t highlighted_dig = 0;
+    uint32_t currentVol = 10;
+    uint32_t currentTemp = 0;
+    char volStr[3] = "10";
+    char tempStr[2] = "0";
     while (1) {
+<<<<<<< Updated upstream
         if (Fifo_Get(INPUT_FIFO)) {
 			      OS_SetPerioidcSchedule(1);
+=======
+        uint32_t input = Fifo_Get(INPUT_FIFO);
+        if (mode == VOLUME_BUTTON) {
+            if (highlighted_dig == 1 && input == RIGHT_BUTTON) {
+                RA8875_fillRect(CURSOR_V_X1, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, RA8875_BLACK);
+            }
+            else if (highlighted_dig == 0 && input == LEFT_BUTTON) {
+                RA8875_fillRect(CURSOR_V_X0, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, RA8875_BLACK);
+            }
+            else if (input == UP_BUTTON) {
+                if (highlighted_dig == 1) {
+                    if (currentVol >= 90) {
+                        currentVol = 99;
+                        volStr[0] = '9';
+                        volStr[1] = '9';
+                    }
+                    else {
+                        currentVol += 10;
+                        volStr[0] = volStr[0] + 1;
+                    }                    
+                    RA8875_textSetCursor(CURSOR_V_X1, BUTTONS_VAL_Y);
+                }
+                else {
+                    if (currentVol >= 99) {
+                        currentVol = 99;
+                        volStr[0] = '9';
+                        volStr[1] = '9';
+                    }
+                    else {
+                        currentVol += 1;
+                        volStr[1] = volStr[1] + 1;
+                    }
+                    RA8875_textSetCursor(CURSOR_V_X0, BUTTONS_VAL_Y);
+                }
+                RA8875_textEnlarge(3);
+                RA8875_textColor(RA8875_BLACK, INJECTATE_COLOR);
+                RA8875_textWrite(volStr, 1); 
+            
+            }
+            else if (input == DOWN_BUTTON) {
+                if (highlighted_dig == 1) {
+                    if (currentVol <= 10) {
+                        currentVol = 1;
+                        volStr[0] = '0';
+                        volStr[1] = '1';
+                    }
+                    else {
+                        currentVol -= 10;
+                        volStr[0] = volStr[0] - 1;
+                    }
+                }
+                else {
+                    if (currentVol <= 1) {
+                        currentVol = 1;
+                        volStr[0] = '0';
+                        volStr[1] = '1';
+                    }
+                    else {
+                        currentVol -= 1;
+                        volStr[1] = volStr[1] - 1;
+                    }
+                }
+                RA8875_textEnlarge(3);
+                RA8875_textColor(RA8875_BLACK, INJECTATE_COLOR);
+                RA8875_textWrite(volStr, 1); 
+            }
+            else {
+                uint32_t x = highlighted_dig ? CURSOR_V_X1 : CURSOR_V_X0;
+                RA8875_fillRect(x, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, INJECTATE_COLOR);
+            }
+        }
+        else if (mode == TEMP_BUTTON) {
+            if (input == UP_BUTTON) {
+                if (currentTemp == 9) {
+                    continue;
+                }
+                else {
+                    currentTemp += 1;
+                    tempStr[0] = tempStr[0] + 1;
+                }
+            }
+            else if (input == DOWN_BUTTON) {
+                if (currentTemp == 0) {
+                    continue;
+                }
+                else {
+                    currentTemp -= 1;
+                    tempStr[0] = tempStr[0] - 1;
+                }
+            }
+            RA8875_textEnlarge(3);
+            RA8875_textSetCursor(CURSOR_T_X, BUTTONS_VAL_Y);
+            RA8875_textColor(RA8875_BLACK, INJECTATE_COLOR);
+            RA8875_textWrite(tempStr, 1);
+        }
+        if (input == START_BUTTON) {
+            OS_SetPerioidcSchedule(1);
+>>>>>>> Stashed changes
             OS_AddThread(&displayMeasuring, 1);
             OS_Kill();
+        }
+        else if (input == VOLUME_BUTTON) { 
+            displayDpad();
+            mode = VOLUME_BUTTON;
+            highlighted_dig = 0;
+            RA8875_fillRect(CURSOR_V_X0, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, RA8875_BLACK);
+
+        }
+        else if (input == TEMP_BUTTON) {
+            displayDpad();
+            mode = TEMP_BUTTON;
+            RA8875_fillRect(CURSOR_T_X, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, RA8875_BLACK);
         }
     }
 }

@@ -52,6 +52,7 @@ void InputPolling() {
     // uint32_t mode  = !(GPIOB->DIN31_0 & (1<<12));
     // uint32_t enter = !(GPIOB->DIN31_0 & (1<<13));
 
+<<<<<<< Updated upstream
     // if (PrevMode && !mode) {
     //    // UART_OutString("mode\n");
     //     Fifo_Put(INPUT_FIFO, MODE);
@@ -62,6 +63,18 @@ void InputPolling() {
     // }
     // PrevMode = mode;
     // PrevEnter = enter;
+=======
+    if (PrevMode && !mode) {
+       // UART_OutString("mode\n");
+        Fifo_Put(INPUT_FIFO, VOLUME_BUTTON);
+    }
+    if (PrevEnter && !enter) {
+      //  UART_OutString("Enter\n");
+        Fifo_Put(INPUT_FIFO, TEMP_BUTTON);
+    }
+    PrevMode = mode;
+    PrevEnter = enter;
+>>>>>>> Stashed changes
 }
 
 /*
