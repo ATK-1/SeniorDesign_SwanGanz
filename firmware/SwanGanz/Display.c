@@ -3,7 +3,7 @@
 #include "../inc/ST7735.h"
 #include "OS.h"
 #include "Display.h"
-#include "LUT.h"
+//#include "LUT.h"
 #include "RA8875.h"
 #include "DAS.h"
 
@@ -29,6 +29,8 @@
 
 Sema4_t LCD_Mutex;
 static int input;
+uint32_t Started;
+uint32_t OtherButton;
 
 
 

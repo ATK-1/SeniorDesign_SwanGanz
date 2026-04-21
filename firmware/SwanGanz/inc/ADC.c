@@ -56,14 +56,14 @@ void ADC_Init() {
   ADC0->ULLMEM.CTL0 = (3 << 24) | (1 << 16);
   ADC1->ULLMEM.CTL0 = (3 << 24) | (1 << 16);
   
-  // bits 30-28 = 2  Right Shift result by 2 bits
-  // bits 26-24 = 2  Hardware Average 4 Samples
+  // bits 30-28 = 5  Right Shift result by 5 bits
+  // bits 26-24 = 5  Hardware Average 32 Samples
   // bit 20 SAMPMODE=1 software triggers
   // bits 17-16 CONSEQ=0 ADC at start will be sampled once, 10 for repeated sampling
   // bit 8 SC=0 for stop, =1 to software start
   // bit 0 TRIGSRC=0 software trigger
-  ADC0->ULLMEM.CTL1 = (2 << 28) | (2 << 24) | (1 << 16);  //MAYBE NEED BIT 20?
-  ADC1->ULLMEM.CTL1 = (2 << 28) | (2 << 24) | (1 << 16);
+  ADC0->ULLMEM.CTL1 = (5 << 28) | (5 << 24) | (1 << 16); // 32 sample HARDWARE AVERAGING
+  ADC1->ULLMEM.CTL1 = (5 << 28) | (5 << 24) | (1 << 16); // 32 sample HARDWARE AVERAGING
   
   // bits 28-24 ENDADD (which  MEMCTL to end)
   // bits 20-16 STARTADD (which  MEMCTL to start)
@@ -72,8 +72,8 @@ void ADC_Init() {
   // bit 8  DMAEN=0 disable DMA
   // bits 2-1 RES=0 for 12 bit (=1 for 10bit,=2for 8-bit)
   // bit 0 DF=0 unsigned formant (1 for signed, left aligned)
-  ADC0->ULLMEM.CTL2 = (3 << 24) | (0 << 16);
-  ADC1->ULLMEM.CTL2 = (1 << 24) | (0 << 16);
+  ADC0->ULLMEM.CTL2 = (1 << 24) | (0 << 16);
+  ADC1->ULLMEM.CTL2 = (3 << 24) | (0 << 16);
 
   // bit 28 WINCOMP=0 disable window comparator
   // bit 24 TRIG trigger policy, =0 for auto next, =1 for next requires trigger
@@ -82,12 +82,12 @@ void ADC_Init() {
   // bit 12 = STIME=0 for SCOMP0
   // bits 9-8 VRSEL = 10 for internal VREF,(00 for VDDA)
   // bits 4-0 channel = 0 to 7 available
-  ADC0->ULLMEM.MEMCTL[0] = 0;             // ADC0.0 = PA27 - thermistor LG
-  ADC0->ULLMEM.MEMCTL[1] = (1<<24) | 1;   // ADC0.1 = PA26 - thermistor HG 
-  ADC1->ULLMEM.MEMCTL[0] = 1;             // ADC1.1 = PA16 - pressure 1 LG
-  ADC1->ULLMEM.MEMCTL[1] = 2;             // ADC1.2 = PA17 - pressure 1 HG        
-  ADC1->ULLMEM.MEMCTL[2] = 4;             // ADC1.4 = PB17 - pressure 2 LG
-  ADC1->ULLMEM.MEMCTL[3] = (1<<24) | 5;   // ADC1.5 = PB18 - pressure 2 HG
+  ADC0->ULLMEM.MEMCTL[0] =  (1<<16) | 0;             // ADC0.0 = PA27 - thermistor LG
+  ADC0->ULLMEM.MEMCTL[1] =  (1<<16) | (1<<24) | 1;   // ADC0.1 = PA26 - thermistor HG 
+  ADC1->ULLMEM.MEMCTL[0] =  (1<<16) | 1;             // ADC1.1 = PA16 - pressure 1 LG
+  ADC1->ULLMEM.MEMCTL[1] =  (1<<16) | 2;             // ADC1.2 = PA17 - pressure 1 HG        
+  ADC1->ULLMEM.MEMCTL[2] =  (1<<16) | 4;             // ADC1.4 = PB17 - pressure 2 LG
+  ADC1->ULLMEM.MEMCTL[3] =  (1<<16) | (1<<24) | 5;   // ADC1.5 = PB18 - pressure 2 HG
   
 
   ADC0->ULLMEM.SCOMP0 = 0; // 8 sample clocks
@@ -95,21 +95,21 @@ void ADC_Init() {
 }
 
 void ADC_In(uint32_t* sampleBuffer) {
-  // TIMG0->CPU_INT.ICLR = 1;
+  TIMG0->CPU_INT.ICLR = 1;
 
-  // ADC0->ULLMEM.CTL0 |= 1;
-  // ADC0->ULLMEM.CTL1 |= (1<<8); 
-  // ADC1->ULLMEM.CTL0 |= 1;
-  // ADC1->ULLMEM.CTL1 |= (1<<8);
+  ADC0->ULLMEM.CTL0 |= 1;
+  ADC0->ULLMEM.CTL1 |= (1<<8); 
+  ADC1->ULLMEM.CTL0 |= 1;
+  ADC1->ULLMEM.CTL1 |= (1<<8);
   
-  // volatile uint32_t delay = ADC0->ULLMEM.STATUS;
-  // while (ADC0->ULLMEM.STATUS & 0x01);
+  volatile uint32_t delay = ADC0->ULLMEM.STATUS;
+  while (ADC1->ULLMEM.STATUS & 0x01);
 
-  // sampleBuffer[0] = ADC0->ULLMEM.MEMRES[0];
-  // sampleBuffer[1] = ADC0->ULLMEM.MEMRES[1];
-  // sampleBuffer[2] = ADC0->ULLMEM.MEMRES[2];
-  // sampleBuffer[3] = ADC0->ULLMEM.MEMRES[3]; 
+  sampleBuffer[2] = ADC0->ULLMEM.MEMRES[0];   // ADC0.0 = PA27 - thermistor LG
+  sampleBuffer[3] = ADC0->ULLMEM.MEMRES[1];   // ADC0.1 = PA26 - thermistor HG 
   
-  // sampleBuffer[4] = ADC1->ULLMEM.MEMRES[0];
-  // sampleBuffer[5] = ADC1->ULLMEM.MEMRES[1];
+  sampleBuffer[0] = ADC1->ULLMEM.MEMRES[0];   // ADC1.1 = PA16 - pressure 1 LG
+  sampleBuffer[1] = ADC1->ULLMEM.MEMRES[1];   // ADC1.2 = PA17 - pressure 1 HG  
+  sampleBuffer[4] = ADC1->ULLMEM.MEMRES[2];   // ADC1.4 = PB17 - pressure 2 LG
+  sampleBuffer[5] = ADC1->ULLMEM.MEMRES[3];   // ADC1.5 = PB18 - pressure 2 HG
 }

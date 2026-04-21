@@ -126,7 +126,7 @@ static void TSC2046_SpiInit() {
     //   SPI0->CLKCTL = busfreq/16000000 -1; // 8 MHz
     // }
 
-    SPI0->CLKCTL = 39; //1 MHz
+    SPI0->CLKCTL = 399; //1 MHz
 
 
     // bit 14 CSCLR=0 not cleared
@@ -158,14 +158,16 @@ static void TSC2046_SpiInit() {
     // IOMUX->SECCFG.PINCM[PB15INDEX] = 0x00000081;  // GPIO output, LCD !RST
     // GPIOB->DOE31_0 |= (1<<15);    // PB15 is LCD !RST
     // GPIOB->DOUTSET31_0 = (1<<15); // !RST = 1, RS=1
+
+    TSC2046Pos_t initialPos = TSC2046IPWR_ReadRawPosition();
 }
 
 
 // CS0 - PA8 - Negative Logic
 static void TSC2046_CS_Init() {
   IOMUX->SECCFG.PINCM[PA8INDEX]  = (uint32_t) 0x00000081;
-  GPIOA->DOE31_0 |= 1 << 8;
-  GPIOA->DOUTSET31_0 = 1 << 8;
+  GPIOA->DOE31_0 |= (1 << 8);
+  GPIOA->DOUTSET31_0 = (1 << 8);
 }
 
 
@@ -200,12 +202,14 @@ uint8_t TSC2046IPWR_OutReadByte(uint8_t data) {
 
 TSC2046Pos_t TSC2046IPWR_ReadRawPosition() {
     TSC2046Pos_t result;
+    result.xpos = 0;
+    result.ypos = 0;
     TSC2046_CS_LOW();
     // Send Control Byte to specify x read
     TSC2046IPWR_OutByte(TSC2046_READ_X);                                        // Send X control byte
-    result.xpos = ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) << 7;      // Read high 7 X bits
+    result.xpos = ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) << 5;      // Read high 7 X bits
     result.xpos |= ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_READ_Y)) >> 3;    // Read low 5  X bits and send Y control byte
-    result.ypos = ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) << 7;      // Read high 7 Y bits
+    result.ypos = ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) << 5;      // Read high 7 Y bits
     result.ypos |= ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) >> 3;     // Read low 5 Y bits
 
     TSC2046_CS_HIGH();
@@ -223,3 +227,25 @@ uint32_t TSC2046IPWR_PollTouch() {
 }
 
 
+uint32_t TSC2046IPWR_GetX() {
+    uint16_t x = 0;
+    TSC2046_CS_LOW();
+    // Send Control Byte to specify x read
+    TSC2046IPWR_OutByte(TSC2046_READ_X);   
+    x = ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) << 7;      // Read high 7 X bits
+    x |= ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) >> 3;    // Read low 5  X bits 
+    TSC2046_CS_HIGH();
+
+    return x;
+}
+
+uint32_t TSC2046IPWR_GetY() {
+    uint32_t y = 0;
+    TSC2046_CS_LOW();
+    // Send Control Byte to specify x read
+    TSC2046IPWR_OutByte(TSC2046_READ_Y);                                        // Send X control byte
+    y = ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) << 5;      // Read high 7 X bits
+    y |= ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) >> 3;    // Read low 5  X bits 
+    TSC2046_CS_HIGH();
+    return y;
+}
