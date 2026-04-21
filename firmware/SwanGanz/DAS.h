@@ -23,3 +23,4 @@ void DasStartMenu();
 void DasAllSamples();
 void InputPolling();
 void HeartBeat();
+void TestDas();

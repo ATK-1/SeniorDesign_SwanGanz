@@ -87,6 +87,7 @@ int main(void) {
     Logic_Init();
     OS_Init();
     DASInit();
+    
     //UART_Init(1);   // USB to UART converter 
     DisplayInit();
     TSC2046IPWR_Init();
@@ -94,6 +95,7 @@ int main(void) {
     OS_SetPerioidcSchedule(0);
     OS_AddThread(&DisplayTemp, 1);
     OS_AddThread(&DisplayStartMenu, 1);
+    OS_AddThread(&TestDas, 1);
     OS_AddThread(&IdleThread, 2);
     
     

@@ -6,6 +6,7 @@
 #include "../inc/RTOS_UART.h"
 #include "TSC2046IPWR.h"
 #include "TouchControl.h"
+#include "LUT.h"
 
 
 void DASInit() {
@@ -68,4 +69,37 @@ void InputPolling() {
 */
 void HeartBeat() {
     GPIOB->DOUTTGL31_0 = (1<<19); 
+}
+
+
+uint32_t ADC_tempLG;
+uint32_t ADC_tempHG;
+uint32_t temporLg;
+uint32_t temporHg;
+uint32_t ADC_P1LG;
+uint32_t ADC_P1HG;
+uint32_t ADC_P2HG;
+uint32_t ADC_P2LG;
+
+uint32_t LowGainTemp;
+uint32_t HighGainTemp;
+
+void TestDas() {
+    while(1) {
+        for (uint32_t i = 0; i < 32; i ++) {
+            temporLg += Fifo_Get(THERM_LOW_FIFO);
+            temporHg += Fifo_Get(THERM_HI_FIFO);
+            ADC_P1LG   = Fifo_Get(PRESSURE_1A_FIFO);
+            ADC_P1HG   = Fifo_Get(PRESSURE_1B_FIFO);
+            ADC_P2LG   = Fifo_Get(PRESSURE_2A_FIFO);
+            ADC_P2HG   = Fifo_Get(PRESSURE_2B_FIFO);
+        }
+        ADC_tempLG = (temporLg >> 5);
+        ADC_tempHG = (temporHg >> 5);
+
+        LowGainTemp = TempLG_LUT[ADC_tempLG];
+        HighGainTemp = TempHG_LUT[ADC_tempHG];
+        temporLg = 0;
+        temporHg = 0;
+    }
 }

@@ -3,7 +3,7 @@
 #include "../inc/ST7735.h"
 #include "OS.h"
 #include "Display.h"
-#include "LUT.h"
+//#include "LUT.h"
 #include "RA8875.h"
 #include "DAS.h"
 
@@ -308,7 +308,10 @@ void DisplayStartMenu() {
     while (1) {
         enum BUTTON input = Fifo_Get(INPUT_FIFO);
         if (input == START_BUTTON) {
-            Started++;
+            if (!Started) {
+                OS_SetPerioidcSchedule(1);
+            }
+            Started++;   
         }
         else {
             OtherButton++;
