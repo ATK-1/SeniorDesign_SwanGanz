@@ -36,6 +36,7 @@ await listen("port-connected", (event) => {
     }, 200);
 });
 
+
 await listen("port-disconnected", (event) => {
     const statusElement = document.getElementsByClassName("connection-status")[0];
     const circleElement = document.getElementsByClassName("connection-circle")[0];

@@ -1,4 +1,8 @@
 mod state;
+use std::fs::OpenOptions;
+use std::io::{BufWriter, Write};
+use std::sync::Mutex;
+
 use tauri::{AppHandle, Emitter, State};
 use tauri_plugin_serialplugin::commands::{
     available_ports, close, managed_ports, open, read, read_binary, write,
@@ -7,13 +11,22 @@ use tauri_plugin_serialplugin::state::{DataBits, FlowControl, Parity, StopBits};
 
 use crate::state::SensorQueues;
 
+pub struct AppFile(pub Mutex<std::fs::File>);
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let file = OpenOptions::new()
+        .write(true)
+        .create(true)
+        .open("data.txt")
+        .expect("failed to open data.txt");
+
     tauri::Builder::default()
         .plugin(tauri_plugin_serialplugin::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_log::Builder::new().build())
         .manage(SensorQueues::new())
+        .manage(AppFile(Mutex::new(file)))
         .invoke_handler(tauri::generate_handler![
             check_connected,
             check_disconnected,
@@ -33,7 +46,8 @@ async fn check_connected(
     let ports = available_ports(app.clone(), serial.clone()).map_err(|e| e.to_string())?;
 
     for (port_name, _port_info) in ports.iter() {
-        if port_name.contains("cu.usbserial-A106DAXQ") {
+        app.emit("available_ports", port_name).unwrap();
+        if port_name.contains("cu.usbserial-BG04P2NM") {
             open(
                 app.clone(),
                 serial.clone(),
@@ -63,7 +77,7 @@ async fn check_disconnected(
     let mut still_connected = false;
     let mut port = String::new();
     for (port_name, _port_info) in available.iter() {
-        if port_name.contains("cu.usbserial-A106DAXQ") {
+        if port_name.contains("cu.usbserial-BG04P2NM") {
             still_connected = true;
             port = port_name.to_string();
         }
@@ -71,12 +85,12 @@ async fn check_disconnected(
     if !still_connected {
         let managed = managed_ports(app.clone(), serial.clone()).map_err(|e| e.to_string())?;
         for port_name in managed.iter() {
-            if port_name.contains("cu.usbserial-A106DAXQ") {
+            if port_name.contains("cu.usbserial-BG04P2NM") {
                 close(app.clone(), serial.clone(), port_name.to_string())
                     .map_err(|e| e.to_string())?;
             }
         }
-        app.emit("port-disconnected", "cu.usbserial-A106DAXQ")
+        app.emit("port-disconnected", "cu.usbserial-BG04P2NM")
             .unwrap();
     }
 
@@ -89,9 +103,16 @@ async fn get_data(
     app: AppHandle<tauri::Wry>,
     serial: State<'_, tauri_plugin_serialplugin::desktop_api::SerialPort<tauri::Wry>>,
     queues: State<'_, SensorQueues>,
+    file: State<'_, AppFile>,
 ) -> Result<(), String> {
-    let path = "/dev/cu.usbserial-A106DAXQ".to_string();
+    let path = "/dev/cu.usbserial-BG04P2NM".to_string();
     let data_ascii = [0xFA];
+
+    let raw_file = file.0.lock().unwrap();
+    let mut writer: BufWriter<&std::fs::File> = BufWriter::new(&*raw_file);
+
+    writeln!(writer, "pressure1,pressure2,temperature").map_err(|e| e.to_string())?;
+
     let mut header = match read_binary(
         app.clone(),
         serial.clone(),
@@ -119,21 +140,16 @@ async fn get_data(
             Ok(data) => data,
             Err(_) => break,
         };
-        queues
-            .p1
-            .lock()
-            .unwrap()
-            .push_back((received_data[0] as u16) << 8 | received_data[1] as u16);
-        queues
-            .p2
-            .lock()
-            .unwrap()
-            .push_back((received_data[2] as u16) << 8 | received_data[3] as u16);
-        queues
-            .temp
-            .lock()
-            .unwrap()
-            .push_back((received_data[4] as u16) << 8 | received_data[5] as u16);
+
+        let p1 = (received_data[0] as u16) << 8 | received_data[1] as u16;
+        let p2 = (received_data[2] as u16) << 8 | received_data[3] as u16;
+        let temp = (received_data[4] as u16) << 8 | received_data[5] as u16;
+
+        writeln!(writer, "{},{},{}", p1, p2, temp).map_err(|e| e.to_string())?;
+
+        queues.p1.lock().unwrap().push_back(p1);
+        queues.p2.lock().unwrap().push_back(p2);
+        queues.temp.lock().unwrap().push_back(temp);
 
         let max_search = 12; // give up after this many bytes searched
         for _ in 0..max_search {
@@ -153,6 +169,8 @@ async fn get_data(
         }
         break; // exhausted search budget, exit
     }
+
+    writer.flush().map_err(|e| e.to_string())?;
 
     app.emit("data-done", &path).unwrap();
     Ok(())
