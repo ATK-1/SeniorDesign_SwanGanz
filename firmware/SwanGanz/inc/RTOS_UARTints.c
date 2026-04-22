@@ -38,11 +38,15 @@ void UART_Init(uint32_t priority){
     //   bit 0 is Enable Power
   UART0->GPRCM.PWREN = 0x26000001;
   Clock_Delay(24); // time for uart to power up
-  // configure PA11 PA10 as alternate UART0 function
-  IOMUX->SECCFG.PINCM[PA1INDEX]  = 0x00000082;
+  // configure PA28 PA1 as alternate UART0 function
+  IOMUX->SECCFG.PINCM[PA28INDEX]  = 0x00000082;
   //bit 7  PC connected
   //bits 5-0=2 for UART0_Tx
-  IOMUX->SECCFG.PINCM[PA28INDEX]  = 0x00040082;
+  IOMUX->SECCFG.PINCM[PA1INDEX]  = 0x00040082;
+  
+  IOMUX->SECCFG.PINCM[PA29INDEX] = 0x00000081;
+  GPIOA->DOE31_0 |= (1<<29);
+  GPIOA->DOUTSET31_0 = (1<<29);
   //bit 18 INENA input enable
   //bit 7  PC connected
   //bits 5-0=2 for UART0_Rx
@@ -86,7 +90,7 @@ void UART_Init(uint32_t priority){
     // UART1->FBRD = 45; // baud =2,500,000/21.703125 = 115,191
     // Baud = 115200
     // 2,500,000/128,000 = 19.53125
-    // divider = 19+34/64 = 19.53125
+    // divider = 19+(34/64) = 19.53125
     // baud = 2,500,000/19.53125= 128,000
     UART0->IBRD = 19;
     UART0->FBRD = 34;

@@ -439,7 +439,7 @@ void OS_Launch(uint32_t theTimeSlice) {
     isLaunched = 1;
 
     TimerG12_IntArm(0xFFFFFFFF, 0);
-    TimerG8_IntArm(1000, 200, 0);
+    TimerG8_IntArm(1000, 100, 0);
     OSEnableInterrupts(); 
     OS_Suspend();
 }

@@ -1,11 +1,11 @@
 #include <ti/devices/msp/msp.h>
 #include <string.h>
-#include "../inc/ST7735.h"
 #include "OS.h"
 #include "Display.h"
 //#include "LUT.h"
 #include "RA8875.h"
 #include "DAS.h"
+#include "DataTransfer.h"
 
 #define NUM_CHANNELS 6
 
@@ -51,7 +51,7 @@ void DisplayInit() {
 
 
 #define MEASURING_TIME_MS 40000
-static void displayMeasuring() {
+void displayMeasuring() {
     RA8875_fillScreen(BCKGRND_COLOR);
 
     uint32_t headerRectX = SPACING;
@@ -88,7 +88,7 @@ static void displayMeasuring() {
     const uint32_t injecetateStrY = progressBarY + progressBarH + (SPACING * 15);
     const uint32_t injecetateStrH = 31;
     RA8875_textSetCursor(injectateStrX, injecetateStrY);
-    RA8875_textTransparent(ST7735_BLACK);
+    RA8875_textTransparent(RA8875_BLACK);
     RA8875_textWrite(injectateStr, strlen(injectateStr));
 
     const uint32_t InjBarW = progressBarW >> 1;
@@ -129,6 +129,8 @@ static void displayMeasuring() {
             OS_Sleep(50);
         }
         else {
+            killTransfer();
+            signalAllDataFifos();
             OS_Kill();
         }        
     }
@@ -512,7 +514,12 @@ void DisplayStartMenu() {
         }
         else if (input == START_BUTTON) {
             OS_SetPerioidcSchedule(1);
-            OS_AddThread(&displayMeasuring, 1);
+            // Stop initial readings data transfer
+            killInitReadings();
+            //signalAllDataFifos();
+
+            //start uart data transfer
+            
             OS_Kill();
         }
         else if (input == VOLUME_BUTTON) { 

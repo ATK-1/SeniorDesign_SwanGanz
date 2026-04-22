@@ -6,7 +6,7 @@
 #include "../inc/RTOS_UART.h"
 #include "TSC2046IPWR.h"
 #include "TouchControl.h"
-#include "LUT.h"
+//#include "LUT.h"
 
 
 void DASInit() {
@@ -25,14 +25,16 @@ void DASInit() {
     Samples ADC and puts sampled data into designated FIFO
 */
 void DasStartMenu() {
-    GPIOB->DOUTTGL31_0 = (1<<14);   // Toggle Debug 1
+    GPIOB->DOUTTGL31_0 = (1<<15);   // Toggle Debug 2
     uint32_t sampleBuffer[6];
     ADC_In(sampleBuffer);
-
-    GPIOB->DOUTTGL31_0 = (1<<14);   // Toggle Debug 1
-    Fifo_Put(THERM_LOW_FIFO, sampleBuffer[THERM_LOW]);
-
-    GPIOB->DOUTTGL31_0 = (1<<14);   // Toggle Debug 1
+    
+    GPIOB->DOUTTGL31_0 = (1<<15);   // Toggle Debug 2
+    //maybe make function to do this all at once
+    for (int i = 0; i < 6; i++) {
+        Fifo_Put(i, sampleBuffer[i]);
+    }
+    GPIOB->DOUTTGL31_0 = (1<<15);   // Toggle Debug 2
 }
 
 void DasAllSamples() {
@@ -84,20 +86,20 @@ uint32_t HighGainTemp;
 
 void TestDas() {
     while(1) {
-        for (uint32_t i = 0; i < 32; i ++) {
-            temporLg += Fifo_Get(THERM_LOW_FIFO);
-            temporHg += Fifo_Get(THERM_HI_FIFO);
-            ADC_P1LG   = Fifo_Get(PRESSURE_1A_FIFO);
-            ADC_P1HG   = Fifo_Get(PRESSURE_1B_FIFO);
-            ADC_P2LG   = Fifo_Get(PRESSURE_2A_FIFO);
-            ADC_P2HG   = Fifo_Get(PRESSURE_2B_FIFO);
-        }
-        ADC_tempLG = (temporLg >> 5);
-        ADC_tempHG = (temporHg >> 5);
+    //     for (uint32_t i = 0; i < 32; i ++) {
+    //         temporLg += Fifo_Get(THERM_LOW_FIFO);
+    //         temporHg += Fifo_Get(THERM_HI_FIFO);
+    //         ADC_P1LG   = Fifo_Get(PRESSURE_1A_FIFO);
+    //         ADC_P1HG   = Fifo_Get(PRESSURE_1B_FIFO);
+    //         ADC_P2LG   = Fifo_Get(PRESSURE_2A_FIFO);
+    //         ADC_P2HG   = Fifo_Get(PRESSURE_2B_FIFO);
+    //     }
+    //     ADC_tempLG = (temporLg >> 5);
+    //     ADC_tempHG = (temporHg >> 5);
 
-        LowGainTemp = TempLG_LUT[ADC_tempLG];
-        HighGainTemp = TempHG_LUT[ADC_tempHG];
-        temporLg = 0;
-        temporHg = 0;
+    //     LowGainTemp = TempLG_LUT[ADC_tempLG];
+    //     HighGainTemp = TempHG_LUT[ADC_tempHG];
+    //     temporLg = 0;
+    //     temporHg = 0;
     }
 }

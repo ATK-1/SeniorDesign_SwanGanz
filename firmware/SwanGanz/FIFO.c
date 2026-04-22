@@ -54,3 +54,9 @@ uint32_t Fifo_Get(enum FIFO fifoNum) {
     EndCritical(status);
     return data;
 }
+
+void signalAllDataFifos() {
+    for (int i = 0; i < 6; i++) {
+        OS_bSignal(&Fifos[i].empty);
+    }
+}

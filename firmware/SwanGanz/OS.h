@@ -35,7 +35,7 @@
 
 #define STACK_SIZE 512
 #define MAX_THREAD_COUNT 10
-#define FIFO_CAPACITY 32
+#define FIFO_CAPACITY 256
 #define NUM_PRIORITIES 6
 #define TCB_FIFO_SIZE 16
 
@@ -241,6 +241,7 @@ ptask_t PTaskSchedule[PSCHEDULE_SIZE] = {
 void Fifo_Init(enum FIFO fifoNum);
 int Fifo_Put(enum FIFO fifoNum, uint32_t data);
 uint32_t Fifo_Get(enum FIFO fifoNum);
+void signalAllDataFifos();
 
 #endif
 

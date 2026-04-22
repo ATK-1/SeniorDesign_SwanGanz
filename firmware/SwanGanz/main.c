@@ -35,11 +35,13 @@
 #include "../inc/Clock.h"
 #include "../inc/ADC.h"
 #include "../inc/SPI.h"
+#include "../inc/RTOS_UART.h"
 #include "Display.h"
 #include "DAS.h"
 #include "OS.h"
 #include "TSC2046IPWR.h"
 #include "TouchControl.h" 
+#include "DataTransfer.h"
 
 #define TIME_1MS    80000      
 
@@ -87,18 +89,19 @@ int main(void) {
     Logic_Init();
     OS_Init();
     DASInit();
+    UART_Init(1);
     
-    //UART_Init(1);   // USB to UART converter 
     DisplayInit();
     TSC2046IPWR_Init();
 
     OS_SetPerioidcSchedule(0);
 //    OS_AddThread(&DisplayTemp, 1);
-    OS_AddThread(&DisplayStartMenu, 1);
-    OS_AddThread(&TestDas, 1);
+    OS_AddThread(&DisplayStartMenu, 2);
+    OS_AddThread(&InitReadings, 1);
+    //OS_AddThread(&TestDas, 1);
     OS_AddThread(&IdleThread, 2);
     
     
-    OS_Launch(TIME_1MS);
+    OS_Launch(TIME_2MS);
 }
 

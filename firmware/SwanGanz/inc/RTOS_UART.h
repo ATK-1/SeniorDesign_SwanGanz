@@ -124,6 +124,8 @@ uint32_t UART_InUDec(void);
  */
 void UART_OutUDec(uint32_t n);
 
+void UART_OutU16(uint16_t n);
+
 /**
  * Output a 32-bit number in unsigned decimal format
  * @param n 32-bit number to be transferred
