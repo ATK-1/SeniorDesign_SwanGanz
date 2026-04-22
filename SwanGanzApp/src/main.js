@@ -36,6 +36,9 @@ await listen("port-connected", (event) => {
     }, 200);
 });
 
+await listen("available_ports", (event) => {
+    console.log(event);
+});
 
 await listen("port-disconnected", (event) => {
     const statusElement = document.getElementsByClassName("connection-status")[0];
@@ -102,6 +105,10 @@ setInterval(async () => {
     }
 }, 1000);
 
+//setInterval(async () => {
+//   console.log(tempGraph.data.datasets[0].data);
+//}, 2000);
+
 
 const pressureCanvas = document.getElementById("pressureGraph");
 const pressureGraph = new Chart(pressureCanvas, {
@@ -118,6 +125,11 @@ const pressureGraph = new Chart(pressureCanvas, {
                 data: []
             }
         ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
     }
 });
 
@@ -132,6 +144,11 @@ const tempGraph = new Chart(tempCanvas, {
                 data: [],
             }
         ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
     }
 });
 

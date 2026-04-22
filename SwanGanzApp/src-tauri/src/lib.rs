@@ -47,7 +47,7 @@ async fn check_connected(
 
     for (port_name, _port_info) in ports.iter() {
         app.emit("available_ports", port_name).unwrap();
-        if port_name.contains("cu.usbserial-BG04P2NM") {
+        if port_name.contains("cu.usbserial-BG04P2N") {
             open(
                 app.clone(),
                 serial.clone(),
@@ -77,7 +77,7 @@ async fn check_disconnected(
     let mut still_connected = false;
     let mut port = String::new();
     for (port_name, _port_info) in available.iter() {
-        if port_name.contains("cu.usbserial-BG04P2NM") {
+        if port_name.contains("cu.usbserial-BG04P2N") {
             still_connected = true;
             port = port_name.to_string();
         }
@@ -85,12 +85,12 @@ async fn check_disconnected(
     if !still_connected {
         let managed = managed_ports(app.clone(), serial.clone()).map_err(|e| e.to_string())?;
         for port_name in managed.iter() {
-            if port_name.contains("cu.usbserial-BG04P2NM") {
+            if port_name.contains("cu.usbserial-BG04P2N") {
                 close(app.clone(), serial.clone(), port_name.to_string())
                     .map_err(|e| e.to_string())?;
             }
         }
-        app.emit("port-disconnected", "cu.usbserial-BG04P2NM")
+        app.emit("port-disconnected", "cu.usbserial-BG04P2NN")
             .unwrap();
     }
 
@@ -105,13 +105,11 @@ async fn get_data(
     queues: State<'_, SensorQueues>,
     file: State<'_, AppFile>,
 ) -> Result<(), String> {
-    let path = "/dev/cu.usbserial-BG04P2NM".to_string();
+    let path = "/dev/cu.usbserial-BG04P2NN".to_string();
     let data_ascii = [0xFA];
 
     let raw_file = file.0.lock().unwrap();
     let mut writer: BufWriter<&std::fs::File> = BufWriter::new(&*raw_file);
-
-    writeln!(writer, "pressure1,pressure2,temperature").map_err(|e| e.to_string())?;
 
     let mut header = match read_binary(
         app.clone(),
@@ -128,6 +126,7 @@ async fn get_data(
         return Ok(());
     }
 
+    writeln!(writer, "pressure1,pressure2,temperature").map_err(|e| e.to_string())?;
     app.emit("data-begin", &path).unwrap();
     'outer: while header == data_ascii {
         let received_data = match read_binary(
@@ -167,7 +166,7 @@ async fn get_data(
                 continue 'outer;
             }
         }
-        break; // exhausted search budget, exit
+        break;
     }
 
     writer.flush().map_err(|e| e.to_string())?;
