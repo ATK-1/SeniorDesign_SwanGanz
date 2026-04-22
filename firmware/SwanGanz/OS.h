@@ -108,6 +108,13 @@ enum FIFO {
     INPUT_FIFO,
 };
 
+typedef struct CatheterVals_struct {
+    uint32_t p1;
+    uint32_t p2;
+    uint32_t temp;
+    Sema4_t ready;
+} CatheterVals_t;
+
 
  
 

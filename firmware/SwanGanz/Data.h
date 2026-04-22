@@ -5,6 +5,6 @@
 void TransferData();
 void InitReadings();
 void killTransfer();
-void killInitReadings();
+void startTransfer(uint32_t injectTemp, uint32_t injectVol);
 
 #endif

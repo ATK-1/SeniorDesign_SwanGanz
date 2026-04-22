@@ -9,6 +9,12 @@
 
 #define NUM_CHANNELS 6
 
+static uint32_t injectateVol;
+static uint32_t injectateTemp;
+static uint32_t initialTemp;
+static uint32_t initialVol;
+static long long accumlator;
+
 //**************Low pass Digital filter**************
 int32_t Size0;    // Size-point average, Size=2 to FILTERMAX
 int32_t x0[32];   // one copy of data in MACQ
@@ -130,6 +136,7 @@ void TransferData() {
     }
 }
 
+uint32_t readings;
 void InitReadings() {
     LPF_Init0(0, 32);
     LPF_Init1(0, 32);
@@ -141,19 +148,26 @@ void InitReadings() {
         }
     
         if (InitialsKill) {
+            initialTemp = data[THERM_LOW];
             OS_AddThread(&TransferData, 1);
-            OS_AddThread(&displayMeasuring, 2);
+            OS_AddThread(&DisplayMeasuring, 2);
             // OS_SetPerioidcSchedule(1);
             OS_Kill();
         }
 
-        uint32_t pres1 = data[PRESSURE_1A_FIFO];
-        uint32_t pres2 = data[PRESSURE_2A_FIFO];
-        uint32_t temp = data[THERM_LOW_FIFO];
+        uint32_t pres1ADC = data[PRESSURE1A];
+        uint32_t pres2ADC = data[PRESSURE2A];
+        uint32_t tempADC = data[THERM_LOW];
 
-        LPF_Calc0(pres1);
-        LPF_Calc1(pres2);
-        LPF_Calc2(temp);
+        uint32_t pres1 = LPF_Calc0(pres1ADC);
+        uint32_t pres2 = LPF_Calc1(pres2ADC);
+        uint32_t temp = LPF_Calc2(tempADC);
+
+        readings++;
+        if (readings == 500) {
+          sendNewVals(pres1, pres2, temp);
+          readings = 0;
+        }
     }
 }
 
@@ -161,6 +175,8 @@ void killTransfer() {
     transferKill = 1;
 }
 
-void killInitReadings() {
+void startTransfer(uint32_t injectTemp, uint32_t injectVol) {
     InitialsKill = 1;
+    injectateVol = injectVol;
+    injectateTemp = injectTemp;
 }

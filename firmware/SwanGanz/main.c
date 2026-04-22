@@ -41,7 +41,7 @@
 #include "OS.h"
 #include "TSC2046IPWR.h"
 #include "TouchControl.h" 
-#include "DataTransfer.h"
+#include "Data.h"
 
 #define TIME_1MS    80000      
 
@@ -97,6 +97,7 @@ int main(void) {
     OS_SetPerioidcSchedule(0);
 //    OS_AddThread(&DisplayTemp, 1);
     OS_AddThread(&DisplayStartMenu, 2);
+    OS_AddThread(&DisplayCurrentReadings, 2);
     OS_AddThread(&InitReadings, 1);
     //OS_AddThread(&TestDas, 1);
     OS_AddThread(&IdleThread, 2);

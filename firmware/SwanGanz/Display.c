@@ -5,7 +5,7 @@
 //#include "LUT.h"
 #include "RA8875.h"
 #include "DAS.h"
-#include "DataTransfer.h"
+#include "Data.h"
 
 #define NUM_CHANNELS 6
 
@@ -27,7 +27,8 @@
 #define CURSOR_Y (BUTTONS_VAL_Y + 65)
 #define CURSOR_H 10
 
-Sema4_t LCD_Mutex;
+static Sema4_t LCD_Mutex;
+static CatheterVals_t newVals;
 static int input;
 uint32_t Started;
 uint32_t OtherButton;
@@ -47,11 +48,12 @@ void DisplayInit() {
     
 
     OS_InitSemaphore(&LCD_Mutex, 1);
+    OS_InitSemaphore(&newVals.ready, 0);
 }
 
 
 #define MEASURING_TIME_MS 40000
-void displayMeasuring() {
+void DisplayMeasuring() {
     RA8875_fillScreen(BCKGRND_COLOR);
 
     uint32_t headerRectX = SPACING;
@@ -299,11 +301,41 @@ static void displayInjectate() {
 
 }
 
+static void uint32ToFixedStr(uint32_t val, char* str) {
+    
+
+    uint8_t dig;
+
+    dig = 0;
+    while (val >= 1000) { val -= 1000; dig++; }
+    str[0] = '0' + dig;
+
+    dig = 0;
+    while (val >= 100) { 
+        val -= 100; 
+        dig++; 
+    }
+    str[1] = '0' + dig;
+
+    dig = 0;
+    while (val >= 10) { 
+        val -= 10; 
+        dig++; 
+    }
+    str[3] = '0' + dig;
+
+    str[4] = '0' + val;
+}
+
 #define READING_BOXES_Y 330
 #define READING_VAL_Y 380
 
 #define FOUR_DIG_DEC_SIZE 162
-static void displayCurrentReadings() {
+
+static int killCurrentReadings;
+
+void DisplayCurrentReadings() {
+    OS_bWait(&LCD_Mutex);
     // Current ADC Readings
     const char* currentReadingsStr = "Current Readings";
     uint32_t currentReadingsStrY = BUTTON_BOXS_Y + ROUND_BOX_H + SPACING;
@@ -323,13 +355,13 @@ static void displayCurrentReadings() {
     // RA8875_textSetCursor(10 + 43, 330);
     RA8875_textWrite(pres1Str, strlen(pres1Str)); // Size of string is 165 pixels
 
-    const char* exStr1 = "12.34";
-    uint32_t exStr1X = (SPACING * 2) + ((ROUND_BOX_W - FOUR_DIG_DEC_SIZE) >> 1);
-    uint32_t exStr1Y = READING_VAL_Y;
+    char pres1ValStr[6] = "--.--";
+    uint32_t pres1ValStrX = (SPACING * 2) + ((ROUND_BOX_W - FOUR_DIG_DEC_SIZE) >> 1);
+    uint32_t pres1ValStrY = READING_VAL_Y;
     RA8875_textEnlarge(3);
-    RA8875_textSetCursor(exStr1X, exStr1Y);
+    RA8875_textSetCursor(pres1ValStrX, pres1ValStrY);
     // RA8875_textSetCursor(10 + 45, 380);
-    RA8875_textWrite(exStr1, strlen(exStr1));
+    RA8875_textWrite(pres1ValStr, strlen(pres1ValStr));
     
     // Current temperature
     const char* tempHeaderStr = "Temperature (C)";
@@ -350,12 +382,12 @@ static void displayCurrentReadings() {
     // RA8875_textSetCursor(486, 330);
     RA8875_textWrite(tempHeaderStr + intermediateLen, 2);
 
-    const char* exStr2 = "56.78";
-    uint32_t exStr2X = tempBoxX + ((ROUND_BOX_W - FOUR_DIG_DEC_SIZE) >> 1);
+    char tempValStr[6] = "--.--";
+    uint32_t tempValStrx = tempBoxX + ((ROUND_BOX_W - FOUR_DIG_DEC_SIZE) >> 1);
     RA8875_textEnlarge(3);
-    RA8875_textSetCursor(exStr2X, READING_VAL_Y);
+    RA8875_textSetCursor(tempValStrx, READING_VAL_Y);
     // RA8875_textSetCursor(266 + 45, 380);
-    RA8875_textWrite(exStr2, strlen(exStr2)); // Width of four digit number with decimal is 162 pixes including 6 pixels to either side of the first and last dig
+    RA8875_textWrite(tempValStr, strlen(tempValStr)); // Width of four digit number with decimal is 162 pixes including 6 pixels to either side of the first and last dig
 
     // Current pressure 2
     const char* pres2Str = "Pressure 2";
@@ -368,18 +400,49 @@ static void displayCurrentReadings() {
     //RA8875_textSetCursor(522 + 43, 330);
     RA8875_textWrite(pres2Str, strlen(pres2Str)); // Size of string is 165 pixels
 
-    const char* exStr3 = "90.12";
-    uint32_t exStr3X = pres2BoxX + ((ROUND_BOX_W - FOUR_DIG_DEC_SIZE) >> 1);
+    char pres2ValStr[6] = "--.--";
+    uint32_t pres2ValStrX = pres2BoxX + ((ROUND_BOX_W - FOUR_DIG_DEC_SIZE) >> 1);
     RA8875_textEnlarge(3);
-    RA8875_textSetCursor(exStr3X, READING_VAL_Y);
-    //RA8875_textSetCursor(522 + 45, 380);
-    RA8875_textWrite(exStr3, strlen(exStr3));
+    RA8875_textSetCursor(pres2ValStrX, READING_VAL_Y);
+    RA8875_textWrite(pres2ValStr, strlen(pres2ValStr));
+    OS_bSignal(&LCD_Mutex);
+    while (1) {
+        OS_bWait(&newVals.ready);
+        if (killCurrentReadings) {
+            OS_Kill();
+        }
+
+        OS_bWait(&LCD_Mutex);
+        uint32ToFixedStr(newVals.p1, pres1ValStr);
+        uint32ToFixedStr(newVals.p2, pres2ValStr);
+        uint32ToFixedStr(newVals.temp, tempValStr);
+
+        RA8875_textEnlarge(3);
+        RA8875_textColor(RA8875_BLACK, BCKGRND_COLOR);
+        
+        RA8875_textSetCursor(pres1ValStrX, pres1ValStrY);
+        RA8875_textWrite(pres1ValStr, strlen(pres1ValStr));
+
+        RA8875_textSetCursor(tempValStrx, READING_VAL_Y);
+        RA8875_textWrite(tempValStr, strlen(tempValStr));
+
+        RA8875_textSetCursor(pres2ValStrX, READING_VAL_Y);
+        RA8875_textWrite(pres2ValStr, strlen(pres2ValStr));
+        OS_bSignal(&LCD_Mutex);
+    }
+}
+
+void sendNewVals(uint32_t p1, uint32_t p2, uint32_t temp) {
+    newVals.p1 = p1;
+    newVals.p2 = p2;
+    newVals.temp = temp;
+    OS_bSignal(&newVals.ready);
 }
 
 static enum BUTTON mode = NULL_INPUT;
 static uint32_t highlighted_dig = 0;
-static uint32_t currentVol = 10;
-static uint32_t currentTemp = 0;
+static uint32_t InjectVol = 10;
+static uint32_t InjectTemp = 0;
 static char volStr[3] = "10";
 static char tempStr[2] = "0";
 
@@ -401,7 +464,7 @@ static void displayNavigation(enum BUTTON input) {
                     return;
                 }
                 else {
-                    currentVol += 10;
+                    InjectVol += 10;
                     volStr[0] = volStr[0] + 1;
                 }                    
                 RA8875_textSetCursor(CURSOR_V_X1, BUTTONS_VAL_Y);
@@ -411,7 +474,7 @@ static void displayNavigation(enum BUTTON input) {
                     return;
                 }
                 else {
-                    currentVol += 1;
+                    InjectVol += 1;
                     volStr[1] = volStr[1] + 1;
                 }
             }
@@ -423,13 +486,13 @@ static void displayNavigation(enum BUTTON input) {
         }
         else if (input == DOWN_BUTTON) {
             if (highlighted_dig == 1) {
-                if (currentVol <= 10) {
-                    currentVol = 1;
+                if (InjectVol <= 10) {
+                    InjectVol = 1;
                     volStr[0] = '0';
                     volStr[1] = '1';
                 }
                 else {
-                    currentVol -= 10;
+                    InjectVol -= 10;
                     volStr[0] = volStr[0] - 1;
                 }
             }
@@ -441,7 +504,7 @@ static void displayNavigation(enum BUTTON input) {
                     return;
                 }
                 else {
-                    currentVol -= 1;
+                    InjectVol -= 1;
                     volStr[1] = volStr[1] - 1;
                 }
             }
@@ -459,11 +522,11 @@ static void displayNavigation(enum BUTTON input) {
     }
     else if (mode == TEMP_BUTTON) {
         if (input == UP_BUTTON) {
-            if (currentTemp == 9) {
+            if (InjectTemp == 9) {
                 return;
             }
             else {
-                currentTemp += 1;
+                InjectTemp += 1;
                 tempStr[0] = tempStr[0] + 1;
             }
             RA8875_textEnlarge(3);
@@ -472,11 +535,11 @@ static void displayNavigation(enum BUTTON input) {
             RA8875_textWrite(tempStr, 1);
         }
         else if (input == DOWN_BUTTON) {
-            if (currentTemp == 0) {
+            if (InjectTemp == 0) {
                 return;
             }
             else {
-                currentTemp -= 1;
+                InjectTemp -= 1;
                 tempStr[0] = tempStr[0] - 1;
             }
             RA8875_textEnlarge(3);
@@ -498,24 +561,26 @@ static void displayNavigation(enum BUTTON input) {
     Changes state of system
 */
 void DisplayStartMenu() {
+    OS_bWait(&LCD_Mutex);
     displayConnected();
 
     //RA8875_drawRoundRect(0, 40, 800, 240, 5, RA8875_BLACK);
     RA8875_drawLine(0, 40, 800, 40, RA8875_BLACK);
 
     displayInjectate();
-    displayCurrentReadings();
+    OS_bSignal(&LCD_Mutex);
     
 
     while (1) {
         uint32_t input = Fifo_Get(INPUT_FIFO);
+        OS_bWait(&LCD_Mutex);
         if (mode) {
             displayNavigation(input);
         }
         else if (input == START_BUTTON) {
             OS_SetPerioidcSchedule(1);
             // Stop initial readings data transfer
-            killInitReadings();
+            startTransfer(InjectTemp, InjectVol);
             //signalAllDataFifos();
 
             //start uart data transfer
@@ -534,6 +599,7 @@ void DisplayStartMenu() {
             mode = TEMP_BUTTON;
             RA8875_fillRect(CURSOR_T_X, CURSOR_Y, ONE_DIG_SIZE, CURSOR_H, RA8875_BLACK);
         }
+        OS_bSignal(&LCD_Mutex);
     }
 }
 

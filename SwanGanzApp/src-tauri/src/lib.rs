@@ -105,7 +105,7 @@ async fn get_data(
     queues: State<'_, SensorQueues>,
     file: State<'_, AppFile>,
 ) -> Result<(), String> {
-    let path = "/dev/cu.usbserial-BG04P2NN".to_string();
+    let path = "/dev/cu.usbserial-BG04P2NM".to_string();
     let data_ascii = [0xFA];
 
     let raw_file = file.0.lock().unwrap();
