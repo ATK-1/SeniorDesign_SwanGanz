@@ -157,7 +157,7 @@ void InitReadings() {
 
         uint32_t pres1ADC = data[PRESSURE1A];
         uint32_t pres2ADC = data[PRESSURE2A];
-        uint32_t tempADC = data[THERM_LOW];
+        uint32_t tempADC = data[THERM_HI];
 
         uint32_t pres1 = LPF_Calc0(pres1ADC);
         uint32_t pres2 = LPF_Calc1(pres2ADC);
