@@ -70,6 +70,10 @@ void Logic_Init() {
     IOMUX->SECCFG.PINCM[PB19INDEX] = (uint32_t) 0x00000081; // Error LED
     GPIOA->DOE31_0 |= (1<<12) | (1<<13) | (1<<18) | (1<<22) | (1<<24);
     GPIOB->DOE31_0 |= (1<<14) | (1<<15) | (1<<16) | (1<<25) | (1<<19);
+
+    // Connection to USB
+    IOMUX->SECCFG.PINCM[PA7INDEX] = (uint32_t) 0x00040081;
+
 }
 
 static void IdleThread() {
@@ -99,8 +103,9 @@ int main(void) {
     OS_AddThread(&DisplayStartMenu, 2);
     OS_AddThread(&DisplayCurrentReadings, 2);
     OS_AddThread(&InitReadings, 1);
+    OS_AddThread(&DisplayConnected, 3);
     //OS_AddThread(&TestDas, 1);
-    OS_AddThread(&IdleThread, 2);
+    OS_AddThread(&IdleThread, 4);
     
     
     OS_Launch(TIME_2MS);

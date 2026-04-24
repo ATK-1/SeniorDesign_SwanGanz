@@ -7,6 +7,7 @@ void DisplayTemp();
 void DisplayStartMenu();
 void DisplayMeasuring();
 void DisplayCurrentReadings();
+void DisplayConnected();
 void sendNewVals(uint32_t p1, uint32_t p2, uint32_t temp);
 
 
