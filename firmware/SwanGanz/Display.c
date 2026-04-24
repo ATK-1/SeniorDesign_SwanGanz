@@ -333,8 +333,9 @@ void DisplayConnected() {
     OS_bSignal(&LCD_Mutex);
     while (1) {
         uint32_t connectionStatus = GPIOA->DIN31_0 & 0x080;
-        if (connectionStatus & !lastCheckedStatus) {
+        if (connectionStatus && !lastCheckedStatus) {
             OS_bWait(&LCD_Mutex);
+            RA8875_fillRect(0, 0, 300, 39, BCKGRND_COLOR);
             RA8875_textSetCursor(10, 0);
             RA8875_textEnlarge(1);
             RA8875_textTransparent(RA8875_BLACK); 
@@ -345,6 +346,7 @@ void DisplayConnected() {
         }
         else if (!connectionStatus && lastCheckedStatus) {
             OS_bWait(&LCD_Mutex);
+            RA8875_fillRect(0, 0, 200, 39, BCKGRND_COLOR);
             RA8875_textSetCursor(10, 0);
             RA8875_textEnlarge(1);
             RA8875_textTransparent(RA8875_BLACK); 

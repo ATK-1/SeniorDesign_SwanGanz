@@ -174,11 +174,6 @@ void InitReadings() {
             OS_Kill();
         }
 
-<<<<<<< HEAD
-        uint32_t pres1 = PresLG_Lut[data[PRESSURE_1A_FIFO]];
-        uint32_t pres2 = PresLG_Lut[data[PRESSURE_2A_FIFO]];
-        uint32_t temp = LPF_Calc2(TempHG_LUT[data[THERM_HI_FIFO]]) / 10;
-=======
         uint32_t pres1ADC = data[PRESSURE1A];
         uint32_t pres2ADC = data[PRESSURE2A];
         uint32_t tempADC = data[THERM_HI];
@@ -186,7 +181,6 @@ void InitReadings() {
         uint32_t pres1 = LPF_Calc0(pres1ADC);
         uint32_t pres2 = LPF_Calc1(pres2ADC);
         uint32_t temp = LPF_Calc2(tempADC);
->>>>>>> a3b9a537d058dba31ff040dbeba16e47455240b6
 
         readings++;
         if (readings == 500) {
