@@ -12,6 +12,7 @@ use tauri_plugin_serialplugin::state::{DataBits, FlowControl, Parity, StopBits};
 use crate::state::SensorQueues;
 
 pub struct AppFile(pub Mutex<std::fs::File>);
+pub struct ConnectedPort(pub Mutex<Option<String>>);
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -27,6 +28,7 @@ pub fn run() {
         .plugin(tauri_plugin_log::Builder::new().build())
         .manage(SensorQueues::new())
         .manage(AppFile(Mutex::new(file)))
+        .manage(ConnectedPort(Mutex::new(None)))
         .invoke_handler(tauri::generate_handler![
             check_connected,
             check_disconnected,
@@ -42,6 +44,7 @@ pub fn run() {
 async fn check_connected(
     app: AppHandle<tauri::Wry>,
     serial: State<'_, tauri_plugin_serialplugin::desktop_api::SerialPort<tauri::Wry>>,
+    connected_port: State<'_, ConnectedPort>,
 ) -> Result<(), String> {
     let ports = available_ports(app.clone(), serial.clone()).map_err(|e| e.to_string())?;
 
@@ -60,6 +63,8 @@ async fn check_connected(
                 Some(1000u64), // Timeout
             )
             .map_err(|e| format!("Failed to open port: {}", e))?;
+
+            *connected_port.0.lock().unwrap() = Some(port_name.to_string());
             app.emit("port-connected", port_name).unwrap();
         }
     }
@@ -90,7 +95,7 @@ async fn check_disconnected(
                     .map_err(|e| e.to_string())?;
             }
         }
-        app.emit("port-disconnected", "cu.usbserial-BG04P2NN")
+        app.emit("port-disconnected", "cu.usbserial-BG04P2N")
             .unwrap();
     }
 
@@ -104,8 +109,15 @@ async fn get_data(
     serial: State<'_, tauri_plugin_serialplugin::desktop_api::SerialPort<tauri::Wry>>,
     queues: State<'_, SensorQueues>,
     file: State<'_, AppFile>,
+    connected_port: State<'_, ConnectedPort>,
 ) -> Result<(), String> {
-    let path = "/dev/cu.usbserial-BG04P2NM".to_string();
+    let path = connected_port
+        .0
+        .lock()
+        .unwrap()
+        .clone()
+        .ok_or("No port connected")?;
+
     let data_ascii = [0xFA];
 
     let raw_file = file.0.lock().unwrap();
