@@ -26,9 +26,16 @@
   text-align: center;
 }
 
-.connection-container {
+.heading-container {
     position: fixed;
     top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.connection-container {
     display: flex;
     align-items: center;
 }

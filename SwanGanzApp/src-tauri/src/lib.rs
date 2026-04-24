@@ -1,6 +1,7 @@
 mod state;
 use std::fs::OpenOptions;
-use std::io::{BufWriter, Write};
+use std::io::BufWriter;
+use std::io::Write;
 use std::sync::Mutex;
 
 use tauri::{AppHandle, Emitter, State};
@@ -11,29 +12,22 @@ use tauri_plugin_serialplugin::state::{DataBits, FlowControl, Parity, StopBits};
 
 use crate::state::SensorQueues;
 
-pub struct AppFile(pub Mutex<std::fs::File>);
 pub struct ConnectedPort(pub Mutex<Option<String>>);
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let file = OpenOptions::new()
-        .write(true)
-        .create(true)
-        .open("data.txt")
-        .expect("failed to open data.txt");
-
     tauri::Builder::default()
         .plugin(tauri_plugin_serialplugin::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_log::Builder::new().build())
         .manage(SensorQueues::new())
-        .manage(AppFile(Mutex::new(file)))
         .manage(ConnectedPort(Mutex::new(None)))
         .invoke_handler(tauri::generate_handler![
             check_connected,
             check_disconnected,
             get_data,
-            drain_queues
+            drain_queues,
+            export_csv
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
@@ -108,7 +102,6 @@ async fn get_data(
     app: AppHandle<tauri::Wry>,
     serial: State<'_, tauri_plugin_serialplugin::desktop_api::SerialPort<tauri::Wry>>,
     queues: State<'_, SensorQueues>,
-    file: State<'_, AppFile>,
     connected_port: State<'_, ConnectedPort>,
 ) -> Result<(), String> {
     let path = connected_port
@@ -119,9 +112,6 @@ async fn get_data(
         .ok_or("No port connected")?;
 
     let data_ascii = [0xFA];
-
-    let raw_file = file.0.lock().unwrap();
-    let mut writer: BufWriter<&std::fs::File> = BufWriter::new(&*raw_file);
 
     let mut header = match read_binary(
         app.clone(),
@@ -138,7 +128,6 @@ async fn get_data(
         return Ok(());
     }
 
-    writeln!(writer, "pressure1,pressure2,temperature").map_err(|e| e.to_string())?;
     app.emit("data-begin", &path).unwrap();
     'outer: while header == data_ascii {
         let received_data = match read_binary(
@@ -155,8 +144,6 @@ async fn get_data(
         let p1 = (received_data[0] as u16) << 8 | received_data[1] as u16;
         let p2 = (received_data[2] as u16) << 8 | received_data[3] as u16;
         let temp = (received_data[4] as u16) << 8 | received_data[5] as u16;
-
-        writeln!(writer, "{},{},{}", p1, p2, temp).map_err(|e| e.to_string())?;
 
         queues.p1.lock().unwrap().push_back(p1);
         queues.p2.lock().unwrap().push_back(p2);
@@ -181,8 +168,6 @@ async fn get_data(
         break;
     }
 
-    writer.flush().map_err(|e| e.to_string())?;
-
     app.emit("data-done", &path).unwrap();
     Ok(())
 }
@@ -193,4 +178,24 @@ fn drain_queues(queues: State<'_, SensorQueues>) -> (Vec<u16>, Vec<u16>, Vec<u16
     let p2 = queues.p2.lock().unwrap().drain(..).collect();
     let temp = queues.temp.lock().unwrap().drain(..).collect();
     (p1, p2, temp)
+}
+
+#[tauri::command]
+fn export_csv(data: Vec<(u16, u16, u16)>, path: String) -> Result<(), String> {
+    let file = OpenOptions::new()
+        .write(true)
+        .create(true)
+        .truncate(true)
+        .open(&path)
+        .map_err(|e| e.to_string())?;
+
+    let mut writer = BufWriter::new(file);
+    writeln!(writer, "pressure1,pressure2,temperature").map_err(|e| e.to_string())?;
+    for (p1, p2, temp) in &data {
+        writeln!(writer, "{},{},{}", p1, p2, temp).map_err(|e| e.to_string())?;
+    }
+
+    writer.flush().map_err(|e| e.to_string())?;
+
+    Ok(())
 }

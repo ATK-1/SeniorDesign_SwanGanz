@@ -36,9 +36,9 @@ await listen("port-connected", (event) => {
     }, 200);
 });
 
-await listen("available_ports", (event) => {
-    console.log(event);
-});
+//await listen("available_ports", (event) => {
+//    console.log(event);
+//});
 
 await listen("port-disconnected", (event) => {
     const statusElement = document.getElementsByClassName("connection-status")[0];
@@ -105,10 +105,6 @@ setInterval(async () => {
     }
 }, 1000);
 
-//setInterval(async () => {
-//   console.log(tempGraph.data.datasets[0].data);
-//}, 2000);
-
 
 const pressureCanvas = document.getElementById("pressureGraph");
 const pressureGraph = new Chart(pressureCanvas, {
@@ -166,3 +162,24 @@ function updateGraph(p1Vals, p2Vals, tempVals) {
     pressureGraph.update();
     tempGraph.update();
 }
+
+const button = document.getElementById("csv-button");
+button.addEventListener("click", function() {
+    console.log("Button clicked");
+    const p1Data = pressureGraph.data.datasets[0].data;
+    const p2Data = pressureGraph.data.datasets[1].data;
+    const tempData = tempGraph.data.datasets[0].data;
+
+    const rows = p1Data.map((_, i) => [p1Data[i].y, p2Data[i].y, tempData[i].y]);
+    const fileInput = document.getElementById("file-name-input");
+    let fileName = fileInput.value;
+
+    if (!fileName.endsWith(".txt")) {
+        fileName += ".txt"
+    }
+
+    invoke("export_csv", {
+        data: rows,
+        path: fileName,
+    });
+});
