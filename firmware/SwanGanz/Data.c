@@ -8,26 +8,27 @@
 #include "LUT.h"
 
 #define NUM_CHANNELS 6
+#define K 14
 
-static uint32_t injectateVol;
-static uint32_t injectateTemp;
-static uint32_t initialTemp;
-static uint32_t initialVol;
-static int64_t accumlator;
-static uint32_t areaUnderCurve; 
+int32_t injectateVol;
+int32_t injectateTemp;
+int32_t initialTemp;
+int32_t initialVol;
+int64_t accumlator;
+int64_t areaUnderCurve; 
 
-uint32_t getFlowRate() {
-  int64_t numerator = (injectateVol * (injectateTemp - initialTemp)) * 100;
+uint64_t getFlowRate() {
+  int64_t numerator = injectateVol * (initialTemp - injectateTemp);
 
   if (areaUnderCurve == 0) {
     return 0;
   }
 
-  return (uint32_t)(numerator / areaUnderCurve);
+  return (int64_t)(numerator / areaUnderCurve);
 }
 
 uint32_t getInitialTemp() {
-  return initialTemp / 10;
+  return initialTemp;
 }
 
 uint32_t getAOC() {
@@ -135,13 +136,14 @@ void TransferData() {
         }
 
         if (transferKill) {
+            transferKill = 0;
             areaUnderCurve = accumlator / 200;
             OS_Kill();
         }
 
-        uint32_t pres1 = PresLG_Lut[data[PRESSURE_1A_FIFO]];
-        uint32_t pres2 = PresLG_Lut[data[PRESSURE_2A_FIFO]];
-        uint32_t temp = LPF_Calc2(TempHG_LUT[data[THERM_HI_FIFO]]);
+        uint32_t pres1 = PresLG_Lut[data[PRESSURE1_LOW]];
+        uint32_t pres2 = PresLG_Lut[data[PRESSURE1_HI]];
+        uint32_t temp = LPF_Calc2(TempHG_LUT[data[THERM_HI]]);
 
   
 
@@ -150,7 +152,15 @@ void TransferData() {
         UART_OutU16((uint16_t)pres2); //p2
         UART_OutU16((uint16_t)(temp / 10)); //therm
 
-        accumlator += (initialTemp - temp);
+        if (temp > initialTemp) {
+          int a = 1;
+        }
+        int32_t diff = (initialTemp - temp);
+
+        accumlator += diff;
+        if (accumlator > 10000) {
+          int a = 12;
+        }
 
     }
 }
@@ -160,6 +170,7 @@ void InitReadings() {
     LPF_Init0(0, 32);
     LPF_Init1(0, 32);
     LPF_Init2(0, 32);
+
     while (1) {
         uint32_t data[NUM_CHANNELS];
         for (int i = 0; i < NUM_CHANNELS; i++) {
@@ -167,24 +178,22 @@ void InitReadings() {
         }
     
         if (InitialsKill) {
-            initialTemp = LPF_Calc2(TempHG_LUT[data[THERM_LOW]]);
+            InitialsKill = 0;
+            initialTemp = LPF_Calc2(TempHG_LUT[data[THERM_HI]]);
             OS_AddThread(&TransferData, 1);
             OS_AddThread(&DisplayMeasuring, 2);
             // OS_SetPerioidcSchedule(1);
             OS_Kill();
         }
 
-        uint32_t pres1ADC = data[PRESSURE1A];
-        uint32_t pres2ADC = data[PRESSURE2A];
-        uint32_t tempADC = data[THERM_HI];
+        uint32_t pres1 = PresLG_Lut[data[PRESSURE1_LOW]];
+        uint32_t pres2 = PresLG_Lut[data[PRESSURE1_HI]];
+        uint32_t temp = LPF_Calc2(TempHG_LUT[data[THERM_HI]]);
 
-        uint32_t pres1 = LPF_Calc0(pres1ADC);
-        uint32_t pres2 = LPF_Calc1(pres2ADC);
-        uint32_t temp = LPF_Calc2(tempADC);
 
         readings++;
-        if (readings == 500) {
-          sendNewVals(pres1, pres2, temp);
+        if (readings == 250) {
+          sendNewVals(pres1, pres2, temp / 10);
           readings = 0;
         }
     }

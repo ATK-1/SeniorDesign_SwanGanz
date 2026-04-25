@@ -11,6 +11,7 @@ static uint32_t XRegion1(uint32_t y);
 static uint32_t XRegion2(uint32_t y);
 static uint32_t XRegion3(uint32_t y);
 static uint32_t XRegion4(uint32_t y);
+static uint32_t XRegion5(uint32_t y);
 
 
 uint32_t DPadEnabled = 1;
@@ -51,6 +52,10 @@ uint32_t DPadEnabled = 1;
 #define X_REGION_4_MIN 3480
 #define X_REGION_4_MAX 3800
 
+// Reset X
+#define X_REGION_5_MIN 2670
+#define X_REGION_5_MAX 3860
+
 // Start Y
 #define Y_REGION_0_MIN 700
 #define Y_REGION_0_MAX 1150
@@ -70,6 +75,10 @@ uint32_t DPadEnabled = 1;
 // Down Y
 #define Y_REGION_4_MIN 2000
 #define Y_REGION_4_MAX 2550
+
+// Reset Y
+#define Y_REGION_5_MIN 3200
+#define Y_REGION_5_MAX 3700
 
 
 
@@ -96,6 +105,10 @@ uint32_t ButtonSelect(TSC2046Pos_t pos) {
     // Right Arrow X
     else if ((x > X_REGION_4_MIN) && (x < X_REGION_4_MAX) && DPadEnabled) {
         return XRegion4(pos.ypos);
+    }
+    // Reset X
+    if ((x > X_REGION_5_MIN) && (x < X_REGION_5_MAX) && DPadEnabled) {
+        return XRegion5(pos.ypos);
     }
     return NULL_INPUT;
 
@@ -153,6 +166,13 @@ static uint32_t XRegion4(uint32_t y) {
     // Right Arrow
     if ((y > Y_REGION_3_MIN) && (y < Y_REGION_3_MAX)) {
         return RIGHT_BUTTON;
+    }
+    return NULL_INPUT;
+}
+static uint32_t XRegion5(uint32_t y) {
+    // Reset Button
+    if ((y > Y_REGION_5_MIN) && (y < Y_REGION_5_MAX)) {
+        return RESET_BUTTON;
     }
     return NULL_INPUT;
 }

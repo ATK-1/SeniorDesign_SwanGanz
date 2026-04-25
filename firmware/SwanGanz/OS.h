@@ -37,7 +37,7 @@
 #define MAX_THREAD_COUNT 10
 #define FIFO_CAPACITY 256
 #define NUM_PRIORITIES 6
-#define TCB_FIFO_SIZE 16
+#define TCB_FIFO_SIZE 8
 
 //#define DEBUG 1
 
@@ -99,13 +99,13 @@ typedef struct {
 } fifo_t;
 
 enum FIFO {
-    PRESSURE_1A_FIFO,
-    PRESSURE_1B_FIFO,
-    THERM_LOW_FIFO,      // Low gain
-    THERM_HI_FIFO,       // High gain
-    PRESSURE_2A_FIFO,     
-    PRESSURE_2B_FIFO,
-    INPUT_FIFO,
+    PRESSURE1_LOW,
+    PRESSURE1_HI,
+    THERM_LOW,      // Low gain
+    THERM_HI,       // High gain
+    PRESSURE2_LOW,     
+    PRESSURE2_HI,
+    INPUT,
 };
 
 typedef struct CatheterVals_struct {
