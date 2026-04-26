@@ -122,12 +122,13 @@ void DisplayResults() {
         uint32_t input = Fifo_Get(INPUT);
         if (input == RESET_BUTTON) {
             RA8875_fillScreen(BCKGRND_COLOR);
-            OS_InitSemaphore(&LCD_Mutex, 1);
-            OS_InitSemaphore(&newVals.ready, 0);
-            OS_AddThread(&DisplayStartMenu, 2);
+            __disable_irq();
+            DASInit();
+            DisplayInit();
             OS_AddThread(&DisplayCurrentReadings, 2);
-            // OS_AddThread(&DisplayConnected, 3);
-            // OS_AddThread(&InitReadings, 1);
+            OS_AddThread(&DisplayStartMenu, 2);
+            OS_AddThread(&DisplayConnected, 3);
+            OS_AddThread(&InitReadings, 1);
             OS_SetPerioidcSchedule(0);
             OS_Kill();
         }

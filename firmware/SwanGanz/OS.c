@@ -132,12 +132,11 @@ static void OS_Scheduler() {
     SysTick->VAL = 0;                //Reset systick
 
 
-    tcb_t** roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].
-    RoundRobinPt;
+    tcb_t** roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].RoundRobinPt;
 
     if (!roundRobinPt) {
         GetHighestPriority();
-        tcb_t** roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].
+        roundRobinPt = &Scheduler.lists[Scheduler.highestPriority].
         RoundRobinPt;
     }
 
@@ -241,13 +240,13 @@ void OS_bWait(Sema4_t *semaPt){
 void OS_bSignal(Sema4_t *semaPt){
     tcbList_t* blockedList = &semaPt->blockedList;
 
-    StartCritical();
+    long sr = StartCritical();
     semaPt->value = semaPt->value + 1;
     EndCritical(sr);
 
 
     if (blockedList->head) {
-        StartCritical();
+        sr = StartCritical();
         tcb_t* unblockedTcb = blockedList->head;
         if (blockedList->head == blockedList->tail) {
             blockedList->tail = NULL;
@@ -369,13 +368,13 @@ void OS_Sleep(uint32_t sleepTime){
 // input:  none
 // output: none
 void OS_Kill(void){
-    OSDisableInterrupts();;
+    OSDisableInterrupts();
     tcb_t* curr = RunPt;
     PookieTCB.stackPointer = (void**)&PookieTCB.stack[STACK_SIZE - 1];
     RunPt = &PookieTCB;
 
     RemoveRunThreadList(curr, &Scheduler.lists[curr->priority]);
-    curr->stackPointer = (void**)&RunPt->stack[STACK_SIZE - 1];
+    curr->stackPointer = (void**)&curr->stack[STACK_SIZE - 1];
     curr->blocked = NULL;
     curr->period = 0;
     curr->isSleepy = 0;
@@ -439,7 +438,7 @@ void OS_Launch(uint32_t theTimeSlice) {
     isLaunched = 1;
 
     TimerG12_IntArm(0xFFFFFFFF, 0);
-    TimerG8_IntArm(1000, 200, 0);
+    TimerG8_IntArm(1000, 100, 0);
     OSEnableInterrupts(); 
     OS_Suspend();
 }
@@ -596,6 +595,6 @@ static void GetHighestPriority() {
             Scheduler.highestPriority = i;
             break;
         }
-        EndCritical(sr);
     }
+    EndCritical(sr);
 }

@@ -85,7 +85,6 @@ static void IdleThread() {
 }
 
 
-
 int main(void) {
     __disable_irq();
     Clock_Init80MHz(1);

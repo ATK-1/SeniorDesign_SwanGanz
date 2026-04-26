@@ -66,7 +66,7 @@ static int32_t LPF_Calc0(int32_t newdata) {
 
 //**************Low pass Digital filter**************
 int32_t Size1;    // Size-point average, Size=2 to FILTERMAX
-int32_t x1[30];   // one copy of data in MACQ
+int32_t x1[32];   // one copy of data in MACQ
 uint32_t I1;       // index to oldest
 int32_t LPFSum1;  // sum of the last Size samples
 int32_t sigma1;
@@ -137,7 +137,7 @@ void TransferData() {
 
         if (transferKill) {
             transferKill = 0;
-            areaUnderCurve = accumlator / 200;
+            areaUnderCurve = accumlator / 400;
             OS_Kill();
         }
 
@@ -152,16 +152,9 @@ void TransferData() {
         UART_OutU16((uint16_t)pres2); //p2
         UART_OutU16((uint16_t)(temp / 10)); //therm
 
-        if (temp > initialTemp) {
-          int a = 1;
-        }
+      
         int32_t diff = (initialTemp - temp);
-
         accumlator += diff;
-        if (accumlator > 10000) {
-          int a = 12;
-        }
-
     }
 }
 
@@ -178,6 +171,7 @@ void InitReadings() {
         }
     
         if (InitialsKill) {
+            readings = 0;
             InitialsKill = 0;
             initialTemp = LPF_Calc2(TempHG_LUT[data[THERM_HI]]);
             OS_AddThread(&TransferData, 1);

@@ -1659,7 +1659,6 @@ void RA8875_textWrite(const char* buffer, uint16_t len) {
   writeCommand(RA8875_MRWC);
   for (uint16_t i = 0; i < len; i++) {
     writeData(buffer[i]);
-    //if (_textScale > 1) {
     if (_textScale > 0) { 
       Clock_Delay1ms(1);
     }

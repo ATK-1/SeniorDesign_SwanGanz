@@ -135,8 +135,8 @@ static void CoverDpad() {
 static void DisplayInjectate() {
     // Injectate header
     const char* injectateStr = "Injectate";
-    RA8875_textTransparent(RA8875_BLACK);
     RA8875_textMode();
+    RA8875_textTransparent(RA8875_BLACK);
     RA8875_textEnlarge(2);
     RA8875_textSetCursor(HEADER_X, INJECTATE_Y);
     RA8875_textWrite(injectateStr, strlen(injectateStr));
@@ -157,7 +157,7 @@ static void DisplayInjectate() {
 
 
 
-    // Volume 
+    // // Volume 
     RA8875_fillRoundRect(VOLUME_BOX_X, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, INJECTATE_COLOR);
     RA8875_drawRoundRect(VOLUME_BOX_X, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, RA8875_BLACK);
 
@@ -173,7 +173,7 @@ static void DisplayInjectate() {
     RA8875_textSetCursor(volValStrX, BUTTONS_VAL_Y);
     RA8875_textWrite(volumeValStr, strlen(volumeValStr)); 
    
-    // Temperature 
+    // // Temperature 
     uint32_t tempBoxX = VOLUME_BOX_X + ROUND_BOX_W + SPACING;
     RA8875_fillRoundRect(tempBoxX, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, INJECTATE_COLOR);
     RA8875_drawRoundRect(tempBoxX, BUTTON_BOXS_Y, ROUND_BOX_W, ROUND_BOX_H, CORNER_ROUNDNESS, RA8875_BLACK);
@@ -319,9 +319,9 @@ void DisplayCurrentReadings() {
             RA8875_textWrite(pres1Val5DigStr, strlen(pres1Val5DigStr));
         }
         else {
-            RA8875_fillRect(pres1Val5DigStrX, pres1ValStrY, FIVE_DIG_DEC_SIZE + 8, 60, BCKGRND_COLOR);
+            RA8875_fillRect(pres1Val5DigStrX, pres1ValStrY, FIVE_DIG_DEC_SIZE + 10, 60, BCKGRND_COLOR);
             RA8875_textTransparent(RA8875_BLACK);
-            FiveDigUIntToFixedStr(newVals.p1, pres1Val4DigStr);
+            FourDigUIntToFixedStr(newVals.p1, pres1Val4DigStr);
             RA8875_textSetCursor(pres1Val4DigStrX, READING_VAL_Y);
             RA8875_textWrite(pres1Val4DigStr, strlen(pres1Val4DigStr));
         }
@@ -333,9 +333,9 @@ void DisplayCurrentReadings() {
             RA8875_textWrite(pres2Val5DigStr, strlen(pres2Val5DigStr));
         }
         else {
-            RA8875_fillRect(pres2Val5DigStrX, READING_VAL_Y, FIVE_DIG_DEC_SIZE + 8, 60, BCKGRND_COLOR);
+            RA8875_fillRect(pres2Val5DigStrX, READING_VAL_Y, FIVE_DIG_DEC_SIZE + 10, 60, BCKGRND_COLOR);
             RA8875_textTransparent(RA8875_BLACK);
-            FiveDigUIntToFixedStr(newVals.p2, pres2Val4DigStr);
+            FourDigUIntToFixedStr(newVals.p2, pres2Val4DigStr);
             RA8875_textSetCursor(pres2Val4DigStrX, READING_VAL_Y);
             RA8875_textWrite(pres2Val4DigStr, strlen(pres2Val4DigStr));
         }
