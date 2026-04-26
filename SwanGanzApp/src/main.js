@@ -182,4 +182,25 @@ button.addEventListener("click", function() {
         data: rows,
         path: fileName,
     });
+
+    const container = document.querySelector(".file-create-container");
+    container.innerHTML = `<h3>${fileName} created</h3>`;
+});
+
+const resetButton = document.getElementById("reset-button");
+resetButton.addEventListener("click", function() {
+    pressureGraph.data.datasets[0].data = [];
+    pressureGraph.data.datasets[1].data = [];
+    tempGraph.data.datasets[0].data = [];
+    pressureGraph.update();
+    tempGraph.update();
+    index = 0;
+
+    const container = document.querySelector(".file-create-container");
+    container.innerHTML = `
+        <input type="text" class="file-create-button" id="file-name-input" value="data.txt">
+        <button class="file-create-button" id="csv-button">Save as CSV</button>
+        `;
+
+    document.getElementById("csv-button").addEventListener("click", csvButtonHandler);
 });

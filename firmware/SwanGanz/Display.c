@@ -50,10 +50,10 @@ void DisplayResults() {
     RA8875_textSetCursor(resultsHeaderStrX, resultsHeaderStrY);
     RA8875_textWrite(resultsHeaderStr, strlen(resultsHeaderStr));
 
-    const char* flowStr = "Flow";
-    const uint32_t flowStrW = 50;
+    const char* flowStr = "Calculated Flow:";
+    const uint32_t flowStrW = 375;
     const uint32_t flowStrH = 50;
-    const uint32_t flowStrX = 0;
+    const uint32_t flowStrX = (SCREEN_W - flowStrW) >> 1;
     const uint32_t flowStrY = 100;
     RA8875_textSetCursor(flowStrX, flowStrY);
     RA8875_textWrite(flowStr, strlen(flowStr));
@@ -115,8 +115,24 @@ void DisplayResults() {
     RA8875_textSetCursor(x, AOCStrY + 75);
     RA8875_textWrite(AOCValStr, strlen(AOCValStr));
 
-
-    RA8875_fillRoundRect(SCREEN_W - 260, SCREEN_H - 60, 250, 50, 5, RA8875_RED);
+    // Reset button
+    uint32_t resetButtonX = SCREEN_W - 260;
+    uint32_t resetButtonY = SCREEN_H - 60;
+    uint32_t resetButtonW = 250;
+    uint32_t resetButtonH = 50;
+    RA8875_fillRoundRect(resetButtonX, resetButtonY, resetButtonW, resetButtonH, CORNER_ROUNDNESS, 0xf5c2);
+    
+    const char* resetStr = "Reset";
+    uint32_t resetStrW = 115;
+    uint32_t resetStrH = 21;
+    uint32_t resetStrX = resetButtonX + ((resetButtonW - resetStrW) >> 1);
+    uint32_t resetStrY = resetButtonY - 3;
+    RA8875_textSetCursor(resetStrX, resetStrY);
+    RA8875_textTransparent(RA8875_BLACK);
+    RA8875_textWrite(resetStr, strlen(resetStr));
+    //RA8875_drawRect(resetStrX, resetStrY + 11, 115, 32, RA8875_BLACK);
+    
+    
     OS_bSignal(&LCD_Mutex);
     while (1) {
         uint32_t input = Fifo_Get(INPUT);
@@ -133,8 +149,8 @@ void DisplayResults() {
         }
     }
 }
-#define MEASURING_TIME_MS 10000
-#define INJECTATE_TIME_MS 8000
+#define MEASURING_TIME_MS 5000
+#define INJECTATE_TIME_MS 5000
 void DisplayMeasuring() {
     OS_bWait(&LCD_Mutex);
 

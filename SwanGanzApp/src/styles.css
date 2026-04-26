@@ -35,6 +35,12 @@
     width: 90%;
 }
 
+.right-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
 .connection-container {
     display: flex;
     align-items: center;
@@ -52,6 +58,11 @@
     margin: 1em;
 }
 
+#reset-button {
+    font-size: 1.1em;
+    padding: 0.2em 0.6em;
+}
+
 .file-create-button {
     border-radius: 8px;
     border: 1px solid transparent;
@@ -62,6 +73,8 @@
     color: #ffffff;
     background-color: #0f0f0f69; 
     transition: border-color 0.25s;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.25s, background-color 0.25s;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
