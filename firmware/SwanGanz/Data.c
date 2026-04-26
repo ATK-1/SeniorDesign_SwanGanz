@@ -126,6 +126,8 @@ static int32_t LPF_Calc2(int32_t newdata) {
 
 static uint32_t transferKill;
 static uint32_t InitialsKill;
+static uint32_t readings;
+
 
 uint32_t transmissions;
 void TransferData() {
@@ -155,10 +157,15 @@ void TransferData() {
       
         int32_t diff = (initialTemp - temp);
         accumlator += diff;
+
+        readings++;
+        if (readings == 250) {
+          sendNewVals(pres1, pres2, temp / 10);
+          readings = 0;
+        }
     }
 }
 
-uint32_t readings;
 void InitReadings() {
     LPF_Init0(0, 32);
     LPF_Init1(0, 32);
@@ -176,6 +183,7 @@ void InitReadings() {
             initialTemp = LPF_Calc2(TempHG_LUT[data[THERM_HI]]);
             OS_AddThread(&TransferData, 1);
             OS_AddThread(&DisplayMeasuring, 2);
+            OS_AddThread(&DisplayCurrentReadings, 2);
             // OS_SetPerioidcSchedule(1);
             OS_Kill();
         }

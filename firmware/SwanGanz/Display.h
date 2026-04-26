@@ -15,6 +15,7 @@
 
 Sema4_t LCD_Mutex;
 CatheterVals_t newVals;
+Sema4_t CurrReadingsKilled;
 
 void DisplayInit();
 void DisplayTemp();
@@ -23,6 +24,6 @@ void DisplayMeasuring();
 void DisplayCurrentReadings();
 void DisplayConnected();
 void sendNewVals(uint32_t p1, uint32_t p2, uint32_t temp);
-
+void KillCurrentReadings();
 
 #endif

@@ -214,7 +214,9 @@ static void DisplayInjectate() {
 #define FOUR_DIG_DEC_SIZE 162
 #define FIVE_DIG_DEC_SIZE (FOUR_DIG_DEC_SIZE + 20)
 
+
 void DisplayCurrentReadings() {
+    uint32_t header = 0;
     OS_bWait(&LCD_Mutex);
     // Current ADC Readings
     const char* currentReadingsStr = "Current Readings";
@@ -303,14 +305,18 @@ void DisplayCurrentReadings() {
     RA8875_textEnlarge(3);
     RA8875_textSetCursor(pres2Val5DigStrX, READING_VAL_Y);
     RA8875_textWrite(pres2Val5DigStr, strlen(pres2Val5DigStr));
-
+    header = 1;
     //RA8875_drawRoundRect(pres2BoxX, READING_BOXES_Y, ROUND_BOX_W, ROUND_BOX_H,5, RA8875_BLACK);
     
     OS_bSignal(&LCD_Mutex);
     while (1) {
+        if (!header) {
+            uint32_t a = 2;
+        }
         OS_bWait(&newVals.ready);
         if (killCurrentReadings) {
             killCurrentReadings = 0;
+            OS_bSignal(&CurrReadingsKilled);
             OS_Kill();
         }
 
@@ -353,6 +359,11 @@ void DisplayCurrentReadings() {
     
         OS_bSignal(&LCD_Mutex);
     }
+}
+
+void KillCurrentReadings() {
+    killCurrentReadings = 1;
+    OS_bSignal(&CurrReadingsKilled);
 }
 
 void sendNewVals(uint32_t p1, uint32_t p2, uint32_t temp) {
@@ -498,17 +509,19 @@ void DisplayStartMenu() {
             DisplayNavigation(input);
         }
         else if (input == START_BUTTON) {
+            RA8875_fillScreen(BCKGRND_COLOR);
             OS_SetPerioidcSchedule(1);
-            killCurrentReadings = 1;
             killConnected = 1;
+            killCurrentReadings = 1;
             OS_bSignal(&newVals.ready);
+            OS_bSignal(&LCD_Mutex);
+            OS_bWait(&CurrReadingsKilled);
 
             // Stop initial readings data transfer to
             startTransfer(InjectTemp, InjectVol);
             //signalAllDataFifos();
 
             //start uart data transfer
-            OS_bSignal(&LCD_Mutex);
             OS_Kill();
         }
         else if (input == VOLUME_BUTTON) { 

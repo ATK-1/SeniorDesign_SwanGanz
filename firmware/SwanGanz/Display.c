@@ -27,12 +27,12 @@ void DisplayInit() {
     
 
     OS_InitSemaphore(&LCD_Mutex, 1);
+    OS_InitSemaphore(&CurrReadingsKilled, 0);
     OS_InitSemaphore(&newVals.ready, 0);
 }
 
 void DisplayResults() {
     OS_bWait(&LCD_Mutex);
-    RA8875_fillScreen(BCKGRND_COLOR);
 
     uint32_t headerRectX = SPACING;
     uint32_t headerRectY = SPACING;
@@ -133,11 +133,10 @@ void DisplayResults() {
         }
     }
 }
-#define MEASURING_TIME_MS 3000
-#define INJECTATE_TIME_MS 3000
+#define MEASURING_TIME_MS 10000
+#define INJECTATE_TIME_MS 8000
 void DisplayMeasuring() {
     OS_bWait(&LCD_Mutex);
-    RA8875_fillScreen(BCKGRND_COLOR);
 
     uint32_t headerRectX = SPACING;
     uint32_t headerRectY = SPACING;
@@ -157,7 +156,7 @@ void DisplayMeasuring() {
 
     const char* progressStr = "Progress...";
     const uint32_t progressX = SPACING * 5;
-    const uint32_t progressStrY = headerRectY + headerRectH + (SPACING * 15);
+    const uint32_t progressStrY = headerRectY + headerRectH + (SPACING * 4);
     const uint32_t progressStrH = 31;
     RA8875_textEnlarge(1);
     RA8875_textSetCursor(progressX, progressStrY);
@@ -170,14 +169,14 @@ void DisplayMeasuring() {
     
     const char* injectateStr = "Injectate";
     const uint32_t injectateStrX = (SCREEN_W - (progressBarW >> 1)) >> 1;
-    const uint32_t injecetateStrY = progressBarY + progressBarH + (SPACING * 15);
+    const uint32_t injecetateStrY = progressBarY + progressBarH + (SPACING * 4);
     const uint32_t injecetateStrH = 31;
     RA8875_textSetCursor(injectateStrX, injecetateStrY);
     RA8875_textTransparent(RA8875_BLACK);
     RA8875_textWrite(injectateStr, strlen(injectateStr));
 
     const uint32_t InjBarW = progressBarW >> 1;
-    const uint32_t InjBarH = progressBarH << 1;
+    const uint32_t InjBarH = progressBarH;
     const uint32_t InjBarX = injectateStrX;
     const uint32_t InjBarY = injecetateStrY + injecetateStrH + SPACING;
     RA8875_fillRect(InjBarX, InjBarY, InjBarW, InjBarH, 0xbdf7);
@@ -219,7 +218,11 @@ void DisplayMeasuring() {
             OS_Sleep(50);
         }
         else {
+            OS_bWait(&LCD_Mutex);
+            RA8875_fillScreen(BCKGRND_COLOR);
+            OS_bSignal(&LCD_Mutex);
             killTransfer();
+            KillCurrentReadings();
             OS_AddThread(&DisplayResults, 2);
             signalAllDataFifos();
             OS_Kill();
