@@ -150,10 +150,9 @@ const tempGraph = new Chart(tempCanvas, {
 
 let index = 0;
 function updateGraph(p1Vals, p2Vals, tempVals) {
-    const p1Points = p1Vals.map((y, i) => ({ x: index + i, y }));
-    const p2Points = p2Vals.map((y, i) => ({ x: index + i, y }));
-    const tempPoints = tempVals.map((y, i) => ({ x: index + i, y }));
-
+    const p1Points = p1Vals.map((y, i) => ({ x: index + i, y: y / 100 }));
+    const p2Points = p2Vals.map((y, i) => ({ x: index + i, y: y / 100 }));
+    const tempPoints = tempVals.map((y, i) => ({ x: index + i, y: y / 100 }));
     index += p1Vals.length;
 
     pressureGraph.data.datasets[0].data.push(...p1Points);
