@@ -16,6 +16,9 @@
 #define CURSOR_Y (BUTTONS_VAL_Y + 65)
 #define CURSOR_H 10
 
+static int killCurrentReadings;
+static int killConnected;
+
 void DisplayConnected() {
     const char* connectedStr = "Connected";
     const char* unconnectedStr = "Not Connected";
@@ -55,6 +58,10 @@ void DisplayConnected() {
         }
         lastCheckedStatus = connectionStatus;
         OS_Sleep(600);
+        if (killConnected) {
+            killConnected = 0;
+            OS_Kill();
+        }
     }
 }
 
@@ -206,8 +213,6 @@ static void DisplayInjectate() {
 
 #define FOUR_DIG_DEC_SIZE 162
 #define FIVE_DIG_DEC_SIZE (FOUR_DIG_DEC_SIZE + 20)
-
-static int killCurrentReadings;
 
 void DisplayCurrentReadings() {
     OS_bWait(&LCD_Mutex);
@@ -494,6 +499,10 @@ void DisplayStartMenu() {
         }
         else if (input == START_BUTTON) {
             OS_SetPerioidcSchedule(1);
+            killCurrentReadings = 1;
+            killConnected = 1;
+            OS_bSignal(&newVals.ready);
+
             // Stop initial readings data transfer to
             startTransfer(InjectTemp, InjectVol);
             //signalAllDataFifos();

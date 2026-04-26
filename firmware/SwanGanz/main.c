@@ -101,7 +101,7 @@ int main(void) {
     OS_AddThread(&DisplayStartMenu, 2);
     OS_AddThread(&DisplayCurrentReadings, 2);
     OS_AddThread(&InitReadings, 1);
-    OS_AddThread(&DisplayConnected, 3);
+    OS_AddThread(&DisplayConnected, 2);
     OS_AddThread(&IdleThread, 4);
     
     
