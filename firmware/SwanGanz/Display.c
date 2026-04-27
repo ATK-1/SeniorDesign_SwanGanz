@@ -58,7 +58,7 @@ void DisplayResults() {
     RA8875_textSetCursor(flowStrX, flowStrY);
     RA8875_textWrite(flowStr, strlen(flowStr));
     
-    int32_t flowVal = 1000;
+    int32_t flowVal = getFlowRate();
     uint32_t negative1 = !(flowVal & 0xFFFFFFFF00000000) && (flowVal & 0x80000000);
     uint32_t negative2 = (flowVal & 0x8000000000000000) >> 32;
     uint32_t flowValStrX = flowStrX + flowStrW + (SPACING * 2);
@@ -99,7 +99,7 @@ void DisplayResults() {
     RA8875_textWrite(AOCStr, strlen(AOCStr));
     //RA8875_drawRect(AOCStrX, AOCStrY, 500, 50, RA8875_BLACK);
 
-    uint32_t AOCVal = 1000;
+    uint32_t AOCVal = getAOC();
     uint32_t AOCValStrX = AOCStrX + AOCStrW - 80;
     if (AOCVal >= 1000) {
         char AOCValStr[5] = "0000";
@@ -166,7 +166,7 @@ void DisplayResults() {
         }
     }
 }
-#define MEASURING_TIME_MS 10000
+#define MEASURING_TIME_MS 40000
 #define INJECTATE_TIME_MS 8000
 void DisplayMeasuring() {
     OS_bWait(&LCD_Mutex);
