@@ -8,23 +8,24 @@
 #include "LUT.h"
 
 #define NUM_CHANNELS 6
-#define K 14
+#define K 1261
+#define K_RS 6
 
 int32_t injectateVol;
 int32_t injectateTemp;
 int32_t initialTemp;
 int32_t initialVol;
-int64_t accumlator;
+int64_t accumulator;
 int64_t areaUnderCurve; 
 
 uint64_t getFlowRate() {
-  int64_t numerator = injectateVol * (initialTemp - injectateTemp);
+  int64_t numerator = (K * injectateVol * (initialTemp - injectateTemp)) >> K_RS; // Units : ml*C*(10^-3)*(1/60)
 
   if (areaUnderCurve == 0) {
     return 0;
   }
 
-  return (int64_t)(numerator / areaUnderCurve);
+  return (int64_t)(numerator / areaUnderCurve); // Units : ml*C*(10^-3)*(1/60) / C*s(10^-3) = ml / min
 }
 
 uint32_t getInitialTemp() {
@@ -32,7 +33,7 @@ uint32_t getInitialTemp() {
 }
 
 uint32_t getAOC() {
-  return areaUnderCurve;
+  return areaUnderCurve;  // Units : 
 }
 //**************Low pass Digital filter**************
 int32_t Size0;    // Size-point average, Size=2 to FILTERMAX
@@ -139,7 +140,7 @@ void TransferData() {
 
         if (transferKill) {
             transferKill = 0;
-            areaUnderCurve = accumlator / 400;
+            areaUnderCurve = accumulator / 400;  // Units : C*s*(10^-3)
             OS_Kill();
         }
 
@@ -156,7 +157,7 @@ void TransferData() {
 
       
         int32_t diff = (initialTemp - temp);
-        accumlator += diff;
+        accumulator += diff; // Units C*(10^-3)
 
         readings++;
         if (readings == 250) {

@@ -5,8 +5,6 @@
  *
  * @author   Ashton Knecht, Nathan DeLaRosa
  *
- * @section intro_sec Introduction
- *
  *
  *
  * @section author Author
@@ -21,8 +19,6 @@
 #include <stdlib.h>
 #include <ti/devices/msp/msp.h>
 #include "../inc/LaunchPad.h"
-//#include "file.h"
-//#include "../inc/SPI.h"
 #include "../inc/Clock.h"
 #include "TSC2046IPWR.h"
 
@@ -76,11 +72,14 @@ static void TSC2046_SPI_Reset();
 
 void TSC2046IPWR_Init() {
     TSC2046_SpiInit();
+    // PENIRQ Pin
     IOMUX->SECCFG.PINCM[PB5INDEX]  = 0x00040081;
+    // BUSY Pin (Not used but good to have)
     IOMUX->SECCFG.PINCM[PB4INDEX]  = 0x00040081;
 }
 
 
+// Derived from Dr. Valvano's SPI.c
 static void TSC2046_SpiInit() {
     uint32_t busfreq =  Clock_Freq();
 
@@ -172,9 +171,9 @@ static void TSC2046_CS_Init() {
 
 
 //---------TSC2046_OutByte------------
-// Output 8-bit data to SPI port
-// Input: data is an 8-bit data to be transferred
-// OuTSC2046_OutByte
+// Output: None
+// Input: 8-bit data to be transmitted to TSC2046
+// Transmits a SPI byte to TSC2046 without a return
 void TSC2046IPWR_OutByte(uint8_t data) {
     uint8_t response;
     // TSC2046_CS_LOW();
@@ -187,7 +186,10 @@ void TSC2046IPWR_OutByte(uint8_t data) {
 }
 
 
-
+//---------TSC2046_OutByte------------
+// Output: 8-bit read from TSC2046
+// Input: 8-bit data to be transmitted to TSC2046
+// Transmits a SPI byte to TSC2046 with a read return byte
 uint8_t TSC2046IPWR_OutReadByte(uint8_t data) {
     // TSC2046_CS_LOW();
     while((SPI0->STAT&0x10) == 0x10){}; // spin if SPI busy
@@ -199,7 +201,10 @@ uint8_t TSC2046IPWR_OutReadByte(uint8_t data) {
 }
 
 
-
+//---------TSC2046IPWR_ReadRawPosition------------
+// Output: TSC2046Pos_t - Raw 12-bit ADC values for both x and y directions
+// Input: None
+// Reads X and Y position returning the raw 12-bit adc value of both through the TSC2046Pos_t struct
 TSC2046Pos_t TSC2046IPWR_ReadRawPosition() {
     TSC2046Pos_t result;
     result.xpos = 0;
@@ -219,14 +224,18 @@ TSC2046Pos_t TSC2046IPWR_ReadRawPosition() {
 
 
 // ---------- TSC2046IWR_PollTouch ----------
-// Checks for a screen touch -- assumes screen is in PD = 00 mode
-// Outputs - 1 => Screen Touch, 0 => No Screen Touch
+// Outputs: 1 => Screen Touch, 0 => No Screen Touch
+// Inputs: None
+// Checks for a screen touch -- assumes screen is in PD = 00 mode (Polling on PENIRQ)
 uint32_t TSC2046IPWR_PollTouch() {
     // Check PENIRQ pin (PB5) -> Negative Logic
     return !(GPIOB->DIN31_0 & 0x0020);
 }
 
-
+// ---------- TSC2046IWR_GetX ----------
+// Outputs: ADC value for screen touch in the X direction
+// Inputs: None
+// Transmits the read x byte and 2 null bytes to recieve x position of a touch
 uint32_t TSC2046IPWR_GetX() {
     uint16_t x = 0;
     TSC2046_CS_LOW();
@@ -239,12 +248,17 @@ uint32_t TSC2046IPWR_GetX() {
     return x;
 }
 
+
+// ---------- TSC2046IWR_GetY ----------
+// Outputs: ADC value for screen touch in the X direction
+// Inputs: None
+// Transmits the read y byte and 2 null bytes to recieve y position of a touch
 uint32_t TSC2046IPWR_GetY() {
     uint32_t y = 0;
     TSC2046_CS_LOW();
-    // Send Control Byte to specify x read
-    TSC2046IPWR_OutByte(TSC2046_READ_Y);                                        // Send X control byte
-    y = ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) << 5;      // Read high 7 X bits
+    // Send Control Byte to specify y read
+    TSC2046IPWR_OutByte(TSC2046_READ_Y);                             // Send X control byte
+    y = ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) << 5;     // Read high 7 X bits
     y |= ((uint32_t)TSC2046IPWR_OutReadByte(TSC2046_BLANK)) >> 3;    // Read low 5  X bits 
     TSC2046_CS_HIGH();
     return y;

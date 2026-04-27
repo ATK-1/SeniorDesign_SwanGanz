@@ -82,7 +82,7 @@ uint32_t DPadEnabled = 1;
 
 
 
-uint32_t missClick;
+
 uint32_t ButtonSelect(TSC2046Pos_t pos) {
     uint32_t x = pos.xpos;
 
@@ -91,24 +91,27 @@ uint32_t ButtonSelect(TSC2046Pos_t pos) {
         return XRegion0(pos.ypos);
     }
     // Stat and Temp X
-    else if ((x > X_REGION_1_MIN) && (x < X_REGION_1_MAX)) {
+    if ((x > X_REGION_1_MIN) && (x < X_REGION_1_MAX)) {
         return XRegion1(pos.ypos);
-    }
-    // Left Arrow X
-    else if ((x > X_REGION_2_MIN) && (x < X_REGION_2_MAX) && DPadEnabled) {
-        return XRegion2(pos.ypos);
-    }
-    // Up and Down Arrow X
-    else if ((x > X_REGION_3_MIN) && (x < X_REGION_3_MAX) && DPadEnabled) {
-        return XRegion3(pos.ypos);
-    }
-    // Right Arrow X
-    else if ((x > X_REGION_4_MIN) && (x < X_REGION_4_MAX) && DPadEnabled) {
-        return XRegion4(pos.ypos);
     }
     // Reset X
     if ((x > X_REGION_5_MIN) && (x < X_REGION_5_MAX) && DPadEnabled) {
-        return XRegion5(pos.ypos);
+        uint32_t xRegion5 =  XRegion5(pos.ypos);
+        if (xRegion5 == RESET_BUTTON) {
+            return xRegion5;
+        }
+    }
+    // Left Arrow X
+    if ((x > X_REGION_2_MIN) && (x < X_REGION_2_MAX) && DPadEnabled) {
+        return XRegion2(pos.ypos);
+    }
+    // Up and Down Arrow X
+    if ((x > X_REGION_3_MIN) && (x < X_REGION_3_MAX) && DPadEnabled) {
+        return XRegion3(pos.ypos);
+    }
+    // Right Arrow X
+    if ((x > X_REGION_4_MIN) && (x < X_REGION_4_MAX) && DPadEnabled) {
+        return XRegion4(pos.ypos);
     }
     return NULL_INPUT;
 
@@ -116,14 +119,6 @@ uint32_t ButtonSelect(TSC2046Pos_t pos) {
 }
 
 
-
-uint32_t VolumePressed;
-uint32_t TempPressed;
-uint32_t StartPressed;
-uint32_t LeftPressed;
-uint32_t UpPressed;
-uint32_t DownPressed;
-uint32_t RightPressed;
 
 static uint32_t XRegion0(uint32_t y) {
     // Volume Button
