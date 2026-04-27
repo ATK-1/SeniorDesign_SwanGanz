@@ -11,15 +11,23 @@
 #define K 1261
 #define K_RS 6
 
+uint32_t initTempArr[128];
 int32_t injectateVol;
 int32_t injectateTemp;
 int32_t initialTemp;
 int32_t initialVol;
-int64_t accumulator;
-int64_t areaUnderCurve; 
+int32_t accumulator;
+int32_t areaUnderCurve; 
 
 uint64_t getFlowRate() {
-  int64_t numerator = (K * injectateVol * (initialTemp - injectateTemp)) >> K_RS; // Units : ml*C*(10^-3)*(1/60)
+  // Initial temp
+  for (int i = 0; i < 128; i++) {
+    initialTemp += initTempArr[i];
+  }
+  initialTemp = initialTemp >> 7;
+
+  int32_t numerator = (K * injectateVol * (initialTemp - injectateTemp)) >> K_RS; // Units : ml*C*(10^-3)*(1/60)
+  areaUnderCurve = accumulator / 400;  // Units : C*s*(10^-3)
 
   if (areaUnderCurve == 0) {
     return 0;
@@ -128,10 +136,10 @@ static int32_t LPF_Calc2(int32_t newdata) {
 static uint32_t transferKill;
 static uint32_t InitialsKill;
 static uint32_t readings;
+static uint32_t numInitVals;
 
-
-uint32_t transmissions;
 void TransferData() {
+    accumulator = 0;
     while (1) {
         uint32_t data[NUM_CHANNELS];
         for (int i = 0; i < NUM_CHANNELS; i++) {
@@ -139,21 +147,21 @@ void TransferData() {
         }
 
         if (transferKill) {
+            numInitVals = 0;
             transferKill = 0;
-            areaUnderCurve = accumulator / 400;  // Units : C*s*(10^-3)
             OS_Kill();
         }
 
         uint32_t pres1 = PresLG_Lut[data[PRESSURE1_LOW]];
         uint32_t pres2 = PresLG_Lut[data[PRESSURE1_HI]];
         uint32_t temp = LPF_Calc2(TempHG_LUT[data[THERM_HI]]);
-
+  
   
 
         UART_OutChar(0xFA);
         UART_OutU16((uint16_t)pres1); //p1
         UART_OutU16((uint16_t)pres2); //p2
-        UART_OutU16((uint16_t)(temp / 10)); //therm
+        UART_OutU16((uint16_t)(temp)); //therm
 
       
         int32_t diff = (initialTemp - temp);
@@ -161,8 +169,12 @@ void TransferData() {
 
         readings++;
         if (readings == 250) {
-          sendNewVals(pres1, pres2, temp / 10);
+          sendNewVals(pres1, pres2, temp);
           readings = 0;
+        }
+        if (numInitVals < 128) {
+          initTempArr[numInitVals] = temp;
+          numInitVals++;
         }
     }
 }
@@ -196,7 +208,7 @@ void InitReadings() {
 
         readings++;
         if (readings == 250) {
-          sendNewVals(pres1, pres2, temp / 10);
+          sendNewVals(pres1, pres2, temp);
           readings = 0;
         }
     }

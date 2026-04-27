@@ -181,7 +181,7 @@ fn drain_queues(queues: State<'_, SensorQueues>) -> (Vec<u16>, Vec<u16>, Vec<u16
 }
 
 #[tauri::command]
-fn export_csv(data: Vec<(u16, u16, u16)>, path: String) -> Result<(), String> {
+fn export_csv(data: Vec<(f64, f64, f64)>, path: String) -> Result<(), String> {
     let file = OpenOptions::new()
         .write(true)
         .create(true)

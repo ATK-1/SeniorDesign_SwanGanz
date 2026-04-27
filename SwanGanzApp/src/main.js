@@ -83,6 +83,22 @@ await listen("data-done", (event) => {
         clearInterval(dataInterval);
         dataInterval = null;
     }
+    if (connected) {
+        dataInterval = setInterval(async () => {
+            if (connected && !gettingData) {
+                gettingData = true;
+                try {
+                    await invoke("get_data");
+                }
+                catch (e) {
+                    console.error("Error getting data:", e);
+                }
+                finally {
+                    gettingData = false;
+                }
+            }
+        }, 200);
+    }
 });
 
 
@@ -162,8 +178,7 @@ function updateGraph(p1Vals, p2Vals, tempVals) {
     tempGraph.update();
 }
 
-const button = document.getElementById("csv-button");
-button.addEventListener("click", function() {
+function csvButtonHandler() {
     console.log("Button clicked");
     const p1Data = pressureGraph.data.datasets[0].data;
     const p2Data = pressureGraph.data.datasets[1].data;
@@ -184,7 +199,10 @@ button.addEventListener("click", function() {
 
     const container = document.querySelector(".file-create-container");
     container.innerHTML = `<h3>${fileName} created</h3>`;
-});
+}
+
+const button = document.getElementById("csv-button");
+button.addEventListener("click", csvButtonHandler);
 
 const resetButton = document.getElementById("reset-button");
 resetButton.addEventListener("click", function() {

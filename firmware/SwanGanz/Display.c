@@ -149,8 +149,8 @@ void DisplayResults() {
         }
     }
 }
-#define MEASURING_TIME_MS 5000
-#define INJECTATE_TIME_MS 5000
+#define MEASURING_TIME_MS 40000
+#define INJECTATE_TIME_MS 8000
 void DisplayMeasuring() {
     OS_bWait(&LCD_Mutex);
 
