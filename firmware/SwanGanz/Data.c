@@ -19,7 +19,7 @@ int32_t initialVol;
 int32_t accumulator;
 int32_t areaUnderCurve; 
 
-uint64_t getFlowRate() {
+int32_t getFlowRate() {
   // Initial temp
   for (int i = 0; i < 128; i++) {
     initialTemp += initTempArr[i];
@@ -33,14 +33,14 @@ uint64_t getFlowRate() {
     return 0;
   }
 
-  return (int64_t)(numerator / areaUnderCurve); // Units : ml*C*(10^-3)*(1/60) / C*s(10^-3) = ml / min
+  return (numerator / areaUnderCurve); // Units : ml*C*(10^-3)*(1/60) / C*s(10^-3) = ml / min
 }
 
 uint32_t getInitialTemp() {
   return initialTemp;
 }
 
-uint32_t getAOC() {
+int32_t getAOC() {
   return areaUnderCurve;  // Units : 
 }
 //**************Low pass Digital filter**************

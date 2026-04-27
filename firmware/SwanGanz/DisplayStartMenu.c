@@ -216,7 +216,6 @@ static void DisplayInjectate() {
 
 
 void DisplayCurrentReadings() {
-    uint32_t header = 0;
     OS_bWait(&LCD_Mutex);
     // Current ADC Readings
     const char* currentReadingsStr = "Current Readings";
@@ -305,14 +304,10 @@ void DisplayCurrentReadings() {
     RA8875_textEnlarge(3);
     RA8875_textSetCursor(pres2Val5DigStrX, READING_VAL_Y);
     RA8875_textWrite(pres2Val5DigStr, strlen(pres2Val5DigStr));
-    header = 1;
     //RA8875_drawRoundRect(pres2BoxX, READING_BOXES_Y, ROUND_BOX_W, ROUND_BOX_H,5, RA8875_BLACK);
     
     OS_bSignal(&LCD_Mutex);
     while (1) {
-        if (!header) {
-            uint32_t a = 2;
-        }
         OS_bWait(&newVals.ready);
         if (killCurrentReadings) {
             killCurrentReadings = 0;
@@ -325,34 +320,34 @@ void DisplayCurrentReadings() {
 
         if (newVals.p1 > 9999) {
             RA8875_textColor(RA8875_BLACK, BCKGRND_COLOR);
-            FiveDigUIntToFixedStr(newVals.p1, pres1Val5DigStr);
+            FiveDigDecUIntToFixedStr(newVals.p1, pres1Val5DigStr);
             RA8875_textSetCursor(pres1Val5DigStrX, READING_VAL_Y);
             RA8875_textWrite(pres1Val5DigStr, strlen(pres1Val5DigStr));
         }
         else {
             RA8875_fillRect(pres1Val5DigStrX, pres1ValStrY, FIVE_DIG_DEC_SIZE + 10, 60, BCKGRND_COLOR);
             RA8875_textTransparent(RA8875_BLACK);
-            FourDigUIntToFixedStr(newVals.p1, pres1Val4DigStr);
+            FourDigDecUIntToFixedStr(newVals.p1, pres1Val4DigStr);
             RA8875_textSetCursor(pres1Val4DigStrX, READING_VAL_Y);
             RA8875_textWrite(pres1Val4DigStr, strlen(pres1Val4DigStr));
         }
         
         if (newVals.p2 > 9999) {
             RA8875_textColor(RA8875_BLACK, BCKGRND_COLOR);
-            FiveDigUIntToFixedStr(newVals.p2, pres2Val5DigStr);
+            FiveDigDecUIntToFixedStr(newVals.p2, pres2Val5DigStr);
             RA8875_textSetCursor(pres2Val5DigStrX, READING_VAL_Y);
             RA8875_textWrite(pres2Val5DigStr, strlen(pres2Val5DigStr));
         }
         else {
             RA8875_fillRect(pres2Val5DigStrX, READING_VAL_Y, FIVE_DIG_DEC_SIZE + 10, 60, BCKGRND_COLOR);
             RA8875_textTransparent(RA8875_BLACK);
-            FourDigUIntToFixedStr(newVals.p2, pres2Val4DigStr);
+            FourDigDecUIntToFixedStr(newVals.p2, pres2Val4DigStr);
             RA8875_textSetCursor(pres2Val4DigStrX, READING_VAL_Y);
             RA8875_textWrite(pres2Val4DigStr, strlen(pres2Val4DigStr));
         }
 
         RA8875_textColor(RA8875_BLACK, BCKGRND_COLOR);
-        FourDigUIntToFixedStr(newVals.temp, tempValStr);
+        FourDigDecUIntToFixedStr(newVals.temp, tempValStr);
         RA8875_textSetCursor(tempValStrx, READING_VAL_Y);
         RA8875_textWrite(tempValStr, strlen(tempValStr));
 
@@ -363,7 +358,8 @@ void DisplayCurrentReadings() {
 
 void KillCurrentReadings() {
     killCurrentReadings = 1;
-    OS_bSignal(&CurrReadingsKilled);
+    OS_bSignal(&newVals.ready);
+    OS_bWait(&CurrReadingsKilled);
 }
 
 void sendNewVals(uint32_t p1, uint32_t p2, uint32_t temp) {
@@ -512,10 +508,8 @@ void DisplayStartMenu() {
             RA8875_fillScreen(BCKGRND_COLOR);
             OS_SetPerioidcSchedule(1);
             killConnected = 1;
-            killCurrentReadings = 1;
-            OS_bSignal(&newVals.ready);
+            KillCurrentReadings();
             OS_bSignal(&LCD_Mutex);
-            OS_bWait(&CurrReadingsKilled);
 
             // Stop initial readings data transfer to
             startTransfer(InjectTemp, InjectVol);

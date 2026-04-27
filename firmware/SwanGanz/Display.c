@@ -53,67 +53,84 @@ void DisplayResults() {
     const char* flowStr = "Calculated Flow:";
     const uint32_t flowStrW = 375;
     const uint32_t flowStrH = 50;
-    const uint32_t flowStrX = (SCREEN_W - flowStrW) >> 1;
-    const uint32_t flowStrY = 100;
+    const uint32_t flowStrX = (SCREEN_W - (flowStrW + 240)) >> 1;
+    const uint32_t flowStrY = 175;
     RA8875_textSetCursor(flowStrX, flowStrY);
     RA8875_textWrite(flowStr, strlen(flowStr));
     
-    char flowValStr[7] = "000000";
-    int64_t flowVal = getFlowRate();
+    int32_t flowVal = 1000;
     uint32_t negative1 = !(flowVal & 0xFFFFFFFF00000000) && (flowVal & 0x80000000);
     uint32_t negative2 = (flowVal & 0x8000000000000000) >> 32;
-    uint32_t x = flowStrX;
+    uint32_t flowValStrX = flowStrX + flowStrW + (SPACING * 2);
     if (negative1 || negative2) {
         RA8875_textSetCursor(flowStrX, flowStrY + 50);
         RA8875_textWrite("-", 1);
-        x += 50;
+        flowValStrX += 50;
         if (negative1) {
             flowVal |= 0xFFFFFFFF00000000;
         }
         flowVal = ~flowVal + 1;
     }
-    int64ToString(flowVal, flowValStr);
-    RA8875_textSetCursor(x, flowStrY + 50);
-    RA8875_textWrite(flowValStr, strlen(flowValStr));
+    if (flowVal >= 1000) {
+        char flowValStr[5] = "0000";
+        FourDigUIntToFixedStr(flowVal, flowValStr);
+        RA8875_textSetCursor(flowValStrX, flowStrY);
+        RA8875_textWrite(flowValStr, strlen(flowValStr));
+        //RA8875_drawRect(flowStrX, flowStrY, 476, 50, RA8875_BLACK);
+    }
+    else {
+        char flowValStr[4] = "000";
+        ThreeDigUIntToFixedStr(flowVal, flowValStr);
+        RA8875_textSetCursor(flowValStrX, flowStrY);
+        RA8875_textWrite(flowValStr, strlen(flowValStr));
+    }
+    const char* unitsStr = "mL/Min";
+    RA8875_textSetCursor(flowValStrX + 120, flowStrY);
+    RA8875_textWrite(unitsStr, strlen(unitsStr));
 
     
 
-    const char* initTempStr = "Initial temp of water";
-    const uint32_t initTempX = flowStrX;
-    const uint32_t initTempY = flowStrY + 100;
-    RA8875_textSetCursor(initTempX, initTempY);
-    RA8875_textWrite(initTempStr, strlen(initTempStr));
 
-    char initTemp[7] = "------";
-    FiveDigUIntToFixedStr(getInitialTemp(), initTemp);
-    initTemp[3] = initTemp[2];
-    initTemp[2] = '.';
-    RA8875_textSetCursor(initTempX, initTempY + 50);
-    RA8875_textWrite(initTemp, strlen(initTemp));
-
-    const char* AOCStr = "Area under of curve:";
-    const uint32_t AOCStrX = flowStrX;
-    const uint32_t AOCStrY = flowStrY + 200;
+    const char* AOCStr = "Area under the curve:";
+    const uint32_t AOCStrW = 600;
+    const uint32_t AOCStrX = (SCREEN_W - (AOCStrW + 20)) >> 1;;
+    const uint32_t AOCStrY = flowStrY + 100;
     RA8875_textSetCursor(AOCStrX, AOCStrY);
     RA8875_textWrite(AOCStr, strlen(AOCStr));
+    //RA8875_drawRect(AOCStrX, AOCStrY, 500, 50, RA8875_BLACK);
 
-    char AOCValStr[7] = "000000";
-    int64_t AOCVal = getAOC();
-    negative1 = !(AOCVal & 0xFFFFFFFF00000000) && (AOCVal & 0x80000000);
-    negative2 = (AOCVal & 0x8000000000000000) >> 32;
-    x = AOCStrX;
-    if (negative1 || negative2) {
-        RA8875_textSetCursor(x, AOCStrY + 75);
-        RA8875_textWrite("-", 1);
-        x += 50;
-        if (negative1) {
-            AOCVal |= 0xFFFFFFFF00000000;
-        }
-        AOCVal = ~AOCVal + 1;
+    uint32_t AOCVal = 1000;
+    uint32_t AOCValStrX = AOCStrX + AOCStrW - 80;
+    if (AOCVal >= 1000) {
+        char AOCValStr[5] = "0000";
+        FourDigUIntToFixedStr(AOCVal, AOCValStr);
+        RA8875_textSetCursor(AOCValStrX, AOCStrY);
+        RA8875_textWrite(AOCValStr, strlen(AOCValStr));
+        //RA8875_drawRect(flowStrX, flowStrY, 476, 50, RA8875_BLACK);
     }
-    int64ToString(AOCVal, AOCValStr);
-    RA8875_textSetCursor(x, AOCStrY + 75);
-    RA8875_textWrite(AOCValStr, strlen(AOCValStr));
+    else {
+        char AOCValStr[4] = "000";
+        ThreeDigUIntToFixedStr(AOCVal, AOCValStr);
+        RA8875_textSetCursor(AOCValStrX, AOCStrY);
+        RA8875_textWrite(AOCValStr, strlen(AOCValStr));
+    }
+    // char AOCValStr[7] = "000000";
+    // int64_t AOCVal = getAOC();
+    // negative1 = !(AOCVal & 0xFFFFFFFF00000000) && (AOCVal & 0x80000000);
+    // negative2 = (AOCVal & 0x8000000000000000) >> 32;
+    // int32_t AOCValStrX = AOCStrX;
+    // if (negative1 || negative2) {
+    //     RA8875_textSetCursor(x, AOCStrY + 75);
+    //     RA8875_textWrite("-", 1);
+    //     x += 50;
+    //     if (negative1) {
+    //         AOCVal |= 0xFFFFFFFF00000000;
+    //     }
+    //     AOCVal = ~AOCVal + 1;
+    // }
+    // int64ToString(AOCVal, AOCValStr);
+    // RA8875_textSetCursor(x, AOCStrY + 75);
+    // RA8875_textWrite(AOCValStr, strlen(AOCValStr));
 
     // Reset button
     uint32_t resetButtonX = SCREEN_W - 260;
@@ -149,7 +166,7 @@ void DisplayResults() {
         }
     }
 }
-#define MEASURING_TIME_MS 40000
+#define MEASURING_TIME_MS 10000
 #define INJECTATE_TIME_MS 8000
 void DisplayMeasuring() {
     OS_bWait(&LCD_Mutex);
