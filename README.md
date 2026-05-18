@@ -8,11 +8,11 @@ This project aims to create a custom, low-cost interface for a Swan-Ganz heart c
 
 The project is split into three sections: the interface hardware, MSPM0 firmware, and the desktop application software. Details about each of these sections can be found in their distinct README files.
 
-[Hardware README](https://github.com/ATK-1/SeniorDesign_SwanGanz/blob/main/hardware/README.md)
+[Hardware README(In Progresss)](https://github.com/ATK-1/SeniorDesign_SwanGanz/blob/main/hardware/README.md)
 
-[Firmware README](https://github.com/ATK-1/SeniorDesign_SwanGanz/blob/main/firmware/README.md)
+[Firmware README(Requires Development)](https://github.com/ATK-1/SeniorDesign_SwanGanz/blob/main/firmware/README.md)
 
-[Software README](https://github.com/ATK-1/SeniorDesign_SwanGanz/blob/main/SwanGanzApp/README.md)
+[Software README(Requires Development)](https://github.com/ATK-1/SeniorDesign_SwanGanz/blob/main/SwanGanzApp/README.md)
 
 ### Testing and Verification
 *todo*
