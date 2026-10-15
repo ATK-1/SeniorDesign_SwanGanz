@@ -45,7 +45,6 @@ void DasAllSamples() {
     GPIOB->DOUTTGL31_0 = (1<<15);   // Toggle Debug 2
 }
 
-// for now we're just polling for any button and will send a 1 if anything is pressed
 static uint32_t PrevPoll;
 void InputPolling() {
     uint32_t newPoll = TSC2046IPWR_PollTouch();
